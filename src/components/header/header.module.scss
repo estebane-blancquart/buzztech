@@ -1,0 +1,52 @@
+@media screen and (min-width: 769px) {
+    header {
+        margin-left: 10vw;
+
+        .brand {
+            line-height: 45px;
+            margin: 2vh 0 2vh 0;
+
+            .brandName {
+                font-family: "Lato";
+                font-size: max(1.4vmax, 22px);
+                font-weight: 400;
+                color: #C6C3FF;
+            }
+
+            .brandService {
+                font-family: "Big Shoulders Display";
+                font-size: max(4vmax, 62px);
+                font-weight: 700;
+                color: white;
+                display: inline-block;
+                transform: scaleY(0.7);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        margin: 5vh 0 0 5vw;
+
+        .brand {
+            line-height: 25px;
+
+            .brandName {
+                font-family: "Big Shoulders Display";
+                font-size: max(12vw, 66px);
+                font-weight: 700;
+                color: white;
+                display: inline-block;
+                transform: scaleY(0.7);
+            }
+
+            .brandService {
+                font-family: "Lato";
+                font-size: max(2.9vw, 16px);
+                font-weight: 400;
+                color: #C6C3FF;
+            }
+        }
+    }
+}
