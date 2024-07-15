@@ -1,0 +1,11 @@
+@import "/src/styles/variables.scss";
+
+@media screen and (min-width: 769px) {
+    .home {
+        height: 100Vh;
+        background-color: $background-color;
+    }
+}
+
+@media screen and (max-width: 768px) {
+}
