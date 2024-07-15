@@ -4,7 +4,8 @@
 
         .brand {
             line-height: 45px;
-            margin: 2vh 0 2vh 0;
+            margin: 0 0 2vh 0;
+            padding-top: 2vh;
 
             .brandName {
                 font-family: "Lato";
@@ -27,7 +28,8 @@
 
 @media screen and (max-width: 768px) {
     header {
-        margin: 5vh 0 0 5vw;
+        margin: 0 0 0 5vw;
+        padding-top: 2vh;
 
         .brand {
             line-height: 25px;
