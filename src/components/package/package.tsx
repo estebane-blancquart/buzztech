@@ -16,7 +16,7 @@ export default function Package({ id, title, summary, description, price }: Pack
                 <h2>{title}</h2>
                 <p>{summary}</p>
                 <p>{description}</p>
-                <p><span className='price'>Tarif:</span>{price}</p>
+                <p><span className={styles.price}>Tarif:</span>{price}</p>
                 <button>Demander un devis.</button>
             </section>
         </>

@@ -14,7 +14,7 @@ export default function Service({ id, title, description, price }: ServiceProps)
             <section id={id}>
                 <h2>{title}</h2>
                 <p>{description}</p>
-                <p><span className='price'>Tarif:</span>{price}</p>
+                <p><span className={styles.prices}>Tarif:</span>{price}</p>
             </section>
         </>
     );
