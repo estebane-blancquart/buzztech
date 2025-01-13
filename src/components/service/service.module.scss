@@ -1,53 +1,32 @@
-.services {
-    height: 68vh;
-    padding: 5vh 10vw;
-    width: 45vw;
-    display: flex;
+.serv {
+  margin: 5vh 10vw;
+  width: 50vw;
 
-    .service {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+  h2 {
+    font-family: "Lato";
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 2.5vh;
+  }
 
-        section {
-            margin-bottom: 5vh;
+  p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-family: "Lato";
+    color: white;
+    margin-bottom: 1vh;
+  }
 
-            h2 {
-                font-family: "Lato";
-                font-weight: 600;
-                font-size: 1.2rem;
-                color: white;
-                margin-bottom: 2.5vh;
-            }
-
-            p {
-                font-size: 1.1rem;
-                font-weight: 300;
-                font-family: "Lato";
-                color: white;
-                margin-bottom: 1vh;
-
-            }
-
-            .price {
-                color: #C6C3FF;
-                text-decoration: underline;
-                font-weight: 400;
-            }
-        }
-    }
+  .price {
+    color: #c6c3ff;
+    text-decoration: underline;
+    font-weight: 400;
+  }
 }
 
-
 @media screen and (max-width: 768px) {
-    .services {
-        width: 90vw;
-        padding: 0vh 5vw;
-
-        .service {
-            section {
-                margin-bottom: 1vh;
-            }
-        }
-    }
+  .serv {
+    width: 70vw;
+  }
 }

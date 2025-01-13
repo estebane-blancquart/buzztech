@@ -1,24 +1,26 @@
 @media screen and (min-width: 769px) {
     header {
         margin-left: 10vw;
-
+        
         .brand {
             line-height: 45px;
             margin: 0 0 2vh 0;
             padding-top: 2vh;
-
+            
             .brandName {
                 font-family: "Lato";
                 font-size: max(1.4vmax, 22px);
                 font-weight: 400;
                 color: #C6C3FF;
+                text-shadow: 3px 3px 5px #c6c3ff86;
             }
-
+            
             .brandService {
                 font-family: "Big Shoulders Display";
                 font-size: max(4vmax, 62px);
                 font-weight: 700;
                 color: white;
+                text-shadow: 5px 5px 8px rgba(255, 255, 255, 0.521);
                 display: inline-block;
                 transform: scaleY(0.7);
             }

@@ -1,0 +1,14 @@
+@import "/src/styles/variables.scss";
+
+.presentation {
+    height: 100Vh;
+    background-color: $background-color;
+
+    .sphere {
+      position: fixed;
+      height: auto;
+      width: 50vw;
+      top: -50vh;
+      right: -10vw;
+    }
+}

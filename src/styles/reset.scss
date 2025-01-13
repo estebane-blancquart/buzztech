@@ -1,8 +1,10 @@
+@import "/src/styles/variables.scss";
 
 body {
     margin: 0;
     padding: 0;
     cursor: default;
+    background-color: $background-color;
     
     a {
         text-decoration: none;

@@ -1,94 +1,120 @@
 @import "/src/styles/variables.scss";
 
 .home {
-    height: 100Vh;
-    background-color: $background-color;
+  height: 100vh;
+  background-color: $background-color;
 }
 
 @media screen and (min-width: 769px) {
-    .survey {
-        width: 33vw;
-        min-width: 510px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin-left: 10vw;
-        margin-top: 20vh;
+  .survey {
+    width: 33vw;
+    min-width: 510px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 10vw;
+    margin-top: 20vh;
 
-        h2 {
-            font-size: max(1.4vmax, 24px);
-            font-family: "Lato";
-            color: white;
-            font-weight: 300;
-        }
-
-        a {
-            font-family: "Lato";
-            font-size: max(1.2vmax, 18px);
-            color: #171717;
-            background-color: white;
-            padding: 2vh 5vw;
-            text-align: center;
-            min-width: 200px;
-            border-radius: 5px;
-            box-shadow: 5px 5px 0px #6E69D4;
-            transition: background-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        a:hover {
-            box-shadow: 7px 7px 0px #6E69D4;
-            transition-duration: 200ms;
-        }
+    h2 {
+      font-size: max(1.4vmax, 24px);
+      font-family: "Lato";
+      color: white;
+      font-weight: 300;
+      margin-bottom: 4vh;
     }
 
-    .sphere {
-        position: absolute;
-        height: auto;
-        width: 30vw;
-        top: 2vh;
-        right: 2vw;
+    a {
+      font-family: "Big Shoulders Display";
+      font-size: max(1.4vmax, 20px);
+      color: $background-color;
+      background-color: white;
+      padding: 1.5vh 3vw;
+      text-align: center;
+      min-width: 200px;
+      border-radius: 5px;
+      box-shadow: 5px 5px 1px #6e69d4fb;
+      font-weight: 900;
+      transform: scaleY(0.8);
+      animation: breathe 3s ease-in-out infinite;
     }
+
+    a:hover {
+      box-shadow: 10px 10px 20px #6e69d4;
+      transition-duration: 100ms;
+      text-shadow: 0px 0px 25px #8985c775;
+    }
+  }
+
+  .sphere {
+    position: absolute;
+    height: auto;
+    width: 40vw;
+    top: 2vh;
+    right: 2vw;
+    transition-duration: 200ms;
+    opacity: 0.5;
+    border-radius: 100%;
+  }
+
+  .sphere:hover {
+    transition-duration: 200ms;
+    opacity: 0.7;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .survey {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin-top: 10vh;
+  .survey {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10vh;
 
-        h2 {
-            font-size: max(3vw, 18px);
-            font-family: "Lato";
-            color: white;
-            font-weight: 300;
-        }
-
-        a {
-            font-family: "Lato";
-            font-size: max(2vw, 14px);
-            color: #171717;
-            background-color: white;
-            padding: 2vh 5vw;
-            text-align: center;
-            min-width: 150px;
-            border-radius: 5px;
-            box-shadow: 5px 5px 0px #6E69D4;
-            transition: background-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        a:hover {
-            box-shadow: 7px 7px 0px #6E69D4;
-            transition-duration: 200ms;
-        }
+    h2 {
+      font-size: max(3vw, 18px);
+      font-family: "Lato";
+      color: white;
+      font-weight: 300;
+      z-index: 1;
     }
-    .sphere {
-        position: fixed;
-        height: 500px;
-        width: 500px;
-        bottom: -45vh;
-        left: -10vw;
-      }
+
+    a {
+      font-family: "Lato";
+      font-size: max(2vw, 14px);
+      color: #171717;
+      background-color: white;
+      padding: 2vh 5vw;
+      text-align: center;
+      min-width: 150px;
+      border-radius: 5px;
+      box-shadow: 5px 5px 0px #6e69d4;
+      transition: background-color 0.2s ease-in;
+      z-index: 1;
+    }
+
+    a:hover {
+      box-shadow: 7px 7px 0px #6e69d4;
+      transition-duration: 200ms;
+    }
+  }
+  .sphere {
+    position: fixed;
+    height: auto;
+    width: 500px;
+    bottom: -35vh;
+    left: -10vw;
+  }
+}
+
+@keyframes breathe {
+  0% {
+    box-shadow: 5px 5px 0px #6e69d46c;
+  }
+  50% {
+    box-shadow: 7px 7px 10px #6e69d4;
+  }
+  100% {
+    box-shadow: 5px 5px 0px #6e69d46c;
+  }
 }

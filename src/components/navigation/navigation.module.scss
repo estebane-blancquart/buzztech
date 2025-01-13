@@ -12,6 +12,7 @@
         min-width: 510px;
         margin-left: 10vw;
         font-family: "Lato";
+        padding-bottom: 5vh;
 
         .pageLink {
             font-size: max(1vmax, 16px);
@@ -47,7 +48,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        z-index: 1;
+        z-index: 2;
 
         &.open {
             display: flex;

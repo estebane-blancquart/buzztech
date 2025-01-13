@@ -20,10 +20,10 @@ function Navigation() {
       </div>
 
       <div className={`${styles.navigation} ${isMenuOpen ? styles.open : ''}`}>
-        <Link to="/repair" className={styles.pageLink} onClick={closeMenu}>DÉPANNAGE</Link>
-        <Link to="/configuration" className={styles.pageLink} onClick={closeMenu}>CONCEPTION</Link>
-        <Link to="/development" className={styles.pageLink} onClick={closeMenu}>DÉVELOPPEMENT</Link>
-        <Link to="/cleaning" className={styles.pageLink} onClick={closeMenu}>NETTOYAGE</Link>
+        <Link to="/depannage" className={styles.pageLink} onClick={closeMenu}>DÉPANNAGE</Link>
+        <Link to="/conception" className={styles.pageLink} onClick={closeMenu}>CONCEPTION</Link>
+        <Link to="/developpement" className={styles.pageLink} onClick={closeMenu}>DÉVELOPPEMENT</Link>
+        <Link to="/nettoyage" className={styles.pageLink} onClick={closeMenu}>NETTOYAGE</Link>
       </div>
 
       {isMenuOpen && <div className={styles.closeNavigation} onClick={closeMenu}></div>}

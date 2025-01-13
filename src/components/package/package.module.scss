@@ -1,72 +1,94 @@
 @media screen and (min-width: 769px) {
-    .package {
-        height: 40vh;
-        width: 25vw;
-        position: absolute;
-        right: 10vw;
-        bottom: 15vh;
-        border: 2px solid white;
-        border-radius: 10px;
-        font-family: "Lato";
-      
-        section {
-          display: flex;
-          flex-direction: column;
-          height: 35vh;
-          position: relative;
-      
-          h2 {
-            color: #C6C3FF;
-            text-align: center;
-            margin: 2vh 0vw;
-            font-weight: 700;
-            font-size: max(1.6vmax, 22px);    
-          }
-        
-          p {
-            color: white;
-            margin: 2vh 2vw;
-            font-weight: 600;
-            font-size: max(1vmax, 16px);    
-            margin: 1vh 2vw;
-            font-weight: 300;
-      
-      
-            span {
-              color: #C6C3FF;
-              text-decoration: underline;
-              font-weight: 400;
-            }
-          }
-      
-          button {
-            width: 15vw;
-            height: 5vh;
-            font-family: "Lato";
-            font-size: 1rem;
-            color: #171717;
-            border: 0;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 5px 5px 0px #6E69D4;
-            transition: background-color 0.2s ease, box-shadow 0.2s ease;
-            position: absolute;
-            left: 50%;
-            bottom: 2vh;
-            transform: translateX(-50%);
-          }
-      
-          .survey-button:hover {
-            box-shadow: 7px 7px 0px #6E69D4;
-            transition-duration: 200ms;
-          }
-        }
+  .pack {
+    height: 45vh;
+    width: 25vw;
+    position: absolute;
+    right: 10vw;
+    bottom: 15vh;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-family: "Lato";
+
+    display: flex;
+    flex-direction: column;
+    height: 35vh;
+    margin: 0;
+
+    h2 {
+      color: #c6c3ff;
+      text-align: center;
+      margin: 1vh 0vw;
+      font-weight: 700;
+      font-size: max(1.6vmax, 22px);
+    }
+
+    p {
+      color: white;
+      margin: 2vh 2vw;
+      font-weight: 600;
+      font-size: max(1vmax, 16px);
+      margin: 1vh 2vw;
+      font-weight: 300;
+
+      span {
+        color: #c6c3ff;
+        text-decoration: underline;
+        font-weight: 400;
       }
-}
-  
-  @media screen and (max-width: 768px) {
-    .package {
-        display: none;
+    }
+
+    button {
+      width: 15vw;
+      height: 5vh;
+      font-family: "Lato";
+      font-size: 1rem;
+      color: #171717;
+      border: 0;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 5px 5px 0px #6e69d4;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      position: absolute;
+      left: 50%;
+      bottom: 3vh;
+      transform: translateX(-50%);
+    }
+
+    .survey-button:hover {
+      box-shadow: 7px 7px 0px #6e69d4;
+      transition-duration: 200ms;
     }
   }
-  
+}
+@media screen and (max-width: 768px) {
+  .pack {
+    font-family: "Lato";
+    width: 100vw;
+    height: 30vh;
+    background-color: white;
+    padding: 5vh 10vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #171717;
+
+    h2 {
+      margin: 0;
+    }
+
+      p {
+        width: 70vw;
+      }
+
+    button {
+      display: none;
+    }
+  }
+}
+
+
+@media screen and (max-height: 750px) {
+  .pack {
+    display: none;
+  }
+}
