@@ -15,8 +15,8 @@ function AnimatedRoutes() {
     <TransitionGroup>
       <CSSTransition
         key={location.key}
-        classNames={location.pathname === '/' ? '' : 'fade'}
-        timeout={location.pathname === '/' ? 0 : 500}
+        classNames="fade"
+        timeout={300}
       >
         <Routes location={location}>
           <Route path="/" element={<Home />} />
