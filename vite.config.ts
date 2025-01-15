@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [
@@ -7,9 +8,13 @@ export default defineConfig({
     {
       name: 'inject-base-tag',
       transformIndexHtml(html) {
-        return html.replace('<head>', '<head><base href="/buzztech/">')
+        return html.replace(
+          '<head>',
+          '<head><base href="/">'
+        );
       },
     },
   ],
-  base: '/buzztech/',
+  base: '/',
+  publicDir: resolve(__dirname, 'public'),
 })

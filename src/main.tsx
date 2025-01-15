@@ -16,3 +16,4 @@ ReactDOM.createRoot(rootElement).render(
     <AppRouter />
   </React.StrictMode>
 );
+console.log('React has started successfully!');
