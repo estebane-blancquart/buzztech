@@ -8,7 +8,6 @@
     border: 2px solid white;
     border-radius: 10px;
     font-family: "Lato";
-
     display: flex;
     flex-direction: column;
     height: 35vh;
@@ -40,7 +39,6 @@
     button{
       width: 15vw;
       height: 5vh;
-
       border: 0;
       background-color: white;
       border-radius: 5px;
@@ -65,29 +63,33 @@
   }
 }
 @media screen and (max-width: 768px) {
+
   .pack {
-    font-family: "Lato";
-    width: 100vw;
-    height: 30vh;
-    background-color: white;
-    padding: 5vh 10vw;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    color: #171717;
-
-    h2 {
-      margin: 0;
-    }
-
-      p {
-        width: 70vw;
-      }
-
-    button {
-      display: none;
-    }
+    display: none;
   }
+  // .pack {
+  //   font-family: "Lato";
+  //   width: 100vw;
+  //   height: 30vh;
+  //   background-color: white;
+  //   padding: 5vh 10vw;
+  //   display: flex;
+  //   justify-content: center;
+  //   flex-direction: column;
+  //   color: #171717;
+
+  //   h2 {
+  //     margin: 0;
+  //   }
+
+  //     p {
+  //       width: 70vw;
+  //     }
+
+  //   button {
+  //     display: none;
+  //   }
+  // }
 }
 
 
