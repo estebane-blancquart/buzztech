@@ -17,7 +17,7 @@ export default function Package({ id, title, summary, description, price }: Pack
                 <p>{summary}</p>
                 <p>{description}</p>
                 <p><span className={styles.prices}>Tarif:</span>{price}</p>
-                <button>Demander un devis.</button>
+                <button><a href="https://tally.so/r/w4L7ek" target="_blank">Demander un devis.</a></button>
             </section>
         </>
     );

@@ -37,12 +37,10 @@
       }
     }
 
-    button {
+    button{
       width: 15vw;
       height: 5vh;
-      font-family: "Lato";
-      font-size: 1rem;
-      color: #171717;
+
       border: 0;
       background-color: white;
       border-radius: 5px;
@@ -52,6 +50,12 @@
       left: 50%;
       bottom: 3vh;
       transform: translateX(-50%);
+
+      a {
+        font-family: "Lato";
+        font-size: 1rem;
+        color: #171717;
+      }
     }
 
     button:hover {

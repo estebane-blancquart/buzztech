@@ -14,7 +14,7 @@ function Home() {
       <div className={styles.survey}>
         <h2>Obtenez une estimation gratuite et rapide.</h2>
         <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSdjyQ4WdzbyPgZ2iGqKjwTObb3-Lt7Ns1pDEKv0DOfjQacK8Q/viewform?usp=sf_link"
+          href="https://tally.so/r/w4L7ek"
           target="_blank"
           rel="noopener noreferrer"
         >
