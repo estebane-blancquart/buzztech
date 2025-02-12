@@ -1,0 +1,11 @@
+.button{
+    width: 10vw;
+    min-width: 125px;
+    box-shadow: none;
+    border: 2px solid $white;
+    color: $white;
+    background-color: transparent;
+    padding: 1vh 0vw;
+    height: 5vh;
+    font-size: $text-secondary-desktop;
+}

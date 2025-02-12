@@ -1,20 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    {
-      name: 'inject-base-tag',
-      transformIndexHtml(html) {
-        return html.replace(
-          '<head>',
-          '<head><base href="/">'
-        );
-      },
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
     },
-  ],
-  base: '/',
-  publicDir: resolve(__dirname, 'public'),
-})
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use "@/theme/mixins" as *;
+          @use "@/theme/variables" as *;
+        `
+      }
+    }
+  }
+  
+});

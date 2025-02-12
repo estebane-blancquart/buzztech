@@ -1,0 +1,11 @@
+.service {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  font-family: $lato;
+
+  div {
+    font-family: $ubuntu;
+  }
+}

@@ -1,0 +1,45 @@
+// ------------------------------------------ Colors ------------------------------------------ //
+
+$white: #e8e8e8;
+$black: #171717;
+$light-purple: #C6C3FF;
+$purple: #9C97FF;
+$dark-purple: #2D314B;
+
+// ------------------------------------------ Fonts ------------------------------------------ //
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
+$lato: "Lato";
+$ubuntu: "Ubuntu Sans Mono";
+
+$base-font-size-desktop: 16px;
+$base-font-size-tablet: 15px;
+$base-font-size-mobile: 14px;
+
+$h1-desktop: 3rem; // 48px
+$h1-tablet: 2.67rem; // 40px
+$h1-mobile: 2.5rem; // 35px
+
+$h2-desktop: 2rem; // 32px
+$h2-tablet: 1.8rem; // 27px
+$h2-mobile: 1.7rem; // 24px
+
+$h3-desktop: 1.5rem; // 24px
+$h3-tablet: 1.4rem; // 21px
+$h3-mobile: 1.25rem; // 18px;
+
+$text-main-desktop: 1rem; // 16px
+$text-main-tablet: 1rem; // 15px
+$text-main-mobile: 1rem; // 14px
+
+$text-secondary-desktop: 0.875rem; // 14px
+$text-secondary-tablet: 0.875rem; // 13px
+$text-secondary-mobile: 0.875rem; // 12px
+
+// ------------------------------------------ Breakpoints ------------------------------------------ //
+
+$breakpoint-mobile: 768px ;
+$breakpoint-desktop: 1024px;
+

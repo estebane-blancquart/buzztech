@@ -1,0 +1,20 @@
+@mixin mobile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@mixin tablet-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@mixin desktop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

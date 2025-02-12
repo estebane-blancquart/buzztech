@@ -1,0 +1,47 @@
+.card {
+  legend {
+    margin: auto;
+    padding: 0px 10px;
+    border: 2px solid white;
+  }
+    border: 2px solid #c6c3ff;
+    background-color: #9c97ff3d;
+    width: 15vw;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      filter: drop-shadow(0 0 5px #9c97ff);
+    }
+  }
+
+
+.crtIcon {
+  animation: crt-flicker 0.15s infinite alternate;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .card div {
+    width: 50vw;
+  }
+}
+
+@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop) {
+  .card div {
+    width: 18vw;
+    padding: 0px 10px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .card div {
+    width: 15vw;
+
+    img {
+      height: auto;
+      width: 10vw;
+    }
+  }
+}

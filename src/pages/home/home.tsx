@@ -1,33 +1,16 @@
-import React from 'react';
-import styles from './home.module.scss';
-import Header from '../../components/header/header';
-import Navigation from '../../components/navigation/navigation';
-import Contact from '../../components/contact/contact';
+import Hero from '../../modules/hero/Hero';
+import Presentation from '../../modules/presentation/Presentation';
+
 
 function Home() {
   return (
-    <div className={styles.home}>
-      <Header />
-      <Navigation />
-      <Contact />
-
-      <div className={styles.survey}>
-        <h2>Obtenez une estimation gratuite et rapide.</h2>
-        <a
-          href="https://tally.so/r/w4L7ek"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          DEMANDEZ UN DEVIS.
-        </a>
-      </div>
-
-      <img
-        className={styles.sphere}
-        src="images/sphere.gif"
-        alt="Animation décorative d'une sphère"
-      />
-    </div>
+    <>
+      <Hero />
+      <Presentation />
+      <section>
+        <iframe src="https://player.vimeo.com/video/1054567107?h=57aff06028&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="[TEASER] BuzzTech - Services Informatiques"></iframe>
+      </section>
+    </>
   );
 }
 

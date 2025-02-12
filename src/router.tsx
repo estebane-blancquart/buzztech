@@ -1,39 +1,24 @@
-import React from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Home from './pages/home/home';
-import Cleaning from './pages/presentation/cleaning';
-import Configuration from './pages/presentation/configuration';
-import Development from './pages/presentation/development';
-import Repair from './pages/presentation/repair';
-import './styles/transitions.scss';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
+import Home from './pages/home/Home';
+import Repair from './pages/repair/Repair';
+import Configuration from './pages/configuration/Configuration';
+import Development from './pages/development/Development';
+import Cleaning from './pages/cleaning/Cleaning';
 
-function AnimatedRoutes() {
-  const location = useLocation();
-
-  return (
-    <TransitionGroup>
-      <CSSTransition
-        key={location.key}
-        classNames="fade"
-        timeout={300}
-      >
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/nettoyage" element={<Cleaning />} />
-          <Route path="/conception" element={<Configuration />} />
-          <Route path="/developpement" element={<Development />} />
-          <Route path="/depannage" element={<Repair />} />
-        </Routes>
-      </CSSTransition>
-    </TransitionGroup>
-  );
-}
 
 function AppRouter() {
   return (
     <Router>
-      <AnimatedRoutes />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="depannage" element={<Repair />} />
+          <Route path="conception" element={<Configuration />} />
+          <Route path="developpement" element={<Development />} />
+          <Route path="nettoyage" element={<Cleaning />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }
