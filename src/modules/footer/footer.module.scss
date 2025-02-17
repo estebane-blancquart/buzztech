@@ -1,25 +1,44 @@
-@media (max-width: $breakpoint-mobile) {
-
+footer {
+  position: sticky;
+  bottom: 0;
+  background-color: $black;
+  z-index: 1;
 }
 
-@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop) {
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-style: normal;
+  padding: 1vh 0;
 
-}
-
-@media (min-width: $breakpoint-desktop) {
-  .contact {
+  div {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    color: $white;
 
-    div {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      color: $white;
+    img {
+      width: 40px;
+    }
 
-      img {
-        width: 3vw;
-      }
+    p {
+      margin-left: 1vw;
+    }
+  }
+}
+
+.copyright {
+  color: $white;
+  text-align: center;
+  padding: 2vh 0;
+  opacity: 0.5;
+}
+
+@media (max-width: $breakpoint-desktop) {
+  .contact div {
+    height: 5vh;
+    img {
+      width: 20px;
     }
   }
 }

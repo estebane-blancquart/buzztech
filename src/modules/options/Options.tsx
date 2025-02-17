@@ -1,6 +1,6 @@
 import styles from './options.module.scss';
 import Card from '../../components/card/Card';
-import Pack from '../../components/banner/Banner';
+import Banner from '../../components/banner/Banner';
 
 interface OptionsProps {
   title1: string;
@@ -34,7 +34,7 @@ function Options({ title1, description1, icon1, price1, title2, description2, ic
         <Card title={title3} description={description3} icon={icon3} price={price3} />
       </article>
       <article className={styles.pack}>
-        <Pack title={packTitle} description={packDescription} price={packPrice}/>
+        <Banner title={packTitle} description={packDescription} price={packPrice}/>
       </article>
     </section>
   );

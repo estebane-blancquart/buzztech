@@ -1,5 +1,10 @@
-header {
+.header {
   font-family: $lato;
+  padding: 2vh 0 5vh 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: $black;
 
   .logo, .showMobilNav {
     color: $white;
@@ -8,16 +13,13 @@ header {
   .mobileNav {
     background-color: $black;
   }
-
-  .pageLink {
-    color: $purple;
-  }
 }
 
 @media  (max-width: $breakpoint-desktop) {
   header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .showMobilNav {
       border: 0;
@@ -33,11 +35,14 @@ header {
       bottom: 0;
       width: 50vw;
     }
-
+    .pageLink {
+      color: $white;
+    }
+    
     li {
       text-align: center;
       padding: 4vh 0vw;
-      font-size: $text-main-mobile;
+      font-size: $h2-mobile;
     }
 
     .hideMobileNav {
@@ -46,6 +51,8 @@ header {
       top: 0;
       bottom: 0;
       width: 50vw;
+      background-color: $black;
+      opacity: 0.4;
     }
 
     .desktopNav {
@@ -71,6 +78,14 @@ header {
         justify-content: space-between;
         min-width: 500px;
         font-size: $text-main-desktop;
+
+        a:hover {
+          color: $light-purple;
+        }
+
+        a:active {
+          color: $dark-purple;
+        }
       }
     }
 
@@ -80,6 +95,9 @@ header {
 
     .hideMobileNav {
       display: none;
+    }
+    .pageLink {
+      color: $purple;
     }
   }
 }

@@ -24,7 +24,7 @@ function Footer() {
         </div>
       </address>
       <div className={styles.copyright}>
-        <p>Site conçu et développé par BuzzTech. <u>Tous droits réservés © 2025.</u></p>
+        <p>Site conçu et développé par BuzzTech. Tous droits réservés © 2025.</p>
       </div>
     </footer>
   );

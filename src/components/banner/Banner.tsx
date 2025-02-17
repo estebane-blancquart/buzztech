@@ -9,7 +9,7 @@ interface PackProps {
 function Pack({ title, description, price}: PackProps) {
 
   return ( 
-    <fieldset className={styles.pack}>
+    <fieldset className={styles.banner}>
       <legend><h3>{title}</h3></legend>
           <p>{description}</p>
           <p>{price}€</p>

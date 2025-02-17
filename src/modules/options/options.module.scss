@@ -2,10 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   font-family: $ubuntu;
+  height: 70vh;
 
   .cards {
     display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  h2 {
+    color: $white;
   }
 }
 

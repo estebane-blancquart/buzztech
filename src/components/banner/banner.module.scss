@@ -1,14 +1,19 @@
-.pack {
-  border: 1px solid black;
-  width: 25vw;
+.banner {
+  border: 2px solid $light-purple;
+  width: 40vw;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $dark-purple;
+  color: $light-purple;
 
   legend {
     padding: 0px 10px;
-    border: 2px solid white;
+    border: 2px solid $light-purple;
+    background-color: $dark-purple;
+    color: $purple;
+    padding: 5px 1vw;
   }
 }
 

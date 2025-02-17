@@ -1,10 +1,12 @@
 .service {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   text-align: center;
   align-items: center;
   font-family: $lato;
   color: $white;
+  height: 50vh;
 
   div {
     font-family: $ubuntu;

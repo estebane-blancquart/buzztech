@@ -21,8 +21,8 @@ function Presentation() {
     <section className={styles.presentation}>
       <h2>Des services sur mesure</h2>
       <div className={styles.availability}>
-        <p>Secteur Saint-Etienne</p>
-        <p>Disponible 7j/7</p>
+        <p>Secteur <br /> Saint-Etienne</p>
+        <p>Disponible <br /> 7j/7</p>
       </div>
       <div className={styles.cardsTo}>
         <CardTo title={'Dépannage'} description={'Obtenez une assistance rapide et efficace en atelier, à distance, ou à domicile.'} />
