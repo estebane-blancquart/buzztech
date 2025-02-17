@@ -1,6 +1,6 @@
 .banner {
   border: 2px solid $light-purple;
-  width: 40vw;
+  width: 30vw;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
@@ -9,11 +9,20 @@
   color: $light-purple;
 
   legend {
+    margin: auto;
     padding: 0px 10px;
     border: 2px solid $light-purple;
+    color: $light-purple;
     background-color: $dark-purple;
-    color: $purple;
-    padding: 5px 1vw;
+    padding: 5px 2vw;
+  }
+  .price {
+    background-color: $light-purple;
+    color: $dark-purple;
+    position: relative;
+    bottom: 0;
+    padding: 5px 10px;
+    margin: 2vh 0;
   }
 }
 

@@ -5,6 +5,7 @@
   justify-content: space-around;
   font-family: $ubuntu;
   height: 70vh;
+  margin-bottom: 2vh;
 
   .cards {
     display: flex;
@@ -14,6 +15,7 @@
 
   h2 {
     color: $white;
+    font-weight: 300;
+    font-family: $lato;
   }
 }
-

@@ -6,13 +6,13 @@ interface PackProps {
   price: number;
 }
 
-function Pack({ title, description, price}: PackProps) {
+function Pack({ title, description, price }: PackProps) {
 
-  return ( 
+  return (
     <fieldset className={styles.banner}>
       <legend><h3>{title}</h3></legend>
-          <p>{description}</p>
-          <p>{price}€</p>
+      <p className={styles.description}>{description}</p>
+      <p className={styles.price}><span>Tarif:</span> {price}€</p>
     </fieldset>
   );
 }

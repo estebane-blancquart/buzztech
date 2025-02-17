@@ -1,25 +1,36 @@
 .card {
-  border: 2px solid #c6c3ff;
-  background-color: #9c97ff3d;
-  width: 15vw;
+  border: 2px solid $light-purple;
+  background-color: $dark-purple;
+  width: 18vw;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: $light-purple;
+  justify-content: space-between;
 
   legend {
     margin: auto;
     padding: 0px 10px;
-    border: 2px solid white;
+    border: 2px solid $light-purple;
     color: $light-purple;
     background-color: $dark-purple;
-    padding: 5px 1vw;
+    padding: 5px 2vw;
   }
 
     img {
       filter: drop-shadow(0 0 5px #9c97ff);
       width: 60%;
+      padding: 25px;
+    }
+
+    .price {
+      background-color: $light-purple;
+      color: $dark-purple;
+      position: relative;
+      bottom: 0;
+      padding: 5px 10px;
+      margin: 2vh 0;
     }
   }
 

@@ -1,4 +1,39 @@
 .configurationContent {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+
+  .title {
+    font-weight: 600;
+    color: $white;
+  }
+
+  span {
+    color: $light-purple;
+  }
+
+  pre {
+    font-size: 0.8vmax;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .configurationContent{
+        flex-direction: column;
+        width: 80vw;
+
+    }
+}
+
+@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop) {
+    .configurationContent{
+        flex-direction: column;
+        width: 70vw;
+
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .configurationContent{
+        justify-content: space-between;
+        width: 60vw;
+    }
 }

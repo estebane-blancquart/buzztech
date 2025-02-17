@@ -1,9 +1,18 @@
 .repairContent {
     display: flex;
     justify-content: space-between;
-    width: 40vw;
+    width: 50vw;
+
+    pre{
+        font-weight: 300;
+    }
+
+    span{
+        color: $light-purple;
+    }
 
     .software {
         text-align: end;
     }
 }
+

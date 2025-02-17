@@ -13,8 +13,8 @@ function Card({ title, description, icon, price }: CardProps) {
     <fieldset className={styles.card}>
       <legend><h3>{title}</h3></legend>
       <img className={styles.icon} src={icon} alt="" />
-      <p>{description}</p>
-      <p>Tarif: {price}€</p>
+      <p className={styles.description}>{description}</p>
+      <p className={styles.price}><span>Tarif:</span> {price}€</p>
     </fieldset>
   );
 }

@@ -1,0 +1,33 @@
+.cleaningContent {
+    display: flex;
+    width: 60vw;
+    justify-content: space-between;
+.window {
+    height: 20vh;
+    width: 40%;
+    border: 2px solid $light-purple;
+    box-shadow: 5px 5px 0px $light-purple;
+
+    h3 {
+        width: 100%;
+        background-color: $light-purple;
+        color: $dark-purple;
+        height: 5vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ul {
+        height: 12vh;
+        width: 100%;
+        text-align: left;
+        margin-left: 2vw;
+        padding: 1vh 1vw;
+
+        li {
+            height: 3vh;
+        }
+    }
+}
+}

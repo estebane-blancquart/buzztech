@@ -11,7 +11,7 @@ function Repair() {
       >
         <div className={styles.repairContent}>
             <pre className={styles.hardware}>
-                Problème matériel              <br /> <br />
+              <span>Problème matériel </span>            <br /> <br />
                 │                              <br />
                 ├── Ordinateur ne s'allume plus<br />
                 │                              <br />
@@ -25,7 +25,7 @@ function Repair() {
             </pre>
 
             <pre className={styles.software}>
-                            Problèmes logiciels<br /> <br />
+                            <span>Problèmes logiciels</span><br /> <br />
                                               │<br />
                 Wi-Fi qui ne fonctionne pas ──┤<br />
                                               │<br />

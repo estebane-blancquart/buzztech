@@ -9,32 +9,32 @@ function Configuration() {
         title={'Créez votre ordinateur sur mesure'}
         description={"Pour les besoins du quotidien. -> Navigation web, réseaux sociaux - Traitement de texte, feuille de calcul - Gaming léger Pour réaliser des tâches plus lourdes. -> Montage vidéo ou photo - Gaming - Streaming - Edition et mixage audio \n Pour les tâches les plus exigeantes. -> 3D, CAO, rendu vidéo 4K - Gaming 4K ou VR - Virtualisation, simulation"}
       >
-=          <div className={styles.configurationContent}>
+         <div className={styles.configurationContent}>
             <pre>
               +------------------------------------------------------+<br />
-              ★ LE CHOIX DES COMPOSANTS ★                            <br />
+               <span className={styles.title}>              ★ LE CHOIX DES COMPOSANTS ★              </span><br />
               +------------------------------------------------------+<br />
-              | Carte mère      : Format, connecteurs essentiels     |<br />
-              | RAM             : Capacité, vitesse                  |<br />
-              | Processeur      : Fréquence, cœurs                   |<br />
-              | Carte graphique : Mémoire vidéo, performance         |<br />
-              | Alimentation    : Puissance, certification           |<br />
-              | Refroidissement : Type, compatibilité                |<br />
-              | Stockage        : Capacité, technologie              |<br />
+              | <span>Carte mère      :</span> Format, connecteurs essentiels     |<br />
+              | <span>RAM             :</span> Capacité, vitesse                  |<br />
+              | <span>Processeur      :</span> Fréquence, cœurs                   |<br />
+              | <span>Carte graphique :</span> Mémoire vidéo, performance         |<br />
+              | <span>Alimentation    :</span> Puissance, certification           |<br />
+              | <span>Refroidissement :</span> Type, compatibilité                |<br />
+              | <span>Stockage        :</span> Capacité, technologie              |<br />
               +------------------------------------------------------+<br />
             </pre>
 
             <pre>
               +------------------------------------------------------+<br />
-              ★ LE CHOIX DES PÉRIPHÉRIQUES ★                         <br />
+              <span className={styles.title}>             ★ LE CHOIX DES PÉRIPHÉRIQUES ★              </span><br />
               +------------------------------------------------------+<br />
-              | Écran          : Résolution, fréquence d'affichage   |<br />
-              | Clavier        : Type de switchs, format             |<br />
-              | Souris         : Ergonomie, sensibilité              |<br />
-              | Système son    : Casque ou enceintes, micro          |<br />
-              | Webcam         : Résolution, micro intégré           |<br />
-              | Casque audio   : Type, isolation sonore              |<br />
-              | Microphone     : Directionnalité, connectique        |<br />
+              | <span>Écran          :</span> Résolution, fréquence d'affichage   |<br />
+              | <span>Clavier        :</span> Type de switchs, format             |<br />
+              | <span>Souris         :</span> Ergonomie, sensibilité              |<br />
+              | <span>Système son    :</span> Casque ou enceintes, micro          |<br />
+              | <span>Webcam         :</span> Résolution, micro intégré           |<br />
+              | <span>Casque audio   :</span> Type, isolation sonore              |<br />
+              | <span>Microphone     :</span> Directionnalité, connectique        |<br />
               +------------------------------------------------------+<br />
             </pre>
 
