@@ -33,7 +33,6 @@ function Repair() {
                                               │<br />
                                               │<br />
                                               │<br />
-                                              │<br />
                    Mot de passe oublié ───────┤<br />
                                               │<br />
                    Plantages fréquents ───────┘<br />

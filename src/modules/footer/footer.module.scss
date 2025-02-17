@@ -7,5 +7,19 @@
 }
 
 @media (min-width: $breakpoint-desktop) {
+  .contact {
+    display: flex;
+    justify-content: space-between;
 
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      color: $white;
+
+      img {
+        width: 3vw;
+      }
+    }
+  }
 }
