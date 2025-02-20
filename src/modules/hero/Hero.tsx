@@ -5,14 +5,15 @@ function Hero() {
 
   return (
     <section className={styles.hero}>
-      <h2>BuzzTech, des solutions <b>rapides</b> et <b>personnalisées</b> pour vos besoins informatiques.</h2>
-      <Button />
+      <div className={styles.cta}>
+        <h2>BuzzTech, des solutions <b>rapides</b> et <b>personnalisées</b> pour vos besoins informatiques.</h2>
+        <Button />
+      </div>
       <img
         className={styles.sphere}
         src="images/sphere.gif"
         alt="Animation décorative d'une sphère"
       />
-      <p>⬐ <b>A propos</b> des solutions.</p>
     </section>
   );
 }

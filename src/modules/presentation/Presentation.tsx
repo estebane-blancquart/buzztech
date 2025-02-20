@@ -1,19 +1,5 @@
+import Card from '../../components/card/Card';
 import styles from './presentation.module.scss';
-
-interface CardToProps {
-  title: string;
-  description: string;
-}
-
-function CardTo({ title, description }: CardToProps) {
-  return (
-    <fieldset className={styles.cardTo}>
-      <legend><span>{title}</span></legend>
-      <p>{description}</p>
-      <button>voir plus</button>
-    </fieldset>
-  )
-}
 
 function Presentation() {
 
@@ -25,10 +11,10 @@ function Presentation() {
         <p>Disponible <br /> 7j/7</p>
       </div>
       <div className={styles.cardsTo}>
-        <CardTo title={'Dépannage'} description={'Obtenez une assistance rapide et efficace en atelier, à distance, ou à domicile.'} />
-        <CardTo title={'Conception'} description={'Améliorez votre environnement avec une configuration informatique personnalisée.'} />
-        <CardTo title={'Développement'} description={'Boostez votre activité grâce à un site web moderne et performant.'} />
-        <CardTo title={'Nettoyage'} description={'Prolongez la durée de vie de vos appareils et prevennez les pannes.'} />
+        <Card title={'Dépannage'} description={'Obtenez une assistance rapide et efficace en atelier, à distance, ou à domicile.'}  variant={'c-to'} />
+        <Card title={'Conception'} description={'Améliorez votre environnement avec une configuration informatique personnalisée.'}variant={'c-to'} />
+        <Card title={'Développement'} description={'Boostez votre activité grâce à un site web moderne et performant.'} variant={'c-to'} />
+        <Card title={'Nettoyage'} description={'Prolongez la durée de vie de vos appareils et prevennez les pannes.'} variant={'c-to'} />
       </div>
     </section>
 

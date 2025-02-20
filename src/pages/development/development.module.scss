@@ -1,34 +1,67 @@
 .developmentContent {
-  display: flex;
+  @include pageContent;
+  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  width: 60vw;
-  padding: 5vh 0;
-
   .folder {
+    @include flexCenter;
     border: 2px solid $light-purple;
     width: 35%;
-    margin: 4vh 0 2vh 0;
+    height: 30%;
     position: relative;
     box-shadow: 5px 5px 0px $light-purple;
-
+    transition-duration: 100ms;
+    
     h3 {
       width: 40%;
+      height: 20%;
+      top: -20%;
       border: 2px solid $light-purple;
       background-color: $light-purple;
-      height: 4vh;
       color: $dark-purple;
+      text-align: left;
       position: absolute;
-      top: -4vh;
+      padding-left: 10px;
       left: -2px;
+      font-family: $ubuntu;
+      font-weight: 600;
+    }
+    
+    p {
+      width: 90%;
+      font-family: $ubuntu;
+      font-size: 0.8vmax;
     }
 
-    p {
-        padding: 1vh 1vw;
-        height: 10vh;
-        display: flex;
-        align-items: center;
+      strong {
+        font-weight: bold;
+      }
+  }
+
+  .folder:hover {
+    box-shadow: 10px 10px 0px $light-purple;
+    transition-duration: 100ms;
+  }
+}
+
+
+@media (min-width: $breakpoint) {
+  .developmentContent {
+    .folder {
+      width: 35%;
+      height: 30%;
+    }
+  }
+}
+@media (max-width: $breakpoint) {
+  .developmentContent {
+    .folder {
+      height: 10%;
+      width: 100%;
+
+      h3 {
+        height: 60%;
+        top: -60%;
+      }
     }
   }
 }

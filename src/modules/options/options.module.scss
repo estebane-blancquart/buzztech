@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-around;
   font-family: $ubuntu;
-  height: 70vh;
+  height: 80vh;
   margin-bottom: 2vh;
 
   .cards {
@@ -17,5 +17,14 @@
     color: $white;
     font-weight: 300;
     font-family: $lato;
+
+  }
+}
+
+@media (max-width: $breakpoint) {
+  .cards {
+    height: 50vh;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }

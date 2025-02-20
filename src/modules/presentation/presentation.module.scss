@@ -1,5 +1,9 @@
 .presentation {
   font-family: $ubuntu;
+  height: 80vh;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 
   h2 {
     color: $white;
@@ -10,134 +14,74 @@
     background-color: $dark-purple;
     border: 2px solid $light-purple;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 
     p {
+      width: 80%;
+      height: 30%;
       background-color: $dark-purple;
       border: 2px solid $light-purple;
       display: flex;
       align-items: center;
       justify-content: center;
       color: $light-purple;
-      box-shadow: 0px 0px 10px $light-purple;
+      box-shadow: 0px 0px 6px $light-purple;
+      transition-duration: 100ms;
+    
+    }
+    p:hover {
+      box-shadow: 0px 0px 12px $light-purple;
+      transition-duration: 100ms;
     }
   }
-  .cardsTo {
+
+  .cardsTo{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    .cardTo {
-      border: 2px solid $light-purple;
-      background-color: $dark-purple;
-      color: $white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2vh 1vw;
-
-      legend {
-        border: 2px solid $light-purple;
-        background-color: $purple;
-        min-width: 100px;
-
-        span {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-
-      p {
-        width: 75%;
-      }
-
-      button {
-        border: 0;
-        border-radius: 0;
-        height: 3vh;
-        background-color: $purple;
-        color: $dark-purple;
-        font-weight: 600;
-        width: 20%;
-      }
-    }
   }
 }
 
-@media (max-width: $breakpoint-desktop) {
+@media (max-width: $breakpoint) {
   .presentation {
-    @include mobile-grid;
-
+    flex-direction: column;
+    justify-content: space-around;
     .availability {
-      height: 20vh;
-      margin: 2vh 0vw;
-
+      width: 100%;
+      height: 20%;
+      flex-direction: row;
       p {
-        padding: 4vh 4vw;
         width: 40%;
-        text-align: center;
+        height: 80%;
       }
     }
 
     .cardsTo {
-      .cardTo {
-        margin: 1vh 0vw;
-      }
+      height: 60%;
     }
   }
 }
 
-@media (min-width: $breakpoint-desktop) {
+@media (min-width: $breakpoint) {
   .presentation {
-    @include desktop-grid;
-    grid-template-rows: auto auto;
-    height: 55vh;
-    margin-bottom: 20vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h2 {
-      grid-column-start: 1;
-      grid-column-end: 4;
-
-      grid-row-start: 1;
-      grid-row-end: 2;
+      position: absolute;
+      top: 5vh;
+    }
+    .cardsTo {
+      width: 60%;
+      height: 70%;
     }
 
     .availability {
-      grid-column-start: 1;
-      grid-column-end: 2;
-
-      grid-row-start: 2;
-      grid-row-end: 3;
-
-      flex-direction: column;
-
-      p {
-        background-color: $dark-purple;
-        border: 2px solid $light-purple;
-        width: 80%;
-        height: 40%;
-        text-align: center;
-      }
-    }
-
-    .cardsTo {
-      grid-column-start: 2;
-      grid-column-end: 4;
-
-      grid-row-start: 2;
-      grid-row-end: 3;
-
-      align-items: flex-end;
-
-      .cardTo {
-        width: 80%;
-
-        legend {
-          font-size: $text-main-desktop;
-        }
-      }
+      width: 30%;
+      height: 70%;
     }
   }
 }

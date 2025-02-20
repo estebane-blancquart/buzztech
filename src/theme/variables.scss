@@ -14,32 +14,11 @@ $dark-purple: #2D314B;
 $lato: "Lato";
 $ubuntu: "Ubuntu Sans Mono";
 
-$base-font-size-desktop: 16px;
-$base-font-size-tablet: 15px;
-$base-font-size-mobile: 14px;
+// ------------------------------------------ Breakpoints ----------------------------------- //
 
-$h1-desktop: 3vmax; // 48px
-$h1-tablet: 2.67vmax; // 40px
-$h1-mobile: 2.5vmax; // 35px
+$breakpoint: 1024px;
 
-$h2-desktop: 2vmax; // 32px
-$h2-tablet: 1.8vmax; // 27px
-$h2-mobile: 1.7vmax; // 24px
+// -------------------------------------------- Paddings ------------------------------------ //
 
-$h3-desktop: 1.1vmax; // 24px
-$h3-tablet: 1.2vmax; // 21px
-$h3-mobile: 1.2vmax; // 18px;
-
-$text-main-desktop: 1vmax; // 16px
-$text-main-tablet: 1vmax; // 15px
-$text-main-mobile: 1vmax; // 14px
-
-$text-secondary-desktop: 0.875vmax; // 14px
-$text-secondary-tablet: 0.875vmax; // 13px
-$text-secondary-mobile: 0.875vmax; // 12px
-
-// ------------------------------------------ Breakpoints ------------------------------------------ //
-
-$breakpoint-mobile: 768px ;
-$breakpoint-desktop: 1024px;
-
+$padding-mobile: 0vh 10vw;
+$padding-desktop: 0vh 10vw;

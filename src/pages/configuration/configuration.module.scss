@@ -1,5 +1,5 @@
 .configurationContent {
-  display: flex;
+  @include pageContent;
 
   .title {
     font-weight: 600;
@@ -14,26 +14,13 @@
     font-size: 0.8vmax;
   }
 }
-
-@media (max-width: $breakpoint-mobile) {
-    .configurationContent{
-        flex-direction: column;
-        width: 80vw;
-
-    }
+@media (min-width: $breakpoint) {
+  .configurationContent {
+    flex-direction: row;
+  }
 }
-
-@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop) {
-    .configurationContent{
-        flex-direction: column;
-        width: 70vw;
-
-    }
-}
-
-@media (min-width: $breakpoint-desktop) {
-    .configurationContent{
-        justify-content: space-between;
-        width: 60vw;
-    }
+@media (max-width: $breakpoint) {
+  .configurationContent {
+    flex-direction: column;
+  }
 }

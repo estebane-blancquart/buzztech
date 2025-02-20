@@ -4,15 +4,16 @@ import styles from './cleaning.module.scss';
 
 interface WindowProps {
   type: string;
-  li1: string;
-  li2: string;
-  li3: string;
-  li4: string;
+  li1: React.ReactNode;
+  li2: React.ReactNode;
+  li3: React.ReactNode;
+  li4: React.ReactNode;
 }
 
 function Window({ type, li1, li2, li3, li4 }: WindowProps) {
   return (
     <div className={styles.window}>
+      <div></div>
       <h3>{type}</h3>
       <ul>
         <li>{li1}</li>
@@ -34,16 +35,16 @@ function Cleaning() {
         <div className={styles.cleaningContent}>
           <Window
             type={'Nettoyage matériel'}
-            li1={'Éviter la surchauffe'}
-            li2={'Préserver l esthétique et la propreté'}
-            li3={'Réduire les risques de panne'}
-            li4={'Améliorer les performances'} />
+            li1={<>★ Éviter la&nbsp;<strong>surchauffe</strong></>}
+            li2={<>★ Préserver l'esthétique et la&nbsp;<strong>propreté</strong></>}
+            li3={<>★ Réduire les risques de&nbsp;<strong>panne</strong></>}
+            li4={<>★ Améliorer les&nbsp;<strong>performances</strong></>} />
           <Window
             type={'Nettoyage logiciel'}
-            li1={'Optimiser les performances'}
-            li2={'Améliorer la sécurité'}
-            li3={'Allonger la durée de vie du stysyème'}
-            li4={'Gagner de l espace de stockage'} />
+            li1={<>★ Optimiser les&nbsp;<strong>performances</strong></>}
+            li2={<>★ Améliorer la&nbsp;<strong>sécurité</strong></>}
+            li3={<>★ Allonger la&nbsp;<strong>durée de vie</strong> du stysyème</>}
+            li4={<>★ Gagner de l'espace de&nbsp;<strong>stockage</strong></>} />
         </div>
       </Service>
 

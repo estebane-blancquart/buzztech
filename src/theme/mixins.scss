@@ -1,20 +1,28 @@
-@mixin mobile-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+@mixin pageContent {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-@mixin tablet-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+@mixin modules {
+    height: 80vh;
 }
 
-@mixin desktop-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
 
-@mixin flex-center {
+
+
+@mixin flexCenter {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@mixin flexColAround {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
 }

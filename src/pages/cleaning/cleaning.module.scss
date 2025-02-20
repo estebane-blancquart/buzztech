@@ -1,33 +1,69 @@
 .cleaningContent {
-    display: flex;
-    width: 60vw;
-    justify-content: space-between;
-.window {
-    height: 20vh;
-    width: 40%;
+  @include pageContent;
+
+  .window {
     border: 2px solid $light-purple;
     box-shadow: 5px 5px 0px $light-purple;
+    transition-duration: 100ms;
+    position: relative;
 
+    div {
+      position: absolute;
+      left: 5%;
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      top: calc(10% - 7px);
+      background-color: $dark-purple;
+    }
     h3 {
-        width: 100%;
-        background-color: $light-purple;
-        color: $dark-purple;
-        height: 5vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      @include flexCenter;
+      background-color: $light-purple;
+      color: $dark-purple;
+      height: 20%;
+      font-family: $ubuntu;
+      font-weight: 600;
     }
-
     ul {
-        height: 12vh;
-        width: 100%;
+      @include flexColAround;
+      height: 80%;
+      
+      li {
+        width: 90%;
         text-align: left;
-        margin-left: 2vw;
-        padding: 1vh 1vw;
-
-        li {
-            height: 3vh;
-        }
+        font-family: $ubuntu;
+        font-size: 0.8vmax;
+      }
     }
+  }
+  .window:hover {
+    box-shadow: 10px 10px 0px $purple;
+    transition-duration: 100ms;
+
+    div {
+      background-color: $purple;
+    }
+  }
 }
+
+
+@media (min-width: $breakpoint) {
+  .cleaningContent {
+    flex-direction: row;
+
+    .window {
+      height: 50%;
+      width: 35%;
+    }
+  }
+}
+@media (max-width: $breakpoint) {
+  .cleaningContent {
+    flex-direction: column;
+
+    .window {
+      height: 40%;
+      width: 100%;
+    }
+  }
 }

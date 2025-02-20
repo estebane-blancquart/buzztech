@@ -7,63 +7,18 @@
   cursor: default;
 }
 
-body {
+body, header, footer {
   background-color: $black;
 }
 
-@media (max-width: $breakpoint-mobile) {
+@media (max-width: $breakpoint) {
   body {
-    padding: 0vh 10vw;
-    font-size: $base-font-size-mobile;
-
-    h1 {
-      font-size: $h1-mobile;
-    }
-
-    h2 {
-      font-size: $h2-mobile;
-    }
-
-    h3 {
-      font-size: $h3-mobile;
-    }
+    padding: $padding-mobile;
   }
 }
 
-@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop) {
+@media (min-width: $breakpoint) {
   body {
-    padding: 0vh 15vw;
-    font-size: $base-font-size-tablet;
-
-    h1 {
-      font-size: $h1-tablet;
-    }
-
-    h2 {
-      font-size: $h2-tablet;
-    }
-
-    h3 {
-      font-size: $h3-tablet;
-    }
-  }
-}
-
-@media (min-width: $breakpoint-desktop) {
-  body {
-    padding: 0vh 20vw;
-    font-size: $base-font-size-desktop;
-
-    h1 {
-      font-size: $h1-desktop;
-    }
-
-    h2 {
-      font-size: $h2-desktop;
-    }
-
-    h3 {
-      font-size: $h3-desktop;
-    }
+    padding: $padding-desktop;
   }
 }

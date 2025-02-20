@@ -4,7 +4,7 @@ import styles from './development.module.scss';
 
 interface FolderProps {
   title: string;
-  description: string;
+  description: React.ReactNode;
 }
 
 function Folder({ title, description }: FolderProps) {
@@ -25,19 +25,19 @@ function Development() {
         <div className={styles.developmentContent}>
           <Folder
             title={'Design'}
-            description={'Une expérience ergonomique, esthétique, et adaptable sur tous les appareils '}
+            description={<>Une expérience <strong>ergonomique</strong>, <strong>esthétique</strong>, et <strong>adaptable</strong> sur tous les appareils</>}
           />
           <Folder
             title={'Contenu'}
-            description={'Un contenu pertinent optimisé pour les moteurs de recherche pour améliorer son référencement'}
+            description={<>Un contenu pertinent <strong>optimisé</strong> pour les moteurs de recherche pour améliorer son <strong>référencement</strong></>}
           />
           <Folder
             title={'Performance'}
-            description={'Un temps de chargement rapide et un hébergement fiable '}
+            description={<>Un temps de chargement <strong>rapide</strong> et un hébergement <strong> fiable</strong></>}
           />
           <Folder
             title={'Maintenance'}
-            description={'Mise à jour des informamations et des médias'}
+            description={<>Mise à jour des <strong>informations</strong> et des <strong>médias</strong></>}
           />
         </div>
       </Service>

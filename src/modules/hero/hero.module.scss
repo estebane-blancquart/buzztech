@@ -1,97 +1,136 @@
 .hero {
   font-family: $lato;
-  color: white;
+  color: $white;
+  height: 80vh;
 
   h2 {
     font-weight: 300;
-    display: block !important;
-    white-space: normal !important;
   }
 }
 
-@media (max-width: $breakpoint-desktop) {
+@media (max-width: $breakpoint) {
   .hero {
-    @include mobile-grid;
-    height: 45vh;
-    margin-bottom: 5vh;
+    flex-direction: column-reverse;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 
-    img {
-      grid-row: 1;
-      width: 100%;
-      padding: 0 10%;
-    }
-
-    h2 {
-      grid-row: 2;
+    .cta {
+      height: 25vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
       text-align: center;
     }
-
-    button {
-      grid-row: 3;
-      justify-self: center;
+    img {
+      width: 80%;
     }
 
-    p {
-      display: none;
-    }
   }
 }
 
-@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-desktop) {
-  .hero {
-    height: 60vh;
-  }
-}
 
-@media (min-width: $breakpoint-desktop) {
+@media (min-width: $breakpoint) {
   .hero {
-    height: 60vh;
-    @include desktop-grid;
-    grid-template-rows: auto auto auto;
+    display: flex;
+    align-items: center;
     position: relative;
-    border-left: 3px solid $white;
-    padding-left: 2vw;
-    margin: 2vh 0 20vh 0;
+    padding-left: 2%;
+    width: 100%;
 
-    h2 {
-      grid-column-start: 1;
-      grid-column-end: 3;
-
-      grid-row-start: 1;
-      grid-row-end: 2;
-      padding-top: 8vh;
+    .cta {
+      width: 50%;
+      height: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
     }
-
-    button {
-      grid-column-start: 1;
-      grid-column-end: 2;
-
-      grid-row-start: 2;
-      grid-row-end: 3;
-    }
-
+    
     img {
-      grid-column-start: 3;
-      grid-column-end: 4;
-
-      grid-row-start: 1;
-      grid-row-end: 3;
-      width: 25vw;
+      width: 50%;
+      height: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+      transition-duration: 1s;
+      animation: floatUpDown 3s ease-in-out infinite, blurEffect 1s ease-in-out; 
     }
 
-    p {
-      grid-column-start: 3;
-      grid-column-end: 4;
 
-      grid-row-start: 3;
-      grid-row-end: 4;
 
-      text-align: center;
-      font-weight: 300;
+  }
+
+  .hero:before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    top: 10%;
+    left: 0;
+    background: $white;
+    animation: expandHeight 1s forwards;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    top: 80%;
+    left: 0;
+    height: 10%;
+    background-color: $white;
+    animation: expandHeightDotted 4s forwards;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 10%,
+      $white 60%,
+      transparent 50%
+    );
+    background-size: 70% 10px;
+    background-color: $black;
+  }
+
+  @keyframes expandHeight {
+    0% {
+      height: 0;
     }
-
-    p::first-letter {
-      font-size: 3rem;
+    100% {
+      height: 70%;
     }
   }
+
+  @keyframes expandHeightDotted {
+    0% {
+      opacity: 0;
+      height: 0;
+    }
+    20% {
+      opacity: 0;
+      height: 0;
+    }
+    30% {
+      opacity: 0.5;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes floatUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes blurEffect {
+  0% { filter: blur(0.5rem); }
+  100% { filter: blur(0); }
+}
+
 }
