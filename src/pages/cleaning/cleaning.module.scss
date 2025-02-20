@@ -25,7 +25,8 @@
       font-weight: 600;
     }
     ul {
-      @include flexColAround;
+      @include flexAround;
+      flex-direction: column;
       height: 80%;
       
       li {

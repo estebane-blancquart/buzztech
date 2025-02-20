@@ -51,7 +51,7 @@ function Repair() {
         price2={50}
 
         title3={'A Domicile'}
-        description3={'Service complet de dépannage informatique directement chez vous, couvrant Saint-Etienne et ses environs. Idéal pour des problèmes d’installation ou de configuration matérielle.'}
+        description3={'Service complet de dépannage informatique directement chez vous, couvrant Saint-Etienne et ses environs.'}
         icon3={'icons/domicile.png'}
         price3={60}
 

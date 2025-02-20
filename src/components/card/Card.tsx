@@ -5,14 +5,14 @@ interface CardProps {
   description: string;
   price?: number;
   icon?: string; 
-  variant: string; 
+  variant?: string; 
 }
 
 function Card({ title, description, price, icon, variant }: CardProps) {
-  const cardClass = `${styles.card} ${icon ? styles.withImage : styles.withoutImage} ${styles[variant]}`;
+  const cardClass = variant ? `${styles.card} ${styles[variant]}` : styles.card;
 
   return (
-    <fieldset className={cardClass}>
+    <fieldset className={cardClass} >
       <legend><h3>{title}</h3></legend>
       {icon && <img className={styles.icon} src={icon} alt="" />}
       <p className={styles.description}>{description}</p>

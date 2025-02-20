@@ -1,28 +1,36 @@
 @mixin pageContent {
-    height: 70%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-
 
 @mixin modules {
-    height: 80vh;
+  height: 80vh;
+  padding: 5% 0;
 }
-
-
-
 
 @mixin flexCenter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@mixin flexColAround {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
+@mixin flexAround {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flexEvenly {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

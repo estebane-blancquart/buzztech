@@ -10,26 +10,20 @@
 
 @media (max-width: $breakpoint) {
   .hero {
+    @include flexAround;
     flex-direction: column-reverse;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 
     .cta {
-      height: 25vh;
-      display: flex;
+      height: 30%;
       flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
       text-align: center;
+      @include flexEvenly;
     }
     img {
       width: 80%;
     }
-
   }
 }
-
 
 @media (min-width: $breakpoint) {
   .hero {
@@ -46,18 +40,15 @@
       flex-direction: column;
       justify-content: space-around;
     }
-    
+
     img {
       width: 50%;
       height: auto;
       margin-top: auto;
       margin-bottom: auto;
       transition-duration: 1s;
-      animation: floatUpDown 3s ease-in-out infinite, blurEffect 1s ease-in-out; 
+      animation: floatUpDown 3s ease-in-out infinite, blurEffect 1s ease-in-out;
     }
-
-
-
   }
 
   .hero:before {
@@ -118,19 +109,22 @@
 
   @keyframes floatUpDown {
     0% {
-        transform: translateY(0);
+      transform: translateY(0);
     }
     50% {
-        transform: translateY(-2%);
+      transform: translateY(-2%);
     }
     100% {
-        transform: translateY(0);
+      transform: translateY(0);
     }
-}
+  }
 
-@keyframes blurEffect {
-  0% { filter: blur(0.5rem); }
-  100% { filter: blur(0); }
-}
-
+  @keyframes blurEffect {
+    0% {
+      filter: blur(0.5rem);
+    }
+    100% {
+      filter: blur(0);
+    }
+  }
 }

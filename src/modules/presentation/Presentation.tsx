@@ -11,10 +11,10 @@ function Presentation() {
         <p>Disponible <br /> 7j/7</p>
       </div>
       <div className={styles.cardsTo}>
-        <Card title={'Dépannage'} description={'Obtenez une assistance rapide et efficace en atelier, à distance, ou à domicile.'}  variant={'c-to'} />
-        <Card title={'Conception'} description={'Améliorez votre environnement avec une configuration informatique personnalisée.'}variant={'c-to'} />
-        <Card title={'Développement'} description={'Boostez votre activité grâce à un site web moderne et performant.'} variant={'c-to'} />
-        <Card title={'Nettoyage'} description={'Prolongez la durée de vie de vos appareils et prevennez les pannes.'} variant={'c-to'} />
+        <Card title={'Dépannage'} description={'Obtenez une assistance rapide et efficace en atelier, à distance, ou à domicile.'}  variant="light" />
+        <Card title={'Conception'} description={'Améliorez votre environnement avec une configuration informatique personnalisée.'}variant="light" />
+        <Card title={'Développement'} description={'Boostez votre activité grâce à un site web moderne et performant.'} variant="light" />
+        <Card title={'Nettoyage'} description={'Prolongez la durée de vie de vos appareils et prevennez les pannes.'} variant="light" />
       </div>
     </section>
 
