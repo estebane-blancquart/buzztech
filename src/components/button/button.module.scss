@@ -3,18 +3,21 @@
   min-width: 160px;
   height: 4vh;
   position: relative;
-  color: $white;
   background: none;
   border: 2px solid $white;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.1s ease;
-  font-weight: 500;
-  font-family: $ubuntu;
-  font-size: $p2;
-  letter-spacing: 3%;
-  word-spacing: 4px;
   transition-duration: 100ms;
+ a {
+
+   color: $white;
+   font-weight: 500;
+   font-family: $ubuntu;
+   font-size: $p2;
+   letter-spacing: 3%;
+   word-spacing: 4px;
+ }
 
   div {
     width: 100%;

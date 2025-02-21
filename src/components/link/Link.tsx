@@ -1,15 +1,17 @@
-import { Link, LinkProps } from 'react-router-dom';
+import { Link, LinkProps, useNavigate } from 'react-router-dom';
 import React from 'react';
 
-const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
 const Scroll: React.FC<LinkProps> = (props) => {
+  const navigate = useNavigate();
+
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    scrollToTop();
+    event.preventDefault(); 
+    navigate(props.to as string);
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 10);
     if (props.onClick) props.onClick(event);
   };
 
-  return <Link {...props} onClick={handleClick} />;
+  return <a {...props} href={props.to as string} onClick={handleClick} />;
 };
 
 export default Scroll;

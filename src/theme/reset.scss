@@ -21,6 +21,7 @@ body, header, footer {
   h3 {
     font-size: clamp(13px, 1.2vw, 19px);
   }
+
 }
 
 @media (max-width: $breakpoint) {

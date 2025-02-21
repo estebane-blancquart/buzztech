@@ -1,11 +1,11 @@
 footer {
   position: sticky;
   bottom: 0;
-  font-family: $lato;
   height: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  font-family: $lato;
   color: $white;
   font-size: $p2;
 }
@@ -15,10 +15,11 @@ footer {
   justify-content: space-between;
   font-style: normal;
 
-  div {
+  a {
     display: flex;
     align-items: center;
     transition-duration: 100ms;
+    color: $white;
 
     img {
       width: 40px;
@@ -29,7 +30,7 @@ footer {
     }
   }
   
-  div:hover {
+  a:hover {
     text-decoration: underline;
     transition-duration: 100ms;
   }
