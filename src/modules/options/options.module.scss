@@ -1,0 +1,51 @@
+.options {
+  @include flexAround;
+
+  flex-direction: column;
+  font-family: $ubuntu;
+
+  .cards {
+    width: 100%;
+    height: 61%;
+  }
+
+  .pack {
+    width: 100%;
+    height: 28%;
+    @include flexCenter;
+  }
+
+  h2 {
+    color: $white;
+    font-weight: 300;
+    font-family: $lato;
+    height: 10%;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .options {
+    @include modulesD;
+    max-width: 1000px;
+  }
+  .cards {
+    @include flexBetween;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: $breakpoint) {
+  .options {
+    @include modulesM;
+
+    .cards {
+      @include flexBetween;
+      flex-direction: column;
+      height: 70%;
+    }
+
+    .pack {
+      height: 30%;
+    }
+  }
+}

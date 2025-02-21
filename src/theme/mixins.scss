@@ -1,0 +1,43 @@
+@mixin pageContent {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin modulesD {
+  height: 80vh;
+  padding: 5% 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin modulesM {
+  height: 80vh;
+  padding: 0;
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flexAround {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flexEvenly {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

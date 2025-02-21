@@ -1,56 +1,86 @@
-@media screen and (min-width: 769px) {
-    header {
-        margin-left: 10vw;
-        
-        .brand {
-            line-height: 45px;
-            margin: 0 0 2vh 0;
-            padding-top: 2vh;
-            
-            .brandName {
-                font-family: "Lato";
-                font-size: max(1.4vmax, 22px);
-                font-weight: 400;
-                color: #C6C3FF;
-                text-shadow: 3px 3px 5px #c6c3ff86;
-            }
-            
-            .brandService {
-                font-family: "Big Shoulders Display";
-                font-size: max(4vmax, 62px);
-                font-weight: 700;
-                color: white;
-                text-shadow: 5px 5px 8px rgba(255, 255, 255, 0.521);
-                display: inline-block;
-                transform: scaleY(0.7);
-            }
-        }
-    }
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-family: $lato;
+  height: 10vh;
+
+  .logo {
+    color: $white;
+  }
+  .pageLink {
+    color: $purple;
+    font-size: $p1;
+  }
 }
 
-@media screen and (max-width: 768px) {
-    header {
-        margin: 0 0 0 5vw;
-        padding-top: 2vh;
+@media (max-width: $breakpoint) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        .brand {
-            line-height: 25px;
-
-            .brandName {
-                font-family: "Big Shoulders Display";
-                font-size: max(12vw, 66px);
-                font-weight: 700;
-                color: white;
-                display: inline-block;
-                transform: scaleY(0.7);
-            }
-
-            .brandService {
-                font-family: "Lato";
-                font-size: max(2.9vw, 16px);
-                font-weight: 400;
-                color: #C6C3FF;
-            }
-        }
+    .showMobilNav {
+      font-size: 2.5vmax;
+      color: $white;
     }
+
+    .mobileNav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50vw;
+      background-color: $black;
+    }
+
+    li {
+      text-align: center;
+      padding: 4vh 0vw;
+    }
+
+    .hideMobileNav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 50vw;
+      background-color: rgba($black, 0.4);
+    }
+
+    .desktopNav {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: $breakpoint) {
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .desktopNav {
+      ul {
+        display: flex;
+
+        .pageLink {
+          margin-right: 3vw;
+        }
+
+        .pageLink:hover {
+          color: $light-purple;
+        }
+        .pageLink:active {
+          color: $dark-purple;
+        }
+      }
+    }
+    .showMobilNav {
+      display: none;
+    }
+  }
 }

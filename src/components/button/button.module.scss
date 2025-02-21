@@ -1,0 +1,66 @@
+.button {
+  width: 10vw;
+  min-width: 160px;
+  height: 4vh;
+  position: relative;
+  color: $white;
+  background: none;
+  border: 2px solid $white;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.1s ease;
+  font-weight: 500;
+  font-family: $ubuntu;
+  font-size: $p2;
+  letter-spacing: 3%;
+  word-spacing: 4px;
+  transition-duration: 100ms;
+
+  div {
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 255, 0, 0) 0%,
+      #e8e8e8 100%,
+      rgba(0, 255, 0, 0) 0%
+    );
+    transition: 1s;
+    animation: rain 3s linear infinite;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+}
+button:hover {
+  color: $black;
+  background: $white;
+  transition-duration: 100ms;
+  div {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 255, 0, 0) 0%,
+      $black 100%,
+    );
+    opacity: 0.2;
+  }
+  span {
+    color: $black;
+  }
+ }
+
+button:active {
+  background-color: $purple;
+  border: 2px solid $purple;
+  color: $light-purple;
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

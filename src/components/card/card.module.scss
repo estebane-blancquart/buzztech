@@ -1,0 +1,128 @@
+.card {
+  border: 1px solid $light-purple;
+  background-color: $dark-purple;
+  color: $light-purple;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  legend {
+    border: 1px solid $light-purple;
+    color: $light-purple;
+    background-color: $dark-purple;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 110px;
+    padding: 0 5%;
+  }
+
+  img {
+    filter: drop-shadow(0 0 5px #9c97ff);
+    width: 25%;
+  }
+
+  h3 {
+    font-weight: 500;
+  }
+
+  .description {
+    width: 90%;
+    font-size: $p2;
+    text-align: center;
+  }
+
+  .price {
+    background-color: $light-purple;
+    color: $dark-purple;
+    padding: 1% 2%;
+    font-size: $p2;
+  }
+
+  .link {
+    background-color: $light-purple;
+    color: $dark-purple;
+    padding: 0% 1%;
+    transition-duration: 100ms;
+    font-size: $p2;
+  }
+
+  .link:hover {
+    background-color: $dark-purple;
+    color: $light-purple;
+    border: 1px solid $light-purple;
+    transition-duration: 100ms;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    img {
+      display: none;
+    }
+    .description {
+      text-align: left;
+    }
+  }
+}
+
+@media (max-width: $breakpoint) {
+  .card {
+    height: 30%;
+    width: 100%;
+    flex-direction: row;
+
+    img {
+      width: 10%;
+    }
+
+    .description {
+      width: 60%;
+    }
+  }
+
+  .light {
+    height: 20%;
+  }
+  .xl {
+    height: 60%;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .card {
+    height: 90%;
+    width: 30%;
+    transition-duration: 100ms;
+  }
+  .card:hover {
+    legend {
+      color: $dark-purple;
+      background-color: $light-purple;
+      transition-duration: 100ms;
+    }
+  }
+
+  .xl {
+    width: 50%;
+    max-width: 500px;
+  }
+  .light {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 20%;
+    width: 100%;
+
+    legend {
+      margin-left: 5%;
+    }
+
+    .description {
+      width: 80%;
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.configurationContent {
+  @include pageContent;
+
+  .title {
+    font-weight: 600;
+    color: $white;
+  }
+
+  span {
+    color: $light-purple;
+  }
+
+  pre {
+    font-size: $p1;
+  }
+}
+@media (min-width: $breakpoint) {
+  .configurationContent {
+    flex-direction: row;
+  }
+}
+@media(max-width: 600px) {
+  .configurationContent{
+    height: 65%;
+    pre {
+      font-size: $p3;
+      }
+  }
+}
+@media (max-width: $breakpoint) {
+  .configurationContent {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,28 @@
+// ------------------------------------------ Colors ------------------------------------------ //
+
+$white: #e8e8e8;
+$black: #171717;
+$light-purple: #C6C3FF;
+$purple: #9C97FF;
+$dark-purple: #2D314B;
+
+// ------------------------------------------ Fonts ------------------------------------------ //
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
+$lato: "Lato";
+$ubuntu: "Ubuntu Sans Mono";
+
+$p1: clamp(13px, 1.3vw, 18px);
+$p2: clamp(12px, 1vw, 14px);
+$p3: clamp(10px, 0.8vw, 12px);
+
+// ------------------------------------------ Breakpoint ----------------------------------- //
+
+$breakpoint: 1024px;
+
+// -------------------------------------------- Paddings ------------------------------------ //
+
+$padding-mobile: 0vh 10vw;
+$padding-desktop: 0vh 10vw;
