@@ -8,6 +8,8 @@
   }
 }
 
+
+
 @media (max-width: $breakpoint) {
   .hero {
     @include flexAround;
@@ -20,7 +22,15 @@
       @include flexEvenly;
     }
     img {
-      width: 80%;
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    img {
+      width: 100%;
     }
   }
 }

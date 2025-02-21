@@ -14,6 +14,10 @@ $dark-purple: #2D314B;
 $lato: "Lato";
 $ubuntu: "Ubuntu Sans Mono";
 
+$p1: clamp(13px, 1.3vw, 18px);
+$p2: clamp(12px, 1vw, 14px);
+$p3: clamp(10px, 0.8vw, 12px);
+
 // ------------------------------------------ Breakpoint ----------------------------------- //
 
 $breakpoint: 1024px;

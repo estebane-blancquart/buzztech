@@ -1,30 +1,50 @@
 .repairContent {
-    @include pageContent;
-                                                                                        
-    pre{
-        font-weight: 300;
-    }
+  @include pageContent;
 
-    span{
-        color: $light-purple;
-    }
+  pre {
+    font-weight: 300;
+    font-size: $p1;
+  }
 
-    .software {
-        text-align: end;
-    }
+  span {
+    color: $light-purple;
+  }
 
-    pre:hover {
-        span{
-            text-decoration: underline;
-        }
+  .hardware {
+    text-align: start;
+  }
+
+  .software {
+    text-align: end;
+  }
+
+  pre:hover {
+    span {
+      text-decoration: underline;
     }
+  }
 }
 
+@media(max-width: 600px) {
+.repairContent{
+  pre {
+    font-size: $p3;
+    }
+}
+}
 
 @media (max-width: $breakpoint) {
-    .repairContent {
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-    }
+  .repairContent {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 65%;
+  }
+}
+
+@media (min-width: $breakpoint) {
+  .repairContent {
+    max-width: 1000px;
+    justify-content: space-between;
+  }
 }

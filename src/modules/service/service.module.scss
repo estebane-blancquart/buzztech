@@ -1,5 +1,5 @@
 .service {
-  @include modules;
+  @include modulesD;
   display: flex;
   text-align: center;
   align-items: center;
@@ -31,5 +31,13 @@
     padding-top: 1vh;
     opacity: 0.8;
     white-space: pre-line;
+    font-size: $p1;
   }
+}
+
+@media (max-width: $breakpoint) {
+.service {
+  @include modulesM;
+  
+}
 }

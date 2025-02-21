@@ -11,12 +11,20 @@
   }
 
   pre {
-    font-size: 0.8vmax;
+    font-size: $p1;
   }
 }
 @media (min-width: $breakpoint) {
   .configurationContent {
     flex-direction: row;
+  }
+}
+@media(max-width: 600px) {
+  .configurationContent{
+    height: 65%;
+    pre {
+      font-size: $p3;
+      }
   }
 }
 @media (max-width: $breakpoint) {

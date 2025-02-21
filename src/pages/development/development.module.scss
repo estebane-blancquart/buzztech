@@ -29,7 +29,7 @@
     p {
       width: 90%;
       font-family: $ubuntu;
-      font-size: 0.8vmax;
+      font-size: $p2;
     }
 
       strong {
@@ -55,12 +55,12 @@
 @media (max-width: $breakpoint) {
   .developmentContent {
     .folder {
-      height: 10%;
+      height: 12%;
       width: 100%;
 
       h3 {
-        height: 60%;
-        top: -60%;
+        height: 40%;
+        top: -40%;
       }
     }
   }
