@@ -4,6 +4,7 @@ import Home from './pages/home/Home';
 import Repair from './pages/repair/Repair';
 import Configuration from './pages/configuration/Configuration';
 import Creation from './pages/creation/Creation';
+import Test from './pages/test/Test';
 
 function AppRouter() {
   return (
@@ -14,6 +15,7 @@ function AppRouter() {
           <Route path="depannage" element={<Repair />} />
           <Route path="configuration" element={<Configuration />} />
           <Route path="creation" element={<Creation />} />
+          <Route path="test" element={<Test />} />
         </Route>
       </Routes>
     </Router>

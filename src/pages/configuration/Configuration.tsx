@@ -1,6 +1,6 @@
 import What from "../../modules/what/What";
 import Why, { WhyPage } from "../../modules/why/Why";
-import How from "../../modules/how/How";
+import How from "@/modules/How/How";
 import Prices from "../../modules/prices/Prices";
 
 function Configuration() {

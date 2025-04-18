@@ -1,5 +1,8 @@
+@use "./variables.scss" as *;
+
 @mixin module {
-    height: 84vh;
+    height: 90svh;
+    padding: $padding-computer;
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;

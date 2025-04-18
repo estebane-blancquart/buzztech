@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* 137.5 */
+
+@theme {
+  --color-black: #171717;
+  --color-white: #e8e8e8;
+  --color-lightpurple: #c6c3ff;
+  --color-purple: #9c97ff;
+
+  --font-ubuntu: "Ubuntu Sans Mono"
+}
+
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  cursor: default;
+}
+
+body,
+header,
+footer {
+  background-color: var(--color-black);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  color: var(--color-white);
+  padding-top: 5svh;
+}
