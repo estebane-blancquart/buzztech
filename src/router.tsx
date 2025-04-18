@@ -3,8 +3,7 @@ import Layout from './Layout';
 import Home from './pages/home/Home';
 import Repair from './pages/repair/Repair';
 import Configuration from './pages/configuration/Configuration';
-import Development from './pages/development/Development';
-import Cleaning from './pages/cleaning/Cleaning';
+import Creation from './pages/creation/Creation';
 
 
 function AppRouter() {
@@ -14,9 +13,8 @@ function AppRouter() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="depannage" element={<Repair />} />
-          <Route path="conception" element={<Configuration />} />
-          <Route path="developpement" element={<Development />} />
-          <Route path="nettoyage" element={<Cleaning />} />
+          <Route path="configuration" element={<Configuration />} />
+          <Route path="creation" element={<Creation />} />
         </Route>
       </Routes>
     </Router>

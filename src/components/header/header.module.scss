@@ -1,24 +1,25 @@
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 1;
   font-family: $lato;
   height: 10vh;
+  position: sticky;
+  top: 0;
 
   .logo {
     color: $white;
   }
   .pageLink {
     color: $purple;
-    font-size: $p1;
   }
 }
 
-@media (max-width: $breakpoint) {
+
+
+@media (max-width: $breakpoint-computer) {
   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: $padding-tablet;
 
     .showMobilNav {
       font-size: 2.5vmax;
@@ -34,7 +35,7 @@
       align-items: center;
       justify-content: center;
       width: 50vw;
-      background-color: $black;
+      background-color: $wireframe;
     }
 
     li {
@@ -49,6 +50,7 @@
       bottom: 0;
       width: 50vw;
       background-color: rgba($black, 0.4);
+      backdrop-filter: blur(2px);
     }
 
     .desktopNav {
@@ -57,11 +59,18 @@
   }
 }
 
-@media (min-width: $breakpoint) {
+@media (max-width: $breakpoint-mobile) {
+  header {
+   padding: $padding-mobile;
+  }
+ }
+
+@media (min-width: $breakpoint-computer) {
   header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    padding: $padding-computer;
 
     .desktopNav {
       ul {

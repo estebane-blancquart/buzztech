@@ -6,6 +6,8 @@ $light-purple: #C6C3FF;
 $purple: #9C97FF;
 $dark-purple: #2D314B;
 
+$wireframe: #212121;
+
 // ------------------------------------------ Fonts ------------------------------------------ //
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
@@ -14,15 +16,20 @@ $dark-purple: #2D314B;
 $lato: "Lato";
 $ubuntu: "Ubuntu Sans Mono";
 
-$p1: clamp(13px, 1.3vw, 18px);
-$p2: clamp(12px, 1vw, 14px);
-$p3: clamp(10px, 0.8vw, 12px);
+$t1: clamp(13px, 1.3vw, 18px);
+$t2: clamp(12px, 1vw, 14px);
+$t3: clamp(10px, 0.8vw, 12px);
+$t4: clamp(13px, 1.3vw, 18px);
+$t5: clamp(12px, 1vw, 14px);
+$t6: clamp(10px, 0.8vw, 12px);
 
 // ------------------------------------------ Breakpoint ----------------------------------- //
 
-$breakpoint: 1024px;
+$breakpoint-mobile: 768px;
+$breakpoint-computer: 1440px;
 
 // -------------------------------------------- Paddings ------------------------------------ //
 
-$padding-mobile: 0vh 10vw;
-$padding-desktop: 0vh 10vw;
+$padding-mobile: 0vh 5vw;
+$padding-tablet: 0vh 10vw;
+$padding-computer: 0vh 15vw;

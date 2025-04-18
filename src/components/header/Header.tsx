@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './header.module.scss';
-import Link from '../link/Link';
+import { Link } from 'react-router-dom';
 
 
 
@@ -27,9 +27,8 @@ function Header() {
       <nav className={isMobileNav ? styles.mobileNav : styles.desktopNav}>
         <ul>
           <li><Link to="depannage" className={styles.pageLink} onClick={handleLinkClick}>DEPANNAGE</Link></li>
-          <li><Link to="conception" className={styles.pageLink} onClick={handleLinkClick}>CONCEPTION</Link></li>
-          <li><Link to="developpement" className={styles.pageLink} onClick={handleLinkClick}>DÉVELOPPEMENT</Link></li>
-          <li><Link to="nettoyage" className={styles.pageLink} onClick={handleLinkClick}>NETTOYAGE</Link></li>
+          <li><Link to="configuration" className={styles.pageLink} onClick={handleLinkClick}>CONFIGURATION</Link></li>
+          <li><Link to="creation" className={styles.pageLink} onClick={handleLinkClick}>CREATION WEB</Link></li>
         </ul>
       </nav>
 
