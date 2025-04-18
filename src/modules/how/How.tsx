@@ -1,16 +1,47 @@
-import styles from './how.module.scss';
+import { ReactElement, useEffect, useId, useState } from "react";
+import styles from "./how.module.scss";
+import classNames from "classnames";
 
-interface HowProps {
-  step1: string;
-  step2: string;
-  step3: string;
-  step4: string;
-  step5: string;
+interface HowStep {
+  title: string;
+  text: string;
 }
 
-function How({step1, step2, step3, step4, step5}:HowProps) {
+interface HowProps {
+  steps: HowStep[];
+}
+
+function How({ steps }: HowProps) {
+  const id = `how-${useId()}`;
+
+  const [activeItem, setActiveItem] = useState<number>(0);
+  const [offsetTop, setOffsetTop] = useState<number | null>(null);
+
+  const delta = 200;
+
+  const handleScroll = (e: Event) => {
+    const target = e.target as HTMLElement;
+
+    // if (offsetTop != null && offsetTop - delta < target.scrollTop) {
+    //   console.log("test");
+    //   target.scrollTop = offsetTop - delta;
+    // }
+  };
+
+  useEffect(() => {
+    const target = document.querySelector("main");
+    target?.addEventListener("scroll", handleScroll);
+
+    const howComponent = target?.querySelector(`[id="${id}"]`) as HTMLElement;
+    setOffsetTop(howComponent.offsetTop);
+
+    return () => {
+      target?.removeEventListener("scroll", handleScroll);
+    };
+  }, [offsetTop]);
+
   return (
-    <section className={styles.how}>
+    <section id={id} className={styles.how}>
       <h2>Module how</h2>
       <div className={styles.module}>
         <div className={styles.bar}>
@@ -18,40 +49,33 @@ function How({step1, step2, step3, step4, step5}:HowProps) {
           <div className={styles.active}></div>
         </div>
         <div className={styles.titles}>
-          <div className={styles.a}>
-            <p className={styles.number}>1</p>
-            <p className={styles.title}>CONSULTATION PERSONNALISEE</p>
-          </div>
-          <div className={styles.b}></div>
-          <div className={styles.c}></div>
-          <div className={styles.d}></div>
-          <div className={styles.e}></div>
-
+          {steps.map(({ title }: HowStep, index: number) => (
+            <div
+              className={classNames(styles.a, {
+                [styles.active]: activeItem === index,
+              })}
+              key={title}
+            >
+              <p className={styles.number}>{index + 1}</p>
+              <p className={styles.title}>{title}</p>
+            </div>
+          ))}
         </div>
         <div className={styles.page}>
           <div className={styles.angleTL}></div>
           <div className={styles.angleTR}></div>
           <div className={styles.content}>
-            <div className={styles.step}>
-              <div className={styles.number}>1</div>
-              <p>{step1}</p>
-            </div>
-            <div className={styles.step}>
-              <div className={styles.number}>2</div>
-              <p>{step2}</p>
-            </div>
-            <div className={styles.step}>
-              <div className={styles.number}>3</div>
-              <p>{step3}</p>
-            </div>
-            <div className={styles.step}>
-              <div className={styles.number}>4</div>
-              <p>{step4}</p>
-            </div>
-            <div className={styles.step}>
-              <div className={styles.number}>5</div>
-              <p>{step5}</p>
-            </div>
+            {steps.map(({ title, text }: HowStep, index: number) => (
+              <div
+                className={classNames(styles.step, {
+                  [styles.active]: activeItem === index,
+                })}
+                key={title}
+              >
+                <div className={styles.number}>{index + 1}</div>
+                <p>{text}</p>
+              </div>
+            ))}
           </div>
           <div className={styles.angleBL}></div>
           <div className={styles.angleBR}></div>

@@ -7,8 +7,8 @@ function Creation() {
   return (
     <>
       <What />
-      <Why />
-      <How />
+      {/* <Why />
+      <How /> */}
       <Prices />
     </>
   );

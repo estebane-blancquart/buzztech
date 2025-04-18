@@ -1,57 +1,88 @@
 .why {
-    @include module;
-    color: $white;
-    .module {
-        width: 100%;
-        height: 80%;
-        .top {
-            display: flex;
-            align-items: center;
-            height: 6%;
-            background-color: $purple;
-            border: 1px solid $white;
+  @include module;
+  color: $white;
+  .module {
+    width: 100%;
+    height: 80%;
 
-            .dot {
-                height: 60%;
-                aspect-ratio: 1/1;
-                background-color: $black;
-                border-radius: 50%;
-                margin: 0 4px;
-            }
-        }
+    .top {
+      display: flex;
+      align-items: center;
+      height: 6%;
+      background-color: $purple;
+      border: 1px solid $white;
 
-        .content {
-            height: 94%;
-            border: 1px solid $white;
-            display: flex;
-            .index {
-                width: 20%;
-                background-color: orange;
-            }
-
-            .pages {
-                width: 80%;
-                overflow: auto;
-                .page1 {
-                    height: 100%;
-                    background-color: red;
-                }
-
-                .page {
-                    margin: 0 10%;
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: left;
-                    justify-content: space-around;
-                    ul {
-                        height: 40%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-                    }
-                }
-            }
-        }
+      .dot {
+        height: 60%;
+        aspect-ratio: 1/1;
+        background-color: $black;
+        border-radius: 50%;
+        margin: 0 4px;
+      }
     }
+
+    .navigation {
+      display: flex;
+      flex-direction: column;
+
+      .navButton.active {
+        text-decoration: underline;
+      }
+    }
+
+    .content {
+      height: 94%;
+      border: 1px solid $white;
+      display: flex;
+
+      .index {
+        width: 20%;
+        background-color: orange;
+      }
+
+      .pages {
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        overscroll-behavior: none; /* optionnel : bloque l'effet rebond */
+        transition: scroll 0.6s ease-in-out;
+
+        width: 80%;
+        overflow: auto;
+
+        .page1 {
+          height: 100%;
+          background-color: red;
+          margin: 0;
+        }
+
+        .page {
+          scroll-snap-stop: always;
+          scroll-behavior: smooth;
+          scroll-snap-align: center;
+          overscroll-behavior: none; /* optionnel : bloque l'effet rebond */
+          transition: scroll 0.6s ease-in-out;
+          margin: 0 10%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          justify-content: space-around;
+          // opacity: 0;
+          // transition: opacity 0.6s ease;
+
+          // &.active {
+          //   opacity: 1;
+          //   color: white;
+          // }
+
+          ul {
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
 }

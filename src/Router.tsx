@@ -5,7 +5,6 @@ import Repair from './pages/repair/Repair';
 import Configuration from './pages/configuration/Configuration';
 import Creation from './pages/creation/Creation';
 
-
 function AppRouter() {
   return (
     <Router>

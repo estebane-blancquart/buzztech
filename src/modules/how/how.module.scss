@@ -1,10 +1,12 @@
 .how {
   @include module;
   color: $white;
+  scroll-snap-stop: always;
 
   .module {
     height: 100%;
     width: 100%;
+
     .bar {
       height: 5%;
       border: 1px solid $white;
@@ -29,12 +31,20 @@
     .titles {
       height: 5%;
       width: 100%;
+      display: flex;
+      align-items: center;
 
       .a {
         width: 20%;
         height: 100%;
         display: flex;
         align-items: center;
+        color: rgba($white, 0.5);
+        transition: all 0.5s ease-in-out;
+
+        &.active {
+          color: $white;
+        }
 
         .number {
           font-size: 3vh;
@@ -103,6 +113,8 @@
           width: 100%;
           display: flex;
           align-items: center;
+          color: rgba($white, 0.5);
+          transition: all 0.5 ease-in-out;
 
           .number {
             height: 100%;
@@ -113,8 +125,16 @@
             justify-content: center;
             font-size: 2rem;
             background-color: $black;
-            border: 2px solid $white;
+            border: 2px solid rgba($white, 0.5);
             border-radius: 20%;
+          }
+
+          &.active {
+            color: rgba($white, 1);
+
+            .number {
+              border: 2px solid $white;
+            }
           }
         }
       }
