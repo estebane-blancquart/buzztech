@@ -29,7 +29,6 @@ function Header() {
           <li><Link to="depannage" className={styles.pageLink} onClick={handleLinkClick}>DEPANNAGE</Link></li>
           <li><Link to="conception" className={styles.pageLink} onClick={handleLinkClick}>CONCEPTION</Link></li>
           <li><Link to="developpement" className={styles.pageLink} onClick={handleLinkClick}>DÉVELOPPEMENT</Link></li>
-          <li><Link to="nettoyage" className={styles.pageLink} onClick={handleLinkClick}>NETTOYAGE</Link></li>
         </ul>
       </nav>
 
