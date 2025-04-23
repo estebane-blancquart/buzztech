@@ -20,7 +20,7 @@ function Card({ title, description, price, icon, link, variant }: CardProps) {
       <legend><h3>{title}</h3></legend>
       {icon && <img className={styles.icon} src={icon} alt="" />}
       <p className={styles.description}>{description}</p>
-      {price !== undefined && <p className={styles.price}><span>Tarif:</span> {price}€</p>}
+      {/* {price !== undefined && <p className={styles.price}><span>Tarif:</span> {price}€</p>} */}
       {link !== undefined && <Scroll to={link} className={styles.link}>Voir plus</Scroll>}
     </fieldset>
   );
