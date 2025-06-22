@@ -1,0 +1,107 @@
+.header {
+  position: fixed;
+  top: 0;
+  height: 10vh;
+  width: 100vw;
+  background-color: $black;
+  z-index: 2;
+
+  .logo {
+    color: $white;
+    font-family: $lato;
+    font-weight: $big-weight;
+    font-size: $h1;
+    text-decoration: none;
+  }
+
+    .nav {
+      a {
+        color: $purple;
+        font-family: $lato;
+        font-size: $p2;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+    }
+
+  .toggle {
+    color: $white;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+  }
+}
+
+@include mobile {
+  .header {
+    @include flex-between;
+    padding: $mobile-padding;
+
+    .nav {
+      display: none;
+    }
+    
+    .open {
+      @include flex-column-center;
+      position: fixed;
+      inset: 0;
+      background: rgba($black, 0.9);
+      gap: 4vh;
+    }
+  }
+
+  .toggle {
+    display: block;
+  }
+}
+
+@include tablet {
+  .header {
+    @include flex-between;
+    padding: $tablet-padding;
+    
+    .nav {
+      a {
+        color: $purple;
+        font-family: $lato;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-left: 1rem;
+
+        &:hover {
+          color: $light-purple;
+        }
+      }
+    }
+
+    .toggle {
+      display: none;
+    }
+  }
+}
+
+@include desktop {
+  .header {
+    @include flex-column-around;
+    padding: $desktop-padding;
+    align-items: flex-start;
+
+    .nav {
+      a {
+        color: $purple;
+        font-family: $lato;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-right: 2rem;
+
+        &:hover {
+          color: $light-purple;
+        }
+      }
+    }
+  }
+
+  .toggle {
+    display: none;
+  }
+}

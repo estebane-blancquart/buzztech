@@ -1,0 +1,272 @@
+.how {
+  width: 60%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: $black;
+
+  .module {
+    height: 100%;
+    width: 100%;
+
+    .bar {
+      height: 5%;
+      border: 1px solid #444;
+      position: relative;
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .percentage {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        font-size: 1.2rem;
+        z-index: 1;
+      }
+
+      .active {
+        height: 100%;
+        background: linear-gradient(90deg, #666, #888);
+        transition: width 0.4s ease-out;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .titles {
+      height: 10%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      // background: #1a1a1a;
+      margin-top: 1vh;
+
+      .a {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        padding: 0 15px;
+        position: relative;
+
+        &:hover {
+          color: rgba(255, 255, 255, 0.8);
+          background: rgba(255, 255, 255, 0.05);
+        }
+
+        &.active {
+          color: white;
+          // background: rgba(255, 255, 255, 0.1);
+        }
+
+        .number {
+          font-size: 1.8rem;
+          margin-right: 5%;
+          font-weight: bold;
+        }
+
+        .title {
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          line-height: 1.2;
+        }
+      }
+    }
+
+    .page {
+      height: calc(100% - 140px);
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2vh;
+
+      .angleTL {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border-top: 1px solid #666;
+        border-left: 1px solid #666;
+      }
+
+      .angleTR {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        border-top: 1px solid #666;
+        border-right: 1px solid #666;
+      }
+
+      .angleBL {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        border-bottom: 1px solid #666;
+        border-left: 1px solid #666;
+      }
+
+      .angleBR {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        border-bottom: 1px solid #666;
+        border-right: 1px solid #666;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 80%;
+        overflow: scroll;
+        padding: 20px 0;
+
+        .step {
+          display: flex;
+          align-items: flex-start;
+          color: rgba(255, 255, 255, 0.4);
+          padding: 15px 40px;
+          opacity: 0.6;
+
+          .number {
+            height: 40px;
+            width: 40px;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-right: 30px;
+          }
+
+          p {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0;
+          }
+
+          &.active {
+            color: white;
+            opacity: 0.8;
+
+
+            .number {
+              border: 1px solid white;
+              background: #333;
+              color: white;
+            }
+          }
+          
+          &.cta {
+            justify-content: center;
+            border: 1px solid #8b5cf6;
+            border-radius: 8px;
+            background: rgba(139, 92, 246, 0.1);
+            margin-top: 20px;
+            
+            .ctaContent {
+              .ctaButton {
+                background: #8b5cf6;
+                border: none;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                  background: #7c3aed;
+                  transform: translateY(-2px);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .how {
+    .module {
+      .bar {
+        height: 50px;
+
+        .percentage {
+          font-size: 1rem;
+        }
+      }
+
+      .titles {
+        height: 60px;
+            display: none;
+
+        .a {
+          width: 25%;
+          padding: 0 8px;
+
+          .number {
+            font-size: 1.4rem;
+            margin-right: 8px;
+          }
+
+          .title {
+            font-size: 0.7rem;
+          }
+        }
+      }
+
+      .page {
+        height: calc(100% - 110px);
+
+        .content {
+          padding: 20px 0;
+
+          .step {
+            padding: 15px 20px;
+
+            .number {
+              height: 30px;
+              width: 30px;
+              font-size: 1rem;
+              margin-right: 20px;
+            }
+
+            p {
+              font-size: 0.85rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 10vh;
+  background: $black;
+  z-index: 2;
+  font-family: $lato;
+
+  .contact {
+    height: 60%;
+    @include flex-between;
+    color: $white;
+
+    .tel {
+      @include flex-start;
+      width: 33vw;
+      font-size: $p2;
+
+      a {
+        text-decoration: none;
+        color: $white;
+      }
+    }
+
+    .location {
+      @include flex-center;
+      width: 33vw;
+      font-size: $p2;
+    }
+
+    .social {
+      @include flex-end;
+      width: 33vw;
+
+      .socialIcon {
+        @include flex-center;
+        width: 2rem;
+        height: 2rem;
+        margin-left: 0.5rem;
+        border-radius: 50%;
+        background: $dark-purple;
+        color: $white;
+        font-size: $p1;
+      }
+    }
+  }
+  .copyright {
+    height: 40%;
+    @include flex-center;
+    color: rgba($white, 0.8);
+    font-size: $p3;
+  }
+}
+
+@include mobile {
+  .footer {
+    padding: $mobile-padding;
+  }
+}
+@include tablet {
+  .footer {
+    padding: $tablet-padding;
+  }
+}
+@include desktop {
+  .footer {
+    padding: $desktop-padding;
+  }
+}
