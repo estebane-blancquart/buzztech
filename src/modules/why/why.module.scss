@@ -1,3 +1,4 @@
+/* ===== WHY BASE ===== */
 .why {
   width: 60%;
   height: 60%;
@@ -5,377 +6,293 @@
   flex-direction: column;
   border-radius: 8px;
   overflow: hidden;
-  color: white;
+  color: $white;
+  font-family: $lato;
+}
+
+.bar {
+  height: 50px;
+  background: $purple;
+  padding: 0 20px;
+  position: relative;
+  flex-shrink: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: $red;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 $orange, 40px 0 0 $green;
+  }
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  border-bottom: 2px solid #2a2a2a;
+  border-right: 2px solid #2a2a2a;
+  border-bottom-right-radius: 8px;
+}
+
+.nav {
+  width: 25%; /* Modifié : prend maintenant 25% de content */
+  background: #2a2a2a;
+  flex-shrink: 0;
+  @include flex-column-start;
+}
+
+.indexTitle {
+  @include button-reset;
+  color: $white;
+  font-weight: $big-weight;
+  text-transform: uppercase;
+  font-size: $p3;
+  margin-bottom: 15px;
+  text-align: left;
+  width: 100%;
+  transition: color 0.3s ease;
+
+  &.active {
+    color: $purple;
+  }
+
+  &:hover {
+    color: $light-purple;
+  }
+}
+
+.navigation {
+  border-left: 1px solid $white;
+  width: 100%;
+}
+
+.navButton {
+  @include button-reset;
+  color: rgba($white, 0.7);
+  padding: 8px 10px;
+  margin-left: 8px;
+  text-align: left;
+  font-size: 0.75rem;
+  width: calc(100% - 18px);
+  display: block;
+  transition: all 0.1s ease;
+
+  &.active {
+    color: $white;
+    background: rgba($purple, 0.2);
+    border-left: 3px solid $purple;
+  }
+
+  &:hover:not(.active) {
+    color: rgba($white, 0.9);
+    background: rgba($white, 0.05);
+  }
+}
+
+.mainContent {
+  flex: 1; /* Prendra automatiquement le reste (67%) */
+  overflow: hidden;
+  background: $black;
+  padding: 30px 40px;
+  @include flex-column-start;
+  justify-content: flex-start;
+  border-bottom-right-radius: 8px;
 }
 
 .landingContent {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 0 10%;
-
-  h2 {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 300;
-  }
-
-  .landingItem {
-    border-bottom: 1px solid #444;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding-bottom: 1vh;
-
-    &:hover {
-      border-color: #8b7fcc;
-      background: rgba(139, 127, 204, 0.1);
-    }
-
-    h3 {
-      color: #8b7fcc;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    p {
-      color: rgba(255, 255, 255, 0.8);
-      margin: 1vh 0 2vh 0;
-    }
-
-    button {
-      background: transparent;
-      border: none;
-      color: #8b7fcc;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      text-align: left;
-      width: 15%;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+  padding: 0;
+  @include flex-column-start;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
-.module {
-  height: 100%;
+.landingItem {
+  border-bottom: 1px solid #444;
+  padding-bottom: 1rem;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  transition: all 0.3s ease;
 
-  .bar {
-    height: 50px;
-    background: #8b7fcc;
-    border-bottom: 1px solid #666;
-    flex-shrink: 0;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    .percentage,
-    .active {
-      display: none;
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12px;
-      height: 12px;
-      background: #ff5f57;
-      border-radius: 50%;
-      box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #28ca42;
-    }
+  h3 {
+    color: $purple;
+    text-transform: uppercase;
+    font-size: $p1;
+    font-weight: $big-weight;
+    margin-bottom: 1rem;
   }
 
-  .titles {
-    display: none;
+  p {
+    margin: 0;
+    line-height: 1.5;
+    color: rgba($white, 0.9);
+    font-size: $p2;
+    position: relative;
   }
 
-  .page {
-    flex: 1;
-    width: 100%;
-    position: relative;
-    display: flex;
-    min-height: 0;
-    background: #1a1a1a;
+  button {
+    @include button-reset;
+    color: $purple;
+    font-size: $p3;
+    text-transform: uppercase;
+    font-weight: $weight-bold;
+    transition: color 0.3s ease;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-decoration: underline;
 
-    .angleTL,
-    .angleTR,
-    .angleBL,
-    .angleBR {
-      display: none;
-    }
-
-    .content {
-      flex: 1;
-      border: none;
-      display: flex;
-      padding: 0;
-      border-bottom: 3px solid #2a2a2a;
-      border-right: 3px solid #2a2a2a;
-
-      .nav {
-        width: 200px;
-        display: flex;
-        flex-direction: column;
-        padding: 30px 20px;
-        background: #2a2a2a;
-        flex-shrink: 0;
-
-        .indexTitle {
-          font-size: 1rem;
-          text-transform: uppercase;
-          margin-bottom: 20px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          font-weight: bold;
-          color: white;
-          letter-spacing: 1px;
-          background: none;
-          border: none;
-          text-align: left;
-
-          &:hover,
-          &.active {
-            color: #8b7fcc;
-          }
-        }
-
-        .navigation {
-          display: flex;
-          flex-direction: column;
-          border-left: 1px solid white;
-          .navButton {
-            background: transparent;
-            border: none;
-            text-align: left;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-weight: 400;
-            width: 80%;
-            margin-left: 1vw;
-
-            &:hover {
-              color: white;
-              background: rgba(255, 255, 255, 0.1);
-            }
-
-            &.active {
-              color: white;
-              background: rgba(139, 127, 204, 0.2);
-              border-left: 3px solid #8b7fcc;
-            }
-          }
-        }
-      }
-
-      .mainContent {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-        overflow-x: hidden;
-        background: #1a1a1a;
-
-        &::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        &::-webkit-scrollbar-track {
-          background: #2a2a2a;
-          border-radius: 3px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-          background: #555;
-          border-radius: 3px;
-
-          &:hover {
-            background: #666;
-          }
-        }
-      }
-
-      .step {
-        display: none;
-      }
+    &:hover {
+      color: $light-purple;
     }
   }
 }
 
 .pageContent {
-  height: 100%;
+  padding: 20px;
   width: 100%;
-  padding: 0 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: left;
-  padding: 20px O;
+}
 
-  .pageHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid white;
-    padding-bottom: 1vh;
+.pageHeader {
+  @include flex-start;
 
-    h3 {
-      color: white;
-      font-size: 1.8rem;
-      text-transform: uppercase;
-      margin: 0;
-      font-weight: 300;
-    }
-
-    .icon {
-      font-size: 2rem;
-      opacity: 0.8;
-      background: #333;
-      border-radius: 4px;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  .points {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px 0;
-
-    li {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 15px;
-      line-height: 1.6;
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.9);
-
-      span {
-        color: white;
-        margin-right: 15px;
-        font-weight: bold;
-        margin-top: 2px;
-      }
-    }
-  }
-
-  .contactBtn {
-    background: transparent;
-    border: 1px solid #8b7fcc;
-    color: #8b7fcc;
-    padding: 12px 24px;
-    border-radius: 4px;
-    width: 35%;
-    margin-left: 65%;
-    cursor: pointer;
-    font-size: 0.9rem;
+  h3 {
+    color: $white;
     text-transform: uppercase;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    letter-spacing: 1px;
+    font-size: $p1;
+    font-weight: $big-weight;
+  }
+}
 
-    &:hover {
-      background: #8b7fcc;
-      color: white;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(139, 127, 204, 0.3);
+.icon {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
+.points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+
+  li {
+    padding: 0.5rem 0;
+    color: rgba($white, 0.9);
+    font-size: $p2;
+    line-height: 1.4;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: "•";
+      color: $purple;
+      position: absolute;
+      left: 0;
     }
   }
 }
 
-@media (max-width: 768px) {
-  .why {
-    .module {
-      .bar {
-        height: 40px;
-        padding: 0 15px;
+.contactBtn {
+  @include button-reset;
+  border: 1px solid $purple;
+  color: $purple;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  font-size: $p3;
+  transition: all 0.3s ease;
 
-        &::before {
-          left: 15px;
-          width: 10px;
-          height: 10px;
-          box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #28ca42;
-        }
-      }
+  &:hover {
+    background: $purple;
+    color: $black;
+    transform: translateY(-2px);
+  }
+}
 
-      .page {
-        .content {
-          flex-direction: column;
-
-          .nav {
-            width: 100%;
-            padding: 20px 15px;
-            border-right: none;
-            border-bottom: 1px solid #444;
-            display: none;
-
-            .indexTitle {
-              font-size: 0.9rem;
-              margin-bottom: 15px;
-            }
-
-            .navigation {
-              display: flex;
-              
-
-              .navButton {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-              }
-            }
-          }
-
-          .mainContent {
-            padding: 20px 15px;
-          }
-        }
-      }
-    }
+/* ===== RESPONSIVE ===== */
+@include desktop {
+  .nav {
+    width: 25%; /* Maintient les 25% sur desktop */
+    padding: 2rem;
   }
 
-  .pageContent {
-    .pageHeader {
-      margin-bottom: 20px;
+  .mainContent {
+    @include flex-column-around;
+  }
+}
 
-      h3 {
-        font-size: 1.4rem;
-      }
+@include tablet {
+  .nav {
+    width: 25%; /* Maintient les 25% sur tablet */
+    padding: 15px 8px;
 
-      .icon {
-        width: 45px;
-        height: 45px;
-        font-size: 1.5rem;
-        padding: 8px;
-      }
-    }
-
-    .points li {
-      font-size: 0.85rem;
+    .indexTitle {
+      font-size: 0.7rem;
       margin-bottom: 12px;
     }
 
-    .contactBtn {
-      padding: 10px 20px;
-      font-size: 0.8rem;
+    .navButton {
+      font-size: 0.7rem;
+      padding: 6px 8px;
     }
+  }
+
+  .mainContent {
+    padding: 20px 30px;
+  }
+
+  .landingItem {
+    h3 {
+      font-size: $p2;
+    }
+
+    p {
+      font-size: $p3;
+    }
+  }
+}
+
+@include mobile {
+  .why {
+    width: 90%;
+    height: 80%;
+  }
+
+  .content {
+    flex-direction: row; /* Garde la direction en ligne même sur mobile */
+  }
+
+  .nav {
+    width: 25%; /* Garde 25% même sur mobile */
+    height: auto;
+    padding: 2rem;
+    flex-direction: column; /* Retour en mode colonne */
+    justify-content: flex-start;
+
+    .indexTitle {
+      margin-bottom: 15px;
+      font-size: 0.7rem;
+    }
+
+    .navigation {
+      display: block;
+      border-left: 1px solid $white;
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .navButton {
+      margin-left: 8px;
+      width: calc(100% - 18px);
+      font-size: 0.6rem;
+    }
+  }
+
+  .mainContent {
+    padding: 15px 20px;
   }
 }

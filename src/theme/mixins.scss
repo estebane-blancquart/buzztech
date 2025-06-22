@@ -1,3 +1,4 @@
+// ===== BREAKPOINTS =====
 @mixin mobile {
   @media (max-width: 768px) {
     @content;
@@ -16,10 +17,11 @@
   }
 }
 
+// ===== FLEX ROW =====
 @mixin flex-start {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 @mixin flex-center {
@@ -31,7 +33,7 @@
 @mixin flex-end {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 @mixin flex-between {
@@ -46,11 +48,32 @@
   justify-content: space-around;
 }
 
+@mixin flex-evenly {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+// ===== FLEX COLUMN =====
+@mixin flex-column-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 @mixin flex-column-center {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@mixin flex-column-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 @mixin flex-column-between {
@@ -67,7 +90,31 @@
   justify-content: space-around;
 }
 
+@mixin flex-column-evenly {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
 
+// ===== COMMON PATTERNS =====
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+}
 
+@mixin card-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-
+@mixin hover-lift {
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

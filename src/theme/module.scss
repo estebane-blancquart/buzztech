@@ -1,0 +1,22 @@
+/* Module styles - Snap + Glissement fluide */
+
+.module {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: $black;
+  scroll-snap-align: start;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Animation fade pour navigation interne */
+  .fade-content {
+    transition: opacity 0.2s ease;
+    
+    &.fading {
+      opacity: 0;
+    }
+  }
+}

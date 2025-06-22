@@ -2,51 +2,65 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Presentation.module.scss';
 
-const Presentation: React.FC = () => {
-  return (
-    <section className={`module ${styles.services}`}>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>Nos services</h2>
-          <p className={styles.subtitle}>Solutions complètes pour tous vos besoins informatiques</p>
-        </div>
+interface ServiceItemProps {
+  to: string;
+  icon: string;
+  name: string;
+  description: string;
+  price: string;
+}
 
-        <div className={styles.servicesList}>
-          <Link to="/depannage" className={styles.serviceItem}>
-            <div className={styles.serviceLeft}>
-              <span className={styles.icon}>🔧</span>
-              <div className={styles.serviceInfo}>
-                <h3 className={styles.serviceName}>Dépannage</h3>
-                <p className={styles.serviceDesc}>Réparation rapide • À distance, atelier ou domicile</p>
-              </div>
-            </div>
-            <div className={styles.servicePrice}>À partir de 30€</div>
-          </Link>
-
-          <Link to="/configuration" className={styles.serviceItem}>
-            <div className={styles.serviceLeft}>
-              <span className={styles.icon}>⚙️</span>
-              <div className={styles.serviceInfo}>
-                <h3 className={styles.serviceName}>Configuration</h3>
-                <p className={styles.serviceDesc}>Assemblage PC sur mesure • Selon budget et besoins</p>
-              </div>
-            </div>
-            <div className={styles.servicePrice}>À partir de 70€</div>
-          </Link>
-
-          <Link to="/creation-web" className={styles.serviceItem}>
-            <div className={styles.serviceLeft}>
-              <span className={styles.icon}>💻</span>
-              <div className={styles.serviceInfo}>
-                <h3 className={styles.serviceName}>Création Web</h3>
-                <p className={styles.serviceDesc}>Sites vitrines professionnels • Responsive et optimisés</p>
-              </div>
-            </div>
-            <div className={styles.servicePrice}>À partir de 800€</div>
-          </Link>
-        </div>
+const ServiceItem: React.FC<ServiceItemProps> = ({ to, icon, name, description, price }) => (
+  <Link to={to} className={styles.serviceItem}>
+    <div className={styles.serviceLeft}>
+      <span className={styles.icon}>{icon}</span>
+      <div className={styles.serviceInfo}>
+        <h3 className={styles.serviceName}>{name}</h3>
+        <p className={styles.serviceDesc}>{description}</p>
       </div>
-    </section>
+    </div>
+    <div className={styles.servicePrice}>{price}</div>
+  </Link>
+);
+
+const Presentation: React.FC = () => {
+  const services = [
+    {
+      to: '/depannage',
+      icon: '🔧',
+      name: 'Dépannage',
+      description: 'Réparation rapide • À distance, atelier ou domicile',
+      price: 'À partir de 30€'
+    },
+    {
+      to: '/configuration',
+      icon: '⚙️',
+      name: 'Configuration',
+      description: 'Assemblage PC sur mesure • Selon budget et besoins',
+      price: 'À partir de 70€'
+    },
+    {
+      to: '/creation-web',
+      icon: '💻',
+      name: 'Création Web',
+      description: 'Sites vitrines professionnels • Responsive et optimisés',
+      price: 'À partir de 800€'
+    }
+  ];
+
+  return (
+    <div className={styles.presentation}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Nos services</h2>
+        <p className={styles.subtitle}>Solutions complètes pour tous vos besoins informatiques</p>
+      </div>
+
+      <div className={styles.servicesList}>
+        {services.map((service, index) => (
+          <ServiceItem key={index} {...service} />
+        ))}
+      </div>
+    </div>
   );
 };
 

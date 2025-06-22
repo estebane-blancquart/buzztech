@@ -16,7 +16,6 @@ const Home: React.FC = () => {
 
       <section className="module">
         <Video />
-
       </section>
     </>
   );

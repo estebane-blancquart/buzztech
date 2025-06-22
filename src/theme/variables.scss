@@ -1,31 +1,76 @@
+/* ===== FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* ===== COULEURS ===== */
 $white: #e8e8e8;
 $black: #171717;
 $light-purple: #C6C3FF;
 $purple: #9C97FF;
 $dark-purple: #2D314B;
 
+// Couleurs additionnelles
+$gray: #5a5a5a;
+$red: #ff5f57;
+$orange: #ffbd2e;
+$green: #28ca42;
+$blue: #007aff;
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+/* ===== TYPOGRAPHIE ===== */
+// Fonts
+$lato: "Lato", sans-serif;
+$ubuntu: "Ubuntu Sans Mono", monospace;
 
-$lato: "Lato";
-$ubuntu: "Ubuntu Sans Mono";
+// Weights
+$big-weight: 800;
+$weight-light: 300;
+$weight-normal: 400;
+$weight-bold: 700;
 
+// Sizes
+$h1: 2.5rem;
+$font-h2: 2rem;
+$font-h3: 1.5rem;
+$p1: 1.2rem;
+$p2: 1rem;
+$p3: 0.8rem;
+$font-small: 0.75rem;
 
+/* ===== SPACING ===== */
+// Responsive padding
 $desktop-padding: 0 20vw;
 $tablet-padding: 0 10vw;
 $mobile-padding: 0 5vw;
 
+// Standard spacing
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2rem;
+$space-xl: 3rem;
+$space-xxl: 4rem;
 
-$big-weight: 800;
+/* ===== TRANSITIONS ===== */
+$transition-fast: 0.2s ease;
+$transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition-fade: opacity 0.3s ease;
 
-$h1: 2.5rem;
+/* ===== BORDERS ===== */
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
 
-$p1: 1.2rem;
-$p2: 1rem;
-$p3: 0.8rem;
+/* ===== SHADOWS ===== */
+$shadow-sm: 0 2px 4px rgba($black, 0.1);
+$shadow-md: 0 4px 8px rgba($black, 0.15);
+$shadow-lg: 0 8px 16px rgba($black, 0.2);
 
-
-
-
-
+/* ===== CSS CUSTOM PROPERTIES (pour JS) ===== */
+:root {
+  --white: #{$white};
+  --black: #{$black};
+  --purple: #{$purple};
+  --light-purple: #{$light-purple};
+  --dark-purple: #{$dark-purple};
+}

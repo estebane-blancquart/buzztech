@@ -1,254 +1,212 @@
+/* ===== PRICES BASE ===== */
 .prices {
-  width: 80%;
+  width: 60%;
   height: 60%;
-  @include flex-center;
-  color: white;
-  background: #1a1a1a;
+  @include flex-column-center;
+  color: $white;
+  background: $black;
+}
 
-  .container {
-    width: 60%;
-    height: 60%;
+.grid {
+  display: grid;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+}
+
+/* Layout auto selon nombre de cartes */
+.layoutDepannageCustom {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  
+  .card:nth-child(1) { grid-row: 1 / 3; }
+  .card:nth-child(2) { grid-row: 1; }
+  .card:nth-child(3) { grid-row: 2; }
+}
+
+.layoutConfigurationCustom {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  
+  .card:nth-child(1) { 
+    grid-column: 1; 
+    grid-row: 1 / 3; 
+  }
+  
+  .card:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .card:nth-child(3) { grid-column: 2; grid-row: 1; }
+  .card:nth-child(4) { grid-column: 2; grid-row: 2; }
+  .card:nth-child(5) { grid-column: 2; grid-row: 2; }
+}
+
+.layoutGrid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.card {
+  background: linear-gradient(145deg, $dark-purple, $purple, 5%);
+  border: 1px solid rgba($purple, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  @include flex-column-between;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $purple, $light-purple);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($purple, 0.4);
+    box-shadow: 0 8px 25px rgba($purple, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.cardHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  color: $purple;
+  text-transform: uppercase;
+  font-size: $p3;
+  font-weight: $big-weight;
+  margin: 0 0 1rem 0;
+  letter-spacing: 1px;
+}
+
+.priceSection {
+  @include flex-center;
+  gap: 0.25rem;
+}
+
+.price {
+  color: $white;
+  font-size: 2rem;
+  font-weight: $big-weight;
+}
+
+.unit {
+  color: $purple;
+  font-size: 1.25rem;
+  font-weight: $weight-bold;
+}
+
+.features {
+  @include flex-column-start;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: $p3;
+  color: rgba($white, 0.9);
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@include desktop {
+  .prices {
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .price {
+    font-size: 2rem;
+  }
+}
+
+@include tablet {
+  .prices {
+    width: 70%;
+    height: 70%;
   }
 
   .grid {
-    display: grid;
-    gap: 1rem;
-    height: 100%;
-    width: 100%;
+    gap: 0.75rem;
   }
 
-  // DÉPANNAGE: 1ère carte grande à gauche, 2 petites à droite
-  .layoutDepannageCustom {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    
-    .card:nth-child(1) {
-      grid-row: 1 / 3; // DÉPANNAGE COMPLET prend toute la hauteur à gauche
-    }
-    .card:nth-child(2) {
-      grid-column: 2;
-      grid-row: 1; // NETTOYAGE MATÉRIEL en haut à droite
-    }
-    .card:nth-child(3) {
-      grid-column: 2;
-      grid-row: 2; // NETTOYAGE LOGICIEL en bas à droite
-    }
+  .card {
+    padding: 1.25rem;
   }
 
-  // CONFIGURATION: 2 cartes égales à gauche, 3 cartes égales à droite
-  .layoutConfigurationCustom {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    
-    .card:nth-child(1) {
-      grid-column: 1;
-      grid-row: 1 / 4; // PC STANDARD prend 3 lignes sur 6 (50%)
-    }
-    .card:nth-child(2) {
-      grid-column: 1;
-      grid-row: 4 / 7; // PC COMPLET prend 3 lignes sur 6 (50%)
-    }
-    .card:nth-child(3) {
-      grid-column: 2;
-      grid-row: 1 / 3; // SYSTÈME D'EXPLOITATION 2 lignes sur 6 (33%)
-    }
-    .card:nth-child(4) {
-      grid-column: 2;
-      grid-row: 3 / 5; // PILOTES 2 lignes sur 6 (33%)
-    }
-    .card:nth-child(5) {
-      grid-column: 2;
-      grid-row: 5 / 7; // OUTILS 2 lignes sur 6 (33%)
-    }
+  .price {
+    font-size: 1.75rem;
   }
 
-  // CRÉATION WEB: 2 cartes côte à côte
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .feature {
+    font-size: 0.8rem;
+  }
+}
+
+@include mobile {
+  .prices {
+    width: 90%;
+    height: 80%;
+  }
+
+  .grid {
+    gap: 0.5rem;
+  }
+
+  .layoutDepannageCustom,
+  .layoutConfigurationCustom,
   .layoutGrid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     
-    .card:nth-child(1) {
-      grid-column: 1; // ESSENTIEL à gauche
-    }
-    .card:nth-child(2) {
-      grid-column: 2; // INTÉGRAL à droite
+    .card {
+      grid-column: 1 !important;
+      grid-row: auto !important;
     }
   }
 
   .card {
-    background: linear-gradient(145deg, #1e1e30 0%, #252540 100%);
-    border: 1px solid rgba(139, 127, 204, 0.2);
-    border-radius: 12px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #8b7fcc, #6c5ce7, #a29bfe);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    &:hover {
-      transform: translateY(-4px);
-      border-color: rgba(139, 127, 204, 0.4);
-      box-shadow: 0 8px 32px rgba(139, 127, 204, 0.15);
-
-      &::before {
-        opacity: 1;
-      }
-    }
-  }
-
-  .cardHeader {
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
-  .title {
-    color: #a29bfe;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin: 0 0 1rem 0;
-    opacity: 0.9;
-  }
-
-  .priceSection {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.25rem;
+    padding: 1rem;
   }
 
   .price {
-    color: #ffffff;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
+    font-size: 1.5rem;
   }
 
   .unit {
-    color: #a29bfe;
-    font-size: 1.25rem;
-    font-weight: 600;
-    opacity: 0.8;
+    font-size: 1rem;
   }
 
-  .features {
-    margin-top: 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.75rem;
+  .title {
+    font-size: 0.75rem;
   }
 
   .feature {
-    font-size: 0.875rem;
-    color: #e2e8f0;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    line-height: 1.4;
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: #ffffff;
-    }
-  }
-
-  .bullet {
-    color: #a29bfe;
-    font-size: 1rem;
-    margin-top: 0.1rem;
-    flex-shrink: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .prices {
-    width: 100%;
-    height: auto;
-    padding: 0.5rem 0;
-
-    .container {
-      width: 95%;
-      height: auto;
-    }
-
-    .grid {
-      grid-template-columns: 1fr !important;
-      grid-template-rows: auto !important;
-      gap: 0.5rem;
-      height: auto;
-      
-      .card {
-        grid-row: auto !important;
-        grid-column: auto !important;
-        padding: 1rem;
-        min-height: auto;
-        display: flex;
-        flex-direction: row !important;
-        align-items: center;
-        
-        &:hover {
-          transform: translateY(-1px);
-        }
-      }
-    }
-
-    .cardHeader {
-      margin-bottom: 0;
-      margin-right: 1rem;
-      text-align: left;
-      flex-shrink: 0;
-      min-width: 120px;
-    }
-
-    .title {
-      font-size: 0.7rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .priceSection {
-      justify-content: flex-start;
-    }
-
-    .price {
-      font-size: 1.25rem;
-    }
-
-    .unit {
-      font-size: 0.9rem;
-    }
-
-    .features {
-      margin-top: 0;
-      flex: 1;
-      justify-content: flex-start;
-    }
-
-    .feature {
-      font-size: 0.7rem;
-      line-height: 1.2;
-      gap: 0.5rem;
-    }
-
-    .bullet {
-      font-size: 0.8rem;
-    }
+    font-size: 0.75rem;
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Why, { WhyPage } from '../modules/why/Why';
+import Why, { WhyPage } from '@/modules/why/Why';
 import How from '../modules/how/How';
 import What from '@/modules/what/What';
 import Prices from '@/modules/prices/Prices';
@@ -9,7 +9,7 @@ const CreationWeb: React.FC = () => {
     <>
       <section className="module">
         <What
-          service="creation-web"
+          badge="creation-web"
           title="Création de sites web"
           subtitle="Sites vitrines sur mesure pour développer votre présence en ligne"
         />
@@ -92,7 +92,6 @@ const CreationWeb: React.FC = () => {
 
       <section className="module">
         <Prices
-          service="creation-web"
           cards={[
             {
               title: "ESSENTIEL",

@@ -1,6 +1,6 @@
 import React from 'react';
-import Why, { WhyPage } from '../modules/why/Why';
-import How from '../modules/how/How';
+import Why, { WhyPage } from '@/modules/why/Why';
+import How from '@/modules/how/How';
 import What from '@/modules/what/What';
 import Prices from '@/modules/prices/Prices';
 
@@ -9,7 +9,7 @@ const Configuration: React.FC = () => {
     <>
       <section className="module">
         <What
-          service="configuration"
+          badge="PC sur mesure"
           title="Configuration PC sur mesure"
           subtitle="Assemblage et optimisation de configurations personnalisées selon vos besoins"
         />
@@ -92,7 +92,6 @@ const Configuration: React.FC = () => {
 
       <section className="module">
         <Prices
-          service="configuration"
           cards={[
             {
               title: "PC STANDARD",

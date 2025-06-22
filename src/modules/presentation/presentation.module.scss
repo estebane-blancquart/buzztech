@@ -1,20 +1,11 @@
-.services {
-  background: #f8f9fa;
-  color: #1a1a2e;
-  @include flex-center;
-  padding: 4rem 0;
-  background: #1a1a1a;
-}
-
-.container {
+/* ===== PRESENTATION BASE ===== */
+.presentation {
   width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4rem;
-  background-color: black;
-  padding-bottom: 2%;
-  border-radius: 10px;
+  height: 60%;
+  background: $black;
+  color: $white;
+  @include flex-column-center;
+  padding: 4rem 0;
 }
 
 .header {
@@ -24,21 +15,22 @@
 
 .title {
   margin: 0 0 1rem 0;
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: white;
+  font-size: $h1;
+  font-weight: $big-weight;
+  color: $white;
 }
 
 .subtitle {
   margin: 0;
-  font-size: 1.1rem;
-  color: #64748b;
+  font-size: $p1;
+  color: $gray;
 }
 
 .servicesList {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%; // Prend toute la largeur disponible
 }
 
 .serviceItem {
@@ -46,17 +38,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: white;
+  background: rgba($white, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba($white, 0.1);
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  border: 2px solid transparent;
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: rgba(162, 155, 254, 0.3);
+    border-color: rgba($purple, 0.5);
     transform: translateX(8px);
-    box-shadow: 0 4px 20px rgba(162, 155, 254, 0.1);
+    box-shadow: 0 4px 20px rgba($purple, 0.2);
+    background: rgba($white, 0.08);
   }
 }
 
@@ -79,46 +73,76 @@
 .serviceName {
   margin: 0 0 0.25rem 0;
   font-size: 1.25rem;
-  font-weight: 600;
-  color: #1a1a2e;
+  font-weight: $big-weight;
+  color: $white;
 }
 
 .serviceDesc {
   margin: 0;
   font-size: 0.9rem;
-  color: #64748b;
+  color: rgba($white, 0.7);
   line-height: 1.4;
 }
 
 .servicePrice {
-  font-weight: 600;
-  color: #a29bfe;
-  font-size: 1rem;
-  background: rgba(162, 155, 254, 0.1);
+  font-weight: $big-weight;
+  color: $purple;
+  font-size: $p2;
+  background: rgba($purple, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   flex-shrink: 0;
+  border: 1px solid rgba($purple, 0.3);
 }
 
-@include mobile {
-  .services {
+/* ===== RESPONSIVE ===== */
+@include desktop {
+  .presentation {
+    padding: 4rem 0;
+  }
+
+  .servicesList {
+    width: 100%; // Prend toute la largeur de .presentation
+  }
+}
+
+@include tablet {
+  .presentation {
     padding: 3rem 0;
   }
 
-  .container {
-    padding: 0 1rem;
-  }
-
-  .header {
-    margin-bottom: 2rem;
+  .servicesList {
+    width: 100%; // Prend toute la largeur disponible
   }
 
   .title {
     font-size: 2rem;
   }
 
+  .serviceItem {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .serviceName {
+    font-size: 1.1rem;
+  }
+}
+
+@include mobile {
+  .presentation {
+    padding: 2rem 1rem;
+  }
+
+  .servicesList {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
   .subtitle {
-    font-size: 1rem;
+    font-size: $p2;
   }
 
   .serviceItem {
@@ -143,6 +167,10 @@
   }
 
   .serviceName {
-    font-size: 1.1rem;
+    font-size: $p1;
+  }
+
+  .serviceDesc {
+    font-size: 0.85rem;
   }
 }

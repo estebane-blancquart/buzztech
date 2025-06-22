@@ -8,16 +8,37 @@ interface UseScrollOptions {
 
 export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
   const [activeItem, setActiveItem] = useState<number>(initialIndex);
+  const [isFading, setIsFading] = useState(false);
+  const [lastScrollTime, setLastScrollTime] = useState(0); // Timestamp du dernier scroll
   const containerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
   const progressPercentage = ((activeItem + 1) / totalItems) * 100;
 
+  const changeItem = (newIndex: number) => {
+    if (isFading) return;
+    
+    setIsFading(true);
+    
+    // Fade out → change content → fade in
+    setTimeout(() => {
+      setActiveItem(newIndex);
+      setTimeout(() => {
+        setIsFading(false);
+      }, 50);
+    }, 150);
+  };
+
   const goToNextModule = () => {
+    const now = Date.now();
+    if (now - lastScrollTime < 800) return; // Throttle de 800ms
+    
+    setLastScrollTime(now);
+    
     const currentScrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
-    const nextModulePosition =
-      Math.ceil(currentScrollY / viewportHeight) * viewportHeight;
+    const currentModule = Math.round(currentScrollY / viewportHeight);
+    const nextModulePosition = (currentModule + 1) * viewportHeight;
 
     window.scrollTo({
       top: nextModulePosition,
@@ -26,13 +47,18 @@ export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
   };
 
   const goToPreviousModule = () => {
+    const now = Date.now();
+    if (now - lastScrollTime < 800) return; // Throttle de 800ms
+    
+    setLastScrollTime(now);
+    
     const currentScrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
-    const prevModulePosition =
-      Math.floor(currentScrollY / viewportHeight - 1) * viewportHeight;
+    const currentModule = Math.round(currentScrollY / viewportHeight);
+    const prevModulePosition = Math.max(0, (currentModule - 1) * viewportHeight);
 
     window.scrollTo({
-      top: Math.max(0, prevModulePosition),
+      top: prevModulePosition,
       behavior: "smooth",
     });
   };
@@ -48,13 +74,13 @@ export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
 
       if (e.deltaY > 0) {
         if (activeItem < totalItems - 1) {
-          setActiveItem(activeItem + 1);
+          changeItem(activeItem + 1);
         } else {
           goToNextModule();
         }
       } else {
         if (activeItem > initialIndex) {
-          setActiveItem(activeItem - 1);
+          changeItem(activeItem - 1);
         } else {
           goToPreviousModule();
         }
@@ -84,13 +110,13 @@ export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
 
       if (deltaY > 0) {
         if (activeItem < totalItems - 1) {
-          setActiveItem(activeItem + 1);
+          changeItem(activeItem + 1);
         } else {
           goToNextModule();
         }
       } else {
         if (activeItem > initialIndex) {
-          setActiveItem(activeItem - 1);
+          changeItem(activeItem - 1);
         } else {
           goToPreviousModule();
         }
@@ -115,14 +141,15 @@ export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
         element.removeEventListener("touchend", handleTouchEnd);
       };
     }
-  }, [activeItem, totalItems, initialIndex]);
+  }, [activeItem, totalItems, initialIndex, isFading]);
 
   useEffect(() => {
     setActiveItem(initialIndex);
+    setLastScrollTime(0); // Reset throttling sur changement de route
   }, [location.pathname, location.state, initialIndex]);
 
   const handleItemClick = (index: number) => {
-    setActiveItem(index);
+    changeItem(index);
   };
 
   return {
@@ -130,5 +157,6 @@ export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
     containerRef,
     progressPercentage,
     handleItemClick,
+    isFading,
   };
 }

@@ -1,7 +1,6 @@
-import { useId } from "react";
 import styles from "./why.module.scss";
 import classNames from "classnames";
-import { useScroll } from "../../components/scroller/useScroll";
+import { useScroll } from "@/components/scroller/useScroll";
 
 interface WhyPageProps {
   title: string;
@@ -25,12 +24,13 @@ export function WhyPage({ title, points, icon }: WhyPageProps) {
       <ul className={styles.points}>
         {points.map((point, index) => (
           <li key={index}>
-            <span>●</span>
             {point}
           </li>
         ))}
       </ul>
-      <button className={styles.contactBtn}>Contactez-nous</button>
+      <button className={styles.contactBtn}>
+        Contactez-nous
+      </button>
     </div>
   );
 }
@@ -44,8 +44,14 @@ function WhyHome({ children, onPageClick }: {
       {children.map((child, index) => (
         <div key={index} className={styles.landingItem}>
           <h3>{child.props.title}</h3>
-          <p>{child.props.landingDescription}</p>
-          <button onClick={() => onPageClick(index)}>voir plus</button>
+          {child.props.landingDescription && (
+            <p>
+              <span>{child.props.landingDescription}</span>
+              <button onClick={() => onPageClick(index)}>
+                voir plus
+              </button>
+            </p>
+          )}
         </div>
       ))}
     </div>
@@ -53,64 +59,81 @@ function WhyHome({ children, onPageClick }: {
 }
 
 function Why({ title, children }: WhyProps) {
-  const id = `why-${useId()}`;
   const totalPages = children.length;
 
-  const { activeItem, containerRef, handleItemClick } = useScroll({
+  const { activeItem, containerRef, handleItemClick, isFading } = useScroll({
     totalItems: totalPages,
     initialIndex: -1
   });
 
   const handlePageClick = (index: number) => {
-    handleItemClick(index);
+    if (index >= 0 && index < children.length) {
+      handleItemClick(index);
+    }
   };
 
   const handleLandingClick = () => {
     handleItemClick(-1);
   };
 
+  const getActiveContent = () => {
+    if (activeItem === -1) {
+      return (
+        <WhyHome
+          children={children}
+          onPageClick={handlePageClick}
+        />
+      );
+    }
+
+    if (activeItem >= 0 && activeItem < children.length) {
+      return children[activeItem];
+    }
+
+    return (
+      <div className={styles.errorContent}>
+        <p>Contenu non disponible</p>
+        <button onClick={handleLandingClick}>Retour à l'accueil</button>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.why} ref={containerRef}>
-      <div className={styles.module}>
-        <div className={styles.bar}></div>
+      <div className={styles.bar}></div>
 
-        <div className={styles.page}>
-          <div className={styles.content}>
-            <div className={styles.nav}>
+      <div className={styles.content}>
+        <div className={styles.nav}>
+          <button
+            className={classNames(styles.indexTitle, {
+              [styles.active]: activeItem === -1,
+            })}
+            onClick={handleLandingClick}
+          >
+            {title}
+          </button>
+
+          <div className={styles.navigation}>
+            {children.map((child, index) => (
               <button
-                className={classNames(styles.indexTitle, {
-                  [styles.active]: activeItem === -1,
+                key={`nav-${child.props.title}-${index}`}
+                className={classNames(styles.navButton, {
+                  [styles.active]: activeItem === index,
                 })}
-                onClick={handleLandingClick}
+                onClick={() => handlePageClick(index)}
               >
-                {title}
+                {child.props.title}
               </button>
-              <nav className={styles.navigation}>
-                {children.map((child: React.ReactElement<WhyPageProps>, index: number) => (
-                  <button
-                    key={child.props.title}
-                    className={classNames(styles.navButton, {
-                      [styles.active]: activeItem === index,
-                    })}
-                    onClick={() => handlePageClick(index)}
-                  >
-                    {child.props.title}
-                  </button>
-                ))}
-              </nav>
-            </div>
-
-            <div className={styles.mainContent}>
-              {activeItem === -1 ? (
-                <WhyHome
-                  children={children}
-                  onPageClick={handlePageClick}
-                />
-              ) : (
-                children[activeItem]
-              )}
-            </div>
+            ))}
           </div>
+        </div>
+
+        <div
+          className={classNames(styles.mainContent, 'fade-content', {
+            'fading': isFading
+          })}
+        >
+          {getActiveContent()}
         </div>
       </div>
     </div>

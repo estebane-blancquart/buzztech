@@ -1,24 +1,13 @@
+/* ===== HERO BASE ===== */
 .hero {
+  width: 100vw;
+  height: 100dvh;
   color: $white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  width: 60%;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 2%;
-  border-radius: 10px;
+  @include flex-column-center;
 }
 
 .videoSection {
-  display: flex;
-  justify-content: center;
+  @include flex-center;
 }
 
 .videoWrapper {
@@ -27,19 +16,27 @@
 }
 
 .backgroundVideo {
-  width: 400px;
-  height: 400px;
+    
+    width: 25rem;
+    height: 25rem;
+  
   object-fit: cover;
   opacity: 0.9;
   border-radius: 50%;
-  
   filter: brightness(1.1) contrast(1.1);
+}
+
+.videoGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba($purple, 0.3) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .infoSection {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  @include flex-center;
 }
 
 .infoGrid {
@@ -51,9 +48,9 @@
 }
 
 .infoCard {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba($white, 0.05);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba($white, 0.1);
   border-radius: 15px;
   padding: 1.5rem;
   text-align: center;
@@ -63,9 +60,9 @@
 
   &:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(162, 155, 254, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba($white, 0.08);
+    border-color: rgba($purple, 0.3);
+    box-shadow: 0 10px 30px rgba($black, 0.2);
   }
 }
 
@@ -73,7 +70,7 @@
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -90,19 +87,19 @@
   font-weight: 500;
 }
 
+/* ===== RESPONSIVE ===== */
+@include desktop {
+  .hero {
+    gap: 4rem;
+  }
 
+}
 
-// Responsive
 @include tablet {
-  .container {
+  .hero {
     gap: 3rem;
   }
-  
-  .backgroundVideo {
-    width: 320px;
-    height: 320px;
-  }
-  
+
   .infoGrid {
     gap: 2rem;
   }
@@ -119,22 +116,15 @@
 @include mobile {
   .hero {
     padding: 1rem 0;
-  }
-  
-  .container {
-    padding: 0 1rem;
     gap: 2rem;
   }
-  
-  .backgroundVideo {
-    width: 250px;
-    height: 250px;
-  }
+
   
   .infoGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
     max-width: 300px;
+    padding: 0 1rem;
   }
   
   .infoCard {

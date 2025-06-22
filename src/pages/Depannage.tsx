@@ -9,7 +9,7 @@ const Depannage: React.FC = () => {
     <>
       <section className="module">
         <What
-          service="depannage"
+          badge="depannage"
           title="Dépannage informatique"
           subtitle="Intervention rapide et diagnostic immédiat - À distance, à l'atelier ou à domicile"
         />
@@ -92,7 +92,6 @@ const Depannage: React.FC = () => {
 
       <section className="module">
         <Prices
-          service="depannage"
           cards={[
             {
               title: "REMPLACEMENT FACILE",
