@@ -86,7 +86,7 @@ function How({ steps }: HowProps) {
         {steps.map((step, index) => (
           <div
             className={classNames(styles.step, {
-              [styles.active]: activeItem === index,
+              [(styles.active as string)]: activeItem === index,
             })}
             key={`step-${step.title}-${index}`}
             onClick={() => handleStepClick(index)}

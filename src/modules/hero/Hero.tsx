@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Hero.module.scss';
+import styles from './hero.module.scss';
 
 interface InfoCardProps {
   value: string;
