@@ -1,0 +1,202 @@
+/* ===== HERO BASE ===== */
+.hero {
+ width: 60%;
+ height: 60%;
+ color: $white;
+
+ @include flex-column-center;
+
+ gap: 2rem;
+}
+
+.videoSection {
+ @include flex-center;
+}
+
+.videoWrapper {
+ position: relative;
+ display: inline-block;
+}
+
+.backgroundVideo {
+ width: 15rem;
+ height: 15rem;
+ border-radius: 50%;
+ opacity: 0.9;
+ object-fit: cover;
+ filter: brightness(1.1) contrast(1.1);
+}
+
+.videoGlow {
+ position: absolute;
+ inset: 0;
+ border-radius: 50%;
+ background: radial-gradient(circle, rgba($purple, 0.3) 0%, transparent 70%);
+ pointer-events: none;
+}
+
+/* ===== HERO CONTENT ===== */
+.heroContent {
+ text-align: center;
+ margin-bottom: 1.5rem;
+}
+
+.heroTitle {
+ background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+ font-size: 2rem;
+ font-weight: 800;
+ margin-bottom: 0.5rem;
+ background-clip: text;
+ background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+ opacity: 0.8;
+ font-size: 1rem;
+ margin-bottom: 1rem;
+}
+
+.heroCta {
+ padding: 0.8rem 1.5rem;
+ border: none;
+ border-radius: 50px;
+ background: none;
+ background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+ color: $white;
+ font-weight: 700;
+ transition: transform 0.3s ease;
+ cursor: pointer;
+
+ &:hover {
+   transform: translateY(-2px);
+ }
+}
+
+.infoSection {
+ width: 100%;
+
+ @include flex-center;
+}
+
+.infoGrid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 2rem;
+ width: 100%;
+ max-width: 500px;
+}
+
+.infoCard {
+ position: relative;
+ padding: 1rem;
+ border: 1px solid rgba($white, 0.1);
+ border-radius: 15px;
+ background: rgba($white, 0.05);
+ text-align: center;
+ transition: all 0.3s ease;
+ backdrop-filter: blur(10px);
+ overflow: hidden;
+
+ &:hover {
+   background: rgba($white, 0.08);
+   transform: translateY(-5px);
+   border-color: rgba($purple, 0.3);
+   box-shadow: 0 10px 30px rgba($black, 0.2);
+ }
+}
+
+.infoValue {
+ display: block;
+ background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+ font-size: 1.5rem;
+ font-weight: 700;
+ line-height: 1;
+ background-clip: text;
+ -webkit-text-fill-color: transparent;
+ margin-bottom: 0.5rem;
+}
+
+.infoLabel {
+ display: block;
+ opacity: 0.8;
+ font-size: 0.8rem;
+ font-weight: 500;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+}
+
+/* ===== RESPONSIVE ===== */
+@include desktop {
+ .hero {
+   gap: 3rem;
+ }
+}
+
+@include tablet {
+ .hero {
+   gap: 2rem;
+ }
+
+ .infoGrid {
+   gap: 1.5rem;
+   max-width: 400px;
+ }
+
+ .infoCard {
+   padding: 0.8rem;
+ }
+
+ .infoValue {
+   font-size: 1.3rem;
+ }
+}
+
+@include mobile {
+ .hero {
+   padding: 1rem 0;
+   gap: 1.5rem;
+ }
+
+ .heroContent {
+   margin-bottom: 1rem;
+ }
+
+ .heroTitle {
+   font-size: 1.5rem;
+ }
+
+ .heroSubtitle {
+   font-size: 0.9rem;
+   margin-bottom: 0.8rem;
+ }
+
+ .heroCta {
+   padding: 0.6rem 1.2rem;
+   font-size: 0.8rem;
+ }
+
+ .backgroundVideo {
+   width: 12rem;
+   height: 12rem;
+ }
+
+ .infoGrid {
+   grid-template-columns: 1fr;
+   gap: 0.8rem;
+   max-width: 250px;
+   padding: 0 1rem;
+ }
+
+ .infoCard {
+   padding: 0.8rem;
+ }
+
+ .infoValue {
+   font-size: 1.2rem;
+ }
+
+ .infoLabel {
+   font-size: 0.7rem;
+ }
+}

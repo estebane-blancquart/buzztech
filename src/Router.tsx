@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
-import Home from './pages/Home';
-import Depannage from './pages/Depannage';
-import Configuration from './pages/Configuration';
-import CreationWeb from './pages/CreationWeb';
+import Home from '@/ui/pages/Home';
+import Depannage from '@/ui/pages/Depannage';
+import Configuration from '@/ui/pages/Configuration';
+import CreationWeb from '@/ui/pages/CreationWeb';
 
 function Router(): JSX.Element {
   return (
