@@ -22,7 +22,7 @@ const Video: React.FC = () => {
 
   const highlights = [
     { icon: '💡', platform: 'Facebook' },
-    { icon: '🏷️', platform: 'Instagram' }
+    { icon: '🏷️', platform: 'Instagram' },
   ];
 
   return (
@@ -48,13 +48,13 @@ const Video: React.FC = () => {
           </div>
         )}
       </div>
-      
+
       <div className={styles.text}>
         <h2 className={styles.title}>Ne ratez rien !</h2>
         <p className={styles.description}>
           Suivez-moi sur mes réseaux pour des conseils tech.
         </p>
-        
+
         <div className={styles.highlights}>
           {highlights.map((highlight, index) => (
             <Highlight key={index} {...highlight} />

@@ -17,17 +17,17 @@ const Hero: React.FC = () => {
   const infoData = [
     { value: '24/7', label: 'Disponible' },
     { value: '42', label: 'Saint-Étienne' },
-    { value: '0€', label: 'Devis' }
+    { value: '0€', label: 'Devis' },
   ];
 
   return (
     <div className={styles.hero}>
       <div className={styles.videoSection}>
         <div className={styles.videoWrapper}>
-          <img 
-            src="/images/sphere.webp" 
-            alt="Sphere animation" 
-            className={styles.backgroundVideo} 
+          <img
+            src="/images/sphere.webp"
+            alt="Sphere animation"
+            className={styles.backgroundVideo}
           />
           <div className={styles.videoGlow}></div>
         </div>

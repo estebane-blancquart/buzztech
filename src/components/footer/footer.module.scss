@@ -2,21 +2,24 @@
 .footer {
   position: fixed;
   bottom: 0;
+  z-index: 2;
   width: 100vw;
   height: 10vh;
   background: $black;
-  z-index: 2;
   font-family: $lato;
 }
 
 .contact {
   height: 60%;
+
   @include flex-between;
+
   color: $white;
 }
 
 .tel {
   @include flex-start;
+
   width: 33vw;
   font-size: $p2;
 
@@ -33,18 +36,21 @@
 
 .location {
   @include flex-center;
+
   width: 33vw;
   font-size: $p2;
 }
 
 .social {
   @include flex-end;
+
   width: 33vw;
   gap: 0.5rem;
 }
 
 .socialIcon {
   @include flex-center;
+
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -61,7 +67,9 @@
 
 .copyright {
   height: 40%;
+
   @include flex-center;
+
   color: rgba($white, 0.8);
   font-size: $p3;
 }

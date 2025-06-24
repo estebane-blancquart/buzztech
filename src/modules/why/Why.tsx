@@ -1,6 +1,6 @@
-import styles from "./why.module.scss";
-import classNames from "classnames";
-import { useScroll } from "@/components/scroller/useScroll";
+import styles from './why.module.scss';
+import classNames from 'classnames';
+import { useScroll } from '@/components/scroller/useScroll';
 
 interface WhyPageProps {
   title: string;
@@ -23,19 +23,18 @@ export function WhyPage({ title, points, icon }: WhyPageProps) {
       </div>
       <ul className={styles.points}>
         {points.map((point, index) => (
-          <li key={index}>
-            {point}
-          </li>
+          <li key={index}>{point}</li>
         ))}
       </ul>
-      <button className={styles.contactBtn}>
-        Contactez-nous
-      </button>
+      <button className={styles.contactBtn}>Contactez-nous</button>
     </div>
   );
 }
 
-function WhyHome({ children, onPageClick }: {
+function WhyHome({
+  children,
+  onPageClick,
+}: {
   children: React.ReactElement<WhyPageProps>[];
   onPageClick: (index: number) => void;
 }) {
@@ -47,9 +46,7 @@ function WhyHome({ children, onPageClick }: {
           {child.props.landingDescription && (
             <p>
               <span>{child.props.landingDescription}</span>
-              <button onClick={() => onPageClick(index)}>
-                voir plus
-              </button>
+              <button onClick={() => onPageClick(index)}>voir plus</button>
             </p>
           )}
         </div>
@@ -63,7 +60,7 @@ function Why({ title, children }: WhyProps) {
 
   const { activeItem, containerRef, handleItemClick, isFading } = useScroll({
     totalItems: totalPages,
-    initialIndex: -1
+    initialIndex: -1,
   });
 
   const handlePageClick = (index: number) => {
@@ -78,12 +75,7 @@ function Why({ title, children }: WhyProps) {
 
   const getActiveContent = () => {
     if (activeItem === -1) {
-      return (
-        <WhyHome
-          children={children}
-          onPageClick={handlePageClick}
-        />
-      );
+      return <WhyHome children={children} onPageClick={handlePageClick} />;
     }
 
     if (activeItem >= 0 && activeItem < children.length) {
@@ -130,7 +122,7 @@ function Why({ title, children }: WhyProps) {
 
         <div
           className={classNames(styles.mainContent, 'fade-content', {
-            'fading': isFading
+            fading: isFading,
           })}
         >
           {getActiveContent()}

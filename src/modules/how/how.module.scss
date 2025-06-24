@@ -1,59 +1,59 @@
 /* ===== HOW BASE ===== */
 .how {
-  width: 60%;
-  height: 60%;
   display: flex;
   flex-direction: column;
-  color: $white;
+  width: 60%;
+  height: 60%;
   background: $black;
+  color: $white;
 }
 
 .bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 5%;
   border: 1px solid #444;
-  position: relative;
   background: #2a2a2a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   .percentage {
     position: absolute;
-    font-weight: bold;
+    z-index: 1;
     color: $white;
     font-size: $p1;
-    z-index: 1;
+    font-weight: bold;
   }
 
   .active {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
     background: linear-gradient(90deg, #666, #888);
     transition: width 0.4s ease-out;
-    position: absolute;
-    left: 0;
-    top: 0;
   }
 }
 
 .titles {
-  height: 10%;
   display: flex;
   align-items: center;
+  height: 10%;
   margin-top: 1vh;
 
   .step {
-    width: 20%;
-    height: 100%;
     display: flex;
     align-items: center;
+    width: 20%;
+    height: 100%;
+    padding: 0 15px;
     color: rgba($white, 0.5);
     transition: all 0.3s ease;
     cursor: pointer;
-    padding: 0 15px;
 
     &:hover {
-      color: rgba($white, 0.8);
       background: rgba($white, 0.05);
+      color: rgba($white, 0.8);
     }
 
     &.active {
@@ -76,16 +76,16 @@
 }
 
 .content {
-  flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 2vh;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  position: relative;
-  overflow: hidden;
   padding: 20px 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
   transition: opacity 0.3s ease;
+  flex: 1;
+  margin-top: 2vh;
+  overflow: hidden;
 
   &.fading {
     opacity: 0;
@@ -94,7 +94,7 @@
   /* Animation fade global */
   &.fade-content {
     transition: opacity 0.3s ease;
-    
+
     &.fading {
       opacity: 0;
     }
@@ -109,27 +109,27 @@
     transition: all 0.4s ease;
 
     .number {
-      height: 40px;
-      width: 40px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: $p1;
-      font-weight: bold;
-      background: linear-gradient(135deg, $dark-purple 0%, #3a3a5a 100%);
+      align-items: center;
+      width: 40px;
+      height: 40px;
       border: 1px solid rgba($purple, 0.3);
       border-radius: 8px;
-      flex-shrink: 0;
-      margin-right: 30px;
+      background: linear-gradient(135deg, $dark-purple 0%, #3a3a5a 100%);
+      font-size: $p1;
+      font-weight: bold;
       transform: scale(0.9);
       transition: all 0.4s ease;
+      flex-shrink: 0;
+      margin-right: 30px;
     }
 
     p {
-      line-height: 1.6;
-      font-size: 0.95rem;
       max-width: 600px;
       margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
       transition: all 0.4s ease;
     }
 
@@ -147,49 +147,45 @@
       }
 
       p {
-        transform: translateX(0);
         color: $light-purple;
+        transform: translateX(0);
       }
     }
-
-
-
-
   }
 }
 
 /* Angles décoratifs dans le TSX */
 .corner {
   position: absolute;
+  z-index: 2;
   width: 20px;
   height: 20px;
   border: 1px solid $purple;
-  z-index: 2;
 
-  &[data-corner="top-left"] {
+  &[data-corner='top-left'] {
     top: 0;
     left: 0;
     border-right: none;
     border-bottom: none;
   }
 
-  &[data-corner="top-right"] {
+  &[data-corner='top-right'] {
     top: 0;
     right: 0;
     border-left: none;
     border-bottom: none;
   }
 
-  &[data-corner="bottom-left"] {
+  &[data-corner='bottom-left'] {
     bottom: 0;
     left: 0;
     border-right: none;
     border-top: none;
   }
 
-  &[data-corner="bottom-right"] {
-    bottom: 0;
+  &[data-corner='bottom-right'] {
     right: 0;
+    bottom: 0;
     border-left: none;
     border-top: none;
   }
@@ -219,8 +215,8 @@
     .content {
       .step {
         .number {
-          height: 40px;
           width: 40px;
+          height: 40px;
           font-size: $p1;
         }
 
@@ -257,8 +253,8 @@
         padding: 12px 30px;
 
         .number {
-          height: 35px;
           width: 35px;
+          height: 35px;
           font-size: $p2;
           margin-right: 25px;
         }
@@ -275,24 +271,24 @@
   .how {
     .bar {
       height: 50px;
-      
+
       .percentage {
         font-size: $p2;
       }
     }
 
     .titles {
-      height: 60px;
       display: none;
+      height: 60px;
     }
 
     .content {
       .step {
         padding: 20px;
-        
+
         .number {
-          height: 30px;
           width: 30px;
+          height: 30px;
           font-size: $p2;
           margin-right: 20px;
         }

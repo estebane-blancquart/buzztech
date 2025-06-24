@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./how.module.scss";
-import classNames from "classnames";
-import { useScroll } from "@/components/scroller/useScroll";
+import React from 'react';
+import styles from './how.module.scss';
+import classNames from 'classnames';
+import { useScroll } from '@/components/scroller/useScroll';
 
 interface HowStep {
   title: string;
@@ -14,10 +14,16 @@ interface HowProps {
 
 function How({ steps }: HowProps) {
   const totalSteps = steps.length;
-  
-  const { activeItem, containerRef, progressPercentage, handleItemClick, isFading } = useScroll({
+
+  const {
+    activeItem,
+    containerRef,
+    progressPercentage,
+    handleItemClick,
+    isFading,
+  } = useScroll({
     totalItems: totalSteps,
-    initialIndex: 0
+    initialIndex: 0,
   });
 
   const handleStepClick = (index: number) => {
@@ -33,9 +39,9 @@ function How({ steps }: HowProps) {
     const nextStep = activeItem < totalSteps - 1 ? steps[activeItem + 1] : null;
 
     return (
-      <div 
+      <div
         className={classNames('fade-content', {
-          'fading': isFading
+          fading: isFading,
         })}
         key={activeItem} // Force re-render pour éviter clignotement
       >
@@ -46,7 +52,7 @@ function How({ steps }: HowProps) {
             <p>{previousStep.text}</p>
           </div>
         )}
-        
+
         {/* Étape active */}
         {currentStep && (
           <div className={classNames(styles.step, styles.active)}>
@@ -54,7 +60,7 @@ function How({ steps }: HowProps) {
             <p>{currentStep.text}</p>
           </div>
         )}
-        
+
         {/* Étape suivante grisée */}
         {nextStep && (
           <div className={classNames(styles.step, styles.next)}>
@@ -69,15 +75,13 @@ function How({ steps }: HowProps) {
   return (
     <div className={styles.how} ref={containerRef}>
       <div className={styles.bar}>
-        <p className={styles.percentage}>
-          {Math.round(progressPercentage)}%
-        </p>
-        <div 
-          className={styles.active} 
+        <p className={styles.percentage}>{Math.round(progressPercentage)}%</p>
+        <div
+          className={styles.active}
           style={{ width: `${progressPercentage}%` }}
         ></div>
       </div>
-      
+
       <div className={styles.titles}>
         {steps.map((step, index) => (
           <div
@@ -92,7 +96,7 @@ function How({ steps }: HowProps) {
           </div>
         ))}
       </div>
-      
+
       <div className={styles.content}>
         <div className={styles.corner} data-corner="top-left"></div>
         <div className={styles.corner} data-corner="top-right"></div>

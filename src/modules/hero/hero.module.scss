@@ -3,6 +3,7 @@
   width: 100vw;
   height: 100dvh;
   color: $white;
+
   @include flex-column-center;
 }
 
@@ -16,13 +17,11 @@
 }
 
 .backgroundVideo {
-    
-    width: 25rem;
-    height: 25rem;
-  
-  object-fit: cover;
-  opacity: 0.9;
+  width: 25rem;
+  height: 25rem;
   border-radius: 50%;
+  opacity: 0.9;
+  object-fit: cover;
   filter: brightness(1.1) contrast(1.1);
 }
 
@@ -36,6 +35,7 @@
 
 .infoSection {
   width: 100%;
+
   @include flex-center;
 }
 
@@ -48,19 +48,19 @@
 }
 
 .infoCard {
-  background: rgba($white, 0.05);
-  backdrop-filter: blur(10px);
+  position: relative;
+  padding: 1.5rem;
   border: 1px solid rgba($white, 0.1);
   border-radius: 15px;
-  padding: 1.5rem;
+  background: rgba($white, 0.05);
   text-align: center;
   transition: all 0.3s ease;
-  position: relative;
+  backdrop-filter: blur(10px);
   overflow: hidden;
 
   &:hover {
-    transform: translateY(-5px);
     background: rgba($white, 0.08);
+    transform: translateY(-5px);
     border-color: rgba($purple, 0.3);
     box-shadow: 0 10px 30px rgba($black, 0.2);
   }
@@ -68,23 +68,23 @@
 
 .infoValue {
   display: block;
+  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   line-height: 1;
+  background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
 }
 
 .infoLabel {
   display: block;
-  font-size: 0.9rem;
   opacity: 0.8;
+  font-size: 0.9rem;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 500;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -92,7 +92,6 @@
   .hero {
     gap: 4rem;
   }
-
 }
 
 @include tablet {
@@ -103,11 +102,11 @@
   .infoGrid {
     gap: 2rem;
   }
-  
+
   .infoCard {
     padding: 1.2rem;
   }
-  
+
   .infoValue {
     font-size: 1.8rem;
   }
@@ -119,22 +118,21 @@
     gap: 2rem;
   }
 
-  
   .infoGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
     max-width: 300px;
     padding: 0 1rem;
   }
-  
+
   .infoCard {
     padding: 1rem;
   }
-  
+
   .infoValue {
     font-size: 1.5rem;
   }
-  
+
   .infoLabel {
     font-size: 0.8rem;
   }

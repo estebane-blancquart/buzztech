@@ -18,7 +18,7 @@ const ScrollLink = ({ to, children, className, onClick }: ScrollLinkProps) => {
     if (location.pathname === to) {
       navigate(to, {
         replace: true,
-        state: { resetKey: Date.now() }
+        state: { resetKey: Date.now() },
       });
     } else {
       navigate(to, { state: { resetKey: Date.now() } });

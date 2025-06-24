@@ -2,10 +2,11 @@
 .presentation {
   width: 60%;
   height: 60%;
+  padding: 4rem 0;
   background: $black;
   color: $white;
+
   @include flex-column-center;
-  padding: 4rem 0;
 }
 
 .header {
@@ -14,16 +15,16 @@
 }
 
 .title {
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
+  color: $white;
   font-size: $h1;
   font-weight: $big-weight;
-  color: $white;
 }
 
 .subtitle {
   margin: 0;
-  font-size: $p1;
   color: $gray;
+  font-size: $p1;
 }
 
 .servicesList {
@@ -38,19 +39,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: rgba($white, 0.05);
-  backdrop-filter: blur(10px);
   border: 2px solid rgba($white, 0.1);
   border-radius: 12px;
-  text-decoration: none;
+  background: rgba($white, 0.05);
   color: inherit;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
 
   &:hover {
-    border-color: rgba($purple, 0.5);
-    transform: translateX(8px);
-    box-shadow: 0 4px 20px rgba($purple, 0.2);
     background: rgba($white, 0.08);
+    transform: translateX(8px);
+    border-color: rgba($purple, 0.5);
+    box-shadow: 0 4px 20px rgba($purple, 0.2);
   }
 }
 
@@ -71,28 +72,28 @@
 }
 
 .serviceName {
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.25rem;
+  color: $white;
   font-size: 1.25rem;
   font-weight: $big-weight;
-  color: $white;
 }
 
 .serviceDesc {
   margin: 0;
-  font-size: 0.9rem;
   color: rgba($white, 0.7);
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
 .servicePrice {
-  font-weight: $big-weight;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba($purple, 0.3);
+  border-radius: 20px;
+  background: rgba($purple, 0.1);
   color: $purple;
   font-size: $p2;
-  background: rgba($purple, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  font-weight: $big-weight;
   flex-shrink: 0;
-  border: 1px solid rgba($purple, 0.3);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -147,9 +148,9 @@
 
   .serviceItem {
     flex-direction: column;
+    padding: 1.5rem;
     text-align: center;
     gap: 1rem;
-    padding: 1.5rem;
 
     &:hover {
       transform: translateY(-4px);

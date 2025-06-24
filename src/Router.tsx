@@ -5,7 +5,7 @@ import Depannage from './pages/Depannage';
 import Configuration from './pages/Configuration';
 import CreationWeb from './pages/CreationWeb';
 
-function Router() {
+function Router(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>

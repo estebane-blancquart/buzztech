@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
 interface UseScrollOptions {
@@ -15,53 +15,56 @@ export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
 
   const progressPercentage = ((activeItem + 1) / totalItems) * 100;
 
-  const changeItem = (newIndex: number) => {
-    if (isFading) return;
-    
-    setIsFading(true);
-    
-    // Fade out → change content → fade in
+const changeItem = useCallback((newIndex: number) => {
+  if (isFading) return;
+
+  setIsFading(true);
+
+  // Fade out → change content → fade in
+  setTimeout(() => {
+    setActiveItem(newIndex);
     setTimeout(() => {
-      setActiveItem(newIndex);
-      setTimeout(() => {
-        setIsFading(false);
-      }, 50);
-    }, 150);
-  };
+      setIsFading(false);
+    }, 50);
+  }, 150);
+}, [isFading]);
 
-  const goToNextModule = () => {
-    const now = Date.now();
-    if (now - lastScrollTime < 800) return; // Throttle de 800ms
-    
-    setLastScrollTime(now);
-    
-    const currentScrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const currentModule = Math.round(currentScrollY / viewportHeight);
-    const nextModulePosition = (currentModule + 1) * viewportHeight;
+const goToNextModule = useCallback(() => {
+  const now = Date.now();
+  if (now - lastScrollTime < 800) return; // Throttle de 800ms
 
-    window.scrollTo({
-      top: nextModulePosition,
-      behavior: "smooth",
-    });
-  };
+  setLastScrollTime(now);
 
-  const goToPreviousModule = () => {
-    const now = Date.now();
-    if (now - lastScrollTime < 800) return; // Throttle de 800ms
-    
-    setLastScrollTime(now);
-    
-    const currentScrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const currentModule = Math.round(currentScrollY / viewportHeight);
-    const prevModulePosition = Math.max(0, (currentModule - 1) * viewportHeight);
+  const currentScrollY = window.scrollY;
+  const viewportHeight = window.innerHeight;
+  const currentModule = Math.round(currentScrollY / viewportHeight);
+  const nextModulePosition = (currentModule + 1) * viewportHeight;
 
-    window.scrollTo({
-      top: prevModulePosition,
-      behavior: "smooth",
-    });
-  };
+  window.scrollTo({
+    top: nextModulePosition,
+    behavior: "smooth",
+  });
+}, [lastScrollTime]);
+
+const goToPreviousModule = useCallback(() => {
+  const now = Date.now();
+  if (now - lastScrollTime < 800) return; // Throttle de 800ms
+
+  setLastScrollTime(now);
+
+  const currentScrollY = window.scrollY;
+  const viewportHeight = window.innerHeight;
+  const currentModule = Math.round(currentScrollY / viewportHeight);
+  const prevModulePosition = Math.max(
+    0,
+    (currentModule - 1) * viewportHeight
+  );
+
+  window.scrollTo({
+    top: prevModulePosition,
+    behavior: "smooth",
+  });
+}, [lastScrollTime]);
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
@@ -141,8 +144,15 @@ export function useScroll({ totalItems, initialIndex = 0 }: UseScrollOptions) {
         element.removeEventListener("touchend", handleTouchEnd);
       };
     }
-  }, [activeItem, totalItems, initialIndex, isFading]);
-
+  }, [
+    activeItem,
+    totalItems,
+    initialIndex,
+    isFading,
+    changeItem,
+    goToNextModule,
+    goToPreviousModule,
+  ]);
   useEffect(() => {
     setActiveItem(initialIndex);
     setLastScrollTime(0); // Reset throttling sur changement de route

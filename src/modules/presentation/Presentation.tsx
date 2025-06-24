@@ -10,7 +10,13 @@ interface ServiceItemProps {
   price: string;
 }
 
-const ServiceItem: React.FC<ServiceItemProps> = ({ to, icon, name, description, price }) => (
+const ServiceItem: React.FC<ServiceItemProps> = ({
+  to,
+  icon,
+  name,
+  description,
+  price,
+}) => (
   <Link to={to} className={styles.serviceItem}>
     <div className={styles.serviceLeft}>
       <span className={styles.icon}>{icon}</span>
@@ -30,29 +36,31 @@ const Presentation: React.FC = () => {
       icon: '🔧',
       name: 'Dépannage',
       description: 'Réparation rapide • À distance, atelier ou domicile',
-      price: 'À partir de 30€'
+      price: 'À partir de 30€',
     },
     {
       to: '/configuration',
       icon: '⚙️',
       name: 'Configuration',
       description: 'Assemblage PC sur mesure • Selon budget et besoins',
-      price: 'À partir de 70€'
+      price: 'À partir de 70€',
     },
     {
       to: '/creation-web',
       icon: '💻',
       name: 'Création Web',
       description: 'Sites vitrines professionnels • Responsive et optimisés',
-      price: 'À partir de 800€'
-    }
+      price: 'À partir de 800€',
+    },
   ];
 
   return (
     <div className={styles.presentation}>
       <div className={styles.header}>
         <h2 className={styles.title}>Nos services</h2>
-        <p className={styles.subtitle}>Solutions complètes pour tous vos besoins informatiques</p>
+        <p className={styles.subtitle}>
+          Solutions complètes pour tous vos besoins informatiques
+        </p>
       </div>
 
       <div className={styles.servicesList}>

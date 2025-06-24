@@ -1,13 +1,13 @@
 /* ===== FONTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap';
 
 /* ===== COULEURS ===== */
 $white: #e8e8e8;
 $black: #171717;
-$light-purple: #C6C3FF;
-$purple: #9C97FF;
-$dark-purple: #2D314B;
+$light-purple: #c6c3ff;
+$purple: #9c97ff;
+$dark-purple: #2d314b;
 
 // Couleurs additionnelles
 $gray: #5a5a5a;
@@ -18,8 +18,8 @@ $blue: #007aff;
 
 /* ===== TYPOGRAPHIE ===== */
 // Fonts
-$lato: "Lato", sans-serif;
-$ubuntu: "Ubuntu Sans Mono", monospace;
+$lato: 'Lato', sans-serif;
+$ubuntu: 'Ubuntu Sans Mono', monospace;
 
 // Weights
 $big-weight: 800;

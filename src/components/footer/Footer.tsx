@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     <footer className={styles.footer}>
       <div className={styles.contact}>
         <div className={styles.tel}>
-          <a href="tel:0123456789" >06 XX XX XX XX</a>
+          <a href="tel:0123456789">06 XX XX XX XX</a>
         </div>
 
         <div className={styles.location}>SAINT-ÉTIENNE</div>

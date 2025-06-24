@@ -8,10 +8,14 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <ScrollLink to="/" className={styles.logo}>BUZZTECH</ScrollLink>
-      
-      <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>☰</button>
-      
+      <ScrollLink to="/" className={styles.logo}>
+        BUZZTECH
+      </ScrollLink>
+
+      <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
+        ☰
+      </button>
+
       <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
         <ScrollLink to="/depannage" onClick={() => setIsOpen(false)}>
           Dépannage

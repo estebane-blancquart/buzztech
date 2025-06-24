@@ -1,33 +1,35 @@
 /* ===== WHY BASE ===== */
 .why {
-  width: 60%;
-  height: 60%;
   display: flex;
   flex-direction: column;
+  width: 60%;
+  height: 60%;
   border-radius: 8px;
-  overflow: hidden;
   color: $white;
   font-family: $lato;
+  overflow: hidden;
 }
 
 .bar {
-  height: 50px;
-  background: $purple;
-  padding: 0 20px;
   position: relative;
+  height: 50px;
+  padding: 0 20px;
+  background: $purple;
   flex-shrink: 0;
 
   &::before {
-    content: "";
     position: absolute;
-    left: 20px;
     top: 50%;
-    transform: translateY(-50%);
+    left: 20px;
     width: 12px;
     height: 12px;
-    background: $red;
     border-radius: 50%;
-    box-shadow: 20px 0 0 $orange, 40px 0 0 $green;
+    background: $red;
+    transform: translateY(-50%);
+    content: '';
+    box-shadow:
+      20px 0 0 $orange,
+      40px 0 0 $green;
   }
 }
 
@@ -44,19 +46,21 @@
   width: 25%; /* Modifié : prend maintenant 25% de content */
   background: #2a2a2a;
   flex-shrink: 0;
+
   @include flex-column-start;
 }
 
 .indexTitle {
   @include button-reset;
-  color: $white;
-  font-weight: $big-weight;
-  text-transform: uppercase;
-  font-size: $p3;
-  margin-bottom: 15px;
-  text-align: left;
+
   width: 100%;
+  color: $white;
+  font-size: $p3;
+  font-weight: $big-weight;
+  text-align: left;
   transition: color 0.3s ease;
+  text-transform: uppercase;
+  margin-bottom: 15px;
 
   &.active {
     color: $purple;
@@ -74,42 +78,45 @@
 
 .navButton {
   @include button-reset;
-  color: rgba($white, 0.7);
-  padding: 8px 10px;
-  margin-left: 8px;
-  text-align: left;
-  font-size: 0.75rem;
-  width: calc(100% - 18px);
+
   display: block;
+  width: calc(100% - 18px);
+  padding: 8px 10px;
+  color: rgba($white, 0.7);
+  font-size: 0.75rem;
+  text-align: left;
   transition: all 0.1s ease;
+  margin-left: 8px;
 
   &.active {
-    color: $white;
     background: rgba($purple, 0.2);
+    color: $white;
     border-left: 3px solid $purple;
   }
 
   &:hover:not(.active) {
-    color: rgba($white, 0.9);
     background: rgba($white, 0.05);
+    color: rgba($white, 0.9);
   }
 }
 
 .mainContent {
+  justify-content: flex-start;
+  padding: 30px 40px;
+  background: $black;
   flex: 1; /* Prendra automatiquement le reste (67%) */
   overflow: hidden;
-  background: $black;
-  padding: 30px 40px;
-  @include flex-column-start;
-  justify-content: flex-start;
   border-bottom-right-radius: 8px;
+
+  @include flex-column-start;
 }
 
 .landingContent {
-  padding: 0;
-  @include flex-column-start;
-  gap: 2rem;
   align-items: flex-start;
+  padding: 0;
+  gap: 2rem;
+
+  @include flex-column-start;
 }
 
 .landingItem {
@@ -127,23 +134,24 @@
   }
 
   p {
+    position: relative;
     margin: 0;
-    line-height: 1.5;
     color: rgba($white, 0.9);
     font-size: $p2;
-    position: relative;
+    line-height: 1.5;
   }
 
   button {
     @include button-reset;
-    color: $purple;
-    font-size: $p3;
-    text-transform: uppercase;
-    font-weight: $weight-bold;
-    transition: color 0.3s ease;
+
     position: absolute;
     right: 0;
     bottom: 0;
+    color: $purple;
+    font-size: $p3;
+    font-weight: $weight-bold;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
     text-decoration: underline;
 
     &:hover {
@@ -153,8 +161,8 @@
 }
 
 .pageContent {
-  padding: 20px;
   width: 100%;
+  padding: 20px;
 }
 
 .pageHeader {
@@ -174,37 +182,38 @@
 }
 
 .points {
-  list-style: none;
+  margin: 0 0 2rem;
   padding: 0;
-  margin: 0 0 2rem 0;
+  list-style: none;
 
   li {
+    position: relative;
     padding: 0.5rem 0;
     color: rgba($white, 0.9);
     font-size: $p2;
     line-height: 1.4;
-    position: relative;
     padding-left: 1rem;
 
     &::before {
-      content: "•";
-      color: $purple;
       position: absolute;
       left: 0;
+      color: $purple;
+      content: '•';
     }
   }
 }
 
 .contactBtn {
   @include button-reset;
-  border: 1px solid $purple;
-  color: $purple;
+
   padding: 12px 24px;
+  border: 1px solid $purple;
   border-radius: 4px;
-  font-weight: $weight-bold;
-  text-transform: uppercase;
+  color: $purple;
   font-size: $p3;
+  font-weight: $weight-bold;
   transition: all 0.3s ease;
+  text-transform: uppercase;
 
   &:hover {
     background: $purple;
@@ -236,8 +245,8 @@
     }
 
     .navButton {
-      font-size: 0.7rem;
       padding: 6px 8px;
+      font-size: 0.7rem;
     }
   }
 
@@ -267,11 +276,11 @@
   }
 
   .nav {
+    flex-direction: column; /* Retour en mode colonne */
+    justify-content: flex-start;
     width: 25%; /* Garde 25% même sur mobile */
     height: auto;
     padding: 2rem;
-    flex-direction: column; /* Retour en mode colonne */
-    justify-content: flex-start;
 
     .indexTitle {
       margin-bottom: 15px;

@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({ card }) => (
         {card.unit && <span className={styles.unit}>{card.unit}</span>}
       </div>
     </div>
-    
+
     <div className={styles.features}>
       {card.features.map((feature, featureIndex) => (
         <div key={featureIndex} className={styles.feature}>
@@ -43,7 +43,7 @@ const Prices: React.FC<PricesProps> = ({ cards }) => {
       case 3:
         return styles.layoutDepannageCustom;
       case 4:
-        return styles.layoutGrid;  
+        return styles.layoutGrid;
       case 5:
         return styles.layoutConfigurationCustom;
       default:

@@ -1,6 +1,10 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+interface WindowWithScroller extends Window {
+  scrollerControl?: ScrollerControl;
+}
+
 interface ScrollerProps {
   children: ReactNode;
   onModuleChange?: (currentModule: number, totalModules: number) => void;
@@ -35,7 +39,11 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
   const totalModules = getTotalModules();
 
   useEffect(() => {
-    (window as any).scrollerControl = {
+    interface WindowWithScroller extends Window {
+      scrollerControl?: ScrollerControl;
+    }
+
+    (window as WindowWithScroller).scrollerControl = {
       disableGlobalScroll: () => {
         setGlobalScrollDisabled(true);
         document.documentElement.style.scrollBehavior = 'auto';
@@ -47,11 +55,11 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
         document.documentElement.style.scrollBehavior = 'smooth';
       },
       getCurrentModule: () => currentModule,
-      isScrolling: () => isScrollingState
+      isScrolling: () => isScrollingState,
     } as ScrollerControl;
 
     return () => {
-      delete (window as any).scrollerControl;
+      delete (window as WindowWithScroller).scrollerControl;
     };
   }, [currentModule, isScrollingState]);
 
@@ -88,7 +96,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
         if (Math.abs(scrollTop - targetPosition) > 10) {
           window.scrollTo({
             top: targetPosition,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
         }
       }, 150);
@@ -103,8 +111,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
       window.removeEventListener('scroll', handleScrollStart);
       clearTimeout(scrollTimeout);
     };
-  }, [currentModule, totalModules, globalScrollDisabled]);
-
+  }, [currentModule, totalModules, globalScrollDisabled, onModuleChange]);
   useEffect(() => {
     if (onModuleChange) {
       onModuleChange(currentModule, totalModules);
@@ -112,7 +119,12 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
   }, [currentModule, totalModules, onModuleChange]);
 
   useEffect(() => {
-    console.log('Scroller: Reset complet - pathname:', location.pathname, 'key:', location.key);
+    console.log(
+      'Scroller: Reset complet - pathname:',
+      location.pathname,
+      'key:',
+      location.key
+    );
 
     setCurrentModule(0);
     setGlobalScrollDisabled(false);
@@ -121,8 +133,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
     document.body.style.overflow = '';
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    const scrollerControl = (window as any).scrollerControl as ScrollerControl;
-    if (scrollerControl) {
+    const scrollerControl = (window as WindowWithScroller).scrollerControl; if (scrollerControl) {
       scrollerControl.enableGlobalScroll();
     }
   }, [location.pathname, location.key, location.state]);
