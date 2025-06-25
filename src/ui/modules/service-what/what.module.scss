@@ -1,9 +1,18 @@
 /* ===== WHAT BASE ===== */
 .what {
   @include module-layout;
+
   color: $white;
   text-align: center;
   gap: $space-lg;
+
+  &:focus {
+    outline: none; // Cache pour les clics souris
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none; // Cache pour les clics souris
+  }
 }
 
 .badge {
@@ -47,6 +56,7 @@
 .scrollIndicator {
   @include flex-column-center;
   @include hover-lift;
+
   gap: $space-sm;
   margin-top: $space-lg;
   opacity: 0.6;

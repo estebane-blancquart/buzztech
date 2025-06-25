@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface UseScrollOptions {
   totalItems: number;
@@ -16,11 +16,11 @@ interface UseScrollReturn {
   isFading: boolean;
 }
 
-export function useScroll({ 
-  totalItems, 
+export function useScroll({
+  totalItems,
   initialIndex = 0,
   throttleDelay = 800,
-  fadeDelay = 150
+  fadeDelay = 150,
 }: UseScrollOptions): UseScrollReturn {
   const [activeItem, setActiveItem] = useState<number>(initialIndex);
   const [isFading, setIsFading] = useState(false);
@@ -56,54 +56,94 @@ export function useScroll({
     setLastScrollTime(Date.now());
   }, []);
 
-  const goToNextModule = useCallback(() => {
-    if (isThrottled()) return;
-    updateScrollTime();
+  const goToNextModule = useCallback(
+    (bypassThrottle = false) => {
+      if (!bypassThrottle && isThrottled()) return;
+      if (!bypassThrottle) updateScrollTime();
 
-    const currentScrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const currentModule = Math.round(currentScrollY / viewportHeight);
-    const nextModulePosition = (currentModule + 1) * viewportHeight;
+      const currentScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const currentModule = Math.round(currentScrollY / viewportHeight);
+      const nextModulePosition = (currentModule + 1) * viewportHeight;
 
-    window.scrollTo({
-      top: nextModulePosition,
-      behavior: "smooth",
-    });
-  }, [isThrottled, updateScrollTime]);
+      window.scrollTo({
+        top: nextModulePosition,
+        behavior: bypassThrottle ? 'instant' : 'smooth', // Instant pour clavier
+      });
 
-  const goToPreviousModule = useCallback(() => {
-    if (isThrottled()) return;
-    updateScrollTime();
+      // Focus automatique - plus rapide pour clavier
+      const focusDelay = bypassThrottle ? 100 : 600;
+      setTimeout(() => {
+        const nextModuleElement = document
+          .elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)
+          ?.closest('[tabindex="0"]') as HTMLElement;
 
-    const currentScrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const currentModule = Math.round(currentScrollY / viewportHeight);
-    const prevModulePosition = Math.max(
-      0,
-      (currentModule - 1) * viewportHeight
-    );
+        if (nextModuleElement) {
+          nextModuleElement.focus();
+        }
+      }, focusDelay);
+    },
+    [isThrottled, updateScrollTime]
+  );
 
-    window.scrollTo({
-      top: prevModulePosition,
-      behavior: "smooth",
-    });
-  }, [isThrottled, updateScrollTime]);
+  const goToPreviousModule = useCallback(
+    (bypassThrottle = false) => {
+      if (!bypassThrottle && isThrottled()) return;
+      if (!bypassThrottle) updateScrollTime();
 
-  const handleNavigation = useCallback((direction: 'next' | 'prev') => {
-    if (direction === 'next') {
-      if (activeItem < totalItems - 1) {
-        changeItem(activeItem + 1);
+      const currentScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const currentModule = Math.round(currentScrollY / viewportHeight);
+      const prevModulePosition = Math.max(
+        0,
+        (currentModule - 1) * viewportHeight
+      );
+
+      window.scrollTo({
+        top: prevModulePosition,
+        behavior: bypassThrottle ? 'instant' : 'smooth', // Instant pour clavier
+      });
+
+      // Focus automatique - plus rapide pour clavier
+      const focusDelay = bypassThrottle ? 100 : 600;
+      setTimeout(() => {
+        const prevModuleElement = document
+          .elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)
+          ?.closest('[tabindex="0"]') as HTMLElement;
+
+        if (prevModuleElement) {
+          prevModuleElement.focus();
+        }
+      }, focusDelay);
+    },
+    [isThrottled, updateScrollTime]
+  );
+
+  const handleNavigation = useCallback(
+    (direction: 'next' | 'prev', bypassThrottle = false) => {
+      if (direction === 'next') {
+        if (activeItem < totalItems - 1) {
+          changeItem(activeItem + 1);
+        } else {
+          goToNextModule(bypassThrottle);
+        }
       } else {
-        goToNextModule();
+        if (activeItem > initialIndex) {
+          changeItem(activeItem - 1);
+        } else {
+          goToPreviousModule(bypassThrottle);
+        }
       }
-    } else {
-      if (activeItem > initialIndex) {
-        changeItem(activeItem - 1);
-      } else {
-        goToPreviousModule();
-      }
-    }
-  }, [activeItem, totalItems, initialIndex, changeItem, goToNextModule, goToPreviousModule]);
+    },
+    [
+      activeItem,
+      totalItems,
+      initialIndex,
+      changeItem,
+      goToNextModule,
+      goToPreviousModule,
+    ]
+  );
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
@@ -114,7 +154,7 @@ export function useScroll({
       e.stopPropagation();
 
       const direction = e.deltaY > 0 ? 'next' : 'prev';
-      handleNavigation(direction);
+      handleNavigation(direction); // Souris avec throttle
     };
 
     let touchStartY = 0;
@@ -138,22 +178,40 @@ export function useScroll({
       if (Math.abs(deltaY) < 50) return;
 
       const direction = deltaY > 0 ? 'next' : 'prev';
-      handleNavigation(direction);
+      handleNavigation(direction); // Touch avec throttle
+    };
+
+    // Navigation clavier accessible (SANS throttling)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (!containerRef.current?.contains(target)) return;
+
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNavigation('next', true); // Clavier SANS throttle
+      }
+
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handleNavigation('prev', true); // Clavier SANS throttle
+      }
     };
 
     const element = containerRef.current;
     if (!element) return;
 
-    element.addEventListener("wheel", handleWheel, { passive: false });
-    element.addEventListener("touchstart", handleTouchStart, { passive: true });
-    element.addEventListener("touchmove", handleTouchMove, { passive: false });
-    element.addEventListener("touchend", handleTouchEnd, { passive: true });
+    element.addEventListener('wheel', handleWheel, { passive: false });
+    element.addEventListener('touchstart', handleTouchStart, { passive: true });
+    element.addEventListener('touchmove', handleTouchMove, { passive: false });
+    element.addEventListener('touchend', handleTouchEnd, { passive: true });
+    element.addEventListener('keydown', handleKeyDown, { passive: false });
 
     return () => {
-      element.removeEventListener("wheel", handleWheel);
-      element.removeEventListener("touchstart", handleTouchStart);
-      element.removeEventListener("touchmove", handleTouchMove);
-      element.removeEventListener("touchend", handleTouchEnd);
+      element.removeEventListener('wheel', handleWheel);
+      element.removeEventListener('touchstart', handleTouchStart);
+      element.removeEventListener('touchmove', handleTouchMove);
+      element.removeEventListener('touchend', handleTouchEnd);
+      element.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleNavigation]);
 
@@ -162,9 +220,12 @@ export function useScroll({
     setLastScrollTime(0);
   }, [location.pathname, location.state, initialIndex]);
 
-  const handleItemClick = useCallback((index: number) => {
-    changeItem(index);
-  }, [changeItem]);
+  const handleItemClick = useCallback(
+    (index: number) => {
+      changeItem(index);
+    },
+    [changeItem]
+  );
 
   return {
     activeItem,

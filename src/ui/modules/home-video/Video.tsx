@@ -18,21 +18,23 @@ interface HighlightComponentProps {
   highlight: Highlight;
 }
 
-const HighlightComponent: React.FC<HighlightComponentProps> = ({ highlight }) => (
+const HighlightComponent: React.FC<HighlightComponentProps> = ({
+  highlight,
+}) => (
   <div className={styles.highlight}>
     <span className={styles.icon}>{highlight.icon}</span>
     <span>{highlight.platform}</span>
   </div>
 );
 
-const Video: React.FC<VideoProps> = ({ 
-  title = "Ne ratez rien !",
-  description = "Suivez-moi sur mes réseaux pour des conseils tech.",
-  videoUrl = "https://player.vimeo.com/video/1054567107?h=57aff06028&autoplay=1",
+const Video: React.FC<VideoProps> = ({
+  title = 'Ne ratez rien !',
+  description = 'Suivez-moi sur mes réseaux pour des conseils tech.',
+  videoUrl = 'https://player.vimeo.com/video/1054567107?h=57aff06028&autoplay=1',
   highlights = [
     { icon: '💡', platform: 'Facebook' },
     { icon: '🏷️', platform: 'Instagram' },
-  ]
+  ],
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 

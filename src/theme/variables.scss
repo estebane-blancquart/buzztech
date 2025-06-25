@@ -64,19 +64,18 @@ $tablet-padding: $padding-tablet;
 $mobile-padding: $padding-mobile;
 
 // Standard spacing
-$space-xs: 0.5rem;    // 8px
-$space-sm: 1rem;      // 16px
-$space-md: 1.5rem;    // 24px
-$space-lg: 2rem;      // 32px
-$space-xl: 3rem;      // 48px
-$space-xxl: 4rem;     // 64px
+$space-xs: 0.5rem; // 8px
+$space-sm: 1rem; // 16px
+$space-md: 1.5rem; // 24px
+$space-lg: 2rem; // 32px
+$space-xl: 3rem; // 48px
+$space-xxl: 4rem; // 64px
 
 /* ===== LAYOUT ===== */
 $module-width: 60%;
 $module-height: 60%;
 $max-content-width: 1200px;
 $grid-gap: $space-lg;
-
 
 /* ===== TRANSITIONS ===== */
 $transition-fast: 0.2s ease;
@@ -120,12 +119,12 @@ $z-toast: 700;
   --purple: #{$purple};
   --light-purple: #{$light-purple};
   --dark-purple: #{$dark-purple};
-  
+
   // Spacing
   --space-sm: #{$space-sm};
   --space-md: #{$space-md};
   --space-lg: #{$space-lg};
-  
+
   // Transitions
   --transition-fast: #{$transition-fast};
   --transition-smooth: #{$transition-smooth};

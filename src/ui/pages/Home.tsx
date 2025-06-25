@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   return (
     <>
       <section className="module">
-        <Hero 
+        <Hero
           title={homeData.hero.title}
           subtitle={homeData.hero.subtitle}
           ctaText={homeData.hero.ctaText}
@@ -17,13 +17,12 @@ const Home: React.FC = () => {
       </section>
 
       <section className="module">
-        <Presentation 
+        <Presentation
           title={homeData.presentation.title}
           subtitle={homeData.presentation.subtitle}
           services={homeData.presentation.services}
         />
       </section>
-
 
       <section className="module">
         <Video />

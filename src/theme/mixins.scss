@@ -133,18 +133,19 @@
 }
 
 /* ===== GLASSMORPHISM ===== */
+
 /* ===== GLASSMORPHISM ===== */
 @mixin glass-card {
-  background: rgba(#e8e8e8, 0.05);        // $white = #e8e8e8
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(#e8e8e8, 0.1);
-  border-radius: 12px;                     // $border-radius-lg
+  border-radius: 12px; // $border-radius-lg
+  background: rgba(#e8e8e8, 0.05); // $white = #e8e8e8
+  backdrop-filter: blur(10px);
 }
 
 @mixin glass-effect($opacity: 0.05) {
+  border: 1px solid rgba(#e8e8e8, 0.1);
   background: rgba(#e8e8e8, $opacity);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(#e8e8e8, 0.1);
 }
 
 /* ===== ANIMATIONS ===== */
@@ -160,15 +161,15 @@
 }
 
 @mixin slide-up($duration: 0.4s) {
-  transform: translateY(20px);
   opacity: 0;
+  transform: translateY(20px);
   animation: slideUp $duration ease forwards;
 }
 
 @keyframes slideUp {
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -191,18 +192,19 @@
 @mixin module-layout {
   width: 60%;
   height: 60%;
+
   @include flex-column-center;
 }
 
 @mixin aspect-ratio($ratio: 16/9) {
   position: relative;
-  
+
   &::before {
     content: '';
     display: block;
     padding-top: percentage(1 / $ratio);
   }
-  
+
   > * {
     position: absolute;
     top: 0;
@@ -229,7 +231,6 @@
 @mixin gradient-text($start: $purple, $end: $light-purple) {
   background: linear-gradient(135deg, $start 0%, $end 100%);
   background-clip: text;
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -241,7 +242,7 @@
 
 @mixin focus-visible {
   outline: none;
-  
+
   &:focus-visible {
     @include focus-ring;
   }

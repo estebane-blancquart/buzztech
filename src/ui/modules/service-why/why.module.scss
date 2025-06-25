@@ -8,6 +8,14 @@
   color: $white;
   font-family: $lato;
   overflow: hidden;
+
+  &:focus {
+    outline: none; // Cache pour les clics souris
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none; // Cache pour les clics souris
+  }
 }
 
 .bar {

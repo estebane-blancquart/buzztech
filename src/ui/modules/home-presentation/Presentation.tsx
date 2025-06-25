@@ -28,7 +28,11 @@ const ServiceItemComponent: React.FC<ServiceItem> = ({
   </Link>
 );
 
-const Presentation: React.FC<PresentationProps> = ({ title, subtitle, services }) => {
+const Presentation: React.FC<PresentationProps> = ({
+  title,
+  subtitle,
+  services,
+}) => {
   return (
     <div className={styles.presentation}>
       <div className={styles.header}>

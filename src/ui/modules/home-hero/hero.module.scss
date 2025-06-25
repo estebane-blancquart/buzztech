@@ -1,6 +1,7 @@
 /* ===== HERO BASE ===== */
 .hero {
   @include module-layout;
+
   color: $white;
   gap: $space-lg;
 }
@@ -39,6 +40,7 @@
 
 .heroTitle {
   @include gradient-text($purple, $light-purple);
+
   font-size: $font-h2;
   font-weight: $font-weight-black;
   margin-bottom: $space-xs;
@@ -53,6 +55,7 @@
 .heroCta {
   @include button-reset;
   @include hover-lift;
+
   padding: 0.8rem 1.5rem;
   border-radius: $border-radius-round;
   background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
@@ -63,6 +66,7 @@
 
 .infoSection {
   width: 100%;
+
   @include flex-center;
 }
 
@@ -76,6 +80,7 @@
 
 .infoCard {
   @include glass-card;
+
   position: relative;
   padding: $space-sm;
   text-align: center;
@@ -92,6 +97,7 @@
 
 .infoValue {
   @include gradient-text($purple, $light-purple);
+
   display: block;
   font-size: $font-h3;
   font-weight: $font-weight-bold;

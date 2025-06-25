@@ -133,7 +133,8 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
     document.body.style.overflow = '';
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    const scrollerControl = (window as WindowWithScroller).scrollerControl; if (scrollerControl) {
+    const scrollerControl = (window as WindowWithScroller).scrollerControl;
+    if (scrollerControl) {
       scrollerControl.enableGlobalScroll();
     }
   }, [location.pathname, location.key, location.state]);

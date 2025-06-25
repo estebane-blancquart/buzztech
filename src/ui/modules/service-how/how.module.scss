@@ -6,6 +6,14 @@
   height: 60%;
   background: $black;
   color: $white;
+
+  &:focus {
+    outline: none; // Cache pour les clics souris
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none; // Cache pour les clics souris
+  }
 }
 
 .bar {

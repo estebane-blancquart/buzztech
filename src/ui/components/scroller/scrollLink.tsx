@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 interface ScrollLinkProps {
   to: string;
   children: React.ReactNode;
-  className?: string | undefined;  // ← Ajoutez | undefined
+  className?: string | undefined; // ← Ajoutez | undefined
   onClick?: () => void;
 }
 

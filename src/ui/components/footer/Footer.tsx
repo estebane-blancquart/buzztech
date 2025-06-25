@@ -20,10 +20,20 @@ const Footer: React.FC = () => {
           <a href={`mailto:${companyData.email}`} className={styles.socialIcon}>
             <HiMail />
           </a>
-          <a href={companyData.social.facebook} className={styles.socialIcon} target="_blank" rel="noopener noreferrer">
+          <a
+            href={companyData.social.facebook}
+            className={styles.socialIcon}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaFacebookF />
           </a>
-          <a href={companyData.social.instagram} className={styles.socialIcon} target="_blank" rel="noopener noreferrer">
+          <a
+            href={companyData.social.instagram}
+            className={styles.socialIcon}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaInstagram />
           </a>
         </div>

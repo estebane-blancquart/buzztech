@@ -1,6 +1,7 @@
 /* ===== PRESENTATION BASE ===== */
 .presentation {
   @include module-layout;
+
   padding: $space-xxl 0;
   background: $black;
   color: $white;
@@ -26,6 +27,7 @@
 
 .servicesList {
   @include flex-column-start;
+
   gap: $space-sm;
   width: 100%;
 }
@@ -33,6 +35,7 @@
 .serviceItem {
   @include flex-between;
   @include glass-effect(0.05);
+
   width: 100%;
   padding: $space-md $space-lg;
   border-radius: $border-radius-lg;
@@ -50,6 +53,7 @@
 
 .serviceLeft {
   @include flex-start;
+
   gap: $space-sm;
   flex: 1;
 }
@@ -140,6 +144,7 @@
 
   .serviceItem {
     @include flex-column-center;
+
     padding: $space-md;
     text-align: center;
     gap: $space-sm;
@@ -151,6 +156,7 @@
 
   .serviceLeft {
     @include flex-column-center;
+
     text-align: center;
     gap: $space-sm;
   }

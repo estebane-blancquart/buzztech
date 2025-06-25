@@ -69,7 +69,14 @@ function How({ steps }: HowProps) {
   };
 
   return (
-    <div className={styles.how} ref={containerRef}>
+    <div
+      className={styles.how}
+      ref={containerRef}
+      tabIndex={0}
+      role="region"
+      aria-label="Navigation des étapes du processus"
+    >
+      {' '}
       <div className={styles.bar}>
         <p className={styles.percentage}>{Math.round(progressPercentage)}%</p>
         <div
@@ -77,22 +84,24 @@ function How({ steps }: HowProps) {
           style={{ width: `${progressPercentage}%` }}
         ></div>
       </div>
-
       <div className={styles.titles}>
         {steps.map((step, index) => (
-          <div
+          <div // ← Gardez div
             className={classNames(styles.step, {
-              [(styles.active as string)]: activeItem === index,
+              [styles.active as string]: activeItem === index,
             })}
             key={`step-${step.title}-${index}`}
             onClick={() => handleStepClick(index)}
+            role="button" // ← Ajoutez juste ça
+            tabIndex={0} // ← Et ça
+            aria-pressed={activeItem === index}
+            aria-label={`Étape ${index + 1}: ${step.title}`}
           >
             <p className={styles.number}>{index + 1}</p>
             <p className={styles.title}>{step.title}</p>
           </div>
         ))}
       </div>
-
       <div className={styles.content}>
         <div className={styles.corner} data-corner="top-left"></div>
         <div className={styles.corner} data-corner="top-right"></div>

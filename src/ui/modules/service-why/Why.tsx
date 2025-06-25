@@ -48,7 +48,12 @@ function WhyHome({
           {child.props.landingDescription && (
             <p>
               <span>{child.props.landingDescription}</span>
-              <button onClick={() => onPageClick(index)}>voir plus</button>
+              <button
+                onClick={() => onPageClick(index)}
+                aria-label={`Voir les détails de ${child.props.title}`}
+              >
+                voir plus
+              </button>
             </p>
           )}
         </div>
@@ -93,7 +98,13 @@ function Why({ title, children }: WhyProps) {
   };
 
   return (
-    <div className={styles.why} ref={containerRef}>
+    <div
+      className={styles.why}
+      ref={containerRef}
+      tabIndex={0}
+      role="region"
+      aria-label="Navigation des offres de service"
+    >
       <div className={styles.bar}></div>
 
       <div className={styles.content}>
@@ -104,11 +115,13 @@ function Why({ title, children }: WhyProps) {
               activeItem === -1 ? styles.active : ''
             )}
             onClick={handleLandingClick}
+            aria-pressed={activeItem === -1}
+            aria-label={`Retour à la vue d'ensemble: ${title}`}
           >
             {title}
           </button>
 
-          <div className={styles.navigation}>
+          <div className={styles.navigation} role="tablist">
             {children.map((child, index) => (
               <button
                 key={`nav-${child.props.title}-${index}`}
@@ -117,6 +130,10 @@ function Why({ title, children }: WhyProps) {
                   activeItem === index ? styles.active : ''
                 )}
                 onClick={() => handlePageClick(index)}
+                role="tab"
+                aria-selected={activeItem === index}
+                aria-controls={`panel-${index}`}
+                aria-label={`Offre ${child.props.title}`}
               >
                 {child.props.title}
               </button>
@@ -128,6 +145,8 @@ function Why({ title, children }: WhyProps) {
           className={classNames(styles.mainContent, 'fade-content', {
             fading: isFading,
           })}
+          role="tabpanel"
+          aria-live="polite"
         >
           {getActiveContent()}
         </div>
