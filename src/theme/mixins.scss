@@ -1,4 +1,4 @@
-// ===== BREAKPOINTS =====
+/* ===== BREAKPOINTS ===== */
 @mixin mobile {
   @media (width <= 768px) {
     @content;
@@ -17,7 +17,19 @@
   }
 }
 
-// ===== FLEX ROW =====
+@mixin mobile-up {
+  @media (width >= 768px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (width >= 1024px) {
+    @content;
+  }
+}
+
+/* ===== FLEX ROW ===== */
 @mixin flex-start {
   display: flex;
   justify-content: flex-start;
@@ -54,7 +66,7 @@
   align-items: center;
 }
 
-// ===== FLEX COLUMN =====
+/* ===== FLEX COLUMN ===== */
 @mixin flex-column-start {
   display: flex;
   flex-direction: column;
@@ -97,7 +109,7 @@
   align-items: center;
 }
 
-// ===== COMMON PATTERNS =====
+/* ===== COMMON PATTERNS ===== */
 @mixin button-reset {
   margin: 0;
   padding: 0;
@@ -105,6 +117,7 @@
   background: none;
   cursor: pointer;
   font: inherit;
+  outline: none;
 }
 
 @mixin card-shadow {
@@ -116,5 +129,120 @@
 
   &:hover {
     transform: translateY(-2px);
+  }
+}
+
+/* ===== GLASSMORPHISM ===== */
+/* ===== GLASSMORPHISM ===== */
+@mixin glass-card {
+  background: rgba(#e8e8e8, 0.05);        // $white = #e8e8e8
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(#e8e8e8, 0.1);
+  border-radius: 12px;                     // $border-radius-lg
+}
+
+@mixin glass-effect($opacity: 0.05) {
+  background: rgba(#e8e8e8, $opacity);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(#e8e8e8, 0.1);
+}
+
+/* ===== ANIMATIONS ===== */
+@mixin fade-in($duration: 0.3s) {
+  opacity: 0;
+  animation: fadeIn $duration ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin slide-up($duration: 0.4s) {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp $duration ease forwards;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===== LAYOUT HELPERS ===== */
+@mixin container {
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding: $padding-mobile;
+
+  @include tablet {
+    padding: $padding-tablet;
+  }
+
+  @include desktop {
+    padding: $padding-desktop;
+  }
+}
+
+@mixin module-layout {
+  width: 60%;
+  height: 60%;
+  @include flex-column-center;
+}
+
+@mixin aspect-ratio($ratio: 16/9) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: percentage(1 / $ratio);
+  }
+  
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ===== TEXT HELPERS ===== */
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin gradient-text($start: $purple, $end: $light-purple) {
+  background: linear-gradient(135deg, $start 0%, $end 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== FOCUS STATES ===== */
+@mixin focus-ring($color: $purple) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+@mixin focus-visible {
+  outline: none;
+  
+  &:focus-visible {
+    @include focus-ring;
   }
 }

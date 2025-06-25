@@ -1,15 +1,11 @@
 import React from 'react';
 import styles from './how.module.scss';
 import classNames from 'classnames';
-import { useScroll } from '@/ui/components/scroller/useScroll';
-
-interface HowStep {
-  title: string;
-  text: string;
-}
+import { useScroll } from '@/core/hooks/useScroll';
+import { Step } from '@/core/types';
 
 interface HowProps {
-  steps: HowStep[];
+  steps: Step[];
 }
 
 function How({ steps }: HowProps) {

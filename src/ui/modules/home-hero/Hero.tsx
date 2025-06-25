@@ -1,22 +1,15 @@
 import React from 'react';
 import styles from './hero.module.scss';
-
-interface InfoCardProps {
-  value: string;
-  label: string;
-}
+import { InfoStat } from '@/core/types';
 
 interface HeroProps {
   title: string;
   subtitle: string;
   ctaText: string;
-  stats: Array<{
-    value: string;
-    label: string;
-  }>;
+  stats: InfoStat[];
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({ value, label }) => (
+const InfoCard: React.FC<InfoStat> = ({ value, label }) => (
   <div className={styles.infoCard}>
     <span className={styles.infoValue}>{value}</span>
     <span className={styles.infoLabel}>{label}</span>

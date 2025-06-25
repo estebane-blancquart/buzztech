@@ -46,6 +46,7 @@ export const depannageData = {
       ]
     }
   ],
+  
   steps: [
     {
       title: "Analyse",
@@ -71,36 +72,37 @@ export const depannageData = {
 
   prices: [
     {
-      title: "REMPLACEMENT FACILE",
-      price: "30",
+      title: "REMPLACEMENT",
+      price: "30-50",
       unit: "€",
       features: [
-        "Remplacement RAM",
-        "Changement stockage (SSD/HDD)",
-        "Installation simple",
-        "Test de fonctionnement",
+        "RAM, Stockage (30€)",
+        "Ventilateurs, GPU, Carte réseau (40€)",
+        "Alimentation, Boîtier, Refroidissement (50€)",
+        "Carte mère, CPU (50€)",
+        "Test de fonctionnement inclus",
         "Garantie pièce"
       ]
     },
     {
-      title: "NETTOYAGE COMPLET",
-      price: "50", 
+      title: "NETTOYAGE MATÉRIEL",
+      price: "50",
       unit: "€",
       features: [
         "Dépoussiérage complet",
         "Nettoyage ventilateurs",
+        "Changement pâte thermique (25€)",
         "Vérification thermique",
-        "Optimisation refroidissement",
         "Test de stabilité"
       ]
     },
     {
       title: "NETTOYAGE LOGICIEL",
-      price: "50",
+      price: "30-50",
       unit: "€", 
       features: [
-        "Restauration système",
-        "Suppression de virus",
+        "Suppression de virus (30€)",
+        "Restauration système (50€)",
         "Optimisation démarrage",
         "Mise à jour sécurité",
         "Formation prévention"

@@ -35,7 +35,7 @@ const Configuration: React.FC = () => {
       </section>
 
       <section className="module">
-        <Prices cards={configurationData.prices} />
+        <Prices cards={configurationData.prices} service={'configuration'} />
       </section>
     </>
   );

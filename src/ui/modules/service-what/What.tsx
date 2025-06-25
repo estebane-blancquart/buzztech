@@ -5,9 +5,15 @@ interface WhatProps {
   badge: string;
   title: string;
   subtitle: string;
+  scrollText?: string;
 }
 
-const What: React.FC<WhatProps> = ({ badge, title, subtitle }) => {
+const What: React.FC<WhatProps> = ({ 
+  badge, 
+  title, 
+  subtitle,
+  scrollText = "Découvrir le service"
+}) => {
   const handleScrollClick = () => {
     window.scrollTo({
       top: window.scrollY + window.innerHeight,
@@ -24,7 +30,7 @@ const What: React.FC<WhatProps> = ({ badge, title, subtitle }) => {
       <p className={styles.subtitle}>{subtitle}</p>
 
       <div className={styles.scrollIndicator} onClick={handleScrollClick}>
-        <span>Découvrir le service</span>
+        <span>{scrollText}</span>
         <div className={styles.arrow}>↓</div>
       </div>
     </div>

@@ -2,14 +2,14 @@
 @import 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap';
 
-/* ===== COULEURS ===== */
+/* ===== COULEURS PRINCIPALES ===== */
 $white: #e8e8e8;
 $black: #171717;
-$light-purple: #c6c3ff;
 $purple: #9c97ff;
+$light-purple: #c6c3ff;
 $dark-purple: #2d314b;
 
-// Couleurs additionnelles
+/* ===== COULEURS ADDITIONNELLES ===== */
 $gray: #5a5a5a;
 $red: #ff5f57;
 $orange: #ffbd2e;
@@ -18,59 +18,115 @@ $blue: #007aff;
 
 /* ===== TYPOGRAPHIE ===== */
 // Fonts
-$lato: 'Lato', sans-serif;
-$ubuntu: 'Ubuntu Sans Mono', monospace;
+$font-primary: 'Lato', sans-serif;
+$font-mono: 'Ubuntu Sans Mono', monospace;
+
+// Legacy aliases (à garder pour compatibilité)
+$lato: $font-primary;
+$ubuntu: $font-mono;
 
 // Weights
-$big-weight: 800;
-$weight-light: 300;
-$weight-normal: 400;
-$weight-bold: 700;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-black: 800;
+
+// Legacy aliases
+$weight-light: $font-weight-light;
+$weight-normal: $font-weight-normal;
+$weight-bold: $font-weight-bold;
+$big-weight: $font-weight-black;
 
 // Sizes
-$h1: 2.5rem;
+$font-h1: 2.5rem;
 $font-h2: 2rem;
 $font-h3: 1.5rem;
-$p1: 1.2rem;
-$p2: 1rem;
-$p3: 0.8rem;
+$font-p1: 1.2rem;
+$font-p2: 1rem;
+$font-p3: 0.8rem;
 $font-small: 0.75rem;
+
+// Legacy aliases
+$h1: $font-h1;
+$p1: $font-p1;
+$p2: $font-p2;
+$p3: $font-p3;
 
 /* ===== SPACING ===== */
 // Responsive padding
-$desktop-padding: 0 20vw;
-$tablet-padding: 0 10vw;
-$mobile-padding: 0 5vw;
+$padding-desktop: 0 20vw;
+$padding-tablet: 0 10vw;
+$padding-mobile: 0 5vw;
+
+// Legacy aliases
+$desktop-padding: $padding-desktop;
+$tablet-padding: $padding-tablet;
+$mobile-padding: $padding-mobile;
 
 // Standard spacing
-$space-xs: 0.5rem;
-$space-sm: 1rem;
-$space-md: 1.5rem;
-$space-lg: 2rem;
-$space-xl: 3rem;
-$space-xxl: 4rem;
+$space-xs: 0.5rem;    // 8px
+$space-sm: 1rem;      // 16px
+$space-md: 1.5rem;    // 24px
+$space-lg: 2rem;      // 32px
+$space-xl: 3rem;      // 48px
+$space-xxl: 4rem;     // 64px
+
+/* ===== LAYOUT ===== */
+$module-width: 60%;
+$module-height: 60%;
+$max-content-width: 1200px;
+$grid-gap: $space-lg;
+
 
 /* ===== TRANSITIONS ===== */
 $transition-fast: 0.2s ease;
 $transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 $transition-fade: opacity 0.3s ease;
+$transition-transform: transform 0.3s ease;
 
 /* ===== BORDERS ===== */
 $border-radius-sm: 4px;
 $border-radius-md: 8px;
 $border-radius-lg: 12px;
 $border-radius-xl: 16px;
+$border-radius-round: 50px;
 
 /* ===== SHADOWS ===== */
 $shadow-sm: 0 2px 4px rgba($black, 0.1);
 $shadow-md: 0 4px 8px rgba($black, 0.15);
 $shadow-lg: 0 8px 16px rgba($black, 0.2);
+$shadow-glass: 0 4px 30px rgba($black, 0.1);
+
+/* ===== GLASSMORPHISM ===== */
+$glass-background: rgba($white, 0.05);
+$glass-border: rgba($white, 0.1);
+$glass-blur: blur(10px);
+
+/* ===== Z-INDEX SCALE ===== */
+$z-base: 1;
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-fixed: 300;
+$z-modal: 400;
+$z-popover: 500;
+$z-tooltip: 600;
+$z-toast: 700;
 
 /* ===== CSS CUSTOM PROPERTIES (pour JS) ===== */
 :root {
+  // Couleurs
   --white: #{$white};
   --black: #{$black};
   --purple: #{$purple};
   --light-purple: #{$light-purple};
   --dark-purple: #{$dark-purple};
+  
+  // Spacing
+  --space-sm: #{$space-sm};
+  --space-md: #{$space-md};
+  --space-lg: #{$space-lg};
+  
+  // Transitions
+  --transition-fast: #{$transition-fast};
+  --transition-smooth: #{$transition-smooth};
 }

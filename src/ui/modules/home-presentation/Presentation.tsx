@@ -1,28 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Presentation.module.scss';
-
-interface ServiceItemProps {
-  to: string;
-  icon: string;
-  name: string;
-  description: string;
-  price: string;
-}
+import { ServiceItem } from '@/core/types';
 
 interface PresentationProps {
   title: string;
   subtitle: string;
-  services: Array<{
-    to: string;
-    icon: string;
-    name: string;
-    description: string;
-    price: string;
-  }>;
+  services: ServiceItem[];
 }
 
-const ServiceItem: React.FC<ServiceItemProps> = ({
+const ServiceItemComponent: React.FC<ServiceItem> = ({
   to,
   icon,
   name,
@@ -51,7 +38,7 @@ const Presentation: React.FC<PresentationProps> = ({ title, subtitle, services }
 
       <div className={styles.servicesList}>
         {services.map((service, index) => (
-          <ServiceItem key={index} {...service} />
+          <ServiceItemComponent key={index} {...service} />
         ))}
       </div>
     </div>

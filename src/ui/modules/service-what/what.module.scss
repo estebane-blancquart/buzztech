@@ -1,23 +1,20 @@
 /* ===== WHAT BASE ===== */
 .what {
-  width: 60%;
-  height: 60%;
+  @include module-layout;
   color: $white;
   text-align: center;
-  gap: 2rem;
-
-  @include flex-column-center;
+  gap: $space-lg;
 }
 
 .badge {
-  padding: 0.5rem 1.5rem;
+  padding: $space-xs $space-md;
   border: 1px solid rgba($white, 0.2);
-  border-radius: 25px;
+  border-radius: $border-radius-round;
   background: rgba($white, 0.1);
   opacity: 0.8;
-  font-size: $p3;
-  font-weight: $weight-bold;
-  transition: all 0.3s ease;
+  font-size: $font-p3;
+  font-weight: $font-weight-bold;
+  transition: $transition-smooth;
   text-transform: uppercase;
   letter-spacing: 1px;
 
@@ -31,7 +28,7 @@
 .title {
   margin: 0;
   font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: $big-weight;
+  font-weight: $font-weight-black;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -43,29 +40,28 @@
   color: rgba($white, 0.9);
   opacity: 0.9;
   font-size: clamp(1.1rem, 3vw, 1.4rem);
-  font-weight: $weight-light;
+  font-weight: $font-weight-light;
   line-height: 1.4;
 }
 
 .scrollIndicator {
   @include flex-column-center;
-
-  gap: 1rem;
-  margin-top: 2rem;
+  @include hover-lift;
+  gap: $space-sm;
+  margin-top: $space-lg;
   opacity: 0.6;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: $transition-smooth;
 
   span {
-    font-size: $p3;
+    font-size: $font-p3;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: $weight-bold;
+    font-weight: $font-weight-bold;
   }
 
   &:hover {
     opacity: 1;
-    transform: translateY(-2px);
 
     .arrow {
       animation-duration: 1s;
@@ -99,15 +95,15 @@
   }
 
   .badge {
-    padding: 0.5rem 1.5rem;
-    font-size: $p3;
+    padding: $space-xs $space-md;
+    font-size: $font-p3;
   }
 
   .scrollIndicator {
-    margin-top: 2rem;
+    margin-top: $space-lg;
 
     span {
-      font-size: $p3;
+      font-size: $font-p3;
     }
   }
 }
@@ -115,7 +111,7 @@
 @include tablet {
   .what {
     width: 70%;
-    gap: 2rem;
+    gap: $space-lg;
   }
 
   .badge {
@@ -128,7 +124,7 @@
   }
 
   .scrollIndicator {
-    margin-top: 1.5rem;
+    margin-top: $space-md;
 
     span {
       font-size: 0.8rem;
@@ -143,13 +139,13 @@
 @include mobile {
   .what {
     width: 90%;
-    gap: 1.5rem;
-    padding: 0 1rem;
+    gap: $space-md;
+    padding: 0 $space-sm;
   }
 
   .badge {
-    padding: 0.3rem 1rem;
-    font-size: 0.75rem;
+    padding: 0.3rem $space-sm;
+    font-size: $font-small;
   }
 
   .subtitle {
@@ -157,10 +153,10 @@
   }
 
   .scrollIndicator {
-    margin-top: 1rem;
+    margin-top: $space-sm;
 
     span {
-      font-size: 0.75rem;
+      font-size: $font-small;
     }
   }
 

@@ -1,10 +1,25 @@
-// components/Header/Header.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Header.module.scss';
 import ScrollLink from '../scroller/scrollLink';
+import { useToggle } from '@/core/hooks//useToggle';
+
+interface NavItem {
+  to: string;
+  label: string;
+}
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, toggleOpen] = useToggle(false);
+
+  const navItems: NavItem[] = [
+    { to: '/depannage', label: 'Dépannage' },
+    { to: '/configuration', label: 'Configuration' },
+    { to: '/creation-web', label: 'Création Web' },
+  ];
+
+  const handleNavClick = () => {
+    if (isOpen) toggleOpen();
+  };
 
   return (
     <header className={styles.header}>
@@ -12,20 +27,20 @@ const Header: React.FC = () => {
         BUZZTECH
       </ScrollLink>
 
-      <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
+      <button className={styles.toggle} onClick={toggleOpen}>
         ☰
       </button>
 
       <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
-        <ScrollLink to="/depannage" onClick={() => setIsOpen(false)}>
-          Dépannage
-        </ScrollLink>
-        <ScrollLink to="/configuration" onClick={() => setIsOpen(false)}>
-          Configuration
-        </ScrollLink>
-        <ScrollLink to="/creation-web" onClick={() => setIsOpen(false)}>
-          Création Web
-        </ScrollLink>
+        {navItems.map((item) => (
+          <ScrollLink 
+            key={item.to}
+            to={item.to} 
+            onClick={handleNavClick}
+          >
+            {item.label}
+          </ScrollLink>
+        ))}
       </nav>
     </header>
   );

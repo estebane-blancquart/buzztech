@@ -35,7 +35,7 @@ const CreationWeb: React.FC = () => {
       </section>
 
       <section className="module">
-        <Prices cards={creationWebData.prices} />
+        <Prices cards={creationWebData.prices} service={'creation-web'} />
       </section>
     </>
   );

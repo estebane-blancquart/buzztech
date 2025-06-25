@@ -35,7 +35,7 @@ const Depannage: React.FC = () => {
       </section>
 
       <section className="module">
-        <Prices cards={depannageData.prices} />
+        <Prices cards={depannageData.prices} service={'depannage'} />
       </section>
     </>
   );
