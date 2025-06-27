@@ -8,7 +8,7 @@ interface HowProps {
   steps: Step[];
 }
 
-function How({ steps }: HowProps) {
+function How({ steps }: HowProps): JSX.Element {
   const totalSteps = steps.length;
 
   const {
@@ -22,14 +22,14 @@ function How({ steps }: HowProps) {
     initialIndex: 0,
   });
 
-  const handleStepClick = (index: number) => {
+  const handleStepClick = (index: number): void => {
     if (index >= 0 && index < steps.length) {
       handleItemClick(index);
     }
   };
 
   // Fonction pour obtenir le contenu actif de manière sécurisée
-  const getStepContent = () => {
+  const getStepContent = (): JSX.Element => {
     const currentStep = steps[activeItem];
     const previousStep = activeItem > 0 ? steps[activeItem - 1] : null;
     const nextStep = activeItem < totalSteps - 1 ? steps[activeItem + 1] : null;
@@ -43,24 +43,24 @@ function How({ steps }: HowProps) {
       >
         {/* Étape précédente grisée */}
         {previousStep && (
-          <div className={classNames(styles.step, styles.previous)}>
-            <div className={styles.number}>{activeItem}</div>
+          <div className={classNames(styles['step'], styles['previous'])}>
+            <div className={styles['number']}>{activeItem}</div>
             <p>{previousStep.text}</p>
           </div>
         )}
 
         {/* Étape active */}
         {currentStep && (
-          <div className={classNames(styles.step, styles.active)}>
-            <div className={styles.number}>{activeItem + 1}</div>
+          <div className={classNames(styles['step'], styles['active'])}>
+            <div className={styles['number']}>{activeItem + 1}</div>
             <p>{currentStep.text}</p>
           </div>
         )}
 
         {/* Étape suivante grisée */}
         {nextStep && (
-          <div className={classNames(styles.step, styles.next)}>
-            <div className={styles.number}>{activeItem + 2}</div>
+          <div className={classNames(styles['step'], styles['next'])}>
+            <div className={styles['number']}>{activeItem + 2}</div>
             <p>{nextStep.text}</p>
           </div>
         )}
@@ -70,25 +70,27 @@ function How({ steps }: HowProps) {
 
   return (
     <div
-      className={styles.how}
+      className={styles['how']}
       ref={containerRef}
       tabIndex={0}
       role="region"
       aria-label="Navigation des étapes du processus"
     >
       {' '}
-      <div className={styles.bar}>
-        <p className={styles.percentage}>{Math.round(progressPercentage)}%</p>
+      <div className={styles['bar']}>
+        <p className={styles['percentage']}>
+          {Math.round(progressPercentage)}%
+        </p>
         <div
-          className={styles.active}
+          className={styles['active']}
           style={{ width: `${progressPercentage}%` }}
         ></div>
       </div>
-      <div className={styles.titles}>
+      <div className={styles['titles']}>
         {steps.map((step, index) => (
           <div // ← Gardez div
-            className={classNames(styles.step, {
-              [styles.active as string]: activeItem === index,
+            className={classNames(styles['step'], {
+              [styles['active'] as string]: activeItem === index,
             })}
             key={`step-${step.title}-${index}`}
             onClick={() => handleStepClick(index)}
@@ -97,16 +99,16 @@ function How({ steps }: HowProps) {
             aria-pressed={activeItem === index}
             aria-label={`Étape ${index + 1}: ${step.title}`}
           >
-            <p className={styles.number}>{index + 1}</p>
-            <p className={styles.title}>{step.title}</p>
+            <p className={styles['number']}>{index + 1}</p>
+            <p className={styles['title']}>{step.title}</p>
           </div>
         ))}
       </div>
-      <div className={styles.content}>
-        <div className={styles.corner} data-corner="top-left"></div>
-        <div className={styles.corner} data-corner="top-right"></div>
-        <div className={styles.corner} data-corner="bottom-left"></div>
-        <div className={styles.corner} data-corner="bottom-right"></div>
+      <div className={styles['content']}>
+        <div className={styles['corner']} data-corner="top-left"></div>
+        <div className={styles['corner']} data-corner="top-right"></div>
+        <div className={styles['corner']} data-corner="bottom-left"></div>
+        <div className={styles['corner']} data-corner="bottom-right"></div>
         {getStepContent()}
       </div>
     </div>

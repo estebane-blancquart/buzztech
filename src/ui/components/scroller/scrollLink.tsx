@@ -1,17 +1,23 @@
+// scrollLink.tsx
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface ScrollLinkProps {
   to: string;
   children: React.ReactNode;
-  className?: string | undefined; // ← Ajoutez | undefined
+  className?: string | undefined;
   onClick?: () => void;
 }
 
-const ScrollLink = ({ to, children, className, onClick }: ScrollLinkProps) => {
+const ScrollLink = ({
+  to,
+  children,
+  className,
+  onClick,
+}: ScrollLinkProps): JSX.Element => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent): void => {
     e.preventDefault();
 
     window.scrollTo({ top: 0, behavior: 'instant' });

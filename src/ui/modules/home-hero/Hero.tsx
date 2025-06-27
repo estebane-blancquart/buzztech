@@ -9,35 +9,45 @@ interface HeroProps {
   stats: InfoStat[];
 }
 
-const InfoCard: React.FC<InfoStat> = ({ value, label }) => (
-  <div className={styles.infoCard}>
-    <span className={styles.infoValue}>{value}</span>
-    <span className={styles.infoLabel}>{label}</span>
+const InfoCard: React.FC<InfoStat> = ({ value, label }): JSX.Element => (
+  <div className={styles['info-card']}>
+    <span className={styles['info-value']}>{value}</span>
+    <span className={styles['info-label']}>{label}</span>
   </div>
 );
 
 const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
+  const handleCTA = (): void => {
+    window.open(
+      `https://wa.me/33660352267?text=Bonjour, je souhaite un devis gratuit pour mes besoins informatiques !`
+    );
+  };
   return (
-    <div className={styles.hero}>
-      <div className={styles.videoSection}>
-        <div className={styles.videoWrapper}>
+    <div className={styles['hero']}>
+      <div className={styles['video-section']}>
+        <div className={styles['video-wrapper']}>
           <img
             src="/images/sphere.webp"
-            alt="Sphere animation"
-            className={styles.backgroundVideo}
+            alt="Animation sphère interactive BuzzTech"
+            className={styles['background-video']}
+            loading="lazy"
+            width="240"
+            height="240"
           />
-          <div className={styles.videoGlow}></div>
+          <div className={styles['video-glow']}></div>
         </div>
       </div>
 
-      <div className={styles.heroContent}>
-        <h1 className={styles.heroTitle}>{title}</h1>
-        <p className={styles.heroSubtitle}>{subtitle}</p>
-        <button className={styles.heroCta}>{ctaText}</button>
+      <div className={styles['hero-content']}>
+        <h1 className={styles['hero-title']}>{title}</h1>
+        <p className={styles['hero-subtitle']}>{subtitle}</p>
+        <button className={styles['hero-cta']} onClick={handleCTA}>
+          {ctaText}
+        </button>{' '}
       </div>
 
-      <div className={styles.infoSection}>
-        <div className={styles.infoGrid}>
+      <div className={styles['info-section']}>
+        <div className={styles['info-grid']}>
           {stats.map((info, index) => (
             <InfoCard key={index} value={info.value} label={info.label} />
           ))}

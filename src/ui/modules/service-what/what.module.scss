@@ -53,7 +53,13 @@
   line-height: 1.4;
 }
 
-.scrollIndicator {
+.arrow {
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  animation: bounce 2s infinite;
+}
+
+.scroll-indicator {
   @include flex-column-center;
   @include hover-lift;
 
@@ -80,12 +86,6 @@
   }
 }
 
-.arrow {
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-  animation: bounce 2s infinite;
-}
-
 @keyframes bounce {
   0%,
   50%,
@@ -109,7 +109,7 @@
     font-size: $font-p3;
   }
 
-  .scrollIndicator {
+  .scroll-indicator {
     margin-top: $space-lg;
 
     span {
@@ -133,7 +133,7 @@
     max-width: 500px;
   }
 
-  .scrollIndicator {
+  .scroll-indicator {
     margin-top: $space-md;
 
     span {
@@ -162,7 +162,7 @@
     max-width: 100%;
   }
 
-  .scrollIndicator {
+  .scroll-indicator {
     margin-top: $space-sm;
 
     span {

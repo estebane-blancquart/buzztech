@@ -1,4 +1,3 @@
-// Types partagés pour tous les modules
 export interface ServiceItem {
   to: string;
   icon: string;
@@ -22,11 +21,55 @@ export interface WhyItem {
 export interface PriceCard {
   title: string;
   price: string;
-  unit: string;
+  unit?: string;
   features: string[];
+  size?: 'small' | 'medium' | 'large';
 }
 
 export interface InfoStat {
   value: string;
   label: string;
+}
+
+export interface VideoHighlight {
+  icon: string;
+  platform: string;
+}
+
+export interface VideoProps {
+  title?: string;
+  description?: string;
+  videoUrl?: string;
+  highlights?: VideoHighlight[];
+}
+
+export interface WhyPageProps {
+  title: string;
+  points: string[];
+  icon?: string;
+  landingDescription?: string;
+}
+
+export interface SEOData {
+  title: string;
+  description: string;
+  keywords: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+}
+
+export interface UseScrollOptions {
+  totalItems: number;
+  initialIndex?: number;
+  throttleDelay?: number;
+  fadeDelay?: number;
+}
+
+export interface UseScrollReturn {
+  activeItem: number;
+  containerRef: React.RefObject<HTMLDivElement>;
+  progressPercentage: number;
+  handleItemClick: (index: number) => void;
+  isFading: boolean;
 }

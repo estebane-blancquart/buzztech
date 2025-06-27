@@ -2,33 +2,35 @@ import React from 'react';
 import styles from './why.module.scss';
 import classNames from 'classnames';
 import { useScroll } from '@/core/hooks/useScroll';
-import { WhyItem } from '@/core/types';
-
-interface WhyPageProps {
-  title: string;
-  points: string[];
-  icon?: string;
-  landingDescription?: string;
-}
+import { WhyPageProps } from '@/core/types';
 
 interface WhyProps {
   title: string;
   children: React.ReactElement<WhyPageProps>[];
 }
 
-export function WhyPage({ title, points, icon }: WhyPageProps) {
+export function WhyPage({ title, points, icon }: WhyPageProps): JSX.Element {
+  const handleContact = (): void => {
+    const message = `Bonjour, je souhaite des informations sur votre service: ${title}`;
+    window.open(
+      `https://wa.me/33660352267?text=${encodeURIComponent(message)}`
+    );
+  };
+
   return (
-    <div className={styles.pageContent}>
-      <div className={styles.pageHeader}>
+    <div className={styles['page-content']}>
+      <div className={styles['page-header']}>
         <h3>{title}</h3>
-        {icon && <span className={styles.icon}>{icon}</span>}
+        {icon && <span className={styles['icon']}>{icon}</span>}
       </div>
-      <ul className={styles.points}>
+      <ul className={styles['points']}>
         {points.map((point, index) => (
           <li key={index}>{point}</li>
         ))}
       </ul>
-      <button className={styles.contactBtn}>Contactez-nous</button>
+      <button className={styles['contact-btn']} onClick={handleContact}>
+        Contactez-nous
+      </button>
     </div>
   );
 }
@@ -39,11 +41,11 @@ function WhyHome({
 }: {
   children: React.ReactElement<WhyPageProps>[];
   onPageClick: (index: number) => void;
-}) {
+}): JSX.Element {
   return (
-    <div className={styles.landingContent}>
+    <div className={styles['landing-content']}>
       {children.map((child, index) => (
-        <div key={index} className={styles.landingItem}>
+        <div key={index} className={styles['landing-item']}>
           <h3>{child.props.title}</h3>
           {child.props.landingDescription && (
             <p>
@@ -62,7 +64,7 @@ function WhyHome({
   );
 }
 
-function Why({ title, children }: WhyProps) {
+function Why({ title, children }: WhyProps): JSX.Element {
   const totalPages = children.length;
 
   const { activeItem, containerRef, handleItemClick, isFading } = useScroll({
@@ -70,27 +72,30 @@ function Why({ title, children }: WhyProps) {
     initialIndex: -1,
   });
 
-  const handlePageClick = (index: number) => {
+  const handlePageClick = (index: number): void => {
     if (index >= 0 && index < children.length) {
       handleItemClick(index);
     }
   };
 
-  const handleLandingClick = () => {
+  const handleLandingClick = (): void => {
     handleItemClick(-1);
   };
 
-  const getActiveContent = () => {
+  const getActiveContent = (): JSX.Element => {
     if (activeItem === -1) {
       return <WhyHome children={children} onPageClick={handlePageClick} />;
     }
 
     if (activeItem >= 0 && activeItem < children.length) {
-      return children[activeItem];
+      const activeChild = children[activeItem];
+      if (activeChild) {
+        return activeChild;
+      }
     }
 
     return (
-      <div className={styles.errorContent}>
+      <div className={styles['error-content'] ?? ''}>
         <p>Contenu non disponible</p>
         <button onClick={handleLandingClick}>Retour à l'accueil</button>
       </div>
@@ -99,20 +104,20 @@ function Why({ title, children }: WhyProps) {
 
   return (
     <div
-      className={styles.why}
+      className={styles['why']}
       ref={containerRef}
       tabIndex={0}
       role="region"
       aria-label="Navigation des offres de service"
     >
-      <div className={styles.bar}></div>
+      <div className={styles['bar']}></div>
 
-      <div className={styles.content}>
-        <div className={styles.nav}>
+      <div className={styles['content']}>
+        <div className={styles['nav']}>
           <button
             className={classNames(
-              styles.indexTitle,
-              activeItem === -1 ? styles.active : ''
+              styles['index-title'],
+              activeItem === -1 ? styles['active'] : ''
             )}
             onClick={handleLandingClick}
             aria-pressed={activeItem === -1}
@@ -121,13 +126,13 @@ function Why({ title, children }: WhyProps) {
             {title}
           </button>
 
-          <div className={styles.navigation} role="tablist">
+          <div className={styles['navigation']} role="tablist">
             {children.map((child, index) => (
               <button
                 key={`nav-${child.props.title}-${index}`}
                 className={classNames(
-                  styles.navButton,
-                  activeItem === index ? styles.active : ''
+                  styles['nav-button'],
+                  activeItem === index ? styles['active'] : ''
                 )}
                 onClick={() => handlePageClick(index)}
                 role="tab"
@@ -142,7 +147,7 @@ function Why({ title, children }: WhyProps) {
         </div>
 
         <div
-          className={classNames(styles.mainContent, 'fade-content', {
+          className={classNames(styles['main-content'], 'fade-content', {
             fading: isFading,
           })}
           role="tabpanel"

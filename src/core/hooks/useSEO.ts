@@ -2,11 +2,18 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { seoData, schemaOrgData, SEOData } from '@/core/data/seo';
 
-export const useSEO = () => {
+const getDefaultSEO = (): SEOData => ({
+  title: 'BuzzTech - Solutions Informatiques',
+  description: 'Solutions informatiques professionnelles à Saint-Étienne',
+  keywords: 'informatique, Saint-Étienne, dépannage, BuzzTech',
+});
+
+export const useSEO = (): void => {
   const location = useLocation();
 
   useEffect(() => {
-    const currentSEO: SEOData = seoData[location.pathname] || seoData['/']!;
+    const currentSEO: SEOData =
+      seoData[location.pathname] ?? seoData['/'] ?? getDefaultSEO();
 
     // Title
     document.title = currentSEO.title;
@@ -18,10 +25,10 @@ export const useSEO = () => {
     updateMetaTag('keywords', currentSEO.keywords);
 
     // Open Graph
-    updateMetaProperty('og:title', currentSEO.ogTitle || currentSEO.title);
+    updateMetaProperty('og:title', currentSEO.ogTitle ?? currentSEO.title);
     updateMetaProperty(
       'og:description',
-      currentSEO.ogDescription || currentSEO.description
+      currentSEO.ogDescription ?? currentSEO.description
     );
     updateMetaProperty(
       'og:url',
@@ -39,10 +46,10 @@ export const useSEO = () => {
 
     // Twitter Card
     updateMetaTag('twitter:card', 'summary_large_image');
-    updateMetaTag('twitter:title', currentSEO.ogTitle || currentSEO.title);
+    updateMetaTag('twitter:title', currentSEO.ogTitle ?? currentSEO.title);
     updateMetaTag(
       'twitter:description',
-      currentSEO.ogDescription || currentSEO.description
+      currentSEO.ogDescription ?? currentSEO.description
     );
 
     // Schema.org JSON-LD
@@ -54,7 +61,7 @@ export const useSEO = () => {
 };
 
 // Fonctions utilitaires
-const updateMetaTag = (name: string, content: string) => {
+const updateMetaTag = (name: string, content: string): void => {
   let element = document.querySelector(`meta[name="${name}"]`);
 
   if (!element) {
@@ -66,7 +73,7 @@ const updateMetaTag = (name: string, content: string) => {
   element.setAttribute('content', content);
 };
 
-const updateMetaProperty = (property: string, content: string) => {
+const updateMetaProperty = (property: string, content: string): void => {
   let element = document.querySelector(`meta[property="${property}"]`);
 
   if (!element) {
@@ -78,7 +85,7 @@ const updateMetaProperty = (property: string, content: string) => {
   element.setAttribute('content', content);
 };
 
-const updateJsonLd = () => {
+const updateJsonLd = (): void => {
   const existingScript = document.querySelector(
     'script[type="application/ld+json"]'
   );
@@ -92,7 +99,7 @@ const updateJsonLd = () => {
   document.head.appendChild(script);
 };
 
-const updateCanonical = (url: string) => {
+const updateCanonical = (url: string): void => {
   let element = document.querySelector('link[rel="canonical"]');
 
   if (!element) {

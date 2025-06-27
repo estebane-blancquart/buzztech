@@ -17,12 +17,12 @@ const Header: React.FC = () => {
     { to: '/creation-web', label: 'Création Web' },
   ];
 
-  const handleNavClick = () => {
+  const handleNavClick = (): void => {
     if (isOpen) toggleOpen();
   };
 
   // Gestion navigation clavier
-  const handleKeyDown = (event: React.KeyboardEvent) => {
+  const handleKeyDown = (event: React.KeyboardEvent): void => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       toggleOpen();

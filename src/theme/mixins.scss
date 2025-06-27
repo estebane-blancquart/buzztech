@@ -1,4 +1,6 @@
 /* ===== BREAKPOINTS ===== */
+@use 'sass:math';
+
 @mixin mobile {
   @media (width <= 768px) {
     @content;
@@ -151,10 +153,10 @@
 /* ===== ANIMATIONS ===== */
 @mixin fade-in($duration: 0.3s) {
   opacity: 0;
-  animation: fadeIn $duration ease forwards;
+  animation: fade-in $duration ease forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   to {
     opacity: 1;
   }
@@ -163,10 +165,10 @@
 @mixin slide-up($duration: 0.4s) {
   opacity: 0;
   transform: translateY(20px);
-  animation: slideUp $duration ease forwards;
+  animation: slide-up $duration ease forwards;
 }
 
-@keyframes slideUp {
+@keyframes slide-up {
   to {
     opacity: 1;
     transform: translateY(0);
@@ -196,13 +198,13 @@
   @include flex-column-center;
 }
 
-@mixin aspect-ratio($ratio: 16/9) {
+@mixin aspect-ratio($ratio: 16 / 9) {
   position: relative;
 
   &::before {
     content: '';
     display: block;
-    padding-top: percentage(1 / $ratio);
+    padding-top: math.percentage(1 / $ratio);
   }
 
   > * {

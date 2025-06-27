@@ -1,20 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-
-interface UseScrollOptions {
-  totalItems: number;
-  initialIndex?: number;
-  throttleDelay?: number;
-  fadeDelay?: number;
-}
-
-interface UseScrollReturn {
-  activeItem: number;
-  containerRef: React.RefObject<HTMLDivElement>;
-  progressPercentage: number;
-  handleItemClick: (index: number) => void;
-  isFading: boolean;
-}
+import { UseScrollOptions, UseScrollReturn } from '@/core/types';
 
 export function useScroll({
   totalItems,
@@ -31,7 +17,7 @@ export function useScroll({
   const progressPercentage = ((activeItem + 1) / totalItems) * 100;
 
   const changeItem = useCallback(
-    (newIndex: number) => {
+    (newIndex: number): void => {
       if (isFading) return;
 
       setIsFading(true);
@@ -47,17 +33,17 @@ export function useScroll({
     [isFading, fadeDelay]
   );
 
-  const isThrottled = useCallback(() => {
+  const isThrottled = useCallback((): boolean => {
     const now = Date.now();
     return now - lastScrollTime < throttleDelay;
   }, [lastScrollTime, throttleDelay]);
 
-  const updateScrollTime = useCallback(() => {
+  const updateScrollTime = useCallback((): void => {
     setLastScrollTime(Date.now());
   }, []);
 
   const goToNextModule = useCallback(
-    (bypassThrottle = false) => {
+    (bypassThrottle = false): void => {
       if (!bypassThrottle && isThrottled()) return;
       if (!bypassThrottle) updateScrollTime();
 
@@ -87,7 +73,7 @@ export function useScroll({
   );
 
   const goToPreviousModule = useCallback(
-    (bypassThrottle = false) => {
+    (bypassThrottle = false): void => {
       if (!bypassThrottle && isThrottled()) return;
       if (!bypassThrottle) updateScrollTime();
 
@@ -120,7 +106,7 @@ export function useScroll({
   );
 
   const handleNavigation = useCallback(
-    (direction: 'next' | 'prev', bypassThrottle = false) => {
+    (direction: 'next' | 'prev', bypassThrottle = false): void => {
       if (direction === 'next') {
         if (activeItem < totalItems - 1) {
           changeItem(activeItem + 1);
@@ -146,7 +132,7 @@ export function useScroll({
   );
 
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
+    const handleWheel = (e: WheelEvent): void => {
       const target = e.target as HTMLElement;
       if (!containerRef.current?.contains(target)) return;
 
@@ -158,17 +144,17 @@ export function useScroll({
     };
 
     let touchStartY = 0;
-    const handleTouchStart = (e: TouchEvent) => {
+    const handleTouchStart = (e: TouchEvent): void => {
       touchStartY = e.touches[0]?.clientY ?? 0;
     };
 
-    const handleTouchMove = (e: TouchEvent) => {
+    const handleTouchMove = (e: TouchEvent): void => {
       const target = e.target as HTMLElement;
       if (!containerRef.current?.contains(target)) return;
       e.preventDefault();
     };
 
-    const handleTouchEnd = (e: TouchEvent) => {
+    const handleTouchEnd = (e: TouchEvent): void => {
       const target = e.target as HTMLElement;
       if (!containerRef.current?.contains(target)) return;
 
@@ -182,7 +168,7 @@ export function useScroll({
     };
 
     // Navigation clavier accessible (SANS throttling)
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       const target = e.target as HTMLElement;
       if (!containerRef.current?.contains(target)) return;
 
@@ -206,7 +192,7 @@ export function useScroll({
     element.addEventListener('touchend', handleTouchEnd, { passive: true });
     element.addEventListener('keydown', handleKeyDown, { passive: false });
 
-    return () => {
+    return (): void => {
       element.removeEventListener('wheel', handleWheel);
       element.removeEventListener('touchstart', handleTouchStart);
       element.removeEventListener('touchmove', handleTouchMove);
@@ -221,7 +207,7 @@ export function useScroll({
   }, [location.pathname, location.state, initialIndex]);
 
   const handleItemClick = useCallback(
-    (index: number) => {
+    (index: number): void => {
       changeItem(index);
     },
     [changeItem]

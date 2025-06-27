@@ -8,23 +8,27 @@ vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
   return {
     ...actual,
-    useLocation: () => mockUseLocation(),
+    useLocation: (): { pathname: string } => mockUseLocation(),
   };
 });
 
 // Create a wrapper that doesn't interfere with our mocked useLocation
-const TestWrapper = ({ children }: { children: React.ReactNode }) => {
+const TestWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => {
   return <>{children}</>;
 };
 
 describe('useSEO', () => {
-  beforeEach(() => {
+  beforeEach((): void => {
     // Reset DOM
     document.title = '';
     const existingMetas = document.querySelectorAll(
       'meta[name], meta[property], link[rel="canonical"], script[type="application/ld+json"]'
     );
-    existingMetas.forEach(meta => meta.remove());
+    existingMetas.forEach((meta): void => meta.remove());
 
     // Reset mock
     vi.clearAllMocks();
@@ -96,7 +100,7 @@ describe('useSEO', () => {
     const jsonLd = document.querySelector('script[type="application/ld+json"]');
     expect(jsonLd).toBeInTheDocument();
 
-    const jsonContent = JSON.parse(jsonLd?.textContent || '{}');
+    const jsonContent = JSON.parse(jsonLd?.textContent ?? '{}');
     expect(jsonContent['@type']).toBe('LocalBusiness');
     expect(jsonContent.name).toBe('BuzzTech');
   });

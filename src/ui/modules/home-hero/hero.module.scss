@@ -6,16 +6,16 @@
   gap: $space-lg;
 }
 
-.videoSection {
+.video-section {
   @include flex-center;
 }
 
-.videoWrapper {
+.video-wrapper {
   position: relative;
   display: inline-block;
 }
 
-.backgroundVideo {
+.background-video {
   width: 15rem;
   height: 15rem;
   border-radius: 50%;
@@ -24,7 +24,7 @@
   filter: brightness(1.1) contrast(1.1);
 }
 
-.videoGlow {
+.video-glow {
   position: absolute;
   inset: 0;
   border-radius: 50%;
@@ -33,12 +33,12 @@
 }
 
 /* ===== HERO CONTENT ===== */
-.heroContent {
+.hero-content {
   text-align: center;
   margin-bottom: $space-md;
 }
 
-.heroTitle {
+.hero-title {
   @include gradient-text($purple, $light-purple);
 
   font-size: $font-h2;
@@ -46,13 +46,13 @@
   margin-bottom: $space-xs;
 }
 
-.heroSubtitle {
+.hero-subtitle {
   opacity: 0.8;
   font-size: $font-p2;
   margin-bottom: $space-sm;
 }
 
-.heroCta {
+.hero-cta {
   @include button-reset;
   @include hover-lift;
 
@@ -64,13 +64,13 @@
   transition: $transition-transform;
 }
 
-.infoSection {
+.info-section {
   width: 100%;
 
   @include flex-center;
 }
 
-.infoGrid {
+.info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: $space-lg;
@@ -78,7 +78,7 @@
   max-width: 500px;
 }
 
-.infoCard {
+.info-card {
   @include glass-card;
 
   position: relative;
@@ -95,7 +95,7 @@
   }
 }
 
-.infoValue {
+.info-value {
   @include gradient-text($purple, $light-purple);
 
   display: block;
@@ -105,7 +105,7 @@
   margin-bottom: $space-xs;
 }
 
-.infoLabel {
+.info-label {
   display: block;
   opacity: 0.8;
   font-size: $font-p3;
@@ -126,16 +126,16 @@
     gap: $space-lg;
   }
 
-  .infoGrid {
+  .info-grid {
     gap: $space-md;
     max-width: 400px;
   }
 
-  .infoCard {
+  .info-card {
     padding: 0.8rem;
   }
 
-  .infoValue {
+  .info-value {
     font-size: 1.3rem;
   }
 }
@@ -146,45 +146,45 @@
     gap: $space-md;
   }
 
-  .heroContent {
+  .hero-content {
     margin-bottom: $space-sm;
   }
 
-  .heroTitle {
+  .hero-title {
     font-size: $font-h3;
   }
 
-  .heroSubtitle {
+  .hero-subtitle {
     font-size: $font-p3;
     margin-bottom: 0.8rem;
   }
 
-  .heroCta {
+  .hero-cta {
     padding: 0.6rem 1.2rem;
     font-size: $font-p3;
   }
 
-  .backgroundVideo {
+  .background-video {
     width: 12rem;
     height: 12rem;
   }
 
-  .infoGrid {
+  .info-grid {
     grid-template-columns: 1fr;
     gap: 0.8rem;
     max-width: 250px;
     padding: 0 $space-sm;
   }
 
-  .infoCard {
+  .info-card {
     padding: 0.8rem;
   }
 
-  .infoValue {
+  .info-value {
     font-size: 1.2rem;
   }
 
-  .infoLabel {
+  .info-label {
     font-size: 0.7rem;
   }
 }

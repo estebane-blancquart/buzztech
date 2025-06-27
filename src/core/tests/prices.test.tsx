@@ -70,7 +70,7 @@ describe('Prices Component', () => {
     );
 
     const pricesContainer = container.querySelector(
-      '[class*="layoutDepannageCustom"]'
+      '[class*="layout-depannage-custom"]'
     );
     expect(pricesContainer).toBeInTheDocument();
   });
@@ -81,7 +81,7 @@ describe('Prices Component', () => {
     );
 
     const pricesContainer = container.querySelector(
-      '[class*="layoutConfigurationCustom"]'
+      '[class*="layout-configuration-custom"]'
     );
     expect(pricesContainer).toBeInTheDocument();
   });
@@ -91,7 +91,7 @@ describe('Prices Component', () => {
       <Prices service="creation-web" cards={mockCards} />
     );
 
-    const pricesContainer = container.querySelector('[class*="layoutGrid"]');
+    const pricesContainer = container.querySelector('[class*="layout-grid"]');
     expect(pricesContainer).toBeInTheDocument();
   });
 

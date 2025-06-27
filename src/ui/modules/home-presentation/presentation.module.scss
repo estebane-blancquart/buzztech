@@ -25,14 +25,14 @@
   font-size: $font-p1;
 }
 
-.servicesList {
+.services-list {
   @include flex-column-start;
 
   gap: $space-sm;
   width: 100%;
 }
 
-.serviceItem {
+.services-item {
   @include flex-between;
   @include glass-effect(0.05);
 
@@ -51,7 +51,7 @@
   }
 }
 
-.serviceLeft {
+.service-left {
   @include flex-start;
 
   gap: $space-sm;
@@ -63,25 +63,25 @@
   flex-shrink: 0;
 }
 
-.serviceInfo {
+.service-info {
   flex: 1;
 }
 
-.serviceName {
+.service-name {
   margin: 0 0 0.25rem;
   color: $white;
   font-size: 1.25rem;
   font-weight: $font-weight-black;
 }
 
-.serviceDesc {
+.service-desc {
   margin: 0;
   color: rgba($white, 0.7);
   font-size: $font-p3;
   line-height: 1.4;
 }
 
-.servicePrice {
+.service-price {
   padding: $space-xs $space-sm;
   border: 1px solid rgba($purple, 0.3);
   border-radius: $border-radius-round;
@@ -98,7 +98,7 @@
     padding: $space-xxl 0;
   }
 
-  .servicesList {
+  .services-list {
     width: 100%;
   }
 }
@@ -108,7 +108,7 @@
     padding: $space-xl 0;
   }
 
-  .servicesList {
+  .services-list {
     width: 100%;
   }
 
@@ -116,11 +116,11 @@
     font-size: $font-h2;
   }
 
-  .serviceItem {
+  .services-item {
     padding: 1.25rem $space-md;
   }
 
-  .serviceName {
+  .service-name {
     font-size: 1.1rem;
   }
 }
@@ -130,7 +130,7 @@
     padding: $space-lg $space-sm;
   }
 
-  .servicesList {
+  .services-list {
     width: 100%;
   }
 
@@ -142,7 +142,7 @@
     font-size: $font-p2;
   }
 
-  .serviceItem {
+  .services-item {
     @include flex-column-center;
 
     padding: $space-md;
@@ -154,7 +154,7 @@
     }
   }
 
-  .serviceLeft {
+  .service-left {
     @include flex-column-center;
 
     text-align: center;
@@ -165,11 +165,11 @@
     font-size: 2.5rem;
   }
 
-  .serviceName {
+  .service-name {
     font-size: $font-p1;
   }
 
-  .serviceDesc {
+  .service-desc {
     font-size: 0.85rem;
   }
 }

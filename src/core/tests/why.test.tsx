@@ -4,9 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 
 // Wrapper pour React Router
-const RouterWrapper = ({ children }: { children: React.ReactNode }) => (
-  <BrowserRouter>{children}</BrowserRouter>
-);
+const RouterWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => <BrowserRouter>{children}</BrowserRouter>;
 
 // Mock data pour les tests
 const mockChildren = [
@@ -105,8 +107,9 @@ describe('Why Component', () => {
     const voirPlusButtons = screen.getAllByText('voir plus');
     expect(voirPlusButtons.length).toBeGreaterThan(0);
 
-    fireEvent.click(voirPlusButtons[0]!); // ← Ajouté ! pour dire à TS que ça existe
-
+    if (voirPlusButtons[0]) {
+      fireEvent.click(voirPlusButtons[0]);
+    }
     // Should show detail points
     await waitFor(() => {
       expect(screen.getByText('Point 1 distance')).toBeInTheDocument();

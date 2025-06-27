@@ -16,16 +16,14 @@ const What: React.FC<WhatProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleScrollClick = () => {
+  const handleScrollClick = (): void => {
     window.scrollTo({
       top: window.scrollY + window.innerHeight,
       behavior: 'smooth',
     });
   };
 
-  const goToNextModule = () => {
-    console.log('🎯 What: Tentative de navigation vers module suivant');
-
+  const goToNextModule = (): void => {
     window.scrollTo({
       top: window.innerHeight,
       behavior: 'instant', // Instant pour le clavier
@@ -33,19 +31,12 @@ const What: React.FC<WhatProps> = ({
 
     // Focus automatique sur le module suivant
     setTimeout(() => {
-      console.log('🔍 What: Recherche du module suivant...');
-
       const nextModuleElement = document
         .elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)
         ?.closest('[tabindex="0"]') as HTMLElement;
 
-      console.log('📍 What: Élément trouvé:', nextModuleElement);
-
       if (nextModuleElement) {
-        console.log('✅ What: Focus sur:', nextModuleElement);
         nextModuleElement.focus();
-      } else {
-        console.log('❌ What: Aucun élément focusable trouvé');
       }
     }, 100);
   };
@@ -58,13 +49,11 @@ const What: React.FC<WhatProps> = ({
       }
     }, 500); // Petit délai pour laisser la page se charger
 
-    return () => clearTimeout(timer);
+    return (): void => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      console.log('⌨️ What: Touche pressée:', e.key);
-
+    const handleKeyDown = (e: KeyboardEvent): void => {
       const target = e.target as HTMLElement;
       if (!containerRef.current?.contains(target)) return;
 
@@ -79,7 +68,7 @@ const What: React.FC<WhatProps> = ({
 
     element.addEventListener('keydown', handleKeyDown, { passive: false });
 
-    return () => {
+    return (): void => {
       element.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
@@ -87,20 +76,20 @@ const What: React.FC<WhatProps> = ({
   return (
     <div
       ref={containerRef}
-      className={styles.what}
+      className={styles['what']}
       tabIndex={0}
       role="region"
       aria-label="Présentation du service"
     >
-      <div className={styles.badge}>{badge}</div>
+      <div className={styles['badge']}>{badge}</div>
 
-      <h1 className={styles.title}>{title}</h1>
+      <h1 className={styles['title']}>{title}</h1>
 
-      <p className={styles.subtitle}>{subtitle}</p>
+      <p className={styles['subtitle']}>{subtitle}</p>
 
-      <div className={styles.scrollIndicator} onClick={handleScrollClick}>
+      <div className={styles['scroll-indicator']} onClick={handleScrollClick}>
         <span>{scrollText}</span>
-        <div className={styles.arrow}>↓</div>
+        <div className={styles['arrow']}>↓</div>
       </div>
     </div>
   );

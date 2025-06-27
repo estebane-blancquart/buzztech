@@ -17,13 +17,13 @@ interface ScrollerControl {
   isScrolling: () => boolean;
 }
 
-function Scroller({ children, onModuleChange }: ScrollerProps) {
+function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   const [currentModule, setCurrentModule] = useState(0);
   const [isScrollingState, setIsScrollingState] = useState(false);
   const [globalScrollDisabled, setGlobalScrollDisabled] = useState(false);
   const location = useLocation();
 
-  const getTotalModules = () => {
+  const getTotalModules = (): number => {
     switch (location.pathname) {
       case '/':
         return 3;
@@ -44,27 +44,27 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
     }
 
     (window as WindowWithScroller).scrollerControl = {
-      disableGlobalScroll: () => {
+      disableGlobalScroll: (): void => {
         setGlobalScrollDisabled(true);
         document.documentElement.style.scrollBehavior = 'auto';
         document.body.style.overflow = 'hidden';
       },
-      enableGlobalScroll: () => {
+      enableGlobalScroll: (): void => {
         setGlobalScrollDisabled(false);
         document.body.style.overflow = '';
         document.documentElement.style.scrollBehavior = 'smooth';
       },
-      getCurrentModule: () => currentModule,
-      isScrolling: () => isScrollingState,
+      getCurrentModule: (): number => currentModule,
+      isScrolling: (): boolean => isScrollingState,
     } as ScrollerControl;
 
-    return () => {
+    return (): void => {
       delete (window as WindowWithScroller).scrollerControl;
     };
   }, [currentModule, isScrollingState]);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       if (globalScrollDisabled) return;
 
       const scrollTop = window.scrollY;
@@ -82,7 +82,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
     };
 
     let scrollTimeout: NodeJS.Timeout;
-    const handleScrollStart = () => {
+    const handleScrollStart = (): void => {
       setIsScrollingState(true);
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
@@ -106,7 +106,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
     window.addEventListener('scroll', handleScrollStart, { passive: true });
     handleScroll();
 
-    return () => {
+    return (): void => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('scroll', handleScrollStart);
       clearTimeout(scrollTimeout);
@@ -119,13 +119,6 @@ function Scroller({ children, onModuleChange }: ScrollerProps) {
   }, [currentModule, totalModules, onModuleChange]);
 
   useEffect(() => {
-    console.log(
-      'Scroller: Reset complet - pathname:',
-      location.pathname,
-      'key:',
-      location.key
-    );
-
     setCurrentModule(0);
     setGlobalScrollDisabled(false);
     window.scrollTo({ top: 0, behavior: 'instant' });

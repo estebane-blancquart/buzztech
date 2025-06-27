@@ -1,14 +1,6 @@
-// components/Prices/Prices.tsx
 import React, { useEffect, useRef } from 'react';
 import styles from './Prices.module.scss';
-
-interface PriceCard {
-  title: string;
-  price: string;
-  unit?: string;
-  features: string[];
-  size?: 'small' | 'medium' | 'large';
-}
+import { PriceCard } from '@/core/types';
 
 interface PricesProps {
   service: 'depannage' | 'configuration' | 'creation-web';
@@ -18,22 +10,20 @@ interface PricesProps {
 const Prices: React.FC<PricesProps> = ({ service, cards }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const getLayoutClass = () => {
+  const getLayoutClass = (): string => {
     switch (service) {
       case 'depannage':
-        return styles.layoutDepannageCustom; // 1 grande + 2 petites
+        return styles['layout-depannage-custom'] ?? ''; // 1 grande + 2 petites
       case 'creation-web':
-        return styles.layoutGrid; // 2 cartes côte à côte
+        return styles['layout-grid'] ?? ''; // 2 cartes côte à côte
       case 'configuration':
-        return styles.layoutConfigurationCustom; // 2+3 cartes
+        return styles['layout-configuration-custom'] ?? ''; // 2+3 cartes
       default:
-        return styles.layoutGrid;
+        return styles['layout-grid'] ?? '';
     }
   };
 
-  const goToPreviousModule = () => {
-    console.log('🎯 Prices: Tentative de navigation vers module précédent');
-
+  const goToPreviousModule = (): void => {
     const currentScrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
     const currentModule = Math.round(currentScrollY / viewportHeight);
@@ -49,27 +39,18 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
 
     // Focus automatique sur le module précédent
     setTimeout(() => {
-      console.log('🔍 Prices: Recherche du module précédent...');
-
       const prevModuleElement = document
         .elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)
         ?.closest('[tabindex="0"]') as HTMLElement;
 
-      console.log('📍 Prices: Élément trouvé:', prevModuleElement);
-
       if (prevModuleElement) {
-        console.log('✅ Prices: Focus sur:', prevModuleElement);
         prevModuleElement.focus();
-      } else {
-        console.log('❌ Prices: Aucun élément focusable trouvé');
       }
     }, 100);
   };
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      console.log('⌨️ Prices: Touche pressée:', e.key);
-
+    const handleKeyDown = (e: KeyboardEvent): void => {
       const target = e.target as HTMLElement;
       if (!containerRef.current?.contains(target)) return;
 
@@ -84,7 +65,7 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
 
     element.addEventListener('keydown', handleKeyDown, { passive: false });
 
-    return () => {
+    return (): void => {
       element.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
@@ -92,7 +73,7 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
   return (
     <div
       ref={containerRef}
-      className={`${styles.prices} ${getLayoutClass()}`}
+      className={`${styles['prices']} ${getLayoutClass()}`}
       tabIndex={0}
       role="region"
       aria-label="Grilles tarifaires"
@@ -101,22 +82,22 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
         <div
           key={index}
           className={`
-            ${styles.card} 
+            ${styles['card']} 
             ${card.size ? styles[card.size] : ''}
           `}
         >
-          <div className={styles.cardHeader}>
-            <h3 className={styles.title}>{card.title}</h3>
-            <div className={styles.priceSection}>
-              <span className={styles.price}>{card.price}</span>
-              {card.unit && <span className={styles.unit}>{card.unit}</span>}
+          <div className={styles['card-header']}>
+            <h3 className={styles['title']}>{card.title}</h3>
+            <div className={styles['price-section']}>
+              <span className={styles['price']}>{card.price}</span>
+              {card.unit && <span className={styles['unit']}>{card.unit}</span>}
             </div>
           </div>
 
-          <div className={styles.features}>
+          <div className={styles['features']}>
             {card.features.map((feature, featureIndex) => (
-              <div key={featureIndex} className={styles.feature}>
-                <span className={styles.bullet}>•</span>
+              <div key={featureIndex} className={styles['feature']}>
+                <span className={styles['bullet']}>•</span>
                 <span>{feature}</span>
               </div>
             ))}

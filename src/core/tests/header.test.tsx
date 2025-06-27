@@ -3,9 +3,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 
-const RouterWrapper = ({ children }: { children: React.ReactNode }) => (
-  <BrowserRouter>{children}</BrowserRouter>
-);
+const RouterWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => <BrowserRouter>{children}</BrowserRouter>;
 
 // Mock window.scrollTo
 Object.defineProperty(window, 'scrollTo', {
