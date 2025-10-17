@@ -1,0 +1,143 @@
+/* ===== ERROR BOUNDARY ===== */
+.errorBoundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $black 0%, $dark-purple 100%);
+  padding: 2rem;
+}
+
+.content {
+  max-width: 600px;
+  text-align: center;
+  color: $white;
+}
+
+.icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.title {
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, $purple, $light-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.message {
+  font-size: $p2;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary,
+.btnSecondary {
+  @include button-reset;
+  
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: $p2;
+  font-weight: $weight-bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+  color: $white;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($purple, 0.4);
+  }
+}
+
+.btnSecondary {
+  background: transparent;
+  border: 1px solid rgba($white, 0.3);
+  color: $white;
+
+  &:hover {
+    background: rgba($white, 0.1);
+    border-color: rgba($white, 0.5);
+  }
+}
+
+.errorDetails {
+  margin-top: 2rem;
+  text-align: left;
+  background: rgba($black, 0.3);
+  border: 1px solid rgba($purple, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+
+  summary {
+    cursor: pointer;
+    font-weight: $weight-bold;
+    color: $light-purple;
+    margin-bottom: 0.5rem;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.errorStack {
+  background: rgba($black, 0.5);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #ff6b6b;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@include mobile {
+  .errorBoundary {
+    padding: 1rem;
+  }
+
+  .icon {
+    font-size: 3rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+
+    .btnPrimary,
+    .btnSecondary {
+      width: 100%;
+    }
+  }
+
+  .errorStack {
+    font-size: 0.75rem;
+  }
+}

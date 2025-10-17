@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import styles from './footer.module.scss';
 import { companyData } from '@/core/data';
 
@@ -40,7 +41,18 @@ const Footer: React.FC = () => {
       </div>
 
       <div className={styles.copyright}>
-        Site développé par {companyData.name} - Tous droits réservés
+        Site développé par {companyData.name} - Tous droits réservés | {' '}
+        <Link to="/mentions-legales" className={styles.legalLink}>
+          Mentions légales
+        </Link>
+        {' '} | {' '}
+        <Link to="/politique-confidentialite" className={styles.legalLink}>
+          Confidentialité
+        </Link>
+        {' '} | {' '}
+        <Link to="/conditions-generales" className={styles.legalLink}>
+          CGV
+        </Link>
       </div>
     </footer>
   );

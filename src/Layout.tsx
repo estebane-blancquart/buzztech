@@ -3,10 +3,12 @@ import { Outlet } from 'react-router-dom';
 import Header from '@/ui/components/header/Header';
 import Footer from '@/ui/components/footer/Footer';
 import Scroller from '@/ui/components/scroller/scroller';
-import { useSEO } from '@/core/hooks/useSEO'; // ← Ajoutez cet import
+import { useSEO } from '@/core/hooks/useSEO';
+import CookieBanner, { useGTMConsent } from './ui/components/cookie-banner/CookieBanner';
 
 const Layout: React.FC = () => {
-  useSEO(); // ← Ajoutez cette ligne
+  useSEO();
+  useGTMConsent();
 
   return (
     <div className="layout">
@@ -19,6 +21,7 @@ const Layout: React.FC = () => {
       </main>
 
       <Footer />
+      <CookieBanner />
     </div>
   );
 };

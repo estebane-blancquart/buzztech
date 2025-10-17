@@ -74,10 +74,24 @@
   font-size: $p3;
 }
 
+.legal-link {
+  color: rgba($white, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $light-purple;
+  }
+}
+
 /* ===== RESPONSIVE ===== */
 @include mobile {
   .footer {
     padding: $mobile-padding;
+  }
+
+  .copyright {
+    font-size: 0.65rem;
   }
 }
 
