@@ -77,7 +77,7 @@ export const creationWebData = {
   prices: [
     {
       title: 'ESSENTIEL',
-      price: '800',
+      price: '1200',
       unit: '€',
       features: [
         'Design créé sur mesure',
@@ -90,7 +90,7 @@ export const creationWebData = {
     },
     {
       title: 'INTÉGRAL',
-      price: '1500',
+      price: '2000',
       unit: '€',
       features: [
         'Design créé sur mesure',

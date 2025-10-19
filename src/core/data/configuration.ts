@@ -77,7 +77,7 @@ export const configurationData = {
   prices: [
     {
       title: 'PC STANDARD',
-      price: '70',
+      price: '100',
       unit: '€ + composants',
       features: [
         'Performances optimales dans un boîtier fonctionnel',
@@ -89,7 +89,7 @@ export const configurationData = {
     },
     {
       title: 'PC COMPLEXE',
-      price: '140',
+      price: '180',
       unit: '€ + composants',
       features: [
         'Configuration avancée et personnalisée',

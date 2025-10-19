@@ -55,8 +55,10 @@
 .hero-cta {
   @include button-reset;
   @include hover-lift;
+  @include focus-visible;
 
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 2rem; 
+  min-height: 44px;
   border-radius: $border-radius-round;
   background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
   color: $white;

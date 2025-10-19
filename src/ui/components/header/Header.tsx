@@ -34,6 +34,11 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
+      {/* Skip to content - Accessibilité */}
+      <a href="#main-content" className={styles.skipLink}>
+        Aller au contenu principal
+      </a>
+
       <ScrollLink to="/" className={styles.logo}>
         BUZZTECH
       </ScrollLink>

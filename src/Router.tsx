@@ -7,7 +7,7 @@ const Depannage = lazy(() => import('@/ui/pages/Depannage'));
 const Configuration = lazy(() => import('@/ui/pages/Configuration'));
 const CreationWeb = lazy(() => import('@/ui/pages/CreationWeb'));
 const MentionsLegales = lazy(() => import('@/ui/pages/MentionsLegales'));
-const PolitiqueConfidentialite = lazy(() => import('@/ui/pages/PölitiqueConfidentialite'));
+const PolitiqueConfidentialite = lazy(() => import('@/ui/pages/PolitiqueConfidentialite'));
 const ConditionsGenerales = lazy(() => import('@/ui/pages/ConditionsGenerales'));
 const Error = lazy(() => import('@/ui/pages/Error'));
 

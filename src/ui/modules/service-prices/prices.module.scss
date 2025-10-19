@@ -4,14 +4,14 @@
 
   display: grid;
   color: $white;
-  gap: $space-md;
+  gap: $space-lg;
 
   &:focus {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 
   &:focus:not(:focus-visible) {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 }
 
@@ -21,22 +21,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%; // IMPORTANT : Forcer la carte à prendre toute la hauteur de sa zone
-  min-height: 0; // Permettre au contenu de se réduire si nécessaire
-  padding: $space-md;
-  border: 1px solid rgba($purple, 0.2);
+  height: 100%;
+  min-height: 0;
+  padding: $space-lg;
+  border: 2px solid rgba($purple, 0.3);
   border-radius: $border-radius-lg;
-  background: linear-gradient(145deg, $dark-purple 0%, $purple 100%);
+  background: linear-gradient(135deg, rgba($dark-purple, 0.9) 0%, rgba($purple, 0.2) 100%);
   transition: $transition-smooth;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba($black, 0.3);
+  box-shadow: 0 8px 24px rgba($black, 0.4);
 
   &::before {
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, $purple, $light-purple);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -44,18 +44,25 @@
   }
 
   &:hover {
-    transform: translateY(-4px);
-    border-color: rgba($purple, 0.4);
-    box-shadow: 0 8px 32px rgba($purple, 0.15);
+    transform: translateY(-6px);
+    border-color: rgba($purple, 0.6);
+    box-shadow: 0 12px 32px rgba($purple, 0.25);
 
     &::before {
       opacity: 1;
     }
   }
+
+  @include mobile {
+    padding: $space-md;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
 }
 
 /* ===== LAYOUT VARIANTS ===== */
-// DÉPANNAGE: 1ère carte grande à gauche, 2 petites à droite
 .prices.layout-depannage-custom {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -73,40 +80,58 @@
     grid-column: 2;
     grid-row: 2;
   }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    .card {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
+  }
 }
 
-// CONFIGURATION: 2 cartes égales à gauche, 3 cartes égales à droite
 .prices.layout-configuration-custom {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(6, 1fr);
 
   .card:nth-child(1) {
     grid-column: 1;
-    grid-row: 1 / 4; // PC STANDARD prend 3 lignes sur 6 (50%)
+    grid-row: 1 / 4;
   }
 
   .card:nth-child(2) {
     grid-column: 1;
-    grid-row: 4 / 7; // PC COMPLET prend 3 lignes sur 6 (50%)
+    grid-row: 4 / 7;
   }
 
   .card:nth-child(3) {
     grid-column: 2;
-    grid-row: 1 / 3; // SYSTÈME D'EXPLOITATION 2 lignes sur 6 (33%)
+    grid-row: 1 / 3;
   }
 
   .card:nth-child(4) {
     grid-column: 2;
-    grid-row: 3 / 5; // PILOTES 2 lignes sur 6 (33%)
+    grid-row: 3 / 5;
   }
 
   .card:nth-child(5) {
     grid-column: 2;
-    grid-row: 5 / 7; // OUTILS 2 lignes sur 6 (33%)
+    grid-row: 5 / 7;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    .card {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
   }
 }
 
-// CRÉATION WEB: 2 cartes côte à côte
 .prices.layout-grid {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -120,85 +145,84 @@
     grid-column: 2;
     grid-row: 1;
   }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    .card {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
+  }
 }
 
+/* ===== CARD CONTENT ===== */
 .card-header {
-  margin-bottom: $space-sm;
+  margin-bottom: $space-md;
   text-align: center;
 }
 
 .title {
-  margin: 0 0 $space-sm;
-  color: $purple;
-  opacity: 0.9;
-  font-size: $font-p3;
+  margin: 0 0 $space-md;
+  color: $light-purple;
+  font-size: $font-p2;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.5px;
 }
 
 .price-section {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  margin-bottom: $space-md;
 }
 
 .price {
   color: $white;
-  font-size: $font-h2;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: $font-weight-black;
   line-height: 1;
 }
 
 .unit {
   color: $purple;
-  opacity: 0.8;
-  font-size: $font-h3;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: $font-weight-bold;
 }
 
 .features {
-  margin-top: $space-sm;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: $space-xs;
+  gap: $space-sm;
 }
 
-.feature {
+.feature-item {
   display: flex;
   align-items: flex-start;
+  gap: $space-sm;
   color: rgba($white, 0.9);
   font-size: $font-p3;
-  line-height: 1.4;
-  transition: color 0.2s ease;
-  gap: $space-xs;
+  line-height: 1.6;
 
-  &:hover {
+  &::before {
+    content: '✓';
+    flex-shrink: 0;
+    color: $purple;
+    font-size: 1.2rem;
+    font-weight: $font-weight-bold;
+  }
+
+  &:first-child {
+    font-weight: $font-weight-bold;
     color: $white;
   }
 }
 
-.bullet {
-  color: $purple;
-  font-size: 1rem;
-  margin-top: 0.1rem;
-  flex-shrink: 0;
-}
-
 /* ===== RESPONSIVE ===== */
-@include desktop {
-  .prices {
-    gap: $space-lg;
-  }
-
-  .card {
-    padding: $space-lg;
-  }
-}
-
 @include tablet {
   .prices {
     gap: $space-md;
@@ -209,73 +233,41 @@
   }
 
   .title {
-    font-size: $font-small;
+    font-size: $font-p3;
   }
 
-  .feature {
-    font-size: $font-small;
+  .price {
+    font-size: clamp(2rem, 5vw, 2.5rem);
   }
 }
 
 @include mobile {
   .prices {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
     gap: $space-sm;
-
-    .card {
-      display: flex;
-      flex-direction: row !important;
-      align-items: center;
-      min-height: auto;
-      padding: $space-sm;
-      grid-row: auto !important;
-      grid-column: auto !important;
-
-      &:hover {
-        transform: translateY(-2px);
-      }
-    }
   }
 
   .card-header {
-    min-width: 120px;
-    text-align: left;
-    margin-bottom: 0;
-    margin-right: $space-sm;
-    flex-shrink: 0;
+    margin-bottom: $space-sm;
   }
 
   .title {
     font-size: $font-small;
-    margin-bottom: 0.25rem;
+    margin-bottom: $space-sm;
   }
 
   .price-section {
-    justify-content: flex-start;
-  }
-
-  .price {
-    font-size: $font-h3;
-  }
-
-  .unit {
-    font-size: $font-p2;
+    gap: 0.25rem;
   }
 
   .features {
-    margin-top: 0;
-    flex: 1;
-    justify-content: flex-start;
+    gap: 0.75rem;
   }
 
-  .feature {
-    font-size: $font-small;
-    line-height: 1.2;
-    gap: $space-xs;
-  }
+  .feature-item {
+    font-size: 0.85rem;
 
-  .bullet {
-    font-size: 0.8rem;
+    &::before {
+      font-size: 1rem;
+    }
   }
 }

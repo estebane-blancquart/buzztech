@@ -6,6 +6,40 @@ const CONSENT_KEY = 'buzztech_cookie_consent';
 
 type ConsentStatus = 'accepted' | 'refused' | null;
 
+// Interface GTM partagée
+interface GTMWindow extends Window {
+  dataLayer?: any[];
+}
+
+// Fonction loadGTM réutilisable
+const loadGTM = (): void => {
+  const w = window as unknown as GTMWindow;
+  
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+  
+  const f = document.getElementsByTagName('script')[0];
+  if (!f || !f.parentNode) return;
+  
+  const j = document.createElement('script') as HTMLScriptElement;
+  j.async = true;
+  j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-PR9QVL2R';
+  f.parentNode.insertBefore(j, f);
+
+  // Ajouter le noscript iframe
+  const noscript = document.createElement('noscript');
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-PR9QVL2R';
+  iframe.height = '0';
+  iframe.width = '0';
+  iframe.style.display = 'none';
+  iframe.style.visibility = 'hidden';
+  noscript.appendChild(iframe);
+  if (document.body.firstChild) {
+    document.body.insertBefore(noscript, document.body.firstChild);
+  }
+};
+
 const CookieBanner: React.FC = () => {
   const [showBanner, setShowBanner] = useState(false);
 
@@ -36,34 +70,6 @@ const CookieBanner: React.FC = () => {
   const handleRefuse = (): void => {
     localStorage.setItem(CONSENT_KEY, 'refused');
     setShowBanner(false);
-  };
-
-  const loadGTM = (): void => {
-    // Chargement de Google Tag Manager
-    (function(w: any, d: Document, s: string, l: string, i: string) {
-      w[l] = w[l] || [];
-      w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-      const f = d.getElementsByTagName(s)[0];
-      if (!f || !f.parentNode) return;
-      const j = d.createElement(s) as HTMLScriptElement;
-      const dl = l !== 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-PR9QVL2R');
-
-    // Ajouter le noscript iframe
-    const noscript = document.createElement('noscript');
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-PR9QVL2R';
-    iframe.height = '0';
-    iframe.width = '0';
-    iframe.style.display = 'none';
-    iframe.style.visibility = 'hidden';
-    noscript.appendChild(iframe);
-    if (document.body.firstChild) {
-      document.body.insertBefore(noscript, document.body.firstChild);
-    }
   };
 
   if (!showBanner) return null;
@@ -112,21 +118,6 @@ export const useGTMConsent = (): void => {
     const consent = localStorage.getItem(CONSENT_KEY);
     
     if (consent === 'accepted') {
-      // Charger GTM si déjà accepté
-      const loadGTM = (): void => {
-        (function(w: any, d: Document, s: string, l: string, i: string) {
-          w[l] = w[l] || [];
-          w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-          const f = d.getElementsByTagName(s)[0];
-          if (!f || !f.parentNode) return;
-          const j = d.createElement(s) as HTMLScriptElement;
-          const dl = l !== 'dataLayer' ? '&l=' + l : '';
-          j.async = true;
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PR9QVL2R');
-      };
-      
       loadGTM();
     }
   }, []);

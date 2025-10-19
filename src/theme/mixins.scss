@@ -237,8 +237,8 @@
 }
 
 /* ===== FOCUS STATES ===== */
-@mixin focus-ring($color: $purple) {
-  outline: 2px solid $color;
+@mixin focus-ring {
+  outline: 2px solid #9c97ff; 
   outline-offset: 2px;
 }
 

@@ -35,6 +35,7 @@
 .services-item {
   @include flex-between;
   @include glass-effect(0.05);
+  @include focus-visible;
 
   width: 100%;
   padding: $space-md $space-lg;

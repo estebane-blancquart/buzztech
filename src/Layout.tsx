@@ -14,7 +14,7 @@ const Layout: React.FC = () => {
     <div className="layout">
       <Header />
 
-      <main>
+      <main id="main-content">
         <Scroller>
           <Outlet />
         </Scroller>

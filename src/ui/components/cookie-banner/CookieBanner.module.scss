@@ -86,9 +86,10 @@
 .btnPrimary,
 .btnSecondary {
   @include button-reset;
+  @include focus-visible;
   
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.875rem 1.5rem; 
+  min-height: 44px;         
   font-size: $p3;
   font-weight: $weight-bold;
   cursor: pointer;

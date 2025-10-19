@@ -18,7 +18,7 @@ export const seoData: Record<string, SEOData> = {
     ogTitle: 'BuzzTech - Votre expert informatique à Saint-Étienne',
     ogDescription:
       'Solutions informatiques professionnelles : dépannage, configuration PC et sites web.',
-    ogImage: '/og-home.jpg',
+    ogImage: '/images/og-home.jpg',
   },
 
   '/depannage': {
@@ -31,7 +31,7 @@ export const seoData: Record<string, SEOData> = {
     ogTitle: 'Dépannage Informatique Rapide - BuzzTech Saint-Étienne',
     ogDescription:
       'Réparation PC rapide : à distance, atelier ou domicile. Devis gratuit.',
-    ogImage: '/og-depannage.jpg',
+    ogImage: '/images/og-depannage.jpg',
   },
 
   '/configuration': {
@@ -44,7 +44,7 @@ export const seoData: Record<string, SEOData> = {
     ogTitle: 'Configuration PC Sur Mesure - BuzzTech Saint-Étienne',
     ogDescription:
       'PC assemblé selon vos besoins : gaming, bureautique, professionnel.',
-    ogImage: '/og-configuration.jpg',
+    ogImage: '/images/og-configuration.jpg',
   },
 
   '/creation-web': {
@@ -56,7 +56,7 @@ export const seoData: Record<string, SEOData> = {
       'création site web Saint-Étienne, site vitrine, développement web, responsive design, SEO Loire',
     ogTitle: 'Création Site Web Professionnel - BuzzTech Saint-Étienne',
     ogDescription: 'Sites web modernes et optimisés pour votre entreprise.',
-    ogImage: '/og-web.jpg',
+    ogImage: '/images/og-web.jpg',
   },
 };
 
