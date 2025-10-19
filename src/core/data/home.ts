@@ -6,7 +6,7 @@ export const homeData = {
     stats: [
       { value: "24/7", label: "Disponible" },
       { value: "Loire (42)", label: "Saint-Étienne" },
-      { value: "0€", label: "Devis" },
+      { value: "48H", label: "Intervention" },
     ],
   },
 
@@ -33,7 +33,7 @@ export const homeData = {
         icon: "💻",
         name: "Création Web",
         description: "Sites vitrines professionnels • Responsive et optimisés",
-        price: "À partir de 1200€",
+        price: "À partir de 1500€",
       },
     ],
   },

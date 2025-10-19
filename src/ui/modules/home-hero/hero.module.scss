@@ -3,7 +3,7 @@
   @include module-layout;
 
   color: $white;
-  gap: $space-lg;
+  gap: $space-md;
 }
 
 .video-section {
@@ -16,8 +16,8 @@
 }
 
 .background-video {
-  width: 15rem;
-  height: 15rem;
+  width: 20rem;
+  height: 20rem;
   border-radius: 50%;
   opacity: 0.9;
   object-fit: cover;
@@ -35,7 +35,6 @@
 /* ===== HERO CONTENT ===== */
 .hero-content {
   text-align: center;
-  margin-bottom: $space-md;
 }
 
 .hero-title {
@@ -49,7 +48,7 @@
 .hero-subtitle {
   opacity: 0.8;
   font-size: $font-p2;
-  margin-bottom: $space-sm;
+  margin-bottom: $space-md;
 }
 
 .hero-cta {
@@ -77,7 +76,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: $space-lg;
   width: 100%;
-  max-width: 500px;
 }
 
 .info-card {
