@@ -7,14 +7,13 @@
   height: 10vh;
   background: $black;
   font-family: $lato;
+  border-top: 1px solid rgba($purple, 0.15);
 }
 
 .contact {
   height: 60%;
 
   @include flex-between;
-
-  color: $white;
 }
 
 .tel {
@@ -25,7 +24,7 @@
 
   a {
     text-decoration: none;
-    color: $white;
+    color: $purple;
     transition: color 0.3s ease;
 
     &:hover {
@@ -39,6 +38,7 @@
 
   width: 33vw;
   font-size: $p2;
+  color: $purple;
 }
 
 .social {
@@ -48,7 +48,7 @@
   gap: 0.5rem;
 }
 
-.social-icon {
+.socialIcon {
   @include flex-center;
 
   width: 2rem;
@@ -62,6 +62,7 @@
   &:hover {
     background: $purple;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($purple, 0.3);
   }
 }
 
@@ -70,12 +71,12 @@
 
   @include flex-center;
 
-  color: rgba($white, 0.8);
+  color: rgba($white, 0.7);
   font-size: $p3;
 }
 
-.legal-link {
-  color: rgba($white, 0.8);
+.legalLink {
+  color: rgba($white, 0.7);
   text-decoration: none;
   transition: color 0.3s ease;
 

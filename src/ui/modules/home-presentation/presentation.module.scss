@@ -2,18 +2,19 @@
 .presentation {
   @include module-layout;
 
-  padding: $space-xxl 0;
+  padding: 0; /* Suppression du padding pour maximiser l'espace */
   background: $black;
   color: $white;
+  justify-content: center; /* Centre le contenu verticalement */
 }
 
 .header {
   text-align: center;
-  margin-bottom: $space-xl;
+  margin-bottom: $space-md; /* 24px - réduit */
 }
 
 .title {
-  margin: 0 0 $space-sm;
+  margin: 0; /* Suppression du margin-bottom */
   color: $white;
   font-size: $font-h1;
   font-weight: $font-weight-black;
@@ -28,8 +29,9 @@
 .services-list {
   @include flex-column-start;
 
-  gap: $space-md;
+  gap: $space-sm; /* 16px entre les cards - compact */
   width: 100%;
+  max-width: 850px;
 }
 
 /* ===== SERVICE ITEM ===== */
@@ -39,7 +41,7 @@
   @include focus-visible;
 
   width: 100%;
-  padding: $space-lg;
+  padding: $space-sm $space-md; /* Padding réduit pour gagner de l'espace */
   border-radius: $border-radius-lg;
   color: inherit;
   text-decoration: none;
@@ -56,12 +58,12 @@
 .service-left {
   @include flex-start;
 
-  gap: $space-md;
+  gap: $space-sm; /* 16px entre icône et texte - réduit */
   flex: 1;
 }
 
 .icon {
-  font-size: 2.5rem;
+  font-size: 2rem; /* Réduit de 2.5rem à 2rem */
   flex-shrink: 0;
   filter: grayscale(1) brightness(1.2);
   transition: filter 0.3s ease;
@@ -76,35 +78,45 @@
 }
 
 .service-name {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.25rem; /* Réduit à 4px */
   color: $white;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Réduit de 1.4rem */
   font-weight: $font-weight-black;
 }
 
 .service-desc {
   margin: 0;
   color: rgba($white, 0.7);
-  font-size: $font-p2;
-  line-height: 1.5;
+  font-size: $font-p3; /* Réduit à p3 */
+  line-height: 1.4;
 }
 
-/* ===== PRICE BADGE (2X PLUS GROS) ===== */
+/* ===== PRICE BADGE ===== */
 .service-price {
-  padding: $space-sm $space-md;
+  padding: $space-xs $space-sm; /* Padding réduit */
   border: 2px solid rgba($purple, 0.4);
   border-radius: $border-radius-round;
-  background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($light-purple, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba($purple, 0.15) 0%,
+    rgba($light-purple, 0.1) 100%
+  );
   color: $purple;
-  font-size: 1.3rem;
+  font-size: 1.1rem; /* Réduit de 1.3rem */
   font-weight: $font-weight-black;
   flex-shrink: 0;
   transition: all 0.3s ease;
   box-shadow: 0 2px 10px rgba($purple, 0.2);
+  width: 18vw;
+  text-align: center;
 
   .services-item:hover & {
     border-color: rgba($purple, 0.8);
-    background: linear-gradient(135deg, rgba($purple, 0.25) 0%, rgba($light-purple, 0.15) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba($purple, 0.25) 0%,
+      rgba($light-purple, 0.15) 100%
+    );
     box-shadow: 0 4px 20px rgba($purple, 0.4);
     transform: scale(1.05);
   }
@@ -113,23 +125,56 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .presentation {
-    padding: $space-xxl 0;
+    padding: 0;
+  }
+
+  .header {
+    margin-bottom: $space-lg; /* 32px */
+  }
+
+  .title {
+    margin-bottom: $space-xs; /* 8px entre titre et sous-titre */
   }
 
   .services-list {
-    width: 100%;
-    gap: $space-lg;
+    gap: $space-md; /* 24px entre les cards */
+  }
+
+  .services-item {
+    padding: $space-md $space-lg; /* Padding normal sur desktop */
+  }
+
+  .icon {
+    font-size: 2.5rem;
+  }
+
+  .service-name {
+    font-size: 1.4rem;
+    margin-bottom: $space-xs;
+  }
+
+  .service-desc {
+    font-size: $font-p2;
+    line-height: 1.5;
+  }
+
+  .service-price {
+    font-size: 1.3rem;
+    padding: $space-sm $space-md;
   }
 }
 
 @include tablet {
   .presentation {
-    padding: $space-xl 0;
+    padding: 0;
+  }
+
+  .header {
+    margin-bottom: $space-md; /* 24px */
   }
 
   .services-list {
-    width: 100%;
-    gap: $space-md;
+    gap: $space-sm; /* 16px entre les cards */
   }
 
   .title {
@@ -137,43 +182,44 @@
   }
 
   .services-item {
-    padding: $space-md;
+    padding: $space-sm $space-md; /* Padding réduit */
   }
 
   .service-name {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .service-price {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }
 
 @include mobile {
-  .presentation {
-    padding: $space-lg $space-sm;
+  .header {
+    margin-bottom: $space-sm; /* 16px */
   }
 
   .services-list {
     width: 100%;
-    gap: $space-sm;
+    gap: $space-md; /* 8px entre les cards - très compact */
+    margin-top: 4vh;
   }
 
   .title {
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* Réduit */
+    margin-bottom: 0;
   }
 
   .subtitle {
-    font-size: $font-p2;
+    font-size: $font-p3; /* Réduit */
   }
 
   /* MOBILE : LAYOUT EN COLONNE */
   .services-item {
     @include flex-column-center;
 
-    padding: $space-md;
     text-align: center;
-    gap: $space-sm;
+    gap: $space-xs; /* 8px entre les éléments */
 
     &:hover {
       transform: translateY(-4px) scale(0.98);
@@ -190,15 +236,16 @@
     @include flex-column-center;
 
     text-align: center;
-    gap: $space-sm;
+    gap: $space-xs; /* 8px entre icône et texte */
   }
 
   .icon {
-    font-size: 3rem;
+    display: none;
   }
 
   .service-name {
     font-size: $font-p1;
+    margin-bottom: 0.25rem;
   }
 
   .service-desc {
@@ -208,6 +255,7 @@
   .service-price {
     width: 100%;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Réduit */
+    padding: $space-xs $space-sm; /* Padding réduit */
   }
 }

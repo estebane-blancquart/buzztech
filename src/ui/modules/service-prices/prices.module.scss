@@ -23,7 +23,7 @@
   justify-content: space-between;
   height: 100%;
   min-height: 0;
-  padding: $space-lg;
+  padding: $space-md; /* Réduit de $space-lg à $space-md */
   border: 2px solid rgba($purple, 0.3);
   border-radius: $border-radius-lg;
   background: linear-gradient(135deg, rgba($dark-purple, 0.9) 0%, rgba($purple, 0.2) 100%);
@@ -54,7 +54,7 @@
   }
 
   @include mobile {
-    padding: $space-md;
+    padding: $space-sm; /* Encore plus compact sur mobile */
 
     &:active {
       transform: scale(0.98);
@@ -62,7 +62,7 @@
   }
 }
 
-/* ===== LAYOUT VARIANTS ===== */
+/* ===== LAYOUT VARIANTS - PAS DE CHANGEMENT ===== */
 .prices.layout-depannage-custom {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -157,16 +157,16 @@
   }
 }
 
-/* ===== CARD CONTENT ===== */
+/* ===== CARD CONTENT - OPTIMISÉ ===== */
 .card-header {
-  margin-bottom: $space-md;
+  margin-bottom: $space-sm; /* Réduit de $space-md à $space-sm */
   text-align: center;
 }
 
 .title {
-  margin: 0 0 $space-md;
+  margin: 0 0 $space-sm; /* Réduit de $space-md à $space-sm */
   color: $light-purple;
-  font-size: $font-p2;
+  font-size: $font-p3; /* Réduit de $font-p2 à $font-p3 */
   font-weight: $font-weight-bold;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -177,19 +177,19 @@
   justify-content: center;
   align-items: baseline;
   gap: 0.5rem;
-  margin-bottom: $space-md;
+  margin-bottom: $space-sm; /* Réduit de $space-md à $space-sm */
 }
 
 .price {
   color: $white;
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 2.8rem); /* Réduit max de 3.5rem à 2.8rem */
   font-weight: $font-weight-black;
   line-height: 1;
 }
 
 .unit {
   color: $purple;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.3rem); /* Réduit max de 1.5rem à 1.3rem */
   font-weight: $font-weight-bold;
 }
 
@@ -197,22 +197,23 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: $space-sm;
+  gap: $space-xs; /* Réduit de $space-sm à $space-xs (8px au lieu de 16px) */
+  overflow-y: auto; /* Permet le scroll si nécessaire */
 }
 
 .feature-item {
   display: flex;
   align-items: flex-start;
-  gap: $space-sm;
+  gap: $space-xs; /* Réduit de $space-sm à $space-xs */
   color: rgba($white, 0.9);
-  font-size: $font-p3;
-  line-height: 1.6;
+  font-size: $font-small; /* Réduit de $font-p3 à $font-small */
+  line-height: 1.4; /* Réduit de 1.6 à 1.4 */
 
   &::before {
     content: '✓';
     flex-shrink: 0;
     color: $purple;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Réduit de 1.2rem */
     font-weight: $font-weight-bold;
   }
 
@@ -223,13 +224,13 @@
 }
 
 /* ===== RESPONSIVE ===== */
-@include tablet {
+@include desktop {
   .prices {
-    gap: $space-md;
+    gap: $space-lg;
   }
 
   .card {
-    padding: $space-md;
+    padding: $space-md; /* Padding standard desktop */
   }
 
   .title {
@@ -237,7 +238,42 @@
   }
 
   .price {
-    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+  }
+}
+
+@include tablet {
+  .prices {
+    gap: $space-md;
+  }
+
+  .card {
+    padding: $space-sm; /* Padding réduit tablet */
+  }
+
+  .card-header {
+    margin-bottom: $space-xs; /* 8px */
+  }
+
+  .title {
+    font-size: $font-small;
+    margin-bottom: $space-xs;
+  }
+
+  .price {
+    font-size: clamp(1.8rem, 4.5vw, 2.3rem);
+  }
+
+  .unit {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+  }
+
+  .features {
+    gap: 0.5rem; /* 8px */
+  }
+
+  .feature-item {
+    font-size: 0.7rem;
   }
 }
 
@@ -246,28 +282,44 @@
     gap: $space-sm;
   }
 
+  .card {
+    padding: $space-sm; /* 16px */
+  }
+
   .card-header {
-    margin-bottom: $space-sm;
+    margin-bottom: $space-xs; /* 8px */
   }
 
   .title {
-    font-size: $font-small;
-    margin-bottom: $space-sm;
+    font-size: 0.65rem;
+    margin-bottom: $space-xs;
+    letter-spacing: 1px;
   }
 
   .price-section {
     gap: 0.25rem;
+    margin-bottom: $space-xs;
+  }
+
+  .price {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .unit {
+    font-size: clamp(0.8rem, 4vw, 1rem);
   }
 
   .features {
-    gap: 0.75rem;
+    gap: 0.4rem;
   }
 
   .feature-item {
-    font-size: 0.85rem;
+    font-size: 0.65rem;
+    line-height: 1.3;
+    gap: 0.4rem;
 
     &::before {
-      font-size: 1rem;
+      font-size: 0.85rem;
     }
   }
 }

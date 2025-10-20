@@ -3,7 +3,7 @@
   @include module-layout;
 
   color: $white;
-  gap: $space-md;
+  gap: $space-lg; /* 32px - équilibré pour tenir dans 100vh */
 }
 
 .video-section {
@@ -42,13 +42,13 @@
 
   font-size: $font-h2;
   font-weight: $font-weight-black;
-  margin-bottom: $space-xs;
+  margin-bottom: $space-sm; /* 16px - compact mais lisible */
 }
 
 .hero-subtitle {
   opacity: 0.8;
   font-size: $font-p2;
-  margin-bottom: $space-md;
+  margin-bottom: $space-lg; /* 32px - suffisant avant le CTA */
 }
 
 .hero-cta {
@@ -56,7 +56,7 @@
   @include hover-lift;
   @include focus-visible;
 
-  padding: 1rem 2rem; 
+  padding: 1rem 2rem; /* Padding standard */
   min-height: 44px;
   border-radius: $border-radius-round;
   background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
@@ -74,15 +74,16 @@
 .info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: $space-lg;
+  gap: $space-lg; /* 32px - bon équilibre */
   width: 100%;
+  max-width: 850px;
 }
 
 .info-card {
   @include glass-card;
 
   position: relative;
-  padding: $space-sm;
+  padding: $space-md; /* 24px - bien équilibré */
   text-align: center;
   transition: $transition-smooth;
   overflow: hidden;
@@ -102,7 +103,7 @@
   font-size: $font-h3;
   font-weight: $font-weight-bold;
   line-height: 1;
-  margin-bottom: $space-xs;
+  margin-bottom: $space-xs; /* 8px - compact */
 }
 
 .info-label {
@@ -117,22 +118,22 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .hero {
-    gap: $space-xl;
+    gap: $space-xl; /* 48px - un peu plus d'espace sur grand écran */
   }
 }
 
 @include tablet {
   .hero {
-    gap: $space-lg;
+    gap: $space-lg; /* 32px */
   }
 
   .info-grid {
-    gap: $space-md;
-    max-width: 400px;
+    gap: $space-md; /* 24px */
+    max-width: 500px;
   }
 
   .info-card {
-    padding: 0.8rem;
+    padding: $space-sm; /* 16px */
   }
 
   .info-value {
@@ -142,46 +143,46 @@
 
 @include mobile {
   .hero {
-    padding: $space-sm 0;
-    gap: $space-md;
+    padding: $space-sm 0; /* 16px vertical - compact */
+    gap: $space-md; /* 24px */
   }
 
   .hero-content {
-    margin-bottom: $space-sm;
+    margin-bottom: $space-sm; /* 16px */
   }
 
   .hero-title {
     font-size: $font-h3;
+    margin-bottom: $space-sm;
   }
 
   .hero-subtitle {
     font-size: $font-p3;
-    margin-bottom: 0.8rem;
+    margin-bottom: $space-md; /* 24px */
   }
 
   .hero-cta {
-    padding: 0.6rem 1.2rem;
+    padding: 0.75rem 1.5rem;
     font-size: $font-p3;
   }
 
   .background-video {
-    width: 12rem;
-    height: 12rem;
+    width: 13rem; /* 208px - taille raisonnable */
+    height: 13rem;
   }
 
   .info-grid {
     grid-template-columns: 1fr;
-    gap: 0.8rem;
-    max-width: 250px;
-    padding: 0 $space-sm;
+    gap: $space-sm; /* 16px - compact mais lisible */
   }
 
   .info-card {
-    padding: 0.8rem;
+    padding: $space-sm; /* 16px */
   }
 
   .info-value {
     font-size: 1.2rem;
+    margin-bottom: $space-xs;
   }
 
   .info-label {

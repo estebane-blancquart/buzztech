@@ -3,26 +3,25 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   height: 100dvh;
-  padding: 0 20%;
+  width: 100%;
   background: $black;
   color: $white;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  gap: $space-xxl; /* 64px au lieu de 6rem (96px) */
 }
 
 .video-wrapper {
   position: relative;
   aspect-ratio: 16 / 9;
-  border-radius: 12px;
+  border-radius: $border-radius-lg;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba($black, 0.25);
 }
 
 .play-button {
-  width: 80px;
-  height: 80px;
+  width: 70px; /* Réduit de 80px */
+  height: 70px;
   border: 2px solid rgba($white, 0.8);
   border-radius: 50%;
   background: rgba($black, 0.3);
@@ -33,7 +32,7 @@
 
   span {
     color: $white;
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Réduit de 1.5rem */
     margin-left: 4px;
   }
 }
@@ -64,7 +63,7 @@
   height: 100%;
 
   iframe {
-    border-radius: 12px;
+    border-radius: $border-radius-lg;
   }
 }
 
@@ -72,14 +71,14 @@
   @include flex-column-start;
 
   justify-content: center;
-  gap: 2rem;
+  gap: $space-lg; /* 32px au lieu de 2rem */
 }
 
 .title {
   margin: 0;
   background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-  font-size: $h1;
-  font-weight: $big-weight;
+  font-size: $font-h1;
+  font-weight: $font-weight-black;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -88,7 +87,7 @@
   margin: 0;
   color: rgba($white, 0.9);
   opacity: 0.9;
-  font-size: $p1;
+  font-size: $font-p1;
   line-height: 1.6;
 }
 
@@ -96,7 +95,7 @@
   @include flex-column-start;
 
   justify-content: center;
-  gap: 1rem;
+  gap: $space-sm; /* 16px au lieu de 1rem */
   width: 100%;
 }
 
@@ -104,12 +103,12 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 1rem;
+  padding: $space-sm; /* 16px au lieu de 1rem */
   border: 1px solid rgba($white, 0.1);
-  border-radius: 8px;
+  border-radius: $border-radius-md;
   background: rgba($white, 0.05);
   transition: all 0.3s ease;
-  gap: 1rem;
+  gap: $space-sm; /* 16px au lieu de 1rem */
 
   &:hover {
     background: rgba($purple, 0.1);
@@ -128,32 +127,8 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .video {
-    gap: 6rem;
-    padding: 0 20%;
-  }
-
-  .play-button {
-    width: 80px;
-    height: 80px;
-
-    span {
-      font-size: 1.5rem;
-    }
-  }
-
-  .title {
-    font-size: $h1;
-  }
-
-  .description {
-    font-size: $p1;
-  }
-}
-
-@include tablet {
-  .video {
-    gap: 4rem;
-    padding: 0 15%;
+    gap: $space-xxl; /* 64px */
+    padding: 0 20vw;
   }
 
   .play-button {
@@ -166,53 +141,119 @@
   }
 
   .title {
-    font-size: 2rem;
+    font-size: $font-h1;
   }
 
   .description {
-    font-size: $p2;
+    font-size: $font-p1;
+  }
+
+  .text {
+    gap: $space-lg;
+  }
+
+  .highlights {
+    gap: $space-sm;
+  }
+
+  .highlight {
+    padding: $space-sm;
+    max-width: 500px;
+  }
+}
+
+@include tablet {
+  .video {
+    gap: $space-xl; /* 48px au lieu de 4rem */
+    width: 60%;
+    }
+
+  .play-button {
+    width: 60px; /* Réduit de 70px */
+    height: 60px;
+
+    span {
+      font-size: 1.2rem;
+    }
+  }
+
+  .title {
+    font-size: $font-h2;
+  }
+
+  .description {
+    font-size: $font-p2;
+  }
+
+  .text {
+    gap: $space-md;
+  }
+
+  .highlights {
+    gap: $space-xs;
   }
 
   .highlight {
     max-width: 280px;
+    padding: $space-xs $space-sm;
   }
 }
 
 @include mobile {
   .video {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-rows: auto auto; /* Lignes automatiques */
+    gap: $space-md; /* 24px entre texte et vidéo */
+    align-content: center; /* Centre verticalement le contenu */
+    justify-items: center; /* Centre horizontalement les éléments */
+    width: 60%;
   }
 
   .play-button {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 
     span {
-      font-size: 1.25rem;
+      font-size: 1rem;
     }
   }
 
+  .video-wrapper {
+    order: 2;
+    width: 100%; /* Prend toute la largeur disponible */
+
+  }
+
   .text {
+    order: 1;
     align-items: center;
     text-align: center;
+    gap: $space-sm; /* 16px entre les éléments */
   }
 
   .title {
-    font-size: 1.8rem;
+    font-size: $font-h3;
+    margin-bottom: 0;
   }
 
   .description {
-    font-size: $p2;
+    font-size: $font-p3;
+    margin-bottom: 0;
   }
 
   .highlights {
     align-items: center;
+    gap: $space-xs; /* 8px */
   }
 
   .highlight {
     justify-content: center;
-    max-width: 250px;
+    padding: $space-xs;
+    gap: $space-xs;
+  }
+
+  .icon {
+    width: 24px;
+    font-size: 1rem;
   }
 }

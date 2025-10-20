@@ -4,14 +4,14 @@
 
   color: $white;
   text-align: center;
-  gap: $space-lg;
+  gap: $space-md; /* 24px au lieu de 32px - plus compact */
 
   &:focus {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 
   &:focus:not(:focus-visible) {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 }
 
@@ -63,8 +63,8 @@
   @include flex-column-center;
   @include hover-lift;
 
-  gap: $space-sm;
-  margin-top: $space-lg;
+  gap: $space-xs; /* 8px au lieu de 16px */
+  margin-top: $space-md; /* 24px au lieu de 32px */
   opacity: 0.6;
   cursor: pointer;
   transition: $transition-smooth;
@@ -101,7 +101,7 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .what {
-    gap: 2.5rem;
+    gap: $space-lg; /* 32px au lieu de 2.5rem (40px) */
   }
 
   .badge {
@@ -110,7 +110,8 @@
   }
 
   .scroll-indicator {
-    margin-top: $space-lg;
+    margin-top: $space-lg; /* 32px */
+    gap: $space-sm; /* 16px sur desktop */
 
     span {
       font-size: $font-p3;
@@ -121,7 +122,7 @@
 @include tablet {
   .what {
     width: 70%;
-    gap: $space-lg;
+    gap: $space-md; /* 24px */
   }
 
   .badge {
@@ -134,7 +135,8 @@
   }
 
   .scroll-indicator {
-    margin-top: $space-md;
+    margin-top: $space-md; /* 24px */
+    gap: $space-xs; /* 8px */
 
     span {
       font-size: 0.8rem;
@@ -149,7 +151,7 @@
 @include mobile {
   .what {
     width: 90%;
-    gap: $space-md;
+    gap: $space-sm; /* 16px au lieu de 24px - plus compact */
     padding: 0 $space-sm;
   }
 
@@ -163,7 +165,8 @@
   }
 
   .scroll-indicator {
-    margin-top: $space-sm;
+    margin-top: $space-sm; /* 16px */
+    gap: $space-xs; /* 8px */
 
     span {
       font-size: $font-small;
