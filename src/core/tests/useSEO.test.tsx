@@ -39,7 +39,7 @@ describe('useSEO', () => {
 
     renderHook(() => useSEO(), { wrapper: TestWrapper });
 
-    expect(document.title).toContain('BuzzTech - Solutions Informatiques');
+    expect(document.title).toContain('BuzzTech - Services Informatiques');
   });
 
   it('should set title for depannage page', () => {
@@ -122,7 +122,7 @@ describe('useSEO', () => {
 
     renderHook(() => useSEO(), { wrapper: TestWrapper });
 
-    expect(document.title).toContain('BuzzTech - Solutions Informatiques');
+    expect(document.title).toContain('BuzzTech - Services Informatiques');
   });
 
   it('should update when pathname changes', () => {
@@ -130,7 +130,7 @@ describe('useSEO', () => {
 
     const { rerender } = renderHook(() => useSEO(), { wrapper: TestWrapper });
 
-    expect(document.title).toContain('Solutions Informatiques');
+    expect(document.title).toContain('Services Informatiques');
 
     // Change pathname
     mockUseLocation.mockReturnValue({ pathname: '/depannage' });

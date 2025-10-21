@@ -1,147 +1,168 @@
-/* ===== PRESENTATION BASE ===== */
+/* ===== PRESENTATION SECTION ===== */
 .presentation {
   @include module-layout;
-
-  padding: 0; /* Suppression du padding pour maximiser l'espace */
+  width: 100%;
+  justify-content: center;
+  gap: $space-xl;
+  padding: 0;
   background: $black;
   color: $white;
-  justify-content: center; /* Centre le contenu verticalement */
 }
 
+/* ===== HEADER ===== */
 .header {
   text-align: center;
-  margin-bottom: $space-md; /* 24px - réduit */
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
 }
 
 .title {
-  margin: 0; /* Suppression du margin-bottom */
-  color: $white;
-  font-size: $font-h1;
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: $font-weight-black;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
   margin: 0;
-  color: $gray;
-  font-size: $font-p1;
+  color: $white;
+  opacity: 0.75;
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-weight: $font-weight-normal;
+  line-height: 1.5;
 }
 
+/* ===== SERVICES LIST ===== */
 .services-list {
   @include flex-column-start;
 
-  gap: $space-sm; /* 16px entre les cards - compact */
+  gap: $space-md;
   width: 100%;
-  max-width: 850px;
 }
 
-/* ===== SERVICE ITEM ===== */
+/* ===== SERVICE ITEM (CARD) ===== */
 .services-item {
   @include flex-between;
-  @include glass-effect(0.05);
   @include focus-visible;
 
   width: 100%;
-  padding: $space-sm $space-md; /* Padding réduit pour gagner de l'espace */
+  padding: $space-md $space-lg;
+  border: 1px solid rgba($purple, 0.3);
   border-radius: $border-radius-lg;
+  background: linear-gradient(
+    135deg,
+    rgba($purple, 0.1) 0%,
+    rgba($purple, 0.05) 100%
+  );
   color: inherit;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
 
   &:hover {
-    background: rgba($white, 0.08);
-    transform: translateX(8px) scale(1.02);
-    border-color: rgba($purple, 0.5);
-    box-shadow: 0 8px 30px rgba($purple, 0.3);
+    transform: translateY(-6px) rotateX(3deg);
+    border-color: $purple;
+    background: linear-gradient(
+      135deg,
+      rgba($purple, 0.2) 0%,
+      rgba($purple, 0.1) 100%
+    );
+    box-shadow: 0 16px 48px rgba($purple, 0.4);
   }
 }
 
 .service-left {
   @include flex-start;
 
-  gap: $space-sm; /* 16px entre icône et texte - réduit */
+  gap: $space-md;
   flex: 1;
 }
 
+/* ===== ICON ===== */
 .icon {
-  font-size: 2rem; /* Réduit de 2.5rem à 2rem */
+  font-size: 2.5rem;
   flex-shrink: 0;
-  filter: grayscale(1) brightness(1.2);
-  transition: filter 0.3s ease;
+  filter: grayscale(0.4);
+  transition: all $transition-fast;
 
   .services-item:hover & {
-    filter: grayscale(0) brightness(1);
+    filter: grayscale(0);
+    transform: scale(1.1) rotate(5deg);
   }
 }
 
+/* ===== SERVICE INFO ===== */
 .service-info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
   flex: 1;
 }
 
 .service-name {
-  margin: 0 0 0.25rem; /* Réduit à 4px */
+  margin: 0;
   color: $white;
-  font-size: 1.2rem; /* Réduit de 1.4rem */
+  font-size: 1.3rem;
   font-weight: $font-weight-black;
+  line-height: 1.2;
 }
 
 .service-desc {
   margin: 0;
-  color: rgba($white, 0.7);
-    /* Réduit à p3 */
+  color: rgba($white, 0.75);
+  font-size: $font-p3;
   line-height: 1.4;
 }
 
 /* ===== PRICE BADGE ===== */
 .service-price {
-  padding: $space-xs $space-sm; /* Padding réduit */
+  padding: $space-xs $space-md;
   border: 2px solid rgba($purple, 0.4);
-  border-radius: $border-radius-round;
-  background: linear-gradient(
-    135deg,
-    rgba($purple, 0.15) 0%,
-    rgba($light-purple, 0.1) 100%
-  );
+  border-radius: $border-radius-lg;
+  background: transparent;
   color: $purple;
-  font-size: 1.1rem; /* Réduit de 1.3rem */
+  font-size: 1.2rem;
   font-weight: $font-weight-black;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   flex-shrink: 0;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba($purple, 0.2);
-  width: 18vw;
+  min-width: 140px;
   text-align: center;
+  transition: all $transition-fast;
 
   .services-item:hover & {
-    border-color: rgba($purple, 0.8);
-    background: linear-gradient(
-      135deg,
-      rgba($purple, 0.25) 0%,
-      rgba($light-purple, 0.15) 100%
-    );
-    box-shadow: 0 4px 20px rgba($purple, 0.4);
+    background: $purple;
+    color: $black;
+    border-color: $purple;
     transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba($purple, 0.5);
   }
 }
 
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .presentation {
-    padding: 0;
+    gap: $space-xl;
+    padding: $desktop-padding;
   }
 
   .header {
-    margin-bottom: $space-lg; /* 32px */
-  }
-
-  .title {
-    margin-bottom: $space-xs; /* 8px entre titre et sous-titre */
+    gap: $space-xs;
   }
 
   .services-list {
-    gap: $space-md; /* 24px entre les cards */
+    gap: $space-md;
   }
 
   .services-item {
-    padding: $space-md $space-lg; /* Padding normal sur desktop */
+    padding: $space-md $space-lg;
   }
 
   .icon {
@@ -149,86 +170,88 @@
   }
 
   .service-name {
-    font-size: 1.4rem;
-    margin-bottom: $space-xs;
+    font-size: 1.3rem;
   }
 
   .service-desc {
-    font-size: $font-p2;
-    line-height: 1.5;
+    font-size: $font-p3;
   }
 
   .service-price {
-    font-size: 1.3rem;
-    padding: $space-sm $space-md;
+    font-size: 1.2rem;
+    min-width: 140px;
   }
 }
 
 @include tablet {
   .presentation {
-    padding: 0;
+    gap: $space-lg;
   }
 
   .header {
-    margin-bottom: $space-md; /* 24px */
+    gap: $space-xs;
   }
 
   .services-list {
-    gap: $space-sm; /* 16px entre les cards */
-  }
-
-  .title {
-    font-size: $font-h2;
+    gap: $space-sm;
   }
 
   .services-item {
-    padding: $space-sm $space-md; /* Padding réduit */
+    padding: $space-sm $space-md;
+  }
+
+  .icon {
+    font-size: 2rem;
   }
 
   .service-name {
     font-size: 1.1rem;
   }
 
+  .service-desc {
+    font-size: 0.85rem;
+  }
+
   .service-price {
     font-size: 1rem;
+    min-width: 120px;
+    padding: $space-xs $space-sm;
   }
 }
 
 @include mobile {
-  .header {
-    margin-bottom: $space-sm; /* 16px */
+  .presentation {
+    width: 90%;
+    gap: $space-md;
   }
 
-  .services-list {
-    width: 100%;
-    gap: $space-md; /* 8px entre les cards - très compact */
-    margin-top: 4vh;
+  .header {
+    gap: $space-xs;
+    margin-bottom: $space-sm;
   }
 
   .title {
-    font-size: 1.6rem; /* Réduit */
-    margin-bottom: 0;
+    font-size: clamp(1.5rem, 6vw, 1.8rem);
   }
 
   .subtitle {
-      /* Réduit */
+    font-size: 0.85rem;
   }
 
-  /* MOBILE : LAYOUT EN COLONNE */
+  .services-list {
+    gap: $space-sm;
+  }
+
+  /* MOBILE : Layout en colonne */
   .services-item {
     @include flex-column-center;
 
     text-align: center;
-    gap: $space-xs; /* 8px entre les éléments */
+    padding: $space-md;
+    gap: $space-sm;
 
     &:hover {
       transform: translateY(-4px) scale(0.98);
-    }
-
-    /* TAP FEEDBACK MOBILE */
-    &:active {
-      transform: scale(0.96);
-      transition: transform 0.1s ease;
     }
   }
 
@@ -236,26 +259,29 @@
     @include flex-column-center;
 
     text-align: center;
-    gap: $space-xs; /* 8px entre icône et texte */
+    gap: $space-xs;
   }
 
   .icon {
-    display: none;
+    font-size: 2.5rem;
+  }
+
+  .service-info {
+    gap: $space-xs;
   }
 
   .service-name {
-    font-size: $font-p1;
-    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
   }
 
   .service-desc {
-     
+    font-size: 0.8rem;
   }
 
   .service-price {
     width: 100%;
-    text-align: center;
-    font-size: 1rem; /* Réduit */
-    padding: $space-xs $space-sm; /* Padding réduit */
+    max-width: 200px;
+    font-size: 1rem;
+    padding: $space-xs $space-md;
   }
 }

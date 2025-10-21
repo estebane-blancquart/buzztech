@@ -1,4 +1,4 @@
-/* ===== VIDEO BASE ===== */
+/* ===== VIDEO SECTION ===== */
 .video {
   display: grid;
   justify-content: center;
@@ -8,32 +8,23 @@
   background: $black;
   color: $white;
   grid-template-columns: 1fr 1fr;
-  gap: $space-xxl; /* 64px au lieu de 6rem (96px) */
+  gap: $space-xxl;
+  padding: 0 10vw;
 }
 
+/* ===== VIDEO PLAYER ===== */
 .video-wrapper {
   position: relative;
   aspect-ratio: 16 / 9;
   border-radius: $border-radius-lg;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba($black, 0.25);
-}
+  border: 1px solid rgba($purple, 0.3);
+  box-shadow: 0 20px 60px rgba($black, 0.4);
+  transition: all $transition-fast;
 
-.play-button {
-  width: 70px; /* Réduit de 80px */
-  height: 70px;
-  border: 2px solid rgba($white, 0.8);
-  border-radius: 50%;
-  background: rgba($black, 0.3);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-
-  @include flex-center;
-
-  span {
-    color: $white;
-    font-size: 1.3rem; /* Réduit de 1.5rem */
-    margin-left: 4px;
+  &:hover {
+    border-color: $purple;
+    box-shadow: 0 20px 60px rgba($purple, 0.3);
   }
 }
 
@@ -41,20 +32,37 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, $purple 0%, #6b5fb5 100%);
+  transition: all $transition-fast;
   cursor: pointer;
 
   @include flex-center;
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
 
     .play-button {
-      background: rgba($white, 0.1);
-      transform: scale(1.1);
+      background: $purple;
+      transform: scale(1.15);
       border-color: $white;
     }
+  }
+}
+
+.play-button {
+  width: 70px;
+  height: 70px;
+  border: 2px solid rgba($white, 0.8);
+  border-radius: 50%;
+  background: transparent;
+  transition: all $transition-fast;
+
+  @include flex-center;
+
+  span {
+    color: $white;
+    font-size: 1.3rem;
+    margin-left: 4px;
   }
 }
 
@@ -67,68 +75,108 @@
   }
 }
 
+/* ===== TEXT CONTENT ===== */
 .text {
   @include flex-column-start;
 
   justify-content: center;
-  gap: $space-lg; /* 32px au lieu de 2rem */
+  gap: $space-lg;
 }
 
 .title {
   margin: 0;
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-  font-size: $font-h1;
+  font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: $font-weight-black;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .description {
   margin: 0;
-  color: rgba($white, 0.9);
-  opacity: 0.9;
-  font-size: $font-p1;
+  color: $white;
+  opacity: 0.85;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: $font-weight-normal;
   line-height: 1.6;
 }
 
+/* ===== HIGHLIGHTS (Social Links) ===== */
 .highlights {
   @include flex-column-start;
 
   justify-content: center;
-  gap: $space-sm; /* 16px au lieu de 1rem */
+  gap: $space-sm;
   width: 100%;
+  max-width: 500px;
 }
 
 .highlight {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: $space-sm; /* 16px au lieu de 1rem */
-  border: 1px solid rgba($white, 0.1);
-  border-radius: $border-radius-md;
-  background: rgba($white, 0.05);
-  transition: all 0.3s ease;
-  gap: $space-sm; /* 16px au lieu de 1rem */
+  padding: $space-sm $space-md;
+  border: 1px solid rgba($purple, 0.3);
+  border-radius: $border-radius-lg;
+  background: linear-gradient(
+    135deg,
+    rgba($purple, 0.1) 0%,
+    rgba($purple, 0.05) 100%
+  );
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  gap: $space-sm;
+  cursor: pointer;
+  font-weight: $font-weight-bold;
 
   &:hover {
-    background: rgba($purple, 0.1);
-    transform: translateX(5px);
-    border-color: rgba($purple, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba($purple, 0.2) 0%,
+      rgba($purple, 0.1) 100%
+    );
+    transform: translateX(8px) rotateX(2deg);
+    border-color: $purple;
+    box-shadow: 0 8px 24px rgba($purple, 0.3);
   }
 }
 
 .icon {
   width: 30px;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   text-align: center;
   flex-shrink: 0;
+  filter: grayscale(0.3);
+  transition: all $transition-fast;
+
+  .highlight:hover & {
+    filter: grayscale(0);
+    transform: scale(1.1);
+  }
 }
 
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .video {
-    gap: $space-xxl; /* 64px */
-    padding: 0 20vw;
+    gap: $space-xxl;
+    padding: $desktop-padding;
+
+  }
+
+  .text {
+    gap: $space-lg;
+  }
+
+  .highlights {
+    gap: $space-sm;
+    max-width: 500px;
+  }
+
+  .highlight {
+    padding: $space-sm $space-md;
   }
 
   .play-button {
@@ -139,37 +187,37 @@
       font-size: 1.3rem;
     }
   }
-
-  .title {
-    font-size: $font-h1;
-  }
-
-  .description {
-    font-size: $font-p1;
-  }
-
-  .text {
-    gap: $space-lg;
-  }
-
-  .highlights {
-    gap: $space-sm;
-  }
-
-  .highlight {
-    padding: $space-sm;
-    max-width: 500px;
-  }
 }
 
 @include tablet {
   .video {
-    gap: $space-xl; /* 48px au lieu de 4rem */
-    width: 60%;
-    }
+    gap: $space-xl;
+    padding: 0 5vw;
+  }
+
+  .text {
+    gap: $space-md;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .description {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  }
+
+  .highlights {
+    gap: $space-xs;
+    max-width: 400px;
+  }
+
+  .highlight {
+    padding: $space-xs $space-sm;
+  }
 
   .play-button {
-    width: 60px; /* Réduit de 70px */
+    width: 60px;
     height: 60px;
 
     span {
@@ -177,36 +225,51 @@
     }
   }
 
-  .title {
-    font-size: $font-h2;
-  }
-
-  .description {
-    font-size: $font-p2;
-  }
-
-  .text {
-    gap: $space-md;
-  }
-
-  .highlights {
-    gap: $space-xs;
-  }
-
-  .highlight {
-    max-width: 280px;
-    padding: $space-xs $space-sm;
+  .icon {
+    font-size: 1.3rem;
+    width: 26px;
   }
 }
 
 @include mobile {
   .video {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto; /* Lignes automatiques */
-    gap: $space-md; /* 24px entre texte et vidéo */
-    align-content: center; /* Centre verticalement le contenu */
-    justify-items: center; /* Centre horizontalement les éléments */
-    width: 60%;
+    grid-template-rows: auto auto;
+    gap: $space-lg;
+    align-content: center;
+    justify-items: center;
+    padding: 0 5vw;
+  }
+
+  .video-wrapper {
+    order: 2;
+    width: 100%;
+  }
+
+  .text {
+    order: 1;
+    align-items: center;
+    text-align: center;
+    gap: $space-sm;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 6vw, 1.8rem);
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .highlights {
+    align-items: center;
+    gap: $space-xs;
+    max-width: 100%;
+  }
+
+  .highlight {
+    justify-content: center;
+    padding: $space-xs $space-sm;
   }
 
   .play-button {
@@ -218,42 +281,8 @@
     }
   }
 
-  .video-wrapper {
-    order: 2;
-    width: 100%; /* Prend toute la largeur disponible */
-
-  }
-
-  .text {
-    order: 1;
-    align-items: center;
-    text-align: center;
-    gap: $space-sm; /* 16px entre les éléments */
-  }
-
-  .title {
-    font-size: $font-h3;
-    margin-bottom: 0;
-  }
-
-  .description {
-     
-    margin-bottom: 0;
-  }
-
-  .highlights {
-    align-items: center;
-    gap: $space-xs; /* 8px */
-  }
-
-  .highlight {
-    justify-content: center;
-    padding: $space-xs;
-    gap: $space-xs;
-  }
-
   .icon {
     width: 24px;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }

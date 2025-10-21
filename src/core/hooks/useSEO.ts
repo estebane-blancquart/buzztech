@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { seoData, schemaOrgData, SEOData } from '@/core/data/seo';
 
 const getDefaultSEO = (): SEOData => ({
-  title: 'BuzzTech - Solutions Informatiques',
-  description: 'Solutions informatiques professionnelles à Saint-Étienne',
+  title: 'BuzzTech - Services Informatiques',
+  description: 'Services informatiques professionnelles à Saint-Étienne',
   keywords: 'informatique, Saint-Étienne, dépannage, BuzzTech',
 });
 

@@ -1,5 +1,6 @@
 /* ===== BREAKPOINTS ===== */
 @use 'sass:math';
+@use 'variables' as *; // Import des variables pour utiliser dans les mixins
 
 @mixin mobile {
   @media (width <= 768px) {
@@ -135,12 +136,10 @@
 }
 
 /* ===== GLASSMORPHISM ===== */
-
-/* ===== GLASSMORPHISM ===== */
 @mixin glass-card {
   border: 1px solid rgba(#e8e8e8, 0.1);
-  border-radius: 12px; // $border-radius-lg
-  background: rgba(#e8e8e8, 0.05); // $white = #e8e8e8
+  border-radius: 12px;
+  background: rgba(#e8e8e8, 0.05);
   backdrop-filter: blur(10px);
 }
 
@@ -191,8 +190,23 @@
   }
 }
 
+// NOUVEAU : Container aligné pour header, footer, et modules
+@mixin container-aligned {
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding: $container-padding-mobile;
+
+  @include tablet {
+    padding: $container-padding-tablet;
+  }
+
+  @include desktop {
+    padding: $container-padding-desktop;
+  }
+}
+
 @mixin module-layout {
-  width: 60%;
   height: 60%;
 
   @include flex-column-center;
@@ -238,7 +252,7 @@
 
 /* ===== FOCUS STATES ===== */
 @mixin focus-ring {
-  outline: 2px solid #9c97ff; 
+  outline: 2px solid #9c97ff;
   outline-offset: 2px;
 }
 
@@ -247,5 +261,130 @@
 
   &:focus-visible {
     @include focus-ring;
+  }
+}
+
+/* ===== NOUVEAUX COMPONENT MIXINS ===== */
+
+/* ----- CARDS SUPPLÉMENTAIRES ----- */
+@mixin card-interactive {
+  @include glass-card;
+  cursor: pointer;
+  transition: $transition-smooth;
+
+  &:hover {
+    border-color: rgba($purple, 0.3);
+    background: rgba($white, 0.08);
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+@mixin card-compact {
+  padding: $space-sm $space-md;
+  border: 1px solid rgba($white, 0.1);
+  border-radius: $border-radius-md;
+  background: rgba($white, 0.05);
+  backdrop-filter: $glass-blur;
+  transition: $transition-smooth;
+}
+
+/* ----- BADGES ----- */
+@mixin badge-base {
+  padding: $space-xs $space-md;
+  border-radius: $border-radius-round;
+  font-size: $font-body-sm;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: $transition-smooth;
+  display: inline-block;
+}
+
+@mixin badge-outlined {
+  @include badge-base;
+  border: 1px solid rgba($white, 0.2);
+  background: rgba($white, 0.1);
+  color: $white;
+
+  &:hover {
+    background: rgba($purple, 0.1);
+    border-color: rgba($purple, 0.3);
+  }
+}
+
+/* ----- PRICING COMPONENTS ----- */
+@mixin pricing-badge {
+  padding: $space-xs $space-sm;
+  border: 2px solid rgba($purple, 0.4);
+  border-radius: $border-radius-round;
+  background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($light-purple, 0.1) 100%);
+  color: $purple;
+  font-size: $font-body-lg;
+  font-weight: $font-weight-black;
+  box-shadow: 0 2px 10px rgba($purple, 0.2);
+  transition: $transition-smooth;
+}
+
+/* ----- ICONS ----- */
+@mixin icon-container($size: 3rem) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $size;
+  height: $size;
+  border-radius: $border-radius-md;
+  background: rgba($purple, 0.1);
+  color: $purple;
+  font-size: $size * 0.5;
+  flex-shrink: 0;
+  transition: $transition-smooth;
+}
+
+@mixin icon-hover {
+  &:hover {
+    background: rgba($purple, 0.2);
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+/* ----- SECTIONS ----- */
+@mixin section-spacing {
+  padding: $space-xxl 0;
+
+  @include tablet {
+    padding: $space-xl 0;
+  }
+
+  @include mobile {
+    padding: $space-lg 0;
+  }
+}
+
+@mixin section-header {
+  text-align: center;
+  margin-bottom: $space-xl;
+
+  @include tablet {
+    margin-bottom: $space-lg;
+  }
+
+  @include mobile {
+    margin-bottom: $space-md;
+  }
+}
+
+/* ----- SERVICE ITEMS ----- */
+@mixin service-item {
+  @include card-interactive;
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-md $space-lg;
+
+  @include mobile {
+    flex-direction: column;
+    text-align: center;
+    padding: $space-md;
   }
 }

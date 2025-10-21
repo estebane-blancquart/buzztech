@@ -37,14 +37,23 @@ $weight-normal: $font-weight-normal;
 $weight-bold: $font-weight-bold;
 $big-weight: $font-weight-black;
 
-// Sizes
-$font-h1: 2.5rem;
-$font-h2: 2rem;
-$font-h3: 1.5rem;
-$font-p1: 1.2rem;
-$font-p2: 1rem;
-$font-p3: 0.8rem;
-$font-small: 0.75rem;
+// Sizes - Nouvelle hiérarchie
+$font-h1: 2.5rem;       // 40px - Hero principal uniquement
+$font-h2: 2rem;         // 32px - Titres de sections
+$font-h3: 1.5rem;       // 24px - Sous-titres importants
+$font-h4: 1.25rem;      // 20px - Petits titres
+
+// Body text - Nouvelle scale
+$font-body-lg: 1.125rem;  // 18px - Texte important
+$font-body: 1rem;         // 16px - Texte normal
+$font-body-sm: 0.875rem;  // 14px - Texte secondaire
+$font-caption: 0.75rem;   // 12px - Captions, footer
+
+// Legacy aliases (compatibilité avec code existant)
+$font-p1: $font-body-lg;
+$font-p2: $font-body;
+$font-p3: $font-body-sm;
+$font-small: $font-caption;
 
 // Legacy aliases
 $h1: $font-h1;
@@ -53,28 +62,34 @@ $p2: $font-p2;
 $p3: $font-p3;
 
 /* ===== SPACING ===== */
-// Responsive padding
-$padding-desktop: 0 20vw;
-$padding-tablet: 0 10vw;
-$padding-mobile: 0 5vw;
+// Container padding aligné (header, footer, modules)
+$container-padding-desktop: 0 15vw;  // Réduit pour moins d'étalement
+$container-padding-tablet: 0 8vw;
+$container-padding-mobile: 0 5vw;
+$container-max-width: 1200px;  // Réduit de 1400px
+
+// Legacy responsive padding (à garder pour compatibilité)
+$padding-desktop: $container-padding-desktop;
+$padding-tablet: $container-padding-tablet;
+$padding-mobile: $container-padding-mobile;
 
 // Legacy aliases
 $desktop-padding: $padding-desktop;
 $tablet-padding: $padding-tablet;
 $mobile-padding: $padding-mobile;
 
-// Standard spacing
-$space-xs: 0.5rem; // 8px
-$space-sm: 1rem; // 16px
-$space-md: 1.5rem; // 24px
-$space-lg: 2rem; // 32px
-$space-xl: 3rem; // 48px
-$space-xxl: 4rem; // 64px
+// Standard spacing scale
+$space-xs: 0.5rem;   // 8px
+$space-sm: 1rem;     // 16px
+$space-md: 1.5rem;   // 24px
+$space-lg: 2rem;     // 32px
+$space-xl: 3rem;     // 48px
+$space-xxl: 4rem;    // 64px
 
 /* ===== LAYOUT ===== */
 $module-width: 60%;
 $module-height: 60%;
-$max-content-width: 1200px;
+$max-content-width: $container-max-width;
 $grid-gap: $space-lg;
 
 /* ===== TRANSITIONS ===== */
@@ -107,64 +122,4 @@ $z-dropdown: 100;
 $z-sticky: 200;
 $z-fixed: 300;
 $z-modal: 400;
-$z-popover: 500;
-$z-tooltip: 600;
-$z-toast: 700;
-
-/* ===== NOUVEAUX STANDARDS (AJOUTS SANS BREAKING CHANGES) ===== */
-
-// Opacités cohérentes
-$opacity-primary: 1;
-$opacity-secondary: 0.9;
-$opacity-tertiary: 0.7;
-$opacity-disabled: 0.4;
-
-// Backgrounds cohérents
-$bg-subtle: 0.05;
-$bg-light: 0.08;
-$bg-medium: 0.12;
-$bg-strong: 0.2;
-
-// Borders cohérents
-$border-subtle: 0.1;
-$border-default: 0.2;
-$border-emphasis: 0.4;
-$border-strong: 0.6;
-
-// Purple shadows (pour interactivité)
-$shadow-purple-sm: 0 4px 16px rgba($purple, 0.15);
-$shadow-purple-md: 0 8px 24px rgba($purple, 0.2);
-$shadow-purple-lg: 0 12px 32px rgba($purple, 0.25);
-
-// Composants
-$card-padding-sm: $space-md;
-$card-padding-md: $space-lg;
-$card-padding-lg: $space-xl;
-
-$btn-height-sm: 36px;
-$btn-height-md: 44px;
-$btn-height-lg: 56px;
-
-$icon-sm: 1.25rem;
-$icon-md: 1.5rem;
-$icon-lg: 2rem;
-$icon-xl: 2.5rem;
-
-/* ===== CSS CUSTOM PROPERTIES (pour JS) ===== */
-:root {
-  // Couleurs
-  --white: #{$white};
-  --black: #{$black};
-  --purple: #{$purple};
-  --light-purple: #{$light-purple};
-  --dark-purple: #{$dark-purple};
-
-  // Spacing
-  --space-sm: #{$space-sm};
-  --space-md: #{$space-md};
-  --space-lg: #{$space-lg};
-
-  // Transitions
-  --transition-fast: #{$transition-fast};
-  --transition-smooth: #{$transition-smooth};
-}
+$z-tooltip: 500;

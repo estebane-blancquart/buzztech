@@ -1,6 +1,6 @@
 export const homeData = {
   hero: {
-    title: "BuzzTech - Solutions Informatiques",
+    title: "BuzzTech - Services Informatiques",
     subtitle: "Votre partenaire IT de confiance à Saint-Étienne",
     ctaText: "Demander un devis gratuit",
     stats: [

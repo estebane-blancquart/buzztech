@@ -20,8 +20,10 @@ const getIcon = (value: string): string => {
 const InfoCard: React.FC<InfoStat> = ({ value, label }): JSX.Element => (
   <div className={styles['info-card']}>
     <span className={styles['info-icon']}>{getIcon(value)}</span>
-    <span className={styles['info-value']}>{value}</span>
-    <span className={styles['info-label']}>{label}</span>
+    <div className={styles['info-text']}>
+      <span className={styles['info-value']}>{value}</span>
+      <span className={styles['info-label']}>{label}</span>
+    </div>
   </div>
 );
 
