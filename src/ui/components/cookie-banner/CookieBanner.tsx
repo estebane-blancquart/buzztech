@@ -2,55 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CookieBanner.module.scss';
 
-const CONSENT_KEY = 'buzztech_cookie_consent';
+const CONSENT_KEY = 'cookie-consent';
 
-type ConsentStatus = 'accepted' | 'refused' | null;
-
-// Interface GTM partagée
-interface GTMWindow extends Window {
-  dataLayer?: any[];
-}
-
-// Fonction loadGTM réutilisable
+// Fonction pour charger GTM
 const loadGTM = (): void => {
-  const w = window as unknown as GTMWindow;
+  const gtmId = import.meta.env.VITE_GTM_ID;
   
-  w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-  
-  const f = document.getElementsByTagName('script')[0];
-  if (!f || !f.parentNode) return;
-  
-  const j = document.createElement('script') as HTMLScriptElement;
-  j.async = true;
-  j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-PR9QVL2R';
-  f.parentNode.insertBefore(j, f);
+  if (!gtmId) return;
 
-  // Ajouter le noscript iframe
-  const noscript = document.createElement('noscript');
-  const iframe = document.createElement('iframe');
-  iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-PR9QVL2R';
-  iframe.height = '0';
-  iframe.width = '0';
-  iframe.style.display = 'none';
-  iframe.style.visibility = 'hidden';
-  noscript.appendChild(iframe);
-  if (document.body.firstChild) {
-    document.body.insertBefore(noscript, document.body.firstChild);
+  // Charger GTM script
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+  
+  const consent = localStorage.getItem(CONSENT_KEY);
+  
+  if (consent === 'accepted' || consent === 'refused') {
+    document.head.appendChild(script);
   }
 };
 
 const CookieBanner: React.FC = () => {
-  const [showBanner, setShowBanner] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Vérifier si l'utilisateur a déjà fait un choix
     const consent = localStorage.getItem(CONSENT_KEY);
     
     if (!consent) {
-      // Petit délai pour ne pas gêner l'UX initiale
+      // Afficher le banner après un court délai
       const timer = setTimeout(() => {
-        setShowBanner(true);
+        setIsVisible(true);
       }, 1000);
       
       return () => clearTimeout(timer);
@@ -61,18 +43,16 @@ const CookieBanner: React.FC = () => {
 
   const handleAccept = (): void => {
     localStorage.setItem(CONSENT_KEY, 'accepted');
-    setShowBanner(false);
-    
-    // Charger GTM maintenant que l'utilisateur a accepté
+    setIsVisible(false);
     loadGTM();
   };
 
   const handleRefuse = (): void => {
     localStorage.setItem(CONSENT_KEY, 'refused');
-    setShowBanner(false);
+    setIsVisible(false);
   };
 
-  if (!showBanner) return null;
+  if (!isVisible) return null;
 
   return (
     <div className={styles.overlay}>
@@ -80,9 +60,9 @@ const CookieBanner: React.FC = () => {
         <div className={styles.content}>
           <div className={styles.icon}>🍪</div>
           <div className={styles.text}>
-            <h3>Cookies et vie privée</h3>
+            <h3>Cookies et confidentialité</h3>
             <p>
-              Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic du site. 
+              Nous utilisons Google Analytics pour améliorer votre expérience.
               Ces données nous aident à mieux comprendre vos besoins.
             </p>
           </div>

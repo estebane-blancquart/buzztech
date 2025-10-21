@@ -38,7 +38,7 @@ function getEnvVar(key: string, required: boolean = false): string {
     );
   }
 
-  return value || '';
+  return value ?? '';
 }
 
 /**

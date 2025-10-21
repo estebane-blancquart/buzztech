@@ -30,7 +30,7 @@ function getMonitoringConfig(): MonitoringConfig {
     environment: env.isProduction ? 'production' : 'development',
     
     // Version de l'app (optionnel, utile pour tracking)
-    release: `buzztech@${import.meta.env.VITE_APP_VERSION || 'unknown'}`,
+    release: `buzztech@${import.meta.env.VITE_APP_VERSION ?? 'unknown'}`,
 
     // Performance Monitoring
     // 1.0 = tracker 100% des transactions (réduire en prod si trop de traffic)
