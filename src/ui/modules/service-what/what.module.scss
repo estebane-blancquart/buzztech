@@ -1,10 +1,15 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
 /* ===== WHAT BASE ===== */
 .what {
-  @include module-layout;
-
+  @include flex-column-center;
+  
+  width: 100%;
+  height: 100%;
   color: $white;
   text-align: center;
-  gap: $space-md; /* 24px au lieu de 32px - plus compact */
+  gap: $space-lg;
 
   &:focus {
     outline: none;
@@ -20,12 +25,13 @@
   border: 1px solid rgba($white, 0.2);
   border-radius: $border-radius-round;
   background: rgba($white, 0.1);
+  color: $white;
   opacity: 0.8;
-   
+  font-size: 0.75rem;
   font-weight: $font-weight-bold;
   transition: $transition-smooth;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
 
   &:hover {
     background: rgba($purple, 0.1);
@@ -36,43 +42,42 @@
 
 .title {
   margin: 0;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
   font-weight: $font-weight-black;
   line-height: 1.1;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
-  max-width: 600px;
+  max-width: 650px;
   margin: 0;
-  color: rgba($white, 0.9);
+  color: $white;
   opacity: 0.9;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
-  font-weight: $font-weight-light;
-  line-height: 1.4;
-}
-
-.arrow {
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-  animation: bounce 2s infinite;
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-weight: $font-weight-normal;
+  line-height: 1.5;
 }
 
 .scroll-indicator {
   @include flex-column-center;
   @include hover-lift;
 
-  gap: $space-xs; /* 8px au lieu de 16px */
-  margin-top: $space-md; /* 24px au lieu de 32px */
+  gap: $space-xs;
+  margin-top: $space-md;
   opacity: 0.6;
   cursor: pointer;
   transition: $transition-smooth;
 
   span {
-     
+    color: $white;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.1em;
     font-weight: $font-weight-bold;
   }
 
@@ -84,6 +89,12 @@
       color: $purple;
     }
   }
+}
+
+.arrow {
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
@@ -101,42 +112,46 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .what {
-    gap: $space-lg; /* 32px au lieu de 2.5rem (40px) */
+    gap: $space-xl;
   }
 
   .badge {
     padding: $space-xs $space-md;
-     
+    font-size: 0.8rem;
   }
 
   .scroll-indicator {
-    margin-top: $space-lg; /* 32px */
-    gap: $space-sm; /* 16px sur desktop */
+    margin-top: $space-lg;
+    gap: $space-sm;
 
     span {
-       
+      font-size: 0.9rem;
     }
   }
 }
 
 @include tablet {
   .what {
-    width: 70%;
-    gap: $space-md; /* 24px */
+    gap: $space-lg;
   }
 
   .badge {
-    padding: 0.4rem 1.2rem;
-    font-size: 0.8rem;
+    padding: $space-xs $space-sm;
+    font-size: 0.75rem;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
   }
 
   .subtitle {
-    max-width: 500px;
+    max-width: 550px;
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   }
 
   .scroll-indicator {
-    margin-top: $space-md; /* 24px */
-    gap: $space-xs; /* 8px */
+    margin-top: $space-md;
+    gap: $space-xs;
 
     span {
       font-size: 0.8rem;
@@ -150,26 +165,30 @@
 
 @include mobile {
   .what {
-    width: 90%;
-    gap: $space-sm; /* 16px au lieu de 24px - plus compact */
-    padding: 0 $space-sm;
+    gap: $space-md;
+    padding: 0 $space-lg;
   }
 
   .badge {
-    padding: 0.3rem $space-sm;
-    font-size: $font-small;
+    padding: $space-xs $space-sm;
+    font-size: 0.7rem;
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 8vw, 2rem);
   }
 
   .subtitle {
     max-width: 100%;
+    font-size: clamp(0.9rem, 4vw, 1.05rem);
   }
 
   .scroll-indicator {
-    margin-top: $space-sm; /* 16px */
-    gap: $space-xs; /* 8px */
+    margin-top: $space-sm;
+    gap: $space-xs;
 
     span {
-      font-size: $font-small;
+      font-size: 0.75rem;
     }
   }
 

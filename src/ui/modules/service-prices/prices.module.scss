@@ -1,10 +1,13 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
 /* ===== PRICES BASE ===== */
 .prices {
-  @include module-layout;
-
   display: grid;
+  width: 60%;
+  height: 60%;
   color: $white;
-  gap: $space-lg;
+  gap: $space-md;
 
   &:focus {
     outline: none;
@@ -23,7 +26,7 @@
   justify-content: space-between;
   height: 100%;
   min-height: 0;
-  padding: $space-md; /* Réduit de $space-lg à $space-md */
+  padding: $space-sm $space-md;
   border: 2px solid rgba($purple, 0.3);
   border-radius: $border-radius-lg;
   background: linear-gradient(135deg, rgba($dark-purple, 0.9) 0%, rgba($purple, 0.2) 100%);
@@ -43,7 +46,7 @@
   }
 
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     border-color: rgba($purple, 0.6);
     box-shadow: 0 12px 32px rgba($purple, 0.25);
 
@@ -51,17 +54,9 @@
       opacity: 1;
     }
   }
-
-  @include mobile {
-    padding: $space-sm; /* Encore plus compact sur mobile */
-
-    &:active {
-      transform: scale(0.98);
-    }
-  }
 }
 
-/* ===== LAYOUT VARIANTS - PAS DE CHANGEMENT ===== */
+/* ===== LAYOUT DEPANNAGE : 1 grande + 2 petites ===== */
 .prices.layout-depannage-custom {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -91,6 +86,7 @@
   }
 }
 
+/* ===== LAYOUT CONFIGURATION : 2 grandes + 3 petites ===== */
 .prices.layout-configuration-custom {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(6, 1fr);
@@ -131,6 +127,7 @@
   }
 }
 
+/* ===== LAYOUT CREATION-WEB : 2 cartes côte à côte ===== */
 .prices.layout-grid {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -156,38 +153,40 @@
   }
 }
 
-/* ===== CARD CONTENT - OPTIMISÉ ===== */
+/* ===== CARD CONTENT ===== */
 .card-header {
-  margin-bottom: $space-sm; /* Réduit de $space-md à $space-sm */
+  margin-bottom: $space-xs;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .title {
-  margin: 0 0 $space-sm; /* Réduit de $space-md à $space-sm */
+  margin: 0 0 $space-xs;
   color: $light-purple;
+  font-size: 0.75rem;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.1em;
 }
 
 .price-section {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: $space-sm; /* Réduit de $space-md à $space-sm */
+  gap: 0.25rem;
+  margin-bottom: $space-xs;
 }
 
 .price {
   color: $white;
-  font-size: clamp(2rem, 5vw, 2.8rem); /* Réduit max de 3.5rem à 2.8rem */
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: $font-weight-black;
   line-height: 1;
 }
 
 .unit {
   color: $purple;
-  font-size: clamp(1rem, 2.5vw, 1.3rem); /* Réduit max de 1.5rem à 1.3rem */
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
   font-weight: $font-weight-bold;
 }
 
@@ -195,22 +194,23 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: $space-xs; /* Réduit de $space-sm à $space-xs (8px au lieu de 16px) */
-  overflow-y: auto; /* Permet le scroll si nécessaire */
+  gap: 0.4rem;
+  overflow: hidden;
 }
 
 .feature-item {
   display: flex;
   align-items: flex-start;
-  gap: $space-xs; /* Réduit de $space-sm à $space-xs */
+  gap: $space-xs;
   color: rgba($white, 0.9);
-  line-height: 1.4; /* Réduit de 1.6 à 1.4 */
+  font-size: 0.75rem;
+  line-height: 1.3;
 
   &::before {
     content: '✓';
     flex-shrink: 0;
     color: $purple;
-    font-size: 1rem; /* Réduit de 1.2rem */
+    font-size: 0.85rem;
     font-weight: $font-weight-bold;
   }
 
@@ -223,66 +223,87 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .prices {
-    gap: $space-lg;
+    gap: $space-md;
   }
 
   .card {
-    padding: $space-md; /* Padding standard desktop */
+    padding: $space-sm $space-md;
   }
 
   .title {
+    font-size: 0.75rem;
   }
 
   .price {
-    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+  }
+
+  .unit {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+  }
+
+  .features {
+    gap: 0.4rem;
+  }
+
+  .feature-item {
+    font-size: 0.75rem;
   }
 }
 
 @include tablet {
   .prices {
-    gap: $space-md;
+    gap: $space-sm;
   }
 
   .card {
-    padding: $space-sm; /* Padding réduit tablet */
+    padding: $space-xs $space-sm;
   }
 
   .card-header {
-    margin-bottom: $space-xs; /* 8px */
+    margin-bottom: $space-xs;
   }
 
   .title {
+    font-size: 0.7rem;
     margin-bottom: $space-xs;
   }
 
   .price {
-    font-size: clamp(1.8rem, 4.5vw, 2.3rem);
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
   }
 
   .unit {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-size: clamp(0.8rem, 2vw, 1rem);
   }
 
   .features {
-    gap: 0.5rem; /* 8px */
+    gap: 0.35rem;
   }
 
   .feature-item {
     font-size: 0.7rem;
+    line-height: 1.25;
+
+    &::before {
+      font-size: 0.8rem;
+    }
   }
 }
 
 @include mobile {
   .prices {
+    width: 90%;
+    height: auto;
     gap: $space-sm;
   }
 
   .card {
-    padding: $space-sm; /* 16px */
+    padding: $space-sm;
   }
 
   .card-header {
-    margin-bottom: $space-xs; /* 8px */
+    margin-bottom: $space-xs;
   }
 
   .title {
@@ -297,24 +318,24 @@
   }
 
   .price {
-    font-size: clamp(1.5rem, 8vw, 2rem);
+    font-size: clamp(1.3rem, 7vw, 1.7rem);
   }
 
   .unit {
-    font-size: clamp(0.8rem, 4vw, 1rem);
+    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
   }
 
   .features {
-    gap: 0.4rem;
+    gap: 0.3rem;
   }
 
   .feature-item {
     font-size: 0.65rem;
-    line-height: 1.3;
-    gap: 0.4rem;
+    line-height: 1.2;
+    gap: 0.3rem;
 
     &::before {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
     }
   }
 }

@@ -1,14 +1,18 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
 /* ===== HERO SECTION ===== */
 .hero {
-  height: 80%;
+  height: 70%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   color: $white;
   position: relative;
+  gap: $space-lg;
 }
-
 
 /* ===== SPHERE SECTION ===== */
 .video-section {
@@ -24,13 +28,12 @@
 }
 
 .background-video {
-  width: 12.5rem; // 200px
-  height: 12.5rem;
+  width: 14rem;
+  height: 14rem;
   border-radius: 50%;
   object-fit: cover;
+  filter: brightness(1.1) saturate(1.2);
 }
-
-// Retrait du video-glow
 
 /* ===== CONTENT SECTION ===== */
 .hero-content {
@@ -38,20 +41,19 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: $space-sm;
+  gap: $space-md;
   position: relative;
   z-index: 1;
-  margin: $space-md 0 8vh 0;
 }
 
 .hero-title {
   margin: 0;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: $font-weight-black;
-  line-height: 1.1;
+  line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
+  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -60,121 +62,104 @@
 .hero-subtitle {
   margin: 0;
   color: $white;
-  opacity: 0.85;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  opacity: 0.9;
+  font-size: clamp(0.9rem, 1.6vw, 1.15rem);
   font-weight: $font-weight-normal;
-  line-height: 1.5;
+  line-height: 1.4;
   letter-spacing: 0.01em;
+  max-width: 600px;
 }
 
 .hero-cta {
   @include button-reset;
   @include focus-visible;
   
-  height: 6vh;
-  min-height: 48px;
+  height: auto;
+  min-height: 52px;
   padding: $space-sm $space-xl;
-  margin-top: $space-md;
-  border: 2px solid $purple;
+  margin-top: $space-sm;
+  border: 2px solid transparent;
   border-radius: $border-radius-lg;
-  background: transparent;
-  color: $purple;
-  font-size: $font-p2;
-  font-weight: $font-weight-bold;
+  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+  color: $black;
+  font-size: $font-body;
+  font-weight: $font-weight-black;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all $transition-fast;
   cursor: pointer;
-  
+  box-shadow: 0 4px 20px rgba($purple, 0.3);
+
   &:hover {
-    background: $purple;
-    color: $black;
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 12px 40px rgba($purple, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba($purple, 0.5);
+    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
   }
-  
+
   &:active {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
-/* ===== INFO CARDS SECTION ===== */
+/* ===== INFO SECTION ===== */
 .info-section {
   width: 100%;
+  display: flex;
+  justify-content: center;
   position: relative;
   z-index: 1;
-  
-  @include flex-center;
 }
 
 .info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: $space-md;
+  gap: $space-lg;
   width: 100%;
-  height: 8vh;
+  max-width: 800px;
 }
 
 .info-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: $space-xs; // Réduit pour moins de hauteur
-  padding: $space-md;
-  border: 1px solid rgba($purple, 0.3);
-  border-radius: $border-radius-lg;
-  background: linear-gradient(
-    135deg,
-    rgba($purple, 0.1) 0%,
-    rgba($purple, 0.05) 100%
-  );
-  text-align: center;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: pointer;
-  transform-style: preserve-3d;
+  @include flex-center;
   
-  &:hover {
-    transform: translateY(-8px) rotateX(5deg);
-    border-color: $purple;
-    background: linear-gradient(
-      135deg,
-      rgba($purple, 0.2) 0%,
-      rgba($purple, 0.1) 100%
-    );
-    box-shadow: 0 20px 60px rgba($purple, 0.4);
-  }
+  gap: $space-md;
+  padding: $space-md;
+  border: 1px solid rgba($purple, 0.2);
+  border-radius: $border-radius-lg;
+  background: rgba($white, 0.02);
+  backdrop-filter: blur(10px);
+  transition: all $transition-fast;
 
-  .info-text {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+  &:hover {
+    border-color: rgba($purple, 0.4);
+    background: rgba($white, 0.04);
+    transform: translateY(-4px);
   }
 }
 
+.info-text {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
 .info-icon {
-  font-size: 2rem; // Réduit
-  filter: grayscale(0.3);
-  transition: all $transition-fast;
-  
-  .info-card:hover & {
-    filter: grayscale(0);
-    transform: scale(1.1);
-  }
+  font-size: 2rem;
+  flex-shrink: 0;
 }
 
 .info-value {
   margin: 0;
-  font-size: 1.5rem; // Réduit
+  color: $white;
+  font-size: 1.4rem;
   font-weight: $font-weight-black;
-  color: $purple;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .info-label {
   margin: 0;
   color: $white;
-  opacity: 0.8;
-  font-size: 0.75rem; // Réduit
+  opacity: 0.75;
+  font-size: 0.8rem;
   font-weight: $font-weight-bold;
   line-height: 1.2;
   text-transform: uppercase;
@@ -185,18 +170,23 @@
 @include desktop {
   .hero {
     padding: 0 15vw;
+    gap: $space-xl;
   }
 
   .background-video {
-    width: 20rem;
-    height: 20rem;
-    margin-top: 2vh;
+    width: 15rem;
+    height: 15rem;
+  }
+  
+  .info-grid {
+    max-width: 900px;
   }
 }
 
 @include tablet {
   .hero {
-    gap: $space-xl;
+    gap: $space-lg;
+    padding: 0 8vw;
   }
   
   .hero-content {
@@ -212,45 +202,46 @@
   }
 
   .hero-cta {
-    font-size: $font-p2;
-    padding: $space-sm $space-lg;
+    font-size: $font-body;
+    padding: $space-sm $space-xl;
+    min-height: 52px;
   }
   
   .background-video {
-    width: 11rem;
-    height: 11rem;
+    width: 13rem;
+    height: 13rem;
   }
   
   .info-grid {
     gap: $space-md;
-    max-width: 600px;
+    max-width: 650px;
   }
   
   .info-card {
     padding: $space-md;
+    gap: $space-sm;
   }
 
   .info-icon {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
   
   .info-value {
     font-size: 1.5rem;
   }
+  
+  .info-label {
+    font-size: 0.75rem;
+  }
 }
 
 @include mobile {
   .hero {
-    padding: 0;
+    padding: 0 5vw;
     gap: $space-md;
   }
 
-  .video-section {
-    margin-top: 0;
-  }
-
   .hero-content {
-    margin-bottom: 0;
     gap: $space-sm;
   }
 
@@ -260,26 +251,29 @@
 
   .hero-subtitle {
     font-size: clamp(1rem, 4vw, 1.2rem);
+    padding: 0 $space-sm;
   }
 
   .hero-cta {
-    min-height: 44px;
+    min-height: 48px;
     padding: $space-sm $space-lg;
-    font-size: $font-p3;
+    font-size: $font-body-sm;
   }
 
   .background-video {
-    width: 9rem;
-    height: 9rem;
+    width: 10rem;
+    height: 10rem;
   }
 
   .info-grid {
     grid-template-columns: 1fr;
     gap: $space-sm;
+    padding: 0 $space-md;
   }
 
   .info-card {
-    padding: $space-md $space-sm;
+    padding: $space-md;
+    gap: $space-sm;
   }
 
   .info-icon {

@@ -1,4 +1,5 @@
-/* ===== HEADER BASE ===== */
+
+/* ===== HEADER ===== */
 .header {
   position: fixed;
   top: 0;
@@ -12,18 +13,21 @@
 .logo {
   color: $white;
   font-family: $lato;
-  font-size: $h1;
+  font-size: $font-h3;
   font-weight: $big-weight;
   text-decoration: none;
+  letter-spacing: 0.02em;
 }
 
 .nav {
   a {
     color: $purple;
     font-family: $lato;
-    font-size: $p2;
+    font-size: $font-body-sm;
+    font-weight: $font-weight-bold;
     text-transform: uppercase;
     text-decoration: none;
+    letter-spacing: 0.05em;
     transition: color 0.3s ease;
 
     &:hover {
@@ -38,69 +42,6 @@
   color: $white;
   font-size: 1.5rem;
 }
-
-/* ===== RESPONSIVE ===== */
-@include mobile {
-  .header {
-    @include flex-between;
-
-    padding: $mobile-padding;
-  }
-
-  .nav {
-    display: none;
-
-    &.open {
-      @include flex-column-center;
-
-      position: fixed;
-      display: flex;
-      background: rgba($black, 0.9);
-      inset: 0;
-      gap: 4vh;
-    }
-  }
-
-  .toggle {
-    display: block;
-  }
-}
-
-@include tablet {
-  .header {
-    @include flex-between;
-
-    padding: $tablet-padding;
-  }
-
-  .nav {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .toggle {
-    display: none;
-  }
-}
-
-@include desktop {
-  .header {
-    @include flex-column-around;
-
-    align-items: flex-start;
-    padding: $desktop-padding;
-  }
-
-  .nav {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .toggle {
-    display: none;
-  }
-}
-
 
 .skipLink {
   position: absolute;
@@ -119,3 +60,91 @@
     top: 0;
   }
 }
+
+/* ===== HEADER RESPONSIVE ===== */
+@include mobile {
+  .header {
+    @include flex-between;
+
+    padding: $mobile-padding;
+  }
+
+  .logo {
+    font-size: $font-h4;
+  }
+
+  .nav {
+    display: none;
+
+    &.open {
+      @include flex-column-center;
+
+      position: fixed;
+      display: flex;
+      background: rgba($black, 0.95);
+      backdrop-filter: blur(10px);
+      inset: 0;
+      gap: 4vh;
+      
+      a {
+        font-size: $font-body;
+      }
+    }
+  }
+
+  .toggle {
+    display: block;
+  }
+}
+
+@include tablet {
+  .header {
+    @include flex-between;
+
+    padding: $tablet-padding;
+  }
+
+  .logo {
+    font-size: $font-h3;
+  }
+
+  .nav {
+    display: flex;
+    gap: $space-md;
+    
+    a {
+      font-size: $font-body-sm;
+    }
+  }
+
+  .toggle {
+    display: none;
+  }
+}
+
+@include desktop {
+  .header {
+    @include flex-column-around;
+
+    align-items: flex-start;
+    padding: $desktop-padding;
+  }
+
+  .logo {
+    font-size: $font-h2;
+  }
+
+  .nav {
+    display: flex;
+    gap: $space-xl;
+    
+    a {
+      font-size: $font-body;
+    }
+  }
+
+  .toggle {
+    display: none;
+  }
+}
+

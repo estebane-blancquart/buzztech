@@ -1,10 +1,10 @@
 /* ===== PRESENTATION SECTION ===== */
 .presentation {
-  @include module-layout;
+  @include flex-column-center;
+
   width: 100%;
-  justify-content: center;
+  height: 100%;
   gap: $space-xl;
-  padding: 0;
   background: $black;
   color: $white;
 }
@@ -14,17 +14,22 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: $space-xs;
+  gap: $space-sm;
 }
 
 .title {
   margin: 0;
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   font-weight: $font-weight-black;
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
+  background: linear-gradient(
+    135deg,
+    $white 0%,
+    $purple 50%,
+    $light-purple 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -33,8 +38,8 @@
 .subtitle {
   margin: 0;
   color: $white;
-  opacity: 0.75;
-  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  opacity: 0.8;
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
   font-weight: $font-weight-normal;
   line-height: 1.5;
 }
@@ -53,13 +58,13 @@
   @include focus-visible;
 
   width: 100%;
-  padding: $space-md $space-lg;
-  border: 1px solid rgba($purple, 0.3);
+  padding: $space-lg $space-xl;
+  border: 1px solid rgba($purple, 0.25);
   border-radius: $border-radius-lg;
   background: linear-gradient(
     135deg,
-    rgba($purple, 0.1) 0%,
-    rgba($purple, 0.05) 100%
+    rgba($purple, 0.08) 0%,
+    rgba($purple, 0.04) 100%
   );
   color: inherit;
   text-decoration: none;
@@ -67,29 +72,29 @@
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-6px) rotateX(3deg);
+    transform: translateY(-6px);
     border-color: $purple;
     background: linear-gradient(
       135deg,
-      rgba($purple, 0.2) 0%,
-      rgba($purple, 0.1) 100%
+      rgba($purple, 0.15) 0%,
+      rgba($purple, 0.08) 100%
     );
-    box-shadow: 0 16px 48px rgba($purple, 0.4);
+    box-shadow: 0 12px 32px rgba($purple, 0.3);
   }
 }
 
 .service-left {
   @include flex-start;
 
-  gap: $space-md;
+  gap: $space-lg;
   flex: 1;
 }
 
 /* ===== ICON ===== */
 .icon {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   flex-shrink: 0;
-  filter: grayscale(0.4);
+  filter: grayscale(0.3);
   transition: all $transition-fast;
 
   .services-item:hover & {
@@ -109,7 +114,7 @@
 .service-name {
   margin: 0;
   color: $white;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: $font-weight-black;
   line-height: 1.2;
 }
@@ -117,23 +122,23 @@
 .service-desc {
   margin: 0;
   color: rgba($white, 0.75);
-  font-size: $font-p3;
+  font-size: 0.85rem;
   line-height: 1.4;
 }
 
 /* ===== PRICE BADGE ===== */
 .service-price {
-  padding: $space-xs $space-md;
+  padding: $space-sm $space-lg;
   border: 2px solid rgba($purple, 0.4);
   border-radius: $border-radius-lg;
   background: transparent;
   color: $purple;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: $font-weight-black;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   flex-shrink: 0;
-  min-width: 140px;
+  min-width: 150px;
   text-align: center;
   transition: all $transition-fast;
 
@@ -150,7 +155,44 @@
 @include desktop {
   .presentation {
     gap: $space-xl;
-    padding: $desktop-padding;
+    padding: 0 15vw;
+  }
+
+  .header {
+    gap: $space-sm;
+  }
+
+  .services-list {
+    gap: $space-md;
+    max-width: 900px;
+  }
+
+  .services-item {
+    padding: $space-md $space-xl;
+  }
+
+  .icon {
+    font-size: 2.5rem;
+  }
+
+  .service-name {
+    font-size: 1.2rem;
+  }
+
+  .service-desc {
+    font-size: 0.875rem;
+  }
+
+  .service-price {
+    font-size: 1.05rem;
+    min-width: 150px;
+  }
+}
+
+@include tablet {
+  .presentation {
+    gap: $space-xl;
+    padding: 0 8vw;
   }
 
   .header {
@@ -166,46 +208,11 @@
   }
 
   .icon {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .service-name {
-    font-size: 1.3rem;
-  }
-
-  .service-desc {
-    font-size: $font-p3;
-  }
-
-  .service-price {
-    font-size: 1.2rem;
-    min-width: 140px;
-  }
-}
-
-@include tablet {
-  .presentation {
-    gap: $space-lg;
-  }
-
-  .header {
-    gap: $space-xs;
-  }
-
-  .services-list {
-    gap: $space-sm;
-  }
-
-  .services-item {
-    padding: $space-sm $space-md;
-  }
-
-  .icon {
-    font-size: 2rem;
-  }
-
-  .service-name {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .service-desc {
@@ -214,15 +221,15 @@
 
   .service-price {
     font-size: 1rem;
-    min-width: 120px;
-    padding: $space-xs $space-sm;
+    min-width: 130px;
+    padding: $space-sm $space-md;
   }
 }
 
 @include mobile {
   .presentation {
-    width: 90%;
-    gap: $space-md;
+    gap: $space-lg;
+    padding: 0 5vw;
   }
 
   .header {
@@ -239,7 +246,7 @@
   }
 
   .services-list {
-    gap: $space-sm;
+    gap: $space-md;
   }
 
   /* MOBILE : Layout en colonne */
@@ -247,11 +254,11 @@
     @include flex-column-center;
 
     text-align: center;
-    padding: $space-md;
-    gap: $space-sm;
+    padding: $space-lg;
+    gap: $space-md;
 
     &:hover {
-      transform: translateY(-4px) scale(0.98);
+      transform: translateY(-4px);
     }
   }
 
@@ -259,11 +266,11 @@
     @include flex-column-center;
 
     text-align: center;
-    gap: $space-xs;
+    gap: $space-sm;
   }
 
   .icon {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
 
   .service-info {
@@ -271,17 +278,17 @@
   }
 
   .service-name {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .service-desc {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .service-price {
     width: 100%;
-    max-width: 200px;
+    max-width: 220px;
     font-size: 1rem;
-    padding: $space-xs $space-md;
+    padding: $space-sm $space-lg;
   }
 }

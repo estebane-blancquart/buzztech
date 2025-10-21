@@ -28,31 +28,33 @@ const Video: React.FC<VideoProps> = ({
 
   return (
     <div className={styles['video']}>
-      <div className={styles['video-wrapper']}>
-        {!isPlaying ? (
-          <div className={styles['placeholder']} onClick={handlePlay}>
-            <div className={styles['play-button']}>
-              <span>▶</span>
-            </div>
-          </div>
-        ) : (
-          <div className={styles['video-player']}>
-            <iframe
-              width="100%"
-              height="100%"
-              src={videoUrl}
-              title="Présentation vidéo"
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        )}
-      </div>
-
       <div className={styles['text']}>
         <h2 className={styles['title']}>{title}</h2>
         <p className={styles['description']}>{description}</p>
+      </div>
+
+      <div className={styles['content-grid']}>
+        <div className={styles['video-wrapper']}>
+          {!isPlaying ? (
+            <div className={styles['placeholder']} onClick={handlePlay}>
+              <div className={styles['play-button']}>
+                <span>▶</span>
+              </div>
+            </div>
+          ) : (
+            <div className={styles['video-player']}>
+              <iframe
+                width="100%"
+                height="100%"
+                src={videoUrl}
+                title="Présentation vidéo"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
+        </div>
 
         <div className={styles['highlights']}>
           {highlights.map((highlight, index) => (

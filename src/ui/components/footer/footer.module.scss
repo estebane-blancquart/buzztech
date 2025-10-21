@@ -1,4 +1,3 @@
-/* ===== FOOTER BASE ===== */
 .footer {
   position: fixed;
   bottom: 0;
@@ -20,11 +19,12 @@
   @include flex-start;
 
   width: 33vw;
-  font-size: $p2;
+  font-size: $font-body-sm;
 
   a {
     text-decoration: none;
     color: $purple;
+    font-weight: $font-weight-bold;
     transition: color 0.3s ease;
 
     &:hover {
@@ -37,7 +37,8 @@
   @include flex-center;
 
   width: 33vw;
-  font-size: $p2;
+  font-size: $font-body-sm;
+  font-weight: $font-weight-bold;
   color: $purple;
 }
 
@@ -45,7 +46,7 @@
   @include flex-end;
 
   width: 33vw;
-  gap: 0.5rem;
+  gap: $space-sm;
 }
 
 .socialIcon {
@@ -56,7 +57,7 @@
   border-radius: 50%;
   background: $dark-purple;
   color: $white;
-  font-size: $p1;
+  font-size: $font-body-sm;
   transition: all 0.3s ease;
 
   &:hover {
@@ -72,7 +73,8 @@
   @include flex-center;
 
   color: rgba($white, 0.7);
-  font-size: $p3;
+  font-size: $font-caption;
+  font-weight: $font-weight-normal;
 }
 
 .legalLink {
@@ -85,14 +87,28 @@
   }
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== FOOTER RESPONSIVE ===== */
 @include mobile {
   .footer {
     padding: $mobile-padding;
   }
 
+  .tel {
+    font-size: 0.7rem;
+  }
+
+  .location {
+    font-size: 0.7rem;
+  }
+
+  .socialIcon {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.8rem;
+  }
+
   .copyright {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -100,10 +116,34 @@
   .footer {
     padding: $tablet-padding;
   }
+
+  .tel {
+    font-size: $font-caption;
+  }
+
+  .location {
+    font-size: $font-caption;
+  }
+
+  .copyright {
+    font-size: 0.7rem;
+  }
 }
 
 @include desktop {
   .footer {
     padding: $desktop-padding;
+  }
+
+  .tel {
+    font-size: $font-body-sm;
+  }
+
+  .location {
+    font-size: $font-body-sm;
+  }
+
+  .copyright {
+    font-size: $font-caption;
   }
 }

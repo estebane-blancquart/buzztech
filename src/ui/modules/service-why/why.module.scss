@@ -1,34 +1,38 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
 /* ===== WHY BASE ===== */
 .why {
   display: flex;
   flex-direction: column;
   width: 60%;
   height: 60%;
-  border-radius: 8px;
+  border-radius: $border-radius-md;
   color: $white;
   font-family: $lato;
   overflow: hidden;
 
   &:focus {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 
   &:focus:not(:focus-visible) {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 }
 
+/* ===== TOP BAR (MacOS style) ===== */
 .bar {
   position: relative;
   height: 50px;
-  padding: 0 20px;
+  padding: 0 $space-md;
   background: $purple;
   flex-shrink: 0;
 
   &::before {
     position: absolute;
     top: 50%;
-    left: 20px;
+    left: $space-md;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -41,19 +45,22 @@
   }
 }
 
+/* ===== CONTENT ===== */
 .content {
   display: flex;
   flex: 1;
   min-height: 0;
   border-bottom: 2px solid #2a2a2a;
   border-right: 2px solid #2a2a2a;
-  border-bottom-right-radius: 8px;
+  border-bottom-right-radius: $border-radius-md;
 }
 
+/* ===== NAVIGATION (25% left) ===== */
 .nav {
-  width: 25%; /* Modifié : prend maintenant 25% de content */
+  width: 25%;
   background: #2a2a2a;
   flex-shrink: 0;
+  padding: $space-lg;
 
   @include flex-column-start;
 }
@@ -62,13 +69,14 @@
   @include button-reset;
 
   width: 100%;
+  margin-bottom: $space-sm;
   color: $white;
-  font-size: $p3;
-  font-weight: $big-weight;
+  font-size: 0.8rem;
+  font-weight: $font-weight-black;
   text-align: left;
   transition: color 0.3s ease;
   text-transform: uppercase;
-  margin-bottom: 15px;
+  letter-spacing: 0.05em;
 
   &.active {
     color: $purple;
@@ -89,12 +97,12 @@
 
   display: block;
   width: calc(100% - 18px);
-  padding: 8px 10px;
+  padding: $space-xs $space-sm;
+  margin-left: $space-xs;
   color: rgba($white, 0.7);
   font-size: 0.75rem;
   text-align: left;
   transition: all 0.1s ease;
-  margin-left: 8px;
 
   &.active {
     background: rgba($purple, 0.2);
@@ -108,44 +116,46 @@
   }
 }
 
+/* ===== MAIN CONTENT (75% right) ===== */
 .main-content {
   justify-content: flex-start;
-  padding: 30px 40px;
+  padding: $space-lg $space-xl;
   background: $black;
-  flex: 1; /* Prendra automatiquement le reste (67%) */
+  flex: 1;
   overflow: hidden;
-  border-bottom-right-radius: 8px;
+  border-bottom-right-radius: $border-radius-md;
 
   @include flex-column-start;
 }
 
+/* ===== LANDING VIEW ===== */
 .landing-content {
   align-items: flex-start;
   padding: 0;
-  gap: 2rem;
+  gap: $space-lg;
 
   @include flex-column-start;
 }
 
 .landing-item {
   border-bottom: 1px solid #444;
-  padding-bottom: 1rem;
+  padding-bottom: $space-md;
   width: 100%;
   transition: all 0.3s ease;
 
   h3 {
+    margin: 0 0 $space-sm 0;
     color: $purple;
     text-transform: uppercase;
-    font-size: $p1;
-    font-weight: $big-weight;
-    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: $font-weight-black;
   }
 
   p {
     position: relative;
     margin: 0;
     color: rgba($white, 0.9);
-    font-size: $p2;
+    font-size: 0.9rem;
     line-height: 1.5;
   }
 
@@ -156,8 +166,8 @@
     right: 0;
     bottom: 0;
     color: $purple;
-    font-size: $p3;
-    font-weight: $weight-bold;
+    font-size: 0.8rem;
+    font-weight: $font-weight-bold;
     transition: color 0.3s ease;
     text-transform: uppercase;
     text-decoration: underline;
@@ -168,39 +178,43 @@
   }
 }
 
+/* ===== PAGE VIEW ===== */
 .page-content {
   width: 100%;
-  padding: 20px;
+  padding: $space-md;
 }
 
 .page-header {
   @include flex-start;
 
+  margin-bottom: $space-md;
+  gap: $space-sm;
+
   h3 {
+    margin: 0;
     color: $white;
     text-transform: uppercase;
-    font-size: $p1;
-    font-weight: $big-weight;
+    font-size: 1.1rem;
+    font-weight: $font-weight-black;
   }
 }
 
 .icon {
   font-size: 2rem;
-  margin-left: 1rem;
+  flex-shrink: 0;
 }
 
 .points {
-  margin: 0 0 2rem;
+  margin: 0 0 $space-lg;
   padding: 0;
   list-style: none;
 
   li {
     position: relative;
-    padding: 0.5rem 0;
+    padding: $space-xs 0 $space-xs $space-md;
     color: rgba($white, 0.9);
-    font-size: $p2;
+    font-size: 0.9rem;
     line-height: 1.4;
-    padding-left: 1rem;
 
     &::before {
       position: absolute;
@@ -214,12 +228,12 @@
 .contact-btn {
   @include button-reset;
 
-  padding: 12px 24px;
+  padding: $space-sm $space-lg;
   border: 1px solid $purple;
-  border-radius: 4px;
+  border-radius: $border-radius-sm;
   color: $purple;
-  font-size: $p3;
-  font-weight: $weight-bold;
+  font-size: 0.85rem;
+  font-weight: $font-weight-bold;
   transition: all 0.3s ease;
   text-transform: uppercase;
 
@@ -233,43 +247,51 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .nav {
-    width: 25%; /* Maintient les 25% sur desktop */
-    padding: 2rem;
+    width: 25%;
+    padding: $space-xl;
   }
 
   .main-content {
-    @include flex-column-around;
+    padding: $space-xl;
   }
 }
 
 @include tablet {
   .nav {
-    width: 25%; /* Maintient les 25% sur tablet */
-    padding: 15px 8px;
+    width: 25%;
+    padding: $space-md $space-sm;
 
     .index-title {
       font-size: 0.7rem;
-      margin-bottom: 12px;
+      margin-bottom: $space-xs;
     }
 
     .nav-button {
-      padding: 6px 8px;
+      padding: 6px $space-xs;
       font-size: 0.7rem;
     }
   }
 
   .main-content {
-    padding: 20px 30px;
+    padding: $space-md $space-lg;
   }
 
   .landing-item {
     h3 {
-      font-size: $p2;
+      font-size: 1rem;
     }
 
     p {
-      font-size: $p3;
+      font-size: 0.85rem;
     }
+  }
+
+  .page-header h3 {
+    font-size: 1rem;
+  }
+
+  .points li {
+    font-size: 0.85rem;
   }
 }
 
@@ -280,19 +302,19 @@
   }
 
   .content {
-    flex-direction: row; /* Garde la direction en ligne même sur mobile */
+    flex-direction: row;
   }
 
   .nav {
-    flex-direction: column; /* Retour en mode colonne */
+    flex-direction: column;
     justify-content: flex-start;
-    width: 25%; /* Garde 25% même sur mobile */
+    width: 25%;
     height: auto;
-    padding: 2rem;
+    padding: $space-lg $space-sm;
 
     .index-title {
-      margin-bottom: 15px;
-      font-size: 0.7rem;
+      margin-bottom: $space-sm;
+      font-size: 0.65rem;
     }
 
     .navigation {
@@ -303,13 +325,43 @@
     }
 
     .nav-button {
-      margin-left: 8px;
-      width: calc(100% - 18px);
+      margin-left: $space-xs;
+      width: calc(100% - 8px);
       font-size: 0.6rem;
+      padding: 6px $space-xs;
     }
   }
 
   .main-content {
-    padding: 15px 20px;
+    padding: $space-md;
+  }
+
+  .landing-item {
+    h3 {
+      font-size: 0.95rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
+  .page-header {
+    h3 {
+      font-size: 0.95rem;
+    }
+  }
+
+  .icon {
+    font-size: 1.75rem;
+  }
+
+  .points li {
+    font-size: 0.8rem;
+  }
+
+  .contact-btn {
+    font-size: 0.75rem;
+    padding: $space-xs $space-md;
   }
 }
