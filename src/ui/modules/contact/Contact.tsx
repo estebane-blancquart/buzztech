@@ -99,7 +99,7 @@ const Contact: React.FC = () => {
     // Gestion du changement de champ
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-    ) => {
+    ): void => {
         const { name, value, type } = e.target;
         const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
 
@@ -110,7 +110,11 @@ const Contact: React.FC = () => {
 
         // Validation en temps réel si le champ a été touché
         if (touched[name]) {
-            const error = validateField(name as keyof FormData, type === 'checkbox' ? checked! : value);
+            // ✅ Utiliser ?? au lieu de !
+            const error = validateField(
+                name as keyof FormData,
+                type === 'checkbox' ? (checked ?? false) : value
+            );
             setErrors((prev) => ({
                 ...prev,
                 [name]: error,
@@ -119,13 +123,19 @@ const Contact: React.FC = () => {
     };
 
     // Gestion du blur (champ quitté)
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleBlur = (
+        e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ): void => {
         const { name, value, type } = e.target;
         const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
 
         setTouched((prev) => ({ ...prev, [name]: true }));
 
-        const error = validateField(name as keyof FormData, type === 'checkbox' ? checked! : value);
+        // ✅ Utiliser ?? au lieu de !
+        const error = validateField(
+            name as keyof FormData,
+            type === 'checkbox' ? (checked ?? false) : value
+        );
         setErrors((prev) => ({
             ...prev,
             [name]: error,
