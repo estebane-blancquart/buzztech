@@ -43,8 +43,8 @@
 
 .description {
   margin: 0;
-  color: $white;
-  opacity: 0.85;
+  // ✅ AMÉLIORATION : Meilleur contraste
+  color: #d1d5db; /* Au lieu de $white avec opacity 0.85 */
   font-size: clamp(0.85rem, 1.4vw, 1rem);
   font-weight: $font-weight-normal;
   line-height: 1.5;
@@ -123,7 +123,7 @@
   }
 }
 
-/* ===== HIGHLIGHTS (Social Links) ===== */
+/* ===== 🔥 HIGHLIGHTS (Social Links) AMÉLIORÉS ===== */
 .highlights {
   @include flex-column-center;
 
@@ -136,7 +136,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: $space-sm $space-md;
+  padding: $space-md $space-lg; /* ✅ Plus d'espace pour faciliter le clic */
   border: 1px solid rgba($purple, 0.3);
   border-radius: $border-radius-lg;
   background: linear-gradient(
@@ -144,12 +144,18 @@
     rgba($purple, 0.08) 0%,
     rgba($purple, 0.04) 100%
   );
+  
+  // ✅ Transition améliorée
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  gap: $space-sm;
+  gap: $space-md; /* ✅ Plus d'espace entre icône et texte */
   cursor: pointer;
   font-weight: $font-weight-bold;
-  font-size: 0.95rem;
+  
+  // ✅ AMÉLIORATION : Taille et contraste du texte
+  font-size: 1.05rem; /* Au lieu de 0.95rem */
+  color: #f5f5f5; /* Blanc lumineux */
 
+  // ✅ Hover spectaculaire
   &:hover {
     background: linear-gradient(
       135deg,
@@ -159,27 +165,33 @@
     transform: translateX(8px);
     border-color: $purple;
     box-shadow: 0 8px 24px rgba($purple, 0.3);
+    
+    .icon {
+      filter: grayscale(0);
+      transform: scale(1.1);
+    }
+  }
+  
+  // ✅ Active state
+  &:active {
+    transform: translateX(4px);
   }
 }
 
 .icon {
-  width: 28px;
-  font-size: 1.4rem;
+  width: 32px; /* ✅ Icône plus grosse */
+  font-size: 1.6rem; /* Au lieu de 1.4rem */
   text-align: center;
   flex-shrink: 0;
   filter: grayscale(0.3);
   transition: all $transition-fast;
-
-  .highlight:hover & {
-    filter: grayscale(0);
-    transform: scale(1.1);
-  }
 }
 
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .video {
     gap: $space-xl;
+    padding: 0 2rem;
   }
 
   .text {
@@ -187,77 +199,85 @@
   }
 
   .content-grid {
+    grid-template-columns: 1.2fr 1fr;
     gap: $space-xl;
   }
 
-  .highlights {
-    gap: $space-sm;
+  .video-wrapper {
+    aspect-ratio: 16 / 9;
   }
 
-  .play-button {
-    width: 64px;
-    height: 64px;
+  .highlights {
+    gap: $space-md;
+  }
 
-    span {
-      font-size: 1.25rem;
-    }
+  .highlight {
+    padding: $space-md $space-lg;
+    font-size: 1.05rem;
+  }
+
+  .icon {
+    font-size: 1.6rem;
   }
 }
 
 @include tablet {
   .video {
     gap: $space-lg;
-    padding: 0 $space-lg;
-  }
-
-  .text {
-    gap: $space-xs;
+    padding: 0 1.5rem;
   }
 
   .content-grid {
+    grid-template-columns: 1fr;
     gap: $space-lg;
   }
 
-  .title {
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
-  }
-
-  .description {
-    font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  .video-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .highlights {
-    gap: $space-xs;
+    flex-direction: row;
+    gap: $space-sm;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .highlight {
-    padding: $space-xs $space-sm;
-    font-size: 0.9rem;
-  }
-
-  .play-button {
-    width: 56px;
-    height: 56px;
-
-    span {
-      font-size: 1.15rem;
+    padding: $space-sm $space-md;
+    font-size: 0.95rem;
+    
+    // Sur tablette : transformation vers le haut
+    &:hover {
+      transform: translateY(-4px);
     }
   }
 
   .icon {
-    font-size: 1.3rem;
-    width: 26px;
+    font-size: 1.4rem;
   }
 }
 
 @include mobile {
   .video {
-    gap: $space-lg;
-    padding: 0 $space-lg;
+    height: auto;
+    min-height: 100dvh;
+    gap: $space-md;
+    padding: $space-lg 1rem;
   }
 
   .text {
     gap: $space-xs;
+  }
+
+  .title {
+    font-size: clamp(1.3rem, 8vw, 1.8rem);
+  }
+
+  .description {
+    font-size: 0.9rem;
+    padding: 0 $space-sm;
   }
 
   .content-grid {
@@ -267,23 +287,7 @@
 
   .video-wrapper {
     width: 100%;
-  }
-
-  .title {
-    font-size: clamp(1.5rem, 6vw, 1.8rem);
-  }
-
-  .description {
-    font-size: 0.9rem;
-  }
-
-  .highlights {
-    gap: $space-sm;
-  }
-
-  .highlight {
-    padding: $space-sm $space-md;
-    font-size: 0.9rem;
+    max-width: 100%;
   }
 
   .play-button {
@@ -295,8 +299,28 @@
     }
   }
 
+  .highlights {
+    flex-direction: column;
+    gap: $space-sm;
+    width: 100%;
+  }
+
+  .highlight {
+    // ✅ Mobile : bouton pleine largeur
+    width: 100%;
+    padding: $space-md;
+    font-size: 1rem;
+    justify-content: center; /* Centrer le contenu */
+    
+    // Mobile : transformation vers le haut
+    &:hover {
+      transform: translateY(-2px);
+      // Pas de translateX sur mobile
+    }
+  }
+
   .icon {
-    width: 24px;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    width: 28px;
   }
 }

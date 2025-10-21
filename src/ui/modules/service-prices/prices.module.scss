@@ -18,7 +18,7 @@
   }
 }
 
-/* ===== PRICE CARDS ===== */
+/* ===== 🔥 PRICE CARDS ULTRA AMÉLIORÉES ===== */
 .card {
   position: relative;
   display: flex;
@@ -26,13 +26,19 @@
   justify-content: space-between;
   height: 100%;
   min-height: 0;
-  padding: $space-sm $space-md;
-  border: 2px solid rgba($purple, 0.3);
+  padding: $space-md $space-lg;
+  // ✅ Border plus visible avec couleur accent
+  border: 2px solid rgba($purple, 0.35);
   border-radius: $border-radius-lg;
-  background: linear-gradient(135deg, rgba($dark-purple, 0.9) 0%, rgba($purple, 0.2) 100%);
+  // ✅ Gradient de fond plus subtil
+  background: linear-gradient(135deg, lighten($black, 8%) 0%, lighten($black, 5%) 100%);
   overflow: hidden;
   box-shadow: 0 8px 24px rgba($black, 0.4);
+  
+  // ✅ Transition améliorée
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+  // ✅ Barre du haut au hover (gradient)
   &::before {
     position: absolute;
     top: 0;
@@ -45,14 +51,31 @@
     content: '';
   }
 
+  // ✅ Hover spectaculaire
   &:hover {
-    transform: translateY(-4px);
-    border-color: rgba($purple, 0.6);
-    box-shadow: 0 12px 32px rgba($purple, 0.25);
+    transform: translateY(-6px);
+    border-color: rgba($light-purple, 0.6);
+    box-shadow: 0 16px 40px rgba($purple, 0.3);
 
     &::before {
       opacity: 1;
     }
+    
+    // Le prix grossit légèrement au hover
+    .price {
+      transform: scale(1.08);
+      color: #ffffff;
+    }
+    
+    // Les features deviennent plus visibles
+    .feature-item {
+      color: #e5e7eb;
+    }
+  }
+  
+  // ✅ Active state
+  &:active {
+    transform: translateY(-3px);
   }
 }
 
@@ -153,75 +176,129 @@
   }
 }
 
-/* ===== CARD CONTENT ===== */
+/* ===== 🔥 CARD HEADER AMÉLIORÉ ===== */
 .card-header {
-  margin-bottom: $space-xs;
+  margin-bottom: $space-md;
   text-align: center;
   flex-shrink: 0;
 }
 
 .title {
-  margin: 0 0 $space-xs;
-  color: $light-purple;
-  font-size: 0.75rem;
-  font-weight: $font-weight-bold;
+  margin: 0 0 $space-sm;
+  // ✅ AMÉLIORATION : Couleur ultra visible
+  color: #d4b8ff; /* Au lieu de $light-purple */
+  font-size: 0.85rem; /* Légèrement plus gros */
+  font-weight: $font-weight-black;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em; /* Plus d'espacement */
+  // ✅ Ajout d'une ombre pour ressortir
+  text-shadow: 0 2px 8px rgba($purple, 0.3);
 }
 
+/* ===== 🔥 PRICE SECTION ULTRA AMÉLIORÉE ===== */
 .price-section {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  gap: 0.25rem;
-  margin-bottom: $space-xs;
+  gap: 0.5rem;
+  margin-bottom: $space-md;
 }
 
 .price {
-  color: $white;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  // ✅ AMÉLIORATION : Gradient text pour effet premium
+  background: linear-gradient(135deg, #f5f5f5 0%, #c9a6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem); /* Plus gros */
   font-weight: $font-weight-black;
   line-height: 1;
+  
+  // ✅ Transition pour l'effet hover sur la card
+  transition: transform 0.3s ease;
 }
 
 .unit {
-  color: $purple;
-  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  // ✅ AMÉLIORATION : Couleur coordonnée
+  color: #d4b8ff; /* Au lieu de $purple */
+  font-size: clamp(0.95rem, 2.2vw, 1.25rem); /* Plus gros */
   font-weight: $font-weight-bold;
 }
 
+/* ===== 🔥 FEATURES ULTRA AMÉLIORÉES ===== */
 .features {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem; /* Plus d'espace */
   overflow: hidden;
 }
 
 .feature-item {
   display: flex;
   align-items: flex-start;
-  gap: $space-xs;
-  color: rgba($white, 0.9);
-  font-size: 0.75rem;
-  line-height: 1.3;
+  gap: $space-sm;
+  // ✅ AMÉLIORATION : Meilleur contraste
+  color: #d1d5db; /* Au lieu de rgba($white, 0.9) */
+  font-size: 0.8rem;
+  line-height: 1.4;
+  transition: color 0.3s ease; /* Pour le hover de la card */
 
   &::before {
     content: '✓';
     flex-shrink: 0;
-    color: $purple;
-    font-size: 0.85rem;
-    font-weight: $font-weight-bold;
+    // ✅ AMÉLIORATION : Checkmark ultra visible avec gradient
+    background: linear-gradient(135deg, $light-purple 0%, #d4b8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1rem;
+    font-weight: $font-weight-black;
+    // ✅ Glow subtil
+    filter: drop-shadow(0 2px 4px rgba($purple, 0.3));
   }
 
   &:first-child {
     font-weight: $font-weight-bold;
-    color: $white;
+    // ✅ Premier item encore plus visible
+    color: #f5f5f5;
+    font-size: 0.85rem;
   }
 }
 
 /* ===== RESPONSIVE ===== */
 @include desktop {
+  .prices {
+    gap: $space-lg;
+  }
+
+  .card {
+    padding: $space-md $space-lg;
+  }
+
+  .title {
+    font-size: 0.85rem;
+  }
+
+  .price {
+    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  }
+
+  .unit {
+    font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+  }
+
+  .features {
+    gap: 0.5rem;
+  }
+
+  .feature-item {
+    font-size: 0.8rem;
+  }
+}
+
+@include tablet {
   .prices {
     gap: $space-md;
   }
@@ -230,16 +307,21 @@
     padding: $space-sm $space-md;
   }
 
+  .card-header {
+    margin-bottom: $space-sm;
+  }
+
   .title {
     font-size: 0.75rem;
+    margin-bottom: $space-xs;
   }
 
   .price {
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
   }
 
   .unit {
-    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    font-size: clamp(0.85rem, 2.2vw, 1.1rem);
   }
 
   .features {
@@ -248,45 +330,10 @@
 
   .feature-item {
     font-size: 0.75rem;
-  }
-}
-
-@include tablet {
-  .prices {
-    gap: $space-sm;
-  }
-
-  .card {
-    padding: $space-xs $space-sm;
-  }
-
-  .card-header {
-    margin-bottom: $space-xs;
-  }
-
-  .title {
-    font-size: 0.7rem;
-    margin-bottom: $space-xs;
-  }
-
-  .price {
-    font-size: clamp(1.4rem, 4vw, 1.9rem);
-  }
-
-  .unit {
-    font-size: clamp(0.8rem, 2vw, 1rem);
-  }
-
-  .features {
-    gap: 0.35rem;
-  }
-
-  .feature-item {
-    font-size: 0.7rem;
-    line-height: 1.25;
+    line-height: 1.35;
 
     &::before {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 }
@@ -295,47 +342,56 @@
   .prices {
     width: 90%;
     height: auto;
-    gap: $space-sm;
+    gap: $space-md;
   }
 
   .card {
-    padding: $space-sm;
+    padding: $space-md;
+    // ✅ Border plus visible sur mobile
+    border-width: 2px;
   }
 
   .card-header {
-    margin-bottom: $space-xs;
+    margin-bottom: $space-sm;
   }
 
   .title {
-    font-size: 0.65rem;
-    margin-bottom: $space-xs;
-    letter-spacing: 1px;
+    // ✅ Taille minimale vraiment lisible sur mobile
+    font-size: 0.75rem; /* Au lieu de 0.65rem */
+    margin-bottom: $space-sm;
+    letter-spacing: 0.1em;
   }
 
   .price-section {
-    gap: 0.25rem;
-    margin-bottom: $space-xs;
+    gap: 0.4rem;
+    margin-bottom: $space-sm;
   }
 
   .price {
-    font-size: clamp(1.3rem, 7vw, 1.7rem);
+    // ✅ Plus gros sur mobile pour meilleure visibilité
+    font-size: clamp(1.6rem, 8vw, 2rem);
   }
 
   .unit {
-    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
   }
 
   .features {
-    gap: 0.3rem;
+    gap: 0.45rem; /* Plus d'espace entre les items */
   }
 
   .feature-item {
-    font-size: 0.65rem;
-    line-height: 1.2;
-    gap: 0.3rem;
+    // ✅ CRITIQUE : Taille minimale accessible sur mobile
+    font-size: 0.75rem; /* Au lieu de 0.65rem - 12px minimum */
+    line-height: 1.4; /* Meilleure lisibilité */
+    gap: $space-xs;
 
     &::before {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
+    }
+    
+    &:first-child {
+      font-size: 0.8rem;
     }
   }
 }

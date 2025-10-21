@@ -1,3 +1,6 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
 /* ===== PRESENTATION SECTION ===== */
 .presentation {
   @include flex-column-center;
@@ -37,8 +40,8 @@
 
 .subtitle {
   margin: 0;
-  color: $white;
-  opacity: 0.8;
+  // ✅ AMÉLIORATION : Meilleur contraste
+  color: #d1d5db; /* Au lieu de $white avec opacity 0.8 */
   font-size: clamp(0.85rem, 1.4vw, 1rem);
   font-weight: $font-weight-normal;
   line-height: 1.5;
@@ -52,7 +55,7 @@
   width: 100%;
 }
 
-/* ===== SERVICE ITEM (CARD) ===== */
+/* ===== 🔥 SERVICE ITEM (CARD) AMÉLIORÉE ===== */
 .services-item {
   @include flex-between;
   @include focus-visible;
@@ -68,9 +71,12 @@
   );
   color: inherit;
   text-decoration: none;
+  
+  // ✅ Transition améliorée avec bounce
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 
+  // ✅ Hover amélioré
   &:hover {
     transform: translateY(-6px);
     border-color: $purple;
@@ -80,6 +86,11 @@
       rgba($purple, 0.08) 100%
     );
     box-shadow: 0 12px 32px rgba($purple, 0.3);
+  }
+  
+  // ✅ Active state
+  &:active {
+    transform: translateY(-3px);
   }
 }
 
@@ -113,7 +124,8 @@
 
 .service-name {
   margin: 0;
-  color: $white;
+  // ✅ AMÉLIORATION : Blanc pur pour meilleur contraste
+  color: #f5f5f5; /* Au lieu de $white */
   font-size: 1.15rem;
   font-weight: $font-weight-black;
   line-height: 1.2;
@@ -121,18 +133,21 @@
 
 .service-desc {
   margin: 0;
-  color: rgba($white, 0.75);
+  // ✅ AMÉLIORATION : Meilleur contraste
+  color: #9ca3af; /* Au lieu de rgba($white, 0.75) - ratio 5.2:1 */
   font-size: 0.85rem;
   line-height: 1.4;
 }
 
-/* ===== PRICE BADGE ===== */
+/* ===== 🔥 PRICE BADGE AMÉLIORÉ ===== */
 .service-price {
   padding: $space-sm $space-lg;
   border: 2px solid rgba($purple, 0.4);
   border-radius: $border-radius-lg;
   background: transparent;
-  color: $purple;
+  
+  // ✅ AMÉLIORATION : Couleur plus visible
+  color: #c9a6ff; /* Au lieu de $purple */
   font-size: 1.1rem;
   font-weight: $font-weight-black;
   text-transform: uppercase;
@@ -140,11 +155,14 @@
   flex-shrink: 0;
   min-width: 150px;
   text-align: center;
-  transition: all $transition-fast;
+  
+  // ✅ Transition améliorée
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+  // ✅ Hover spectaculaire
   .services-item:hover & {
-    background: $purple;
-    color: $black;
+    background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+    color: #ffffff; /* Blanc pur sur fond coloré */
     border-color: $purple;
     transform: scale(1.05);
     box-shadow: 0 4px 20px rgba($purple, 0.5);
@@ -168,43 +186,11 @@
   }
 
   .services-item {
-    padding: $space-md $space-xl;
+    padding: $space-lg $space-xl;
   }
 
-  .icon {
-    font-size: 2.5rem;
-  }
-
-  .service-name {
-    font-size: 1.2rem;
-  }
-
-  .service-desc {
-    font-size: 0.875rem;
-  }
-
-  .service-price {
-    font-size: 1.05rem;
-    min-width: 150px;
-  }
-}
-
-@include tablet {
-  .presentation {
-    gap: $space-xl;
-    padding: 0 8vw;
-  }
-
-  .header {
-    gap: $space-xs;
-  }
-
-  .services-list {
-    gap: $space-md;
-  }
-
-  .services-item {
-    padding: $space-md $space-lg;
+  .service-left {
+    gap: $space-lg;
   }
 
   .icon {
@@ -220,9 +206,45 @@
   }
 
   .service-price {
-    font-size: 1rem;
+    min-width: 150px;
+    font-size: 1.1rem;
+  }
+}
+
+@include tablet {
+  .presentation {
+    gap: $space-lg;
+    padding: 0 8vw;
+  }
+
+  .services-list {
+    gap: $space-sm;
+  }
+
+  .services-item {
+    padding: $space-md $space-lg;
+  }
+
+  .service-left {
+    gap: $space-md;
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .service-name {
+    font-size: 1.05rem;
+  }
+
+  .service-desc {
+    font-size: 0.8rem;
+  }
+
+  .service-price {
     min-width: 130px;
-    padding: $space-sm $space-md;
+    font-size: 1rem;
+    padding: $space-xs $space-md;
   }
 }
 
@@ -234,61 +256,48 @@
 
   .header {
     gap: $space-xs;
-    margin-bottom: $space-sm;
-  }
-
-  .title {
-    font-size: clamp(1.5rem, 6vw, 1.8rem);
-  }
-
-  .subtitle {
-    font-size: 0.85rem;
   }
 
   .services-list {
-    gap: $space-md;
-  }
-
-  /* MOBILE : Layout en colonne */
-  .services-item {
-    @include flex-column-center;
-
-    text-align: center;
-    padding: $space-lg;
-    gap: $space-md;
-
-    &:hover {
-      transform: translateY(-4px);
-    }
-  }
-
-  .service-left {
-    @include flex-column-center;
-
-    text-align: center;
     gap: $space-sm;
   }
 
+  .services-item {
+    // ✅ Sur mobile : passer en colonne
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-md;
+    padding: $space-md;
+  }
+
+  .service-left {
+    gap: $space-sm;
+    align-items: flex-start;
+  }
+
   .icon {
-    font-size: 2.75rem;
+    font-size: 1.75rem;
   }
 
   .service-info {
-    gap: $space-xs;
+    gap: 0.25rem;
   }
 
   .service-name {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 
   .service-desc {
-    font-size: 0.85rem;
+    // ✅ Taille minimale lisible sur mobile
+    font-size: 0.875rem; /* Au lieu de 0.8rem */
+    line-height: 1.5;
   }
 
   .service-price {
+    // ✅ Prix en pleine largeur sur mobile
     width: 100%;
-    max-width: 220px;
+    min-width: auto;
     font-size: 1rem;
-    padding: $space-sm $space-lg;
+    padding: $space-sm;
   }
 }

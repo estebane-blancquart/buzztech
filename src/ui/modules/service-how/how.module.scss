@@ -1,3 +1,6 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
 /* ===== HOW BASE ===== */
 .how {
   display: flex;
@@ -8,29 +11,36 @@
   color: $white;
 
   &:focus {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 
   &:focus:not(:focus-visible) {
-    outline: none; // Cache pour les clics souris
+    outline: none;
   }
 }
 
+/* ===== 🔥 PROGRESS BAR AMÉLIORÉE ===== */
 .bar {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 5%;
-  border: 1px solid #444;
-  background: #2a2a2a;
+  // ✅ Border plus visible
+  border: 1px solid rgba($purple, 0.3);
+  background: lighten($black, 8%);
+  // ✅ Ajout d'une ombre
+  box-shadow: 0 2px 8px rgba($black, 0.3);
 
   .percentage {
     position: absolute;
     z-index: 1;
-    color: $white;
+    // ✅ Blanc lumineux pour meilleur contraste
+    color: #f5f5f5;
     font-size: $p1;
     font-weight: bold;
+    // ✅ Ombre portée pour lisibilité sur la progress bar
+    text-shadow: 0 2px 4px rgba($black, 0.8);
   }
 
   .active {
@@ -38,17 +48,106 @@
     top: 0;
     left: 0;
     height: 100%;
-    background: linear-gradient(90deg, #666, #888);
+    // ✅ Gradient violet au lieu de gris
+    background: linear-gradient(90deg, $purple 0%, $light-purple 100%);
     transition: width 0.4s ease-out;
+    // ✅ Ajout d'un glow subtil
+    box-shadow: 0 0 20px rgba($purple, 0.4);
   }
 }
 
+/* ===== 🔥 STEP TITLES AMÉLIORÉS ===== */
+.titles {
+  display: flex;
+  align-items: center;
+  height: 10%;
+  margin-top: 1vh;
+
+  .step {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    padding: 0 15px;
+    // ✅ AMÉLIORATION : Meilleur contraste
+    color: #9ca3af; /* Au lieu de rgba($white, 0.5) */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &:hover {
+      background: rgba($white, 0.05);
+      // ✅ Couleur plus visible au hover
+      color: #d1d5db;
+    }
+
+    &.active {
+      // ✅ Blanc lumineux pour l'actif
+      color: #f5f5f5;
+      background: rgba($purple, 0.1);
+    }
+
+    .number {
+      font-size: 1.8rem;
+      margin-right: 5%;
+      font-weight: bold;
+      // ✅ Ajout d'un gradient pour l'actif
+      transition: all 0.3s ease;
+    }
+
+    .title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    
+    // ✅ Focus pour accessibilité
+    &:focus-visible {
+      outline: 2px solid $purple;
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* ===== 🔥 CONTENT AREA AMÉLIORÉE ===== */
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+  // ✅ Gradient plus subtil
+  background: linear-gradient(135deg, lighten($black, 5%) 0%, lighten($black, 8%) 100%);
+  transition: opacity 0.3s ease;
+  flex: 1;
+  margin-top: 2vh;
+  overflow: hidden;
+  // ✅ Border pour délimiter la zone
+  border: 1px solid rgba($purple, 0.15);
+  border-radius: 8px;
+
+  &.fading {
+    opacity: 0;
+  }
+
+  .fade-content {
+    transition: opacity 0.3s ease;
+
+    &.fading {
+      opacity: 0;
+    }
+  }
+}
+
+/* ===== 🔥 STEP DISPLAY AMÉLIORÉ ===== */
 .step {
   display: flex;
   align-items: flex-start;
   padding: 15px 40px;
-  color: rgba($white, 0.4);
-  opacity: 0.6;
+  // ✅ AMÉLIORATION : Steps non actives plus visibles
+  color: #6b7280; /* Au lieu de rgba($white, 0.4) */
+  opacity: 0.7; /* Au lieu de 0.6 */
   transition: all 0.4s ease;
 
   .number {
@@ -57,9 +156,12 @@
     align-items: center;
     width: 40px;
     height: 40px;
-    border: 1px solid rgba($purple, 0.3);
+    // ✅ Border plus visible
+    border: 2px solid rgba($purple, 0.3);
     border-radius: 8px;
     background: linear-gradient(135deg, $dark-purple 0%, #3a3a5a 100%);
+    // ✅ Couleur plus visible
+    color: #9ca3af;
     font-size: $p1;
     font-weight: bold;
     transform: scale(0.9);
@@ -76,99 +178,63 @@
     transition: all 0.4s ease;
   }
 
+  // ✅ STEP PREVIOUS (grisée mais visible)
+  &.previous {
+    color: #6b7280;
+    opacity: 0.5;
+    
+    .number {
+      border-color: rgba($white, 0.2);
+      background: rgba($dark-purple, 0.5);
+      color: #6b7280;
+    }
+  }
+
+  // ✅ STEP ACTIVE (très visible)
   &.active {
-    color: $white;
+    // ✅ Blanc lumineux
+    color: #f5f5f5;
     opacity: 1;
     transform: translateX(0);
 
     .number {
-      border: 1px solid $purple;
+      border: 2px solid $light-purple;
       background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-      color: $black;
+      // ✅ Blanc pur sur fond coloré
+      color: #ffffff;
       transform: scale(1);
       box-shadow: 0 4px 12px rgba($purple, 0.4);
     }
 
     p {
-      color: $light-purple;
+      // ✅ Couleur accent pour le texte actif
+      color: #c9a6ff;
       transform: translateX(0);
     }
   }
-}
-
-.titles {
-  display: flex;
-  align-items: center;
-  height: 10%;
-  margin-top: 1vh;
-
-  .step {
-    display: flex;
-    align-items: center;
-    width: 20%;
-    height: 100%;
-    padding: 0 15px;
-    color: rgba($white, 0.5);
-    transition: all 0.3s ease;
-    cursor: pointer;
-
-    &:hover {
-      background: rgba($white, 0.05);
-      color: rgba($white, 0.8);
-    }
-
-    &.active {
-      color: $white;
-    }
-
+  
+  // ✅ STEP NEXT (visible mais subtile)
+  &.next {
+    color: #6b7280;
+    opacity: 0.5;
+    
     .number {
-      font-size: 1.8rem;
-      margin-right: 5%;
-      font-weight: bold;
-    }
-
-    .title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      line-height: 1.2;
+      border-color: rgba($purple, 0.2);
+      background: rgba($dark-purple, 0.5);
+      color: #6b7280;
     }
   }
 }
 
-.content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px 0;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  transition: opacity 0.3s ease;
-  flex: 1;
-  margin-top: 2vh;
-  overflow: hidden;
-
-  &.fading {
-    opacity: 0;
-  }
-
-  /* Animation fade global */
-  &.fade-content {
-    transition: opacity 0.3s ease;
-
-    &.fading {
-      opacity: 0;
-    }
-  }
-}
-
-/* Angles décoratifs dans le TSX */
+/* ===== 🔥 CORNERS AMÉLIORÉS ===== */
 .corner {
   position: absolute;
   z-index: 2;
   width: 20px;
   height: 20px;
-  border: 1px solid $purple;
+  // ✅ Border plus visible
+  border: 2px solid rgba($purple, 0.4);
+  transition: border-color 0.3s ease;
 
   &[data-corner='top-left'] {
     top: 0;
@@ -246,12 +312,14 @@
 
     .titles {
       .step {
+        padding: 0 10px;
+        
         .number {
           font-size: 1.6rem;
         }
 
         .title {
-          font-size: 0.85rem;
+          font-size: 0.8rem;
         }
       }
     }
@@ -277,34 +345,49 @@
 
 @include mobile {
   .how {
+    width: 90%;
+    height: 80%;
+    
     .bar {
-      height: 50px;
+      height: 60px; /* Plus de hauteur sur mobile */
 
       .percentage {
-        font-size: $p2;
+        font-size: 1rem;
       }
     }
 
     .titles {
+      // ✅ Masqué sur mobile pour gagner de l'espace
       display: none;
       height: 60px;
     }
 
     .content {
+      margin-top: 1vh;
+      padding: 15px 0;
+      
       .step {
-        padding: 20px;
+        padding: 15px 20px;
 
         .number {
-          width: 30px;
-          height: 30px;
-          font-size: $p2;
-          margin-right: 20px;
+          width: 32px; /* Légèrement plus gros */
+          height: 32px;
+          font-size: 0.95rem;
+          margin-right: 15px;
         }
 
         p {
-          font-size: 0.85rem;
+          // ✅ Taille minimale lisible sur mobile
+          font-size: 0.9rem; /* Au lieu de 0.85rem */
+          line-height: 1.5;
         }
       }
+    }
+    
+    .corner {
+      // ✅ Corners plus petits sur mobile
+      width: 15px;
+      height: 15px;
     }
   }
 }

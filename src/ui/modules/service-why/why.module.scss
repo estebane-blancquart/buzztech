@@ -21,13 +21,17 @@
   }
 }
 
-/* ===== TOP BAR (MacOS style) ===== */
+/* ===== 🔥 TOP BAR (MacOS style) AMÉLIORÉE ===== */
 .bar {
   position: relative;
   height: 50px;
   padding: 0 $space-md;
-  background: $purple;
+  // ✅ Gradient plus subtil
+  background: linear-gradient(135deg, $purple 0%, lighten($purple, 5%) 100%);
   flex-shrink: 0;
+  
+  // ✅ Ajout d'une ombre légère
+  box-shadow: 0 2px 8px rgba($black, 0.3);
 
   &::before {
     position: absolute;
@@ -50,17 +54,21 @@
   display: flex;
   flex: 1;
   min-height: 0;
-  border-bottom: 2px solid #2a2a2a;
-  border-right: 2px solid #2a2a2a;
+  // ✅ Border plus subtile
+  border-bottom: 1px solid rgba($purple, 0.2);
+  border-right: 1px solid rgba($purple, 0.2);
   border-bottom-right-radius: $border-radius-md;
 }
 
-/* ===== NAVIGATION (25% left) ===== */
+/* ===== 🔥 NAVIGATION (25% left) AMÉLIORÉE ===== */
 .nav {
   width: 25%;
-  background: #2a2a2a;
+  // ✅ Background légèrement plus clair
+  background: lighten($black, 8%);
   flex-shrink: 0;
   padding: $space-lg;
+  // ✅ Border right pour séparer visuellement
+  border-right: 1px solid rgba($purple, 0.15);
 
   @include flex-column-start;
 }
@@ -70,8 +78,9 @@
 
   width: 100%;
   margin-bottom: $space-sm;
-  color: $white;
-  font-size: 0.8rem;
+  // ✅ AMÉLIORATION : Meilleur contraste
+  color: #f5f5f5; /* Au lieu de $white */
+  font-size: 0.85rem; /* Légèrement plus gros */
   font-weight: $font-weight-black;
   text-align: left;
   transition: color 0.3s ease;
@@ -79,16 +88,24 @@
   letter-spacing: 0.05em;
 
   &.active {
-    color: $purple;
+    color: #c9a6ff; /* Au lieu de $purple */
   }
 
   &:hover {
     color: $light-purple;
   }
+  
+  // ✅ Focus pour accessibilité
+  &:focus-visible {
+    outline: 2px solid $purple;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 .navigation {
-  border-left: 1px solid $white;
+  // ✅ Border plus visible
+  border-left: 2px solid rgba($purple, 0.3);
   width: 100%;
 }
 
@@ -99,24 +116,33 @@
   width: calc(100% - 18px);
   padding: $space-xs $space-sm;
   margin-left: $space-xs;
-  color: rgba($white, 0.7);
-  font-size: 0.75rem;
+  // ✅ AMÉLIORATION : Meilleur contraste
+  color: #d1d5db; /* Au lieu de rgba($white, 0.7) */
+  font-size: 0.8rem; /* Légèrement plus gros */
   text-align: left;
-  transition: all 0.1s ease;
+  transition: all 0.2s ease;
+  border-radius: 4px;
 
   &.active {
     background: rgba($purple, 0.2);
-    color: $white;
-    border-left: 3px solid $purple;
+    // ✅ Blanc lumineux pour l'élément actif
+    color: #f5f5f5;
+    border-left: 3px solid $light-purple; /* Au lieu de $purple */
   }
 
   &:hover:not(.active) {
     background: rgba($white, 0.05);
-    color: rgba($white, 0.9);
+    color: #f5f5f5;
+  }
+  
+  // ✅ Focus pour accessibilité
+  &:focus-visible {
+    outline: 2px solid $purple;
+    outline-offset: -2px;
   }
 }
 
-/* ===== MAIN CONTENT (75% right) ===== */
+/* ===== 🔥 MAIN CONTENT (75% right) AMÉLIORÉ ===== */
 .main-content {
   justify-content: flex-start;
   padding: $space-lg $space-xl;
@@ -128,7 +154,7 @@
   @include flex-column-start;
 }
 
-/* ===== LANDING VIEW ===== */
+/* ===== 🔥 LANDING VIEW AMÉLIORÉE ===== */
 .landing-content {
   align-items: flex-start;
   padding: 0;
@@ -138,14 +164,21 @@
 }
 
 .landing-item {
-  border-bottom: 1px solid #444;
+  // ✅ Border plus visible avec couleur accent
+  border-bottom: 1px solid rgba($purple, 0.25);
   padding-bottom: $space-md;
   width: 100%;
   transition: all 0.3s ease;
+  
+  // ✅ Hover subtil
+  &:hover {
+    border-bottom-color: rgba($purple, 0.4);
+  }
 
   h3 {
     margin: 0 0 $space-sm 0;
-    color: $purple;
+    // ✅ Couleur plus lumineuse
+    color: #c9a6ff; /* Au lieu de $purple */
     text-transform: uppercase;
     font-size: 1.1rem;
     font-weight: $font-weight-black;
@@ -154,9 +187,10 @@
   p {
     position: relative;
     margin: 0;
-    color: rgba($white, 0.9);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    // ✅ AMÉLIORATION : Meilleur contraste
+    color: #d1d5db; /* Au lieu de rgba($white, 0.9) */
+    font-size: 0.95rem; /* Légèrement plus gros */
+    line-height: 1.6; /* Meilleure lisibilité */
   }
 
   button {
@@ -165,20 +199,30 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    color: $purple;
-    font-size: 0.8rem;
+    // ✅ Couleur plus lumineuse
+    color: #c9a6ff; /* Au lieu de $purple */
+    font-size: 0.85rem;
     font-weight: $font-weight-bold;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     text-transform: uppercase;
     text-decoration: underline;
+    text-underline-offset: 2px;
 
     &:hover {
       color: $light-purple;
+      text-decoration-thickness: 2px;
+    }
+    
+    // ✅ Focus pour accessibilité
+    &:focus-visible {
+      outline: 2px solid $purple;
+      outline-offset: 2px;
+      border-radius: 2px;
     }
   }
 }
 
-/* ===== PAGE VIEW ===== */
+/* ===== 🔥 PAGE VIEW AMÉLIORÉE ===== */
 .page-content {
   width: 100%;
   padding: $space-md;
@@ -192,9 +236,10 @@
 
   h3 {
     margin: 0;
-    color: $white;
+    // ✅ Blanc lumineux
+    color: #f5f5f5; /* Au lieu de $white */
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 1.15rem; /* Légèrement plus gros */
     font-weight: $font-weight-black;
   }
 }
@@ -212,35 +257,56 @@
   li {
     position: relative;
     padding: $space-xs 0 $space-xs $space-md;
-    color: rgba($white, 0.9);
-    font-size: 0.9rem;
-    line-height: 1.4;
+    // ✅ AMÉLIORATION : Meilleur contraste
+    color: #d1d5db; /* Au lieu de rgba($white, 0.9) */
+    font-size: 0.95rem; /* Légèrement plus gros */
+    line-height: 1.5; /* Meilleure lisibilité */
 
     &::before {
       position: absolute;
       left: 0;
-      color: $purple;
-      content: '•';
+      // ✅ Couleur plus lumineuse
+      color: #b482ff; /* Au lieu de $purple */
+      content: '✓'; /* ✓ au lieu de • */
+      font-weight: bold;
+      font-size: 1.1rem;
     }
   }
 }
 
+/* ===== 🔥 CONTACT BUTTON AMÉLIORÉ ===== */
 .contact-btn {
   @include button-reset;
 
   padding: $space-sm $space-lg;
-  border: 1px solid $purple;
-  border-radius: $border-radius-sm;
-  color: $purple;
-  font-size: 0.85rem;
+  border: 2px solid transparent;
+  border-radius: $border-radius-lg;
+  // ✅ Gradient au lieu de solid
+  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+  // ✅ Blanc pur pour meilleur contraste
+  color: #ffffff;
+  font-size: 0.9rem;
   font-weight: $font-weight-bold;
-  transition: all 0.3s ease;
+  // ✅ Transition améliorée
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba($purple, 0.3);
 
   &:hover {
-    background: $purple;
-    color: $black;
+    background: linear-gradient(135deg, $light-purple 0%, #d4b8ff 100%);
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($purple, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  // ✅ Focus pour accessibilité
+  &:focus-visible {
+    outline: 3px solid rgba($purple, 0.5);
+    outline-offset: 2px;
   }
 }
 
@@ -262,13 +328,13 @@
     padding: $space-md $space-sm;
 
     .index-title {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       margin-bottom: $space-xs;
     }
 
     .nav-button {
       padding: 6px $space-xs;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
     }
   }
 
@@ -282,16 +348,16 @@
     }
 
     p {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
   }
 
   .page-header h3 {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .points li {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -314,12 +380,13 @@
 
     .index-title {
       margin-bottom: $space-sm;
-      font-size: 0.65rem;
+      // ✅ Taille minimale lisible sur mobile
+      font-size: 0.7rem; /* Au lieu de 0.65rem */
     }
 
     .navigation {
       display: block;
-      border-left: 1px solid $white;
+      border-left: 2px solid rgba($purple, 0.3);
       border-top: none;
       padding-top: 0;
     }
@@ -327,8 +394,9 @@
     .nav-button {
       margin-left: $space-xs;
       width: calc(100% - 8px);
-      font-size: 0.6rem;
-      padding: 6px $space-xs;
+      // ✅ Taille minimale lisible sur mobile
+      font-size: 0.7rem; /* Au lieu de 0.6rem */
+      padding: 8px $space-xs; /* Plus d'espace pour faciliter le clic */
     }
   }
 
@@ -338,17 +406,22 @@
 
   .landing-item {
     h3 {
-      font-size: 0.95rem;
+      font-size: 1rem; /* Au lieu de 0.95rem */
     }
 
     p {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+    }
+    
+    button {
+      position: static; /* Sur mobile, mettre le bouton en dessous */
+      margin-top: $space-xs;
     }
   }
 
   .page-header {
     h3 {
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
   }
 
@@ -357,11 +430,13 @@
   }
 
   .points li {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .contact-btn {
-    font-size: 0.75rem;
-    padding: $space-xs $space-md;
+    // ✅ Bouton pleine largeur sur mobile
+    width: 100%;
+    font-size: 0.85rem;
+    padding: $space-sm $space-md;
   }
 }
