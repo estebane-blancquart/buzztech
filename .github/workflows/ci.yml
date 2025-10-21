@@ -1,0 +1,202 @@
+# ========================================
+# BuzzTech - CI/CD Pipeline
+# ========================================
+# Ce workflow s'exécute automatiquement à chaque push/PR
+
+name: CI/CD
+
+# Quand déclencher le workflow
+on:
+  # À chaque push sur main ou develop
+  push:
+    branches: [main, develop]
+  
+  # À chaque Pull Request vers main
+  pull_request:
+    branches: [main]
+  
+  # Permet de lancer manuellement depuis GitHub
+  workflow_dispatch:
+
+# Variables d'environnement globales
+env:
+  NODE_VERSION: '20'
+
+# Jobs à exécuter
+jobs:
+  # ===== JOB 1 : QUALITY CHECKS =====
+  quality:
+    name: 🔍 Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Récupérer le code
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      # Setup Node.js
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      # Installer les dépendances
+      - name: 📦 Install dependencies
+        run: npm ci
+      
+      # Vérifier le code TypeScript
+      - name: 🔷 TypeScript check
+        run: npx tsc --noEmit
+      
+      # Linting JavaScript/TypeScript
+      - name: 🧹 Lint JavaScript
+        run: npm run lint:js
+      
+      # Linting CSS/SCSS
+      - name: 🎨 Lint CSS
+        run: npm run lint:css
+
+  # ===== JOB 2 : TESTS =====
+  test:
+    name: 🧪 Tests
+    runs-on: ubuntu-latest
+    needs: quality # Attend que quality soit OK
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: 📦 Install dependencies
+        run: npm ci
+      
+      # Lancer les tests
+      - name: 🧪 Run tests
+        run: npm test -- --run --reporter=verbose
+      
+      # Générer le coverage (optionnel)
+      # - name: 📊 Generate coverage
+      #   run: npm test -- --run --coverage
+      
+      # Upload coverage to Codecov (optionnel)
+      # - name: 📤 Upload coverage
+      #   uses: codecov/codecov-action@v3
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+
+  # ===== JOB 3 : BUILD =====
+  build:
+    name: 🏗️ Build
+    runs-on: ubuntu-latest
+    needs: [quality, test] # Attend quality ET test
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: 📦 Install dependencies
+        run: npm ci
+      
+      # Build de production
+      - name: 🏗️ Build project
+        run: npm run build
+        env:
+          # Variables d'environnement pour le build
+          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
+          VITE_SITE_NAME: ${{ secrets.VITE_SITE_NAME }}
+          VITE_GTM_ID: ${{ secrets.VITE_GTM_ID }}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
+          VITE_WHATSAPP_NUMBER: ${{ secrets.VITE_WHATSAPP_NUMBER }}
+      
+      # Upload l'artifact build pour le job deploy
+      - name: 📤 Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  # ===== JOB 4 : DEPLOY (seulement sur main) =====
+  deploy:
+    name: 🚀 Deploy to Netlify
+    runs-on: ubuntu-latest
+    needs: build
+    # Ne déployer QUE si on est sur main
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      # Télécharger le build artifact
+      - name: 📥 Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      
+      # Déployer sur Netlify
+      - name: 🚀 Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './dist'
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions - ${{ github.event.head_commit.message }}"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+      
+      # Notification de succès
+      - name: ✅ Deployment successful
+        run: |
+          echo "🎉 Deployment successful!"
+          echo "Site URL: https://buzztech.netlify.app"
+
+  # ===== JOB 5 : PREVIEW (pour les PRs) =====
+  preview:
+    name: 🔍 Preview Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    # Déployer preview uniquement sur les PRs
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 📥 Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      
+      # Deploy preview sur Netlify
+      - name: 🔍 Deploy Preview
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './dist'
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Preview deploy from PR #${{ github.event.number }}"
+          enable-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
