@@ -36,7 +36,7 @@ class ErrorBoundary extends Component<Props, State> {
     };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Log en console en dev
     if (env.isDevelopment) {
       console.error('🔴 ErrorBoundary caught an error:', error, errorInfo);
@@ -95,7 +95,7 @@ class ErrorBoundary extends Component<Props, State> {
     }
   };
 
-  render(): ReactNode {
+  override render(): ReactNode {
     if (this.state.hasError) {
       const { error, errorInfo, eventId } = this.state;
 
