@@ -87,7 +87,7 @@
 .service-desc {
   margin: 0;
   color: rgba($white, 0.7);
-  font-size: $font-p3; /* Réduit à p3 */
+    /* Réduit à p3 */
   line-height: 1.4;
 }
 
@@ -211,7 +211,7 @@
   }
 
   .subtitle {
-    font-size: $font-p3; /* Réduit */
+      /* Réduit */
   }
 
   /* MOBILE : LAYOUT EN COLONNE */
@@ -249,7 +249,7 @@
   }
 
   .service-desc {
-    font-size: $font-p3;
+     
   }
 
   .service-price {

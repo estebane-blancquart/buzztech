@@ -27,7 +27,6 @@
   border: 2px solid rgba($purple, 0.3);
   border-radius: $border-radius-lg;
   background: linear-gradient(135deg, rgba($dark-purple, 0.9) 0%, rgba($purple, 0.2) 100%);
-  transition: $transition-smooth;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba($black, 0.4);
 
@@ -166,7 +165,6 @@
 .title {
   margin: 0 0 $space-sm; /* Réduit de $space-md à $space-sm */
   color: $light-purple;
-  font-size: $font-p3; /* Réduit de $font-p2 à $font-p3 */
   font-weight: $font-weight-bold;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -206,7 +204,6 @@
   align-items: flex-start;
   gap: $space-xs; /* Réduit de $space-sm à $space-xs */
   color: rgba($white, 0.9);
-  font-size: $font-small; /* Réduit de $font-p3 à $font-small */
   line-height: 1.4; /* Réduit de 1.6 à 1.4 */
 
   &::before {
@@ -234,7 +231,6 @@
   }
 
   .title {
-    font-size: $font-p3;
   }
 
   .price {
@@ -256,7 +252,6 @@
   }
 
   .title {
-    font-size: $font-small;
     margin-bottom: $space-xs;
   }
 

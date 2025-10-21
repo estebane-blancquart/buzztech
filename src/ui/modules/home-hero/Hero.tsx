@@ -9,8 +9,17 @@ interface HeroProps {
   stats: InfoStat[];
 }
 
+// Map des icônes en fonction de la valeur
+const getIcon = (value: string): string => {
+  if (value.includes('24/7')) return '🕐';
+  if (value.includes('Loire') || value.includes('42')) return '📍';
+  if (value.includes('48')) return '⚡';
+  return '✨';
+};
+
 const InfoCard: React.FC<InfoStat> = ({ value, label }): JSX.Element => (
   <div className={styles['info-card']}>
+    <span className={styles['info-icon']}>{getIcon(value)}</span>
     <span className={styles['info-value']}>{value}</span>
     <span className={styles['info-label']}>{label}</span>
   </div>
@@ -22,6 +31,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
       `https://wa.me/33660352267?text=Bonjour, je souhaite un devis gratuit pour mes besoins informatiques !`
     );
   };
+
   return (
     <div className={styles['hero']}>
       <div className={styles['video-section']}>
@@ -43,7 +53,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
         <p className={styles['hero-subtitle']}>{subtitle}</p>
         <button className={styles['hero-cta']} onClick={handleCTA}>
           {ctaText}
-        </button>{' '}
+        </button>
       </div>
 
       <div className={styles['info-section']}>

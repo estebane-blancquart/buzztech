@@ -21,7 +21,7 @@
   border-radius: $border-radius-round;
   background: rgba($white, 0.1);
   opacity: 0.8;
-  font-size: $font-p3;
+   
   font-weight: $font-weight-bold;
   transition: $transition-smooth;
   text-transform: uppercase;
@@ -70,7 +70,7 @@
   transition: $transition-smooth;
 
   span {
-    font-size: $font-p3;
+     
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: $font-weight-bold;
@@ -106,7 +106,7 @@
 
   .badge {
     padding: $space-xs $space-md;
-    font-size: $font-p3;
+     
   }
 
   .scroll-indicator {
@@ -114,7 +114,7 @@
     gap: $space-sm; /* 16px sur desktop */
 
     span {
-      font-size: $font-p3;
+       
     }
   }
 }
