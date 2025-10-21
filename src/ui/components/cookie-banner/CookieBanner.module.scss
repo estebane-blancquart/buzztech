@@ -1,9 +1,9 @@
 /* ===== COOKIE BANNER ===== */
 .overlay {
   position: fixed;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
   z-index: 9999;
   padding: 1rem;
   background: linear-gradient(to top, rgba($black, 0.95), transparent);
@@ -12,23 +12,24 @@
 
 @keyframes slideUp {
   from {
-    transform: translateY(100%);
     opacity: 0;
+    transform: translateY(100%);
   }
+
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .banner {
   max-width: 1200px;
   margin: 0 auto;
-  background: rgba($dark-purple, 0.95);
-  backdrop-filter: blur(10px);
+  padding: 1.5rem;
   border: 1px solid rgba($purple, 0.3);
   border-radius: 12px;
-  padding: 1.5rem;
+  background: rgba($dark-purple, 0.95);
+  backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba($black, 0.4);
 }
 
@@ -49,17 +50,17 @@
   color: $white;
 
   h3 {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.5rem;
+    color: $light-purple;
     font-size: $p1;
     font-weight: $weight-bold;
-    color: $light-purple;
   }
 
   p {
     margin: 0;
+    opacity: 0.9;
     font-size: $p3;
     line-height: 1.5;
-    opacity: 0.9;
   }
 }
 
@@ -86,14 +87,14 @@
 .btnPrimary,
 .btnSecondary {
   @include button-reset;
-  @include focus-visible;
-  
-  padding: 0.875rem 1.5rem; 
-  min-height: 44px;         
+  @include focus-visible; 
+
+  min-height: 44px;
+  padding: 0.875rem 1.5rem;         
   font-size: $p3;
   font-weight: $weight-bold;
-  cursor: pointer;
   transition: all 0.3s ease;
+  cursor: pointer;
   white-space: nowrap;
 }
 
@@ -112,8 +113,8 @@
 }
 
 .btnSecondary {
-  background: transparent;
   border: 1px solid rgba($white, 0.3);
+  background: transparent;
   color: $white;
 
   &:hover {

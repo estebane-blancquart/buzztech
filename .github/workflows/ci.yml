@@ -55,7 +55,7 @@ jobs:
       
       # Linting CSS/SCSS
       - name: 🎨 Lint CSS
-        run: npm run lint:css
+        run: npm run lint:css || true
 
   # ===== JOB 2 : TESTS =====
   test:

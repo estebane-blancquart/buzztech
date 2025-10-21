@@ -1,5 +1,5 @@
-@import '@/theme/variables.scss';
-@import '@/theme/mixins.scss';
+@import '@/theme/variables';
+@import '@/theme/mixins';
 
 /* ===== HEADER ===== */
 .header {
@@ -51,17 +51,18 @@
   position: absolute;
   top: -100px;
   left: 0;
+  z-index: 9999;
   padding: 1rem 1.5rem;
+  border-radius: 0 0 8px;
   background: $purple;
   color: $white;
   font-weight: $font-weight-bold;
-  text-decoration: none;
-  border-radius: 0 0 8px 0;
-  z-index: 9999;
   transition: top 0.2s ease;
+  text-decoration: none;
 
   &:focus {
     top: 0;
+
     // ✅ BONUS : Focus outline
     outline: 3px solid $light-purple;
     outline-offset: 2px;

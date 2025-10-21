@@ -1,16 +1,16 @@
-@import '@/theme/variables.scss';
-@import '@/theme/mixins.scss';
+@import '@/theme/variables';
+@import '@/theme/mixins';
 
 /* ===== HERO SECTION ===== */
 .hero {
-  height: 70%;
-  width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70%;
   color: $white;
-  position: relative;
   gap: $space-lg;
 }
 
@@ -37,29 +37,30 @@
 
 /* ===== CONTENT SECTION ===== */
 .hero-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: $space-md;
-  position: relative;
-  z-index: 1;
 }
 
 .hero-title {
   margin: 0;
+  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: $font-weight-black;
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .hero-subtitle {
+  max-width: 600px;
   margin: 0;
   color: $white;
   opacity: 0.9;
@@ -67,40 +68,38 @@
   font-weight: $font-weight-normal;
   line-height: 1.4;
   letter-spacing: 0.01em;
-  max-width: 600px;
 }
 
 /* ✅ FIX 1: CTA maintenant en <a>, styles adaptés */
 .hero-cta {
   // Reset des styles de lien
   display: inline-block;
-  text-decoration: none;
   
+  // ✅ Alignement vertical du texte
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   height: auto;
   min-height: 52px;
   padding: $space-sm $space-xl;
-  margin-top: $space-sm;
   border: 2px solid transparent;
   border-radius: $border-radius-lg;
   background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
   color: $white;
   font-size: $font-body;
   font-weight: $font-weight-black;
+  transition: all $transition-fast;
+  text-decoration: none;
+  margin-top: $space-sm;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: all $transition-fast;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba($purple, 0.3);
-  
-  // ✅ Alignement vertical du texte
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 
   &:hover {
+    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba($purple, 0.5);
-    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
   }
 
   &:active {
@@ -116,11 +115,11 @@
 
 /* ===== INFO SECTION ===== */
 .info-section {
-  width: 100%;
-  display: flex;
-  justify-content: center;
   position: relative;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .info-grid {
@@ -215,9 +214,9 @@
   }
 
   .hero-cta {
-    font-size: $font-body;
-    padding: $space-sm $space-xl;
     min-height: 52px;
+    padding: $space-sm $space-xl;
+    font-size: $font-body;
   }
   
   .background-video {
@@ -263,8 +262,8 @@
   }
 
   .hero-subtitle {
-    font-size: clamp(1rem, 4vw, 1.2rem);
     padding: 0 $space-sm;
+    font-size: clamp(1rem, 4vw, 1.2rem);
   }
 
   .hero-cta {

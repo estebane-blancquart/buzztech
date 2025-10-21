@@ -1,5 +1,5 @@
-@import '@/theme/variables.scss';
-@import '@/theme/mixins.scss';
+@import '@/theme/variables';
+@import '@/theme/mixins';
 
 /* ===== WHAT BASE ===== */
 .what {
@@ -42,13 +42,13 @@
 
 .title {
   margin: 0;
+  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
   font-size: clamp(1.8rem, 4.5vw, 3rem);
   font-weight: $font-weight-black;
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }

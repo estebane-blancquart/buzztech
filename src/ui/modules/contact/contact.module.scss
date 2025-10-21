@@ -1,5 +1,5 @@
-@import '@/theme/variables.scss';
-@import '@/theme/mixins.scss';
+@import '@/theme/variables';
+@import '@/theme/mixins';
 
 /* ===== CONTACT SECTION ===== */
 .contact {
@@ -25,8 +25,8 @@
   }
   
   &::-webkit-scrollbar-thumb {
-    background: rgba($purple, 0.5);
     border-radius: 3px;
+    background: rgba($purple, 0.5);
     
     &:hover {
       background: rgba($purple, 0.7);
@@ -37,8 +37,8 @@
 .container {
   width: 100%;
   max-width: 700px;
-  padding: 0 $space-lg;
   margin: auto; // ✅ Centre verticalement dans le scroll
+  padding: 0 $space-lg;
 }
 
 /* ===== HEADER ===== */
@@ -49,13 +49,13 @@
 
 .title {
   margin: 0 0 $space-xs; // ✅ Réduit de sm à xs
+  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
   font-size: clamp(1.5rem, 3.5vw, 2rem); // ✅ Plus petit
   font-weight: $font-weight-black;
   line-height: 1; // ✅ Ligne très compacte
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -167,12 +167,12 @@
 }
 
 .errorMessage {
+  display: flex;
+  align-items: center;
   color: #ef4444;
   font-size: $font-body-sm;
   font-weight: $font-weight-normal;
   margin-top: $space-xs;
-  display: flex;
-  align-items: center;
   gap: $space-xs;
 
   &::before {
@@ -249,9 +249,9 @@
   box-shadow: 0 4px 20px rgba($purple, 0.3);
 
   &:hover:not(:disabled) {
+    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba($purple, 0.5);
-    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
   }
 
   &:active:not(:disabled) {
@@ -272,21 +272,21 @@
   border-radius: $border-radius-md;
   font-size: 0.8rem; // ✅ Plus petit
   font-weight: $font-weight-bold;
-  text-align: center;
-  margin-top: $space-xs; // ✅ Réduit (au lieu de md)
   line-height: 1.3; // ✅ Compact
+  text-align: center;
   animation: slideIn 0.3s ease-out;
+  margin-top: $space-xs; // ✅ Réduit (au lieu de md)
 }
 
 .successMessage {
-  background: rgba(#10b981, 0.15);
   border: 2px solid #10b981;
+  background: rgba(#10b981, 0.15);
   color: #10b981;
 }
 
 .errorMessageGlobal {
-  background: rgba(#ef4444, 0.15);
   border: 2px solid #ef4444;
+  background: rgba(#ef4444, 0.15);
   color: #ef4444;
 }
 
@@ -295,6 +295,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -336,8 +337,8 @@
   .input,
   .select,
   .textarea {
-    font-size: $font-body-sm;
     padding: $space-xs $space-sm; // ✅ Padding réduit
+    font-size: $font-body-sm;
   }
 
   .submitButton {
@@ -347,8 +348,8 @@
 
 @include mobile {
   .contact {
-    padding: $space-md 0; // ✅ Padding réduit
     height: 100vh; // ✅ Garde 100vh
+    padding: $space-md 0; // ✅ Padding réduit
   }
 
   .container {
@@ -404,8 +405,8 @@
 
   .successMessage,
   .errorMessageGlobal {
-    font-size: 0.8rem; // ✅ Plus petit
     padding: $space-xs; // ✅ Compact
+    font-size: 0.8rem; // ✅ Plus petit
     margin-top: $space-xs; // ✅ Moins d'espace
   }
 }

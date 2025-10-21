@@ -269,6 +269,7 @@
 /* ----- CARDS SUPPLÉMENTAIRES ----- */
 @mixin card-interactive {
   @include glass-card;
+
   cursor: pointer;
   transition: $transition-smooth;
 
@@ -291,18 +292,19 @@
 
 /* ----- BADGES ----- */
 @mixin badge-base {
+  display: inline-block;
   padding: $space-xs $space-md;
   border-radius: $border-radius-round;
   font-size: $font-body-sm;
   font-weight: $font-weight-bold;
+  transition: $transition-smooth;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: $transition-smooth;
-  display: inline-block;
 }
 
 @mixin badge-outlined {
   @include badge-base;
+
   border: 1px solid rgba($white, 0.2);
   background: rgba($white, 0.1);
   color: $white;
@@ -329,16 +331,16 @@
 /* ----- ICONS ----- */
 @mixin icon-container($size: 3rem) {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: $size;
   height: $size;
   border-radius: $border-radius-md;
   background: rgba($purple, 0.1);
   color: $purple;
   font-size: $size * 0.5;
-  flex-shrink: 0;
   transition: $transition-smooth;
+  flex-shrink: 0;
 }
 
 @mixin icon-hover {
@@ -377,6 +379,7 @@
 /* ----- SERVICE ITEMS ----- */
 @mixin service-item {
   @include card-interactive;
+
   display: flex;
   align-items: center;
   gap: $space-md;
@@ -384,7 +387,7 @@
 
   @include mobile {
     flex-direction: column;
-    text-align: center;
     padding: $space-md;
+    text-align: center;
   }
 }

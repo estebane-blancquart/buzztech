@@ -1,5 +1,5 @@
-@import '@/theme/variables.scss';
-@import '@/theme/mixins.scss';
+@import '@/theme/variables';
+@import '@/theme/mixins';
 
 .footer {
   position: fixed;
@@ -47,9 +47,9 @@
   @include flex-center;
 
   width: 33vw;
+  color: $purple;
   font-size: $font-body-sm;
   font-weight: $font-weight-bold;
-  color: $purple;
 }
 
 .social {
@@ -140,13 +140,13 @@
   }
 
   .copyright {
+    padding: 0 $space-xs; // Un peu d'espace pour éviter le débordement
     // ✅ FIX 2: Taille minimale accessible sur mobile
     font-size: 0.7rem; // Au lieu de 0.6rem (11.2px au lieu de 9.6px)
-    padding: 0 $space-xs; // Un peu d'espace pour éviter le débordement
   }
 
   // Sur très petits écrans, stack verticalement
-  @media (max-width: 380px) {
+  @media (width <= 380px) {
     .copyright {
       flex-direction: column;
       gap: 0.25rem;

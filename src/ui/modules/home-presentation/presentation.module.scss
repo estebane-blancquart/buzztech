@@ -1,5 +1,5 @@
-@import '@/theme/variables.scss';
-@import '@/theme/mixins.scss';
+@import '@/theme/variables';
+@import '@/theme/mixins';
 
 /* ===== PRESENTATION SECTION ===== */
 .presentation {
@@ -14,32 +14,33 @@
 
 /* ===== HEADER ===== */
 .header {
-  text-align: center;
   display: flex;
   flex-direction: column;
+  text-align: center;
   gap: $space-sm;
 }
 
 .title {
   margin: 0;
-  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-  font-weight: $font-weight-black;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
   background: linear-gradient(
     135deg,
     $white 0%,
     $purple 50%,
     $light-purple 100%
   );
-  -webkit-background-clip: text;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: $font-weight-black;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
   margin: 0;
+
   // ✅ AMÉLIORATION : Meilleur contraste
   color: #d1d5db; /* Au lieu de $white avec opacity 0.8 */
   font-size: clamp(0.85rem, 1.4vw, 1rem);
@@ -78,13 +79,13 @@
 
   // ✅ Hover amélioré
   &:hover {
-    transform: translateY(-6px);
-    border-color: $purple;
     background: linear-gradient(
       135deg,
       rgba($purple, 0.15) 0%,
       rgba($purple, 0.08) 100%
     );
+    transform: translateY(-6px);
+    border-color: $purple;
     box-shadow: 0 12px 32px rgba($purple, 0.3);
   }
   
@@ -124,6 +125,7 @@
 
 .service-name {
   margin: 0;
+
   // ✅ AMÉLIORATION : Blanc pur pour meilleur contraste
   color: #f5f5f5; /* Au lieu de $white */
   font-size: 1.15rem;
@@ -133,6 +135,7 @@
 
 .service-desc {
   margin: 0;
+
   // ✅ AMÉLIORATION : Meilleur contraste
   color: #9ca3af; /* Au lieu de rgba($white, 0.75) - ratio 5.2:1 */
   font-size: 0.85rem;
@@ -141,6 +144,7 @@
 
 /* ===== 🔥 PRICE BADGE AMÉLIORÉ ===== */
 .service-price {
+  min-width: 150px;
   padding: $space-sm $space-lg;
   border: 2px solid rgba($purple, 0.4);
   border-radius: $border-radius-lg;
@@ -150,19 +154,18 @@
   color: #c9a6ff; /* Au lieu de $purple */
   font-size: 1.1rem;
   font-weight: $font-weight-black;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
-  min-width: 150px;
   text-align: center;
   
   // ✅ Transition améliorée
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
 
   // ✅ Hover spectaculaire
   .services-item:hover & {
     background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-    color: #ffffff; /* Blanc pur sur fond coloré */
+    color: #fff; /* Blanc pur sur fond coloré */
     border-color: $purple;
     transform: scale(1.05);
     box-shadow: 0 4px 20px rgba($purple, 0.5);
@@ -243,8 +246,8 @@
 
   .service-price {
     min-width: 130px;
-    font-size: 1rem;
     padding: $space-xs $space-md;
+    font-size: 1rem;
   }
 }
 
@@ -297,7 +300,7 @@
     // ✅ Prix en pleine largeur sur mobile
     width: 100%;
     min-width: auto;
-    font-size: 1rem;
     padding: $space-sm;
+    font-size: 1rem;
   }
 }

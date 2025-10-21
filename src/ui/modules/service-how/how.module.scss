@@ -1,5 +1,5 @@
-@import '@/theme/variables.scss';
-@import '@/theme/mixins.scss';
+@import '@/theme/variables';
+@import '@/theme/mixins';
 
 /* ===== HOW BASE ===== */
 .how {
@@ -26,19 +26,23 @@
   justify-content: center;
   align-items: center;
   height: 5%;
+
   // ✅ Border plus visible
   border: 1px solid rgba($purple, 0.3);
   background: lighten($black, 8%);
+
   // ✅ Ajout d'une ombre
   box-shadow: 0 2px 8px rgba($black, 0.3);
 
   .percentage {
     position: absolute;
     z-index: 1;
+
     // ✅ Blanc lumineux pour meilleur contraste
     color: #f5f5f5;
     font-size: $p1;
     font-weight: bold;
+
     // ✅ Ombre portée pour lisibilité sur la progress bar
     text-shadow: 0 2px 4px rgba($black, 0.8);
   }
@@ -48,9 +52,11 @@
     top: 0;
     left: 0;
     height: 100%;
+
     // ✅ Gradient violet au lieu de gris
     background: linear-gradient(90deg, $purple 0%, $light-purple 100%);
     transition: width 0.4s ease-out;
+
     // ✅ Ajout d'un glow subtil
     box-shadow: 0 0 20px rgba($purple, 0.4);
   }
@@ -69,28 +75,32 @@
     width: 20%;
     height: 100%;
     padding: 0 15px;
+    border-radius: 8px;
+
     // ✅ AMÉLIORATION : Meilleur contraste
     color: #9ca3af; /* Au lieu de rgba($white, 0.5) */
     transition: all 0.3s ease;
     cursor: pointer;
-    border-radius: 8px;
 
     &:hover {
       background: rgba($white, 0.05);
+
       // ✅ Couleur plus visible au hover
       color: #d1d5db;
     }
 
     &.active {
+      background: rgba($purple, 0.1);
+
       // ✅ Blanc lumineux pour l'actif
       color: #f5f5f5;
-      background: rgba($purple, 0.1);
     }
 
     .number {
       font-size: 1.8rem;
       margin-right: 5%;
       font-weight: bold;
+
       // ✅ Ajout d'un gradient pour l'actif
       transition: all 0.3s ease;
     }
@@ -117,15 +127,17 @@
   flex-direction: column;
   justify-content: center;
   padding: 20px 0;
+
+  // ✅ Border pour délimiter la zone
+  border: 1px solid rgba($purple, 0.15);
+  border-radius: 8px;
+
   // ✅ Gradient plus subtil
   background: linear-gradient(135deg, lighten($black, 5%) 0%, lighten($black, 8%) 100%);
   transition: opacity 0.3s ease;
   flex: 1;
   margin-top: 2vh;
   overflow: hidden;
-  // ✅ Border pour délimiter la zone
-  border: 1px solid rgba($purple, 0.15);
-  border-radius: 8px;
 
   &.fading {
     opacity: 0;
@@ -145,6 +157,7 @@
   display: flex;
   align-items: flex-start;
   padding: 15px 40px;
+
   // ✅ AMÉLIORATION : Steps non actives plus visibles
   color: #6b7280; /* Au lieu de rgba($white, 0.4) */
   opacity: 0.7; /* Au lieu de 0.6 */
@@ -156,10 +169,12 @@
     align-items: center;
     width: 40px;
     height: 40px;
+
     // ✅ Border plus visible
     border: 2px solid rgba($purple, 0.3);
     border-radius: 8px;
     background: linear-gradient(135deg, $dark-purple 0%, #3a3a5a 100%);
+
     // ✅ Couleur plus visible
     color: #9ca3af;
     font-size: $p1;
@@ -200,8 +215,9 @@
     .number {
       border: 2px solid $light-purple;
       background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+
       // ✅ Blanc pur sur fond coloré
-      color: #ffffff;
+      color: #fff;
       transform: scale(1);
       box-shadow: 0 4px 12px rgba($purple, 0.4);
     }
@@ -232,6 +248,7 @@
   z-index: 2;
   width: 20px;
   height: 20px;
+
   // ✅ Border plus visible
   border: 2px solid rgba($purple, 0.4);
   transition: border-color 0.3s ease;
