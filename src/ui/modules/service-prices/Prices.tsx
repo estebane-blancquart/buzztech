@@ -78,9 +78,10 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
       role="region"
       aria-label="Grilles tarifaires"
     >
-      {cards.map((card, index) => (
+      {/* ✅ FIX 2: Utiliser card.title comme key unique au lieu de index */}
+      {cards.map((card) => (
         <div
-          key={index}
+          key={card.title}
           className={`
             ${styles['card']} 
             ${card.size ? styles[card.size] : ''}
@@ -96,8 +97,8 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
 
           <div className={styles['features']}>
             {card.features.map((feature, featureIndex) => (
-              <div key={featureIndex} className={styles['feature']}>
-                <span className={styles['bullet']}>•</span>
+              /* ✅ FIX 1: Utiliser 'feature-item' au lieu de 'feature' pour matcher le SCSS */
+              <div key={featureIndex} className={styles['feature-item']}>
                 <span>{feature}</span>
               </div>
             ))}

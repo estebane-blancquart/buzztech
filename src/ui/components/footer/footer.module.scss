@@ -1,3 +1,6 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -29,6 +32,13 @@
 
     &:hover {
       color: $light-purple;
+    }
+
+    // ✅ FIX 3: Focus visible pour accessibilité clavier
+    &:focus-visible {
+      outline: 3px solid $light-purple;
+      outline-offset: 2px;
+      border-radius: 4px;
     }
   }
 }
@@ -65,6 +75,12 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba($purple, 0.3);
   }
+
+  // ✅ FIX 3: Focus visible pour accessibilité clavier
+  &:focus-visible {
+    outline: 3px solid $light-purple;
+    outline-offset: 4px;
+  }
 }
 
 .copyright {
@@ -72,18 +88,34 @@
 
   @include flex-center;
 
+  gap: $space-xs; // ✅ Gap entre les éléments
+  flex-wrap: wrap; // ✅ Permet le wrap sur petits écrans
   color: rgba($white, 0.7);
   font-size: $font-caption;
   font-weight: $font-weight-normal;
+}
+
+// ✅ Séparateur | pour meilleure gestion
+.separator {
+  color: rgba($white, 0.5);
+  user-select: none;
 }
 
 .legalLink {
   color: rgba($white, 0.7);
   text-decoration: none;
   transition: color 0.3s ease;
+  white-space: nowrap; // Évite la coupure des liens
 
   &:hover {
     color: $light-purple;
+  }
+
+  // ✅ FIX 3: Focus visible pour accessibilité clavier
+  &:focus-visible {
+    outline: 2px solid $light-purple;
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
@@ -108,7 +140,22 @@
   }
 
   .copyright {
-    font-size: 0.6rem;
+    // ✅ FIX 2: Taille minimale accessible sur mobile
+    font-size: 0.7rem; // Au lieu de 0.6rem (11.2px au lieu de 9.6px)
+    padding: 0 $space-xs; // Un peu d'espace pour éviter le débordement
+  }
+
+  // Sur très petits écrans, stack verticalement
+  @media (max-width: 380px) {
+    .copyright {
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.65rem;
+    }
+
+    .separator {
+      display: none; // Cache les | sur très petit écran
+    }
   }
 }
 

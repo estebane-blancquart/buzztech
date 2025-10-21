@@ -3,6 +3,7 @@ import Hero from '@/ui/modules/home-hero/Hero';
 import Presentation from '@/ui/modules/home-presentation/Presentation';
 import { homeData } from '@/core/data';
 import Video from '@/ui/modules/home-video/Video';
+import Contact from '../modules/contact/Contact';
 
 const Home: React.FC = () => {
   return (
@@ -26,6 +27,10 @@ const Home: React.FC = () => {
 
       <section className="module">
         <Video />
+      </section>
+
+      <section className="module">
+        <Contact />
       </section>
     </>
   );

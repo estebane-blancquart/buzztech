@@ -1,3 +1,5 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
 
 /* ===== HEADER ===== */
 .header {
@@ -21,7 +23,8 @@
 
 .nav {
   a {
-    color: $purple;
+    // ✅ FIX CONTRASTE : light-purple au lieu de purple
+    color: $light-purple;
     font-family: $lato;
     font-size: $font-body-sm;
     font-weight: $font-weight-bold;
@@ -31,7 +34,8 @@
     transition: color 0.3s ease;
 
     &:hover {
-      color: $light-purple;
+      // ✅ Hover encore plus clair
+      color: #e5d9ff;
     }
   }
 }
@@ -58,6 +62,9 @@
 
   &:focus {
     top: 0;
+    // ✅ BONUS : Focus outline
+    outline: 3px solid $light-purple;
+    outline-offset: 2px;
   }
 }
 
@@ -147,4 +154,3 @@
     display: none;
   }
 }
-

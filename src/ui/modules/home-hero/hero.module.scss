@@ -70,9 +70,11 @@
   max-width: 600px;
 }
 
+/* ✅ FIX 1: CTA maintenant en <a>, styles adaptés */
 .hero-cta {
-  @include button-reset;
-  @include focus-visible;
+  // Reset des styles de lien
+  display: inline-block;
+  text-decoration: none;
   
   height: auto;
   min-height: 52px;
@@ -89,6 +91,11 @@
   transition: all $transition-fast;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba($purple, 0.3);
+  
+  // ✅ Alignement vertical du texte
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     transform: translateY(-2px);
@@ -98,6 +105,12 @@
 
   &:active {
     transform: translateY(0);
+  }
+  
+  // ✅ Focus visible pour accessibilité
+  &:focus-visible {
+    outline: 3px solid $light-purple;
+    outline-offset: 4px;
   }
 }
 

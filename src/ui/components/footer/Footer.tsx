@@ -18,38 +18,45 @@ const Footer: React.FC = () => {
         <div className={styles.location}>{companyData.address}</div>
 
         <div className={styles.social}>
-          <a href={`mailto:${companyData.email}`} className={styles.socialIcon}>
-            <HiMail />
+          <a 
+            href={`mailto:${companyData.email}`} 
+            className={styles.socialIcon}
+            aria-label="Nous contacter par email"
+          >
+            <HiMail aria-hidden="true" />
           </a>
           <a
             href={companyData.social.facebook}
             className={styles.socialIcon}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Suivez-nous sur Facebook"
           >
-            <FaFacebookF />
+            <FaFacebookF aria-hidden="true" />
           </a>
           <a
             href={companyData.social.instagram}
             className={styles.socialIcon}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Suivez-nous sur Instagram"
           >
-            <FaInstagram />
+            <FaInstagram aria-hidden="true" />
           </a>
         </div>
       </div>
 
       <div className={styles.copyright}>
-        Site développé par {companyData.name} - Tous droits réservés | {' '}
+        <span>Site développé par {companyData.name} - Tous droits réservés</span>
+        <span className={styles.separator}>|</span>
         <Link to="/mentions-legales" className={styles.legalLink}>
           Mentions légales
         </Link>
-        {' '} | {' '}
+        <span className={styles.separator}>|</span>
         <Link to="/politique-confidentialite" className={styles.legalLink}>
           Confidentialité
         </Link>
-        {' '} | {' '}
+        <span className={styles.separator}>|</span>
         <Link to="/conditions-generales" className={styles.legalLink}>
           CGV
         </Link>

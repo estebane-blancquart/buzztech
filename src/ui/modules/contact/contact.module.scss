@@ -1,0 +1,411 @@
+@import '@/theme/variables.scss';
+@import '@/theme/mixins.scss';
+
+/* ===== CONTACT SECTION ===== */
+.contact {
+  @include flex-center;
+
+  width: 100%;
+  height: 100vh; // ✅ Hauteur fixe pour le snap scroll
+  overflow-y: auto; // ✅ Scroll interne si contenu trop long
+  padding: $space-sm 0; // ✅ TRÈS RÉDUIT (au lieu de xl)
+  background: $black;
+  color: $white;
+  
+  // ✅ Smooth scroll interne
+  scroll-behavior: smooth;
+  
+  // ✅ Style scrollbar moderne (webkit)
+  &::-webkit-scrollbar {
+    width: 6px; // ✅ Plus fin
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba($white, 0.05);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba($purple, 0.5);
+    border-radius: 3px;
+    
+    &:hover {
+      background: rgba($purple, 0.7);
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  padding: 0 $space-lg;
+  margin: auto; // ✅ Centre verticalement dans le scroll
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  margin-bottom: $space-md; // ✅ Réduit de xl à md
+}
+
+.title {
+  margin: 0 0 $space-xs; // ✅ Réduit de sm à xs
+  font-size: clamp(1.5rem, 3.5vw, 2rem); // ✅ Plus petit
+  font-weight: $font-weight-black;
+  line-height: 1; // ✅ Ligne très compacte
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  margin: 0;
+  color: rgba($white, 0.8);
+  font-size: clamp(0.85rem, 1.3vw, 0.95rem); // ✅ Plus petit
+  font-weight: $font-weight-normal;
+  line-height: 1.3; // ✅ Plus compact
+}
+
+/* ===== FORM ===== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md; // ✅ Réduit de lg à md
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; // ✅ Très compact (au lieu de xs)
+}
+
+.label {
+  color: $white;
+  font-size: 0.8rem; // ✅ Plus petit
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.01em;
+  line-height: 1.2; // ✅ Compact
+}
+
+.required {
+  color: $purple;
+  font-weight: $font-weight-black;
+}
+
+.optional {
+  color: rgba($white, 0.5);
+  font-size: $font-body-sm;
+  font-weight: $font-weight-normal;
+}
+
+/* ===== INPUTS ===== */
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: $space-xs $space-sm; // ✅ Réduit (au lieu de sm md)
+  border: 2px solid rgba($purple, 0.3);
+  border-radius: $border-radius-md;
+  background: rgba($white, 0.05);
+  color: $white;
+  font-family: $font-primary;
+  font-size: 0.95rem; // ✅ Plus compact
+  line-height: 1.3; // ✅ Compact
+  transition: all $transition-fast;
+
+  &::placeholder {
+    color: rgba($white, 0.4);
+  }
+
+  &:hover {
+    border-color: rgba($purple, 0.5);
+    background: rgba($white, 0.08);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $purple;
+    background: rgba($white, 0.1);
+    box-shadow: 0 0 0 3px rgba($purple, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px; // ✅ Réduit de 120 à 80px
+  line-height: 1.4; // ✅ Plus compact
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a78bfa' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $space-sm center;
+  padding-right: $space-xl;
+
+  option {
+    background: $black;
+    color: $white;
+  }
+}
+
+/* ===== INPUT ERROR STATE ===== */
+.inputError {
+  border-color: #ef4444;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(#ef4444, 0.2);
+  }
+}
+
+.errorMessage {
+  color: #ef4444;
+  font-size: $font-body-sm;
+  font-weight: $font-weight-normal;
+  margin-top: $space-xs;
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+
+  &::before {
+    content: '⚠';
+    font-size: 1rem;
+  }
+}
+
+/* ===== CHECKBOX ===== */
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-xs; // ✅ Réduit (au lieu de sm)
+  cursor: pointer;
+  user-select: none;
+  margin-top: $space-xs; // ✅ Ajout pour compacter
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 18px; // ✅ Plus petit (au lieu de 20px)
+  height: 18px;
+  margin-top: 1px; // ✅ Réduit
+  cursor: pointer;
+  accent-color: $purple;
+
+  &:focus-visible {
+    outline: 2px solid $purple;
+    outline-offset: 2px;
+  }
+}
+
+.checkboxText {
+  color: rgba($white, 0.9);
+  font-size: 0.8rem; // ✅ Plus petit
+  line-height: 1.3; // ✅ Plus compact
+}
+
+.link {
+  color: $purple;
+  text-decoration: underline;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $light-purple;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $purple;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submitButton {
+  @include button-reset;
+  @include focus-visible;
+
+  width: 100%;
+  min-height: 48px; // ✅ Réduit de 56 à 48px
+  padding: $space-sm $space-lg; // ✅ Réduit (au lieu de md xl)
+  margin-top: $space-sm; // ✅ Réduit (au lieu de md)
+  border: 2px solid transparent;
+  border-radius: $border-radius-lg;
+  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+  color: $white;
+  font-size: 0.9rem; // ✅ Plus petit
+  font-weight: $font-weight-black;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all $transition-fast;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba($purple, 0.3);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba($purple, 0.5);
+    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+/* ===== FEEDBACK MESSAGES ===== */
+.successMessage,
+.errorMessageGlobal {
+  padding: $space-xs $space-sm; // ✅ Réduit (au lieu de md)
+  border-radius: $border-radius-md;
+  font-size: 0.8rem; // ✅ Plus petit
+  font-weight: $font-weight-bold;
+  text-align: center;
+  margin-top: $space-xs; // ✅ Réduit (au lieu de md)
+  line-height: 1.3; // ✅ Compact
+  animation: slideIn 0.3s ease-out;
+}
+
+.successMessage {
+  background: rgba(#10b981, 0.15);
+  border: 2px solid #10b981;
+  color: #10b981;
+}
+
+.errorMessageGlobal {
+  background: rgba(#ef4444, 0.15);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@include desktop {
+  .container {
+    max-width: 700px;
+    padding: 0 $space-xl;
+  }
+
+  .form {
+    gap: $space-lg; // ✅ Réduit de xl à lg
+  }
+
+  .input,
+  .select,
+  .textarea {
+    font-size: $font-body;
+  }
+}
+
+@include tablet {
+  .container {
+    max-width: 600px;
+    padding: 0 $space-lg;
+  }
+
+  .header {
+    margin-bottom: $space-md; // ✅ Réduit
+  }
+
+  .form {
+    gap: $space-md; // ✅ Réduit
+  }
+
+  .input,
+  .select,
+  .textarea {
+    font-size: $font-body-sm;
+    padding: $space-xs $space-sm; // ✅ Padding réduit
+  }
+
+  .submitButton {
+    min-height: 48px; // ✅ Plus compact
+  }
+}
+
+@include mobile {
+  .contact {
+    padding: $space-md 0; // ✅ Padding réduit
+    height: 100vh; // ✅ Garde 100vh
+  }
+
+  .container {
+    padding: 0 $space-md;
+  }
+
+  .header {
+    margin-bottom: $space-sm; // ✅ Très compact
+  }
+
+  .title {
+    font-size: clamp(1.3rem, 7vw, 1.8rem); // ✅ Plus petit
+  }
+
+  .subtitle {
+    font-size: 0.9rem; // ✅ Plus compact
+  }
+
+  .form {
+    gap: $space-sm; // ✅ Très compact
+  }
+
+  .formGroup {
+    gap: 4px; // ✅ Minimum
+  }
+
+  .label {
+    font-size: 0.8rem; // ✅ Plus petit
+  }
+
+  .input,
+  .select,
+  .textarea {
+    padding: $space-xs; // ✅ Compact
+    font-size: 1rem; // ✅ 16px minimum pour éviter le zoom iOS
+  }
+
+  .textarea {
+    min-height: 80px; // ✅ Réduit de 100 à 80px
+    rows: 4; // ✅ Moins de lignes
+  }
+
+  .checkboxText {
+    font-size: 0.8rem; // ✅ Plus petit
+    line-height: 1.3; // ✅ Plus compact
+  }
+
+  .submitButton {
+    min-height: 44px; // ✅ Compact
+    font-size: $font-body-sm;
+    margin-top: $space-xs; // ✅ Moins d'espace
+  }
+
+  .successMessage,
+  .errorMessageGlobal {
+    font-size: 0.8rem; // ✅ Plus petit
+    padding: $space-xs; // ✅ Compact
+    margin-top: $space-xs; // ✅ Moins d'espace
+  }
+}
