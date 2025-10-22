@@ -10,14 +10,14 @@ export interface SEOData {
 export const seoData: Record<string, SEOData> = {
   '/': {
     title:
-      'BuzzTech - Solutions Informatiques Saint-Étienne | Dépannage, Configuration, Création Web',
+      'BuzzTech - Services Informatiques Saint-Étienne | Dépannage, Configuration, Création Web',
     description:
       'BuzzTech propose des solutions informatiques complètes à Saint-Étienne : dépannage rapide, configuration PC sur mesure et création de sites web professionnels. Devis gratuit.',
     keywords:
       'informatique Saint-Étienne, dépannage ordinateur, configuration PC, création site web, BuzzTech, Loire 42',
     ogTitle: 'BuzzTech - Votre expert informatique à Saint-Étienne',
     ogDescription:
-      'Solutions informatiques professionnelles : dépannage, configuration PC et sites web.',
+      'Services informatiques professionnelles : dépannage, configuration PC et sites web.',
     ogImage: '/images/og-home.jpg',
   },
 
@@ -65,7 +65,7 @@ export const schemaOrgData = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'BuzzTech',
-  description: 'Solutions informatiques complètes à Saint-Étienne',
+  description: 'Services informatiques complets à Saint-Étienne',
   url: 'https://www.buzztech-informatique.fr',
   telephone: '+33660352267',
   email: 'contact@buzztech-informatique.fr',

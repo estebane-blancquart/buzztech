@@ -49,7 +49,7 @@
       style-src 'self' 'unsafe-inline';
       img-src 'self' data: https: blob:;
       font-src 'self' data:;
-      connect-src 'self' https://www.google-analytics.com https://*.sentry.io https://*.ingest.sentry.io;
+      connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.sentry.io https://*.ingest.sentry.io https://formspree.io;
       frame-src 'none';
       object-src 'none';
       base-uri 'self';

@@ -12,7 +12,7 @@ export const homeData = {
 
   presentation: {
     title: "Nos services",
-    subtitle: "Solutions complètes pour tous vos besoins informatiques",
+    subtitle: "Services complets pour tous vos besoins informatiques",
     services: [
       {
         to: "/depannage",
