@@ -3,90 +3,80 @@
 
 /* ===== CONTACT SECTION ===== */
 .contact {
-  @include flex-center;
-
-  width: 100%;
-  height: 100vh; // ✅ Hauteur fixe pour le snap scroll
-  overflow-y: auto; // ✅ Scroll interne si contenu trop long
-  padding: $space-sm 0; // ✅ TRÈS RÉDUIT (au lieu de xl)
-  background: $black;
+  width: 100vw;
+  height: 100vh;
   color: $white;
-  
-  // ✅ Smooth scroll interne
-  scroll-behavior: smooth;
-  
-  // ✅ Style scrollbar moderne (webkit)
-  &::-webkit-scrollbar {
-    width: 6px; // ✅ Plus fin
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: rgba($white, 0.05);
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background: rgba($purple, 0.5);
-    
-    &:hover {
-      background: rgba($purple, 0.7);
-    }
-  }
+  background: $black;
+  @include flex-center;
+  overflow: hidden;
 }
 
 .container {
-  width: 100%;
-  max-width: 700px;
-  margin: auto; // ✅ Centre verticalement dans le scroll
-  padding: 0 $space-lg;
+  @include module-layout; // 60% x 60% comme les autres modules
+  @include flex-column-center;
+  gap: $space-sm;
+  padding: $space-md;
+  overflow: hidden;
 }
 
 /* ===== HEADER ===== */
 .header {
   text-align: center;
-  margin-bottom: $space-md; // ✅ Réduit de xl à md
+  margin-bottom: $space-sm;
 }
 
 .title {
-  margin: 0 0 $space-xs; // ✅ Réduit de sm à xs
-  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
-  font-size: clamp(1.5rem, 3.5vw, 2rem); // ✅ Plus petit
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: $font-weight-black;
-  line-height: 1; // ✅ Ligne très compacte
+  line-height: 1.2;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background-clip: text;
+  margin: 0 0 $space-xs;
+  
+  // Gradient comme Hero
+  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
-  margin: 0;
-  color: rgba($white, 0.8);
-  font-size: clamp(0.85rem, 1.3vw, 0.95rem); // ✅ Plus petit
+  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
   font-weight: $font-weight-normal;
-  line-height: 1.3; // ✅ Plus compact
+  color: rgba($white, 0.8);
+  line-height: 1.4;
+  margin: 0;
 }
 
 /* ===== FORM ===== */
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: $space-md; // ✅ Réduit de lg à md
+  width: 900px; // Fixe, pas de max-width
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; // 3 colonnes pour nom, email, tel
+  gap: $space-sm $space-md; // Plus d'espace
+}
+
+// Champs qui prennent toute la largeur
+.formGroup:nth-child(4), // Service
+.formGroup:nth-child(5), // Message
+.formGroup:nth-child(6), // RGPD
+.submitButton,
+.successMessage,
+.errorMessageGlobal {
+  grid-column: 1 / -1;
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 4px; // ✅ Très compact (au lieu de xs)
+  gap: 4px; // Un peu plus d'espace
 }
 
 .label {
-  color: $white;
-  font-size: 0.8rem; // ✅ Plus petit
+  font-size: 0.75rem; // Très petit
   font-weight: $font-weight-bold;
+  color: $white;
   letter-spacing: 0.01em;
-  line-height: 1.2; // ✅ Compact
 }
 
 .required {
@@ -95,9 +85,9 @@
 }
 
 .optional {
-  color: rgba($white, 0.5);
-  font-size: $font-body-sm;
+  font-size: 0.85rem;
   font-weight: $font-weight-normal;
+  color: rgba($white, 0.5);
 }
 
 /* ===== INPUTS ===== */
@@ -105,14 +95,14 @@
 .select,
 .textarea {
   width: 100%;
-  padding: $space-xs $space-sm; // ✅ Réduit (au lieu de sm md)
+  padding: $space-xs $space-sm; // Compact
+  font-family: $font-primary;
+  font-size: 0.9rem; // Plus petit
+  line-height: 1.4;
+  color: $white;
+  background: rgba($white, 0.05);
   border: 2px solid rgba($purple, 0.3);
   border-radius: $border-radius-md;
-  background: rgba($white, 0.05);
-  color: $white;
-  font-family: $font-primary;
-  font-size: 0.95rem; // ✅ Plus compact
-  line-height: 1.3; // ✅ Compact
   transition: all $transition-fast;
 
   &::placeholder {
@@ -120,14 +110,14 @@
   }
 
   &:hover {
-    border-color: rgba($purple, 0.5);
     background: rgba($white, 0.08);
+    border-color: rgba($purple, 0.5);
   }
 
   &:focus {
     outline: none;
-    border-color: $purple;
     background: rgba($white, 0.1);
+    border-color: $purple;
     box-shadow: 0 0 0 3px rgba($purple, 0.2);
   }
 
@@ -138,9 +128,9 @@
 }
 
 .textarea {
+  min-height: 70px; // Zone message compacte
   resize: vertical;
-  min-height: 80px; // ✅ Réduit de 120 à 80px
-  line-height: 1.4; // ✅ Plus compact
+  line-height: 1.4;
 }
 
 .select {
@@ -148,7 +138,7 @@
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a78bfa' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right $space-sm center;
+  background-position: right $space-md center;
   padding-right: $space-xl;
 
   option {
@@ -157,7 +147,7 @@
   }
 }
 
-/* ===== INPUT ERROR STATE ===== */
+/* ===== ERROR STATE ===== */
 .inputError {
   border-color: #ef4444;
 
@@ -169,11 +159,11 @@
 .errorMessage {
   display: flex;
   align-items: center;
-  color: #ef4444;
-  font-size: $font-body-sm;
+  gap: 4px;
+  font-size: 0.7rem; // Très petit
   font-weight: $font-weight-normal;
-  margin-top: $space-xs;
-  gap: $space-xs;
+  color: #ef4444;
+  margin-top: 2px;
 
   &::before {
     content: '⚠';
@@ -185,17 +175,16 @@
 .checkboxLabel {
   display: flex;
   align-items: flex-start;
-  gap: $space-xs; // ✅ Réduit (au lieu de sm)
+  gap: $space-xs;
   cursor: pointer;
   user-select: none;
-  margin-top: $space-xs; // ✅ Ajout pour compacter
 }
 
 .checkbox {
   flex-shrink: 0;
-  width: 18px; // ✅ Plus petit (au lieu de 20px)
-  height: 18px;
-  margin-top: 1px; // ✅ Réduit
+  width: 16px; // Plus petit
+  height: 16px;
+  margin-top: 1px;
   cursor: pointer;
   accent-color: $purple;
 
@@ -206,9 +195,9 @@
 }
 
 .checkboxText {
+  font-size: 0.75rem; // Très petit
+  line-height: 1.3;
   color: rgba($white, 0.9);
-  font-size: 0.8rem; // ✅ Plus petit
-  line-height: 1.3; // ✅ Plus compact
 }
 
 .link {
@@ -233,25 +222,28 @@
   @include focus-visible;
 
   width: 100%;
-  min-height: 48px; // ✅ Réduit de 56 à 48px
-  padding: $space-sm $space-lg; // ✅ Réduit (au lieu de md xl)
-  margin-top: $space-sm; // ✅ Réduit (au lieu de md)
-  border: 2px solid transparent;
-  border-radius: $border-radius-lg;
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-  color: $white;
-  font-size: 0.9rem; // ✅ Plus petit
+  min-height: 40px; // Plus petit
+  padding: $space-xs $space-md;
+  margin-top: 2px;
+  
+  font-size: 0.85rem; // Plus petit
   font-weight: $font-weight-black;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: all $transition-fast;
-  cursor: pointer;
+  color: $white;
+  
+  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+  border: 2px solid transparent;
+  border-radius: $border-radius-lg;
   box-shadow: 0 4px 20px rgba($purple, 0.3);
+  
+  cursor: pointer;
+  transition: all $transition-fast;
 
   &:hover:not(:disabled) {
-    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba($purple, 0.5);
+    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
   }
 
   &:active:not(:disabled) {
@@ -268,25 +260,24 @@
 /* ===== FEEDBACK MESSAGES ===== */
 .successMessage,
 .errorMessageGlobal {
-  padding: $space-xs $space-sm; // ✅ Réduit (au lieu de md)
+  padding: $space-xs;
   border-radius: $border-radius-md;
-  font-size: 0.8rem; // ✅ Plus petit
+  font-size: 0.75rem; // Très petit
   font-weight: $font-weight-bold;
-  line-height: 1.3; // ✅ Compact
   text-align: center;
+  margin-top: 2px;
   animation: slideIn 0.3s ease-out;
-  margin-top: $space-xs; // ✅ Réduit (au lieu de md)
 }
 
 .successMessage {
-  border: 2px solid #10b981;
   background: rgba(#10b981, 0.15);
+  border: 2px solid #10b981;
   color: #10b981;
 }
 
 .errorMessageGlobal {
-  border: 2px solid #ef4444;
   background: rgba(#ef4444, 0.15);
+  border: 2px solid #ef4444;
   color: #ef4444;
 }
 
@@ -295,7 +286,6 @@
     opacity: 0;
     transform: translateY(-10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -304,109 +294,93 @@
 
 /* ===== RESPONSIVE ===== */
 @include desktop {
-  .container {
-    max-width: 700px;
-    padding: 0 $space-xl;
-  }
-
   .form {
-    gap: $space-lg; // ✅ Réduit de xl à lg
-  }
-
-  .input,
-  .select,
-  .textarea {
-    font-size: $font-body;
+    width: 900px; // Fixe à 900px
   }
 }
 
 @include tablet {
-  .container {
-    max-width: 600px;
-    padding: 0 $space-lg;
-  }
-
-  .header {
-    margin-bottom: $space-md; // ✅ Réduit
-  }
-
   .form {
-    gap: $space-md; // ✅ Réduit
+    width: 90%; // Responsive sur tablet
+    grid-template-columns: 1fr 1fr; // 2 colonnes sur tablet
+    gap: $space-xs $space-sm;
   }
-
-  .input,
-  .select,
-  .textarea {
-    padding: $space-xs $space-sm; // ✅ Padding réduit
-    font-size: $font-body-sm;
-  }
-
-  .submitButton {
-    min-height: 48px; // ✅ Plus compact
+  
+  // Téléphone prend toute la largeur sur tablet
+  .formGroup:nth-child(3),
+  .formGroup:nth-child(4),
+  .formGroup:nth-child(5),
+  .formGroup:nth-child(6),
+  .submitButton,
+  .successMessage,
+  .errorMessageGlobal {
+    grid-column: 1 / -1;
   }
 }
 
 @include mobile {
-  .contact {
-    height: 100vh; // ✅ Garde 100vh
-    padding: $space-md 0; // ✅ Padding réduit
-  }
-
   .container {
-    padding: 0 $space-md;
+    width: 90%;
+    height: 90%;
+    padding: $space-md $space-sm;
   }
 
   .header {
-    margin-bottom: $space-sm; // ✅ Très compact
+    margin-bottom: $space-xs;
   }
 
   .title {
-    font-size: clamp(1.3rem, 7vw, 1.8rem); // ✅ Plus petit
+    font-size: clamp(1.3rem, 7vw, 1.8rem);
   }
 
   .subtitle {
-    font-size: 0.9rem; // ✅ Plus compact
+    font-size: 0.85rem;
   }
 
+  // Grid devient colonne unique sur mobile
   .form {
-    gap: $space-sm; // ✅ Très compact
+    width: 100%; // Pleine largeur sur mobile
+    grid-template-columns: 1fr;
+    gap: $space-xs;
   }
-
-  .formGroup {
-    gap: 4px; // ✅ Minimum
+  
+  .formGroup:nth-child(3),
+  .formGroup:nth-child(4),
+  .formGroup:nth-child(5),
+  .formGroup:nth-child(6),
+  .submitButton,
+  .successMessage,
+  .errorMessageGlobal {
+    grid-column: 1;
   }
 
   .label {
-    font-size: 0.8rem; // ✅ Plus petit
+    font-size: 0.7rem;
   }
 
   .input,
   .select,
   .textarea {
-    padding: $space-xs; // ✅ Compact
-    font-size: 1rem; // ✅ 16px minimum pour éviter le zoom iOS
+    padding: $space-xs;
+    font-size: 1rem; // 16px minimum pour éviter le zoom iOS
   }
 
   .textarea {
-    min-height: 80px; // ✅ Réduit de 100 à 80px
-    rows: 4; // ✅ Moins de lignes
+    min-height: 60px;
   }
 
   .checkboxText {
-    font-size: 0.8rem; // ✅ Plus petit
-    line-height: 1.3; // ✅ Plus compact
+    font-size: 0.7rem;
   }
 
   .submitButton {
-    min-height: 44px; // ✅ Compact
-    font-size: $font-body-sm;
-    margin-top: $space-xs; // ✅ Moins d'espace
+    min-height: 40px;
+    font-size: 0.8rem;
   }
 
   .successMessage,
   .errorMessageGlobal {
-    padding: $space-xs; // ✅ Compact
-    font-size: 0.8rem; // ✅ Plus petit
-    margin-top: $space-xs; // ✅ Moins d'espace
+    padding: $space-xs;
+    font-size: 0.7rem;
   }
 }

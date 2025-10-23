@@ -24,8 +24,8 @@ function Router(): JSX.Element {
             <Route path="mentions-legales" element={<MentionsLegales />} />
             <Route path="politique-confidentialite" element={<PolitiqueConfidentialite />} />
             <Route path="conditions-generales" element={<ConditionsGenerales />} />
-            <Route path="*" element={<Error />} />
           </Route>
+          <Route path="*" element={<Error />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
