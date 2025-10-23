@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaPhone } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import styles from './footer.module.scss';
@@ -18,6 +18,15 @@ const Footer: React.FC = () => {
         <div className={styles.location}>{companyData.address}</div>
 
         <div className={styles.social}>
+          {/* Icône téléphone - visible uniquement sur mobile/tablet */}
+          <a 
+            href={`tel:${companyData.phone.replace(/\s/g, '')}`}
+            className={`${styles.socialIcon} ${styles.phoneIcon}`}
+            aria-label="Nous appeler"
+          >
+            <FaPhone aria-hidden="true" />
+          </a>
+          
           <a 
             href={`mailto:${companyData.email}`} 
             className={styles.socialIcon}
@@ -47,8 +56,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className={styles.copyright}>
-        <span>Site développé par {companyData.name} - Tous droits réservés</span>
-        <span className={styles.separator}>|</span>
+        <span>Site développé par {companyData.name}.</span>
         <Link to="/mentions-legales" className={styles.legalLink}>
           Mentions légales
         </Link>

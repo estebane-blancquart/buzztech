@@ -1,101 +1,100 @@
-@import '@/theme/variables';
+@import '@/theme/tokens';
 @import '@/theme/mixins';
 
+/* ========================================
+   FOOTER - Refonte avec système minimal
+   ======================================== */
+
+/* ===== BASE ===== */
 .footer {
   position: fixed;
   bottom: 0;
-  z-index: 2;
+  z-index: 100;
   width: 100vw;
   height: 10vh;
+  min-height: 60px;
   background: $black;
-  font-family: $lato;
-  border-top: 1px solid rgba($purple, 0.15);
+  border-top: 1px solid rgba($purple, 0.2);
+  font-family: $font-sans;
 }
 
+/* ===== CONTACT SECTION (60% du footer) ===== */
 .contact {
   height: 60%;
-
   @include flex-between;
 }
 
 .tel {
   @include flex-start;
-
-  width: 33vw;
-  font-size: $font-body-sm;
+  width: 33%;
 
   a {
+    color: $purple-light;
+    font-weight: $weight-bold;
     text-decoration: none;
-    color: $purple;
-    font-weight: $font-weight-bold;
-    transition: color 0.3s ease;
+    transition: color $transition-fast;
 
     &:hover {
-      color: $light-purple;
+      color: $white;
     }
 
-    // ✅ FIX 3: Focus visible pour accessibilité clavier
     &:focus-visible {
-      outline: 3px solid $light-purple;
+      outline: 3px solid $purple-light;
       outline-offset: 2px;
-      border-radius: 4px;
+      border-radius: $radius-sm;
     }
   }
 }
 
 .location {
   @include flex-center;
-
-  width: 33vw;
-  color: $purple;
-  font-size: $font-body-sm;
-  font-weight: $font-weight-bold;
+  width: 33%;
+  color: $purple-light;
+  font-weight: $weight-bold;
+  text-align: center;
 }
 
 .social {
   @include flex-end;
-
-  width: 33vw;
-  gap: $space-sm;
+  width: 33%;
+  gap: $space-2;
 }
 
 .socialIcon {
   @include flex-center;
-
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
-  background: $dark-purple;
+  border-radius: $radius-full;
+  background: $purple-dark;
   color: $white;
-  font-size: $font-body-sm;
-  transition: all 0.3s ease;
+  transition: all $transition-base;
 
   &:hover {
     background: $purple;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($purple, 0.3);
   }
 
-  // ✅ FIX 3: Focus visible pour accessibilité clavier
   &:focus-visible {
-    outline: 3px solid $light-purple;
+    outline: 3px solid $purple-light;
     outline-offset: 4px;
   }
 }
 
-.copyright {
-  height: 40%;
-
-  @include flex-center;
-
-  gap: $space-xs; // ✅ Gap entre les éléments
-  flex-wrap: wrap; // ✅ Permet le wrap sur petits écrans
-  color: rgba($white, 0.7);
-  font-size: $font-caption;
-  font-weight: $font-weight-normal;
+// Icône téléphone masquée sur desktop
+.phoneIcon {
+  display: none;
 }
 
-// ✅ Séparateur | pour meilleure gestion
+/* ===== COPYRIGHT SECTION (40% du footer) ===== */
+.copyright {
+  height: 40%;
+  @include flex-center;
+  gap: $space-1;
+  flex-wrap: wrap;
+  color: rgba($white, 0.7);
+  font-weight: $weight-normal;
+}
+
 .separator {
   color: rgba($white, 0.5);
   user-select: none;
@@ -104,93 +103,135 @@
 .legalLink {
   color: rgba($white, 0.7);
   text-decoration: none;
-  transition: color 0.3s ease;
-  white-space: nowrap; // Évite la coupure des liens
+  white-space: nowrap;
+  transition: color $transition-fast;
 
   &:hover {
-    color: $light-purple;
+    color: $purple-light;
   }
 
-  // ✅ FIX 3: Focus visible pour accessibilité clavier
   &:focus-visible {
-    outline: 2px solid $light-purple;
+    outline: 2px solid $purple-light;
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: $radius-sm;
   }
 }
 
-/* ===== FOOTER RESPONSIVE ===== */
+/* ===== RESPONSIVE ===== */
 @include mobile {
   .footer {
-    padding: $mobile-padding;
+    padding: $padding-mobile;
   }
 
+  // Masquer le texte du téléphone
   .tel {
-    font-size: 0.7rem;
+    display: none;
   }
 
+  // Masquer la localisation
   .location {
-    font-size: 0.7rem;
+    display: none;
+  }
+
+  // Afficher l'icône téléphone
+  .phoneIcon {
+    display: flex;
+  }
+
+  // Social centré prend toute la largeur
+  .social {
+    width: 100%;
+    justify-content: center;
+    gap: $space-2;
   }
 
   .socialIcon {
     width: 1.75rem;
     height: 1.75rem;
-    font-size: 0.8rem;
+    font-size: $text-sm;
   }
 
   .copyright {
-    padding: 0 $space-xs; // Un peu d'espace pour éviter le débordement
-    // ✅ FIX 2: Taille minimale accessible sur mobile
-    font-size: 0.7rem; // Au lieu de 0.6rem (11.2px au lieu de 9.6px)
+    padding: 0 $space-1;
+    font-size: $text-xs; // 12px
+    
+    // Masquer "Site développé par BuzzTech"
+    span:first-child,
+    .separator:first-of-type {
+      display: none;
+    }
   }
 
-  // Sur très petits écrans, stack verticalement
+  // Stack vertical sur très petits écrans
   @media (width <= 380px) {
     .copyright {
       flex-direction: column;
       gap: 0.25rem;
-      font-size: 0.65rem;
     }
 
     .separator {
-      display: none; // Cache les | sur très petit écran
+      display: none;
     }
   }
 }
 
 @include tablet {
   .footer {
-    padding: $tablet-padding;
+    padding: $padding-tablet;
   }
 
+  // Masquer le texte du téléphone
   .tel {
-    font-size: $font-caption;
+    display: none;
   }
 
+  // Afficher l'icône téléphone
+  .phoneIcon {
+    display: flex;
+  }
+
+  // Réorganiser
   .location {
-    font-size: $font-caption;
+    width: 50%;
+    justify-content: flex-start;
+    font-size: $text-sm; // 14px
+  }
+
+  .social {
+    width: 50%;
+    gap: $space-2;
+  }
+
+  .socialIcon {
+    font-size: $text-sm;
   }
 
   .copyright {
-    font-size: 0.7rem;
+    font-size: $text-xs; // 12px
+    
+    // Masquer "Site développé par BuzzTech"
+    span:first-child,
+    .separator:first-of-type {
+      display: none;
+    }
   }
 }
 
 @include desktop {
   .footer {
-    padding: $desktop-padding;
+    padding: $padding-desktop;
   }
 
-  .tel {
-    font-size: $font-body-sm;
-  }
-
+  .tel a,
   .location {
-    font-size: $font-body-sm;
+    font-size: $text-base; // 16px
+  }
+
+  .socialIcon {
+    font-size: $text-base;
   }
 
   .copyright {
-    font-size: $font-caption;
+    font-size: $text-xs; // 12px
   }
 }

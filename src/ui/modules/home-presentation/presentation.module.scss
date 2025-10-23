@@ -1,13 +1,15 @@
-@import '@/theme/variables';
+@import '@/theme/tokens';
 @import '@/theme/mixins';
 
-/* ===== PRESENTATION SECTION ===== */
+/* ========================================
+   PRESENTATION - Standardisé avec tokens
+   ======================================== */
+
+/* ===== BASE ===== */
 .presentation {
   @include flex-column-center;
-
   width: 100%;
   height: 100%;
-  gap: $space-xl;
   background: $black;
   color: $white;
 }
@@ -17,290 +19,259 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  gap: $space-sm;
 }
 
 .title {
   margin: 0;
-  background: linear-gradient(
-    135deg,
-    $white 0%,
-    $purple 50%,
-    $light-purple 100%
-  );
-  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-  font-weight: $font-weight-black;
+  background: linear-gradient(135deg, $white 0%, $purple 50%, $purple-light 100%);
+  font-weight: $weight-black;
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
   margin: 0;
-
-  // ✅ AMÉLIORATION : Meilleur contraste
-  color: #d1d5db; /* Au lieu de $white avec opacity 0.8 */
-  font-size: clamp(0.85rem, 1.4vw, 1rem);
-  font-weight: $font-weight-normal;
+  color: $gray;
+  font-weight: $weight-normal;
   line-height: 1.5;
 }
 
 /* ===== SERVICES LIST ===== */
 .services-list {
   @include flex-column-start;
-
-  gap: $space-md;
   width: 100%;
 }
 
-/* ===== 🔥 SERVICE ITEM (CARD) AMÉLIORÉE ===== */
+/* ===== SERVICE CARD ===== */
 .services-item {
   @include flex-between;
-  @include focus-visible;
-
   width: 100%;
-  padding: $space-lg $space-xl;
   border: 1px solid rgba($purple, 0.25);
-  border-radius: $border-radius-lg;
-  background: linear-gradient(
-    135deg,
-    rgba($purple, 0.08) 0%,
-    rgba($purple, 0.04) 100%
-  );
+  border-radius: $radius-lg;
+  background: linear-gradient(135deg, rgba($purple, 0.08) 0%, rgba($purple, 0.04) 100%);
   color: inherit;
   text-decoration: none;
-  
-  // ✅ Transition améliorée avec bounce
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all $transition-base;
   cursor: pointer;
 
-  // ✅ Hover amélioré
   &:hover {
-    background: linear-gradient(
-      135deg,
-      rgba($purple, 0.15) 0%,
-      rgba($purple, 0.08) 100%
-    );
-    transform: translateY(-6px);
-    border-color: $purple;
-    box-shadow: 0 12px 32px rgba($purple, 0.3);
+    background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($purple, 0.08) 100%);
+    border-color: rgba($purple, 0.5);
+    // ✅ Pas de transform
   }
-  
-  // ✅ Active state
-  &:active {
-    transform: translateY(-3px);
+
+  &:focus-visible {
+    outline: 3px solid $purple-light;
+    outline-offset: 4px;
   }
 }
 
 .service-left {
-  @include flex-start;
-
-  gap: $space-lg;
-  flex: 1;
+  display: flex;
+  align-items: center; // ✅ Centre l'icône verticalement avec le texte
 }
 
-/* ===== ICON ===== */
 .icon {
-  font-size: 2.25rem;
   flex-shrink: 0;
-  filter: grayscale(0.3);
-  transition: all $transition-fast;
-
-  .services-item:hover & {
-    filter: grayscale(0);
-    transform: scale(1.1) rotate(5deg);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ===== SERVICE INFO ===== */
 .service-info {
   display: flex;
   flex-direction: column;
-  gap: $space-xs;
-  flex: 1;
 }
 
 .service-name {
   margin: 0;
-
-  // ✅ AMÉLIORATION : Blanc pur pour meilleur contraste
-  color: #f5f5f5; /* Au lieu de $white */
-  font-size: 1.15rem;
-  font-weight: $font-weight-black;
-  line-height: 1.2;
+  color: $white;
+  font-weight: $weight-bold;
 }
 
 .service-desc {
   margin: 0;
-
-  // ✅ AMÉLIORATION : Meilleur contraste
-  color: #9ca3af; /* Au lieu de rgba($white, 0.75) - ratio 5.2:1 */
-  font-size: 0.85rem;
-  line-height: 1.4;
+  color: $gray;
+  font-weight: $weight-normal;
+  line-height: 1.5;
 }
 
-/* ===== 🔥 PRICE BADGE AMÉLIORÉ ===== */
 .service-price {
-  min-width: 150px;
-  padding: $space-sm $space-lg;
-  border: 2px solid rgba($purple, 0.4);
-  border-radius: $border-radius-lg;
-  background: transparent;
-  
-  // ✅ AMÉLIORATION : Couleur plus visible
-  color: #c9a6ff; /* Au lieu de $purple */
-  font-size: 1.1rem;
-  font-weight: $font-weight-black;
-  text-align: center;
-  
-  // ✅ Transition améliorée
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   flex-shrink: 0;
-
-  // ✅ Hover spectaculaire
-  .services-item:hover & {
-    background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-    color: #fff; /* Blanc pur sur fond coloré */
-    border-color: $purple;
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba($purple, 0.5);
-  }
+  padding: $space-2 $space-3; // ✅ Padding uniforme
+  border-radius: $radius-md;
+  background: rgba($purple, 0.2);
+  color: $purple-light;
+  font-weight: $weight-black;
+  text-align: center;
+  white-space: nowrap; // ✅ Évite le retour à la ligne
 }
 
 /* ===== RESPONSIVE ===== */
-@include desktop {
+@include mobile {
   .presentation {
-    gap: $space-xl;
-    padding: 0 15vw;
+    gap: $space-3; // 24px
+    padding: $padding-mobile;
   }
 
   .header {
-    gap: $space-sm;
+    gap: $space-1; // 8px
+  }
+
+  .title {
+    font-size: $heading-3; // 20-28px
+  }
+
+  .subtitle {
+    font-size: $text-sm; // 14px
   }
 
   .services-list {
-    gap: $space-md;
-    max-width: 900px;
+    gap: $space-3; // 24px - ✅ Augmenté pour plus d'espace entre cards
   }
 
   .services-item {
-    padding: $space-lg $space-xl;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-2;
+    padding: $space-2; // 16px - ✅ Réduit pour cards moins hautes
   }
 
   .service-left {
-    gap: $space-lg;
+    gap: $space-2;
+    align-items: center; // ✅ Centre icône avec le texte
   }
 
   .icon {
-    font-size: 2.25rem;
+    font-size: $text-xl; // 20px
+  }
+
+  .service-info {
+    gap: $space-1;
   }
 
   .service-name {
-    font-size: 1.15rem;
+    font-size: $text-base; // 16px
   }
 
   .service-desc {
-    font-size: 0.85rem;
+    font-size: $text-sm; // 14px
   }
 
   .service-price {
-    min-width: 150px;
-    font-size: 1.1rem;
+    width: 100%;
+    padding: $space-2 $space-3; // ✅ Padding uniforme
+    font-size: $text-base; // 16px
   }
 }
 
 @include tablet {
   .presentation {
-    gap: $space-lg;
-    padding: 0 8vw;
-  }
-
-  .services-list {
-    gap: $space-sm;
-  }
-
-  .services-item {
-    padding: $space-md $space-lg;
-  }
-
-  .service-left {
-    gap: $space-md;
-  }
-
-  .icon {
-    font-size: 2rem;
-  }
-
-  .service-name {
-    font-size: 1.05rem;
-  }
-
-  .service-desc {
-    font-size: 0.8rem;
-  }
-
-  .service-price {
-    min-width: 130px;
-    padding: $space-xs $space-md;
-    font-size: 1rem;
-  }
-}
-
-@include mobile {
-  .presentation {
-    gap: $space-lg;
-    padding: 0 5vw;
+    gap: $space-4; // 32px
+    padding: $padding-tablet;
   }
 
   .header {
-    gap: $space-xs;
+    gap: $space-2; // 16px
+  }
+
+  .title {
+    font-size: $heading-2; // 24-36px
+  }
+
+  .subtitle {
+    font-size: $text-base; // 16px
   }
 
   .services-list {
-    gap: $space-sm;
+    gap: $space-2; // 16px
   }
 
   .services-item {
-    // ✅ Sur mobile : passer en colonne
-    flex-direction: column;
-    align-items: stretch;
-    gap: $space-md;
-    padding: $space-md;
+    padding: $space-3 $space-4; // 24px 32px
   }
 
   .service-left {
-    gap: $space-sm;
-    align-items: flex-start;
+    gap: $space-3; // 24px
   }
 
   .icon {
-    font-size: 1.75rem;
+    font-size: $text-xl; // 20px
   }
 
   .service-info {
-    gap: 0.25rem;
+    gap: $space-1;
   }
 
   .service-name {
-    font-size: 1rem;
+    font-size: $text-lg; // 18px
   }
 
   .service-desc {
-    // ✅ Taille minimale lisible sur mobile
-    font-size: 0.875rem; /* Au lieu de 0.8rem */
-    line-height: 1.5;
+    font-size: $text-sm; // 14px
   }
 
   .service-price {
-    // ✅ Prix en pleine largeur sur mobile
-    width: 100%;
-    min-width: auto;
-    padding: $space-sm;
-    font-size: 1rem;
+    min-width: 200px; // ✅ Taille fixe
+    padding: $space-2 $space-3; // ✅ Padding uniforme
+    font-size: $text-base; // 16px
+  }
+}
+
+@include desktop {
+  .presentation {
+    gap: $space-6; // 48px
+    padding: $padding-desktop;
+  }
+
+  .header {
+    gap: $space-2; // 16px
+  }
+
+  .title {
+    font-size: $heading-1; // 32-48px
+  }
+
+  .subtitle {
+    font-size: $text-lg; // 18px
+  }
+
+  .services-list {
+    gap: $space-3; // 24px
+    max-width: 900px;
+  }
+
+  .services-item {
+    padding: $space-4 $space-6; // 32px 48px
+  }
+
+  .service-left {
+    gap: $space-4; // 32px
+  }
+
+  .icon {
+    font-size: $text-xl; // 20px
+  }
+
+  .service-info {
+    gap: $space-1;
+  }
+
+  .service-name {
+    font-size: $text-lg; // 18px
+  }
+
+  .service-desc {
+    font-size: $text-sm; // 14px
+  }
+
+  .service-price {
+    min-width: 200px; // ✅ Taille fixe
+    padding: $space-2 $space-3; // ✅ Padding uniforme
+    font-size: $text-lg; // 18px
   }
 }

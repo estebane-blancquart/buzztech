@@ -1,42 +1,41 @@
-@import '@/theme/variables';
-@import '@/theme/mixins';
+@import "@/theme/tokens";
+@import "@/theme/mixins";
 
-/* ===== HEADER ===== */
+/* ========================================
+   HEADER - Refonte avec système minimal
+   ======================================== */
+
+/* ===== BASE ===== */
 .header {
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 100;
   width: 100vw;
   height: 10vh;
-  background-color: $black;
-  border-bottom: 1px solid rgba($purple, 0.15);
+  min-height: 60px; // Éviter header trop petit
+  background: $black;
+  border-bottom: 1px solid rgba($purple, 0.2);
 }
 
 .logo {
   color: $white;
-  font-family: $lato;
-  font-size: $font-h3;
-  font-weight: $big-weight;
+  font-family: $font-sans;
+  font-weight: $weight-black;
   text-decoration: none;
   letter-spacing: 0.02em;
 }
 
-.nav {
-  a {
-    // ✅ FIX CONTRASTE : light-purple au lieu de purple
-    color: $light-purple;
-    font-family: $lato;
-    font-size: $font-body-sm;
-    font-weight: $font-weight-bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
+.nav a {
+  color: $purple-light;
+  font-family: $font-sans;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color $transition-fast;
 
-    &:hover {
-      // ✅ Hover encore plus clair
-      color: #e5d9ff;
-    }
+  &:hover {
+    color: $white;
   }
 }
 
@@ -44,41 +43,40 @@
   @include button-reset;
 
   color: $white;
-  font-size: 1.5rem;
+  font-size: $text-xl;
+  padding: $space-2;
+  cursor: pointer;
 }
 
 .skipLink {
   position: absolute;
   top: -100px;
   left: 0;
-  z-index: 9999;
-  padding: 1rem 1.5rem;
-  border-radius: 0 0 8px;
+  z-index: 999;
+  padding: $space-2 $space-3;
+  border-radius: 0 0 $radius-sm;
   background: $purple;
   color: $white;
-  font-weight: $font-weight-bold;
-  transition: top 0.2s ease;
+  font-weight: $weight-bold;
   text-decoration: none;
+  transition: top $transition-fast;
 
   &:focus {
     top: 0;
-
-    // ✅ BONUS : Focus outline
-    outline: 3px solid $light-purple;
+    outline: 3px solid $purple-light;
     outline-offset: 2px;
   }
 }
 
-/* ===== HEADER RESPONSIVE ===== */
+/* ===== RESPONSIVE ===== */
 @include mobile {
   .header {
     @include flex-between;
-
-    padding: $mobile-padding;
+    padding: $padding-mobile;
   }
 
   .logo {
-    font-size: $font-h4;
+    font-size: $heading-3; // 20-28px
   }
 
   .nav {
@@ -88,14 +86,14 @@
       @include flex-column-center;
 
       position: fixed;
-      display: flex;
-      background: rgba($black, 0.95);
-      backdrop-filter: blur(10px);
       inset: 0;
-      gap: 4vh;
-      
+      display: flex;
+      gap: $space-6;
+      background: rgba($black, 0.98);
+      backdrop-filter: blur(10px);
+
       a {
-        font-size: $font-body;
+        font-size: $text-lg; // 18px
       }
     }
   }
@@ -108,20 +106,19 @@
 @include tablet {
   .header {
     @include flex-between;
-
-    padding: $tablet-padding;
+    padding: $padding-tablet;
   }
 
   .logo {
-    font-size: $font-h3;
+    font-size: $heading-2; // 24-36px
   }
 
   .nav {
     display: flex;
-    gap: $space-md;
-    
+    gap: $space-3;
+
     a {
-      font-size: $font-body-sm;
+      font-size: $text-sm; // 14px
     }
   }
 
@@ -133,21 +130,20 @@
 @include desktop {
   .header {
     @include flex-column-around;
-
     align-items: flex-start;
-    padding: $desktop-padding;
+    padding: $padding-desktop;
   }
 
   .logo {
-    font-size: $font-h2;
+    font-size: $heading-1; // 32-48px
   }
 
   .nav {
     display: flex;
-    gap: $space-xl;
-    
+    gap: $space-4;
+
     a {
-      font-size: $font-body;
+      font-size: $text-base; // 16px
     }
   }
 

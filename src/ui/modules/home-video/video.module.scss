@@ -1,53 +1,42 @@
-@import '@/theme/variables';
+@import '@/theme/tokens';
 @import '@/theme/mixins';
 
-/* ===== VIDEO SECTION ===== */
+/* ========================================
+   VIDEO - Standardisé avec tokens
+   ======================================== */
+
+/* ===== BASE ===== */
 .video {
   @include flex-column-center;
-
   width: 100%;
   height: 100dvh;
-  max-width: 900px;
-  margin: 0 auto;
   background: $black;
   color: $white;
-  gap: $space-xl;
 }
 
 /* ===== HEADER ===== */
 .text {
   @include flex-column-center;
-
   width: 100%;
   text-align: center;
-  gap: $space-sm;
 }
 
 .title {
   margin: 0;
-  background: linear-gradient(
-    135deg,
-    $white 0%,
-    $purple 50%,
-    $light-purple 100%
-  );
-  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-  font-weight: $font-weight-black;
+  background: linear-gradient(135deg, $white 0%, $purple 50%, $purple-light 100%);
+  font-weight: $weight-black;
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .description {
   margin: 0;
-
-  // ✅ AMÉLIORATION : Meilleur contraste
-  color: #d1d5db; /* Au lieu de $white avec opacity 0.85 */
-  font-size: clamp(0.85rem, 1.4vw, 1rem);
-  font-weight: $font-weight-normal;
+  color: $gray;
+  font-weight: $weight-normal;
   line-height: 1.5;
 }
 
@@ -56,8 +45,7 @@
   display: grid;
   align-items: center;
   width: 100%;
-  grid-template-columns: 1.2fr 1fr;
-  gap: $space-xl;
+  max-width: 900px;
 }
 
 /* ===== VIDEO PLAYER ===== */
@@ -65,11 +53,11 @@
   position: relative;
   width: 100%;
   border: 1px solid rgba($purple, 0.3);
-  border-radius: $border-radius-lg;
-  transition: all $transition-fast;
+  border-radius: $radius-lg;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba($black, 0.4);
+  transition: all $transition-base;
 
   &:hover {
     border-color: $purple;
@@ -82,19 +70,13 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, $purple 0%, #6b5fb5 100%);
-  transition: all $transition-fast;
   cursor: pointer;
-
   @include flex-center;
 
-  &:hover {
-    transform: scale(1.01);
-
-    .play-button {
-      background: $purple;
-      transform: scale(1.15);
-      border-color: $white;
-    }
+  &:hover .play-button {
+    background: $purple;
+    transform: scale(1.15);
+    border-color: $white;
   }
 }
 
@@ -102,15 +84,14 @@
   width: 60px;
   height: 60px;
   border: 2px solid rgba($white, 0.8);
-  border-radius: 50%;
+  border-radius: $radius-full;
   background: transparent;
-  transition: all $transition-fast;
-
+  transition: all $transition-base;
   @include flex-center;
 
   span {
     color: $white;
-    font-size: 1.2rem;
+    font-size: $text-lg;
     margin-left: 4px;
   }
 }
@@ -120,16 +101,14 @@
   height: 100%;
 
   iframe {
-    border-radius: $border-radius-lg;
+    border-radius: $radius-lg;
   }
 }
 
-/* ===== 🔥 HIGHLIGHTS (Social Links) AMÉLIORÉS ===== */
+/* ===== HIGHLIGHTS (Social Links) ===== */
 .highlights {
   @include flex-column-center;
-
   justify-content: center;
-  gap: $space-md;
   width: 100%;
 }
 
@@ -137,191 +116,140 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: $space-md $space-lg; /* ✅ Plus d'espace pour faciliter le clic */
   border: 1px solid rgba($purple, 0.3);
-  border-radius: $border-radius-lg;
-  background: linear-gradient(
-    135deg,
-    rgba($purple, 0.08) 0%,
-    rgba($purple, 0.04) 100%
-  );
-  color: #f5f5f5; /* Blanc lumineux */
-  
-  // ✅ AMÉLIORATION : Taille et contraste du texte
-  font-size: 1.05rem; /* Au lieu de 0.95rem */
-  font-weight: $font-weight-bold;
-  
-  // ✅ Transition améliorée
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  gap: $space-md; /* ✅ Plus d'espace entre icône et texte */
+  border-radius: $radius-lg;
+  background: linear-gradient(135deg, rgba($purple, 0.08) 0%, rgba($purple, 0.04) 100%);
+  color: $white;
+  font-weight: $weight-bold;
+  transition: all $transition-base;
   cursor: pointer;
 
-  // ✅ Hover spectaculaire
   &:hover {
-    background: linear-gradient(
-      135deg,
-      rgba($purple, 0.15) 0%,
-      rgba($purple, 0.08) 100%
-    );
-    transform: translateX(8px);
+    background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($purple, 0.08) 100%);
     border-color: $purple;
-    box-shadow: 0 8px 24px rgba($purple, 0.3);
-    
-    .icon {
-      filter: grayscale(0);
-      transform: scale(1.1);
-    }
-  }
-  
-  // ✅ Active state
-  &:active {
-    transform: translateX(4px);
+    // ✅ Pas de transform
   }
 }
 
 .icon {
-  width: 32px; /* ✅ Icône plus grosse */
-  font-size: 1.6rem; /* Au lieu de 1.4rem */
-  text-align: center;
   flex-shrink: 0;
-  filter: grayscale(0.3);
-  transition: all $transition-fast;
+  text-align: center;
 }
 
 /* ===== RESPONSIVE ===== */
-@include desktop {
+@include mobile {
   .video {
-    gap: $space-xl;
+    gap: $space-4; // 32px
+    padding: $padding-mobile;
   }
 
   .text {
-    gap: $space-sm;
+    gap: $space-1; // 8px
+  }
+
+  .title {
+    font-size: $heading-3; // 20-28px
+  }
+
+  .description {
+    font-size: $text-sm; // 14px
   }
 
   .content-grid {
-    grid-template-columns: 1.2fr 1fr;
-    gap: $space-xl;
-  }
-
-  .video-wrapper {
-    aspect-ratio: 16 / 9;
+    grid-template-columns: 1fr;
+    gap: $space-3; // 24px
   }
 
   .highlights {
-    gap: $space-md;
+    gap: $space-2; // 16px
   }
 
   .highlight {
-    padding: $space-md $space-lg;
-    font-size: 1.05rem;
+    padding: $space-2 $space-3; // 16px 24px
+    gap: $space-2;
+    font-size: $text-base; // 16px
   }
 
   .icon {
-    font-size: 1.6rem;
+    width: 28px;
+    font-size: $text-lg; // 18px
   }
 }
 
 @include tablet {
   .video {
-    gap: $space-lg;
-    padding: 0 1.5rem;
-  }
-
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: $space-lg;
-  }
-
-  .video-wrapper {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .highlights {
-    flex-direction: row;
-    gap: $space-sm;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .highlight {
-    padding: $space-sm $space-md;
-    font-size: 0.95rem;
-    
-    // Sur tablette : transformation vers le haut
-    &:hover {
-      transform: translateY(-4px);
-    }
-  }
-
-  .icon {
-    font-size: 1.4rem;
-  }
-}
-
-@include mobile {
-  .video {
-    height: auto;
-    min-height: 100dvh;
-    gap: $space-md;
-    padding: $space-lg 1rem;
+    gap: $space-6; // 48px
+    padding: $padding-tablet;
   }
 
   .text {
-    gap: $space-xs;
+    gap: $space-2; // 16px
   }
 
   .title {
-    font-size: clamp(1.3rem, 8vw, 1.8rem);
+    font-size: $heading-2; // 24-36px
   }
 
   .description {
-    padding: 0 $space-sm;
-    font-size: 0.9rem;
+    font-size: $text-base; // 16px
   }
 
   .content-grid {
-    grid-template-columns: 1fr;
-    gap: $space-lg;
-  }
-
-  .video-wrapper {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .play-button {
-    width: 50px;
-    height: 50px;
-
-    span {
-      font-size: 1rem;
-    }
+    grid-template-columns: 1.2fr 1fr;
+    gap: $space-6; // 48px
   }
 
   .highlights {
-    flex-direction: column;
-    gap: $space-sm;
-    width: 100%;
+    gap: $space-3; // 24px
   }
 
   .highlight {
-    justify-content: center; /* Centrer le contenu */
-    // ✅ Mobile : bouton pleine largeur
-    width: 100%;
-    padding: $space-md;
-    font-size: 1rem;
-    
-    // Mobile : transformation vers le haut
-    &:hover {
-      transform: translateY(-2px);
-
-      // Pas de translateX sur mobile
-    }
+    padding: $space-3 $space-4; // 24px 32px
+    gap: $space-3;
+    font-size: $text-base; // 16px
   }
 
   .icon {
-    width: 28px;
-    font-size: 1.5rem;
+    width: 32px;
+    font-size: $text-xl; // 20px
+  }
+}
+
+@include desktop {
+  .video {
+    gap: $space-6; // 48px
+    padding: $padding-desktop;
+  }
+
+  .text {
+    gap: $space-2; // 16px
+  }
+
+  .title {
+    font-size: $heading-1; // 32-48px
+  }
+
+  .description {
+    font-size: $text-lg; // 18px
+  }
+
+  .content-grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: $space-6; // 48px
+  }
+
+  .highlights {
+    gap: $space-3; // 24px
+  }
+
+  .highlight {
+    padding: $space-3 $space-4; // 24px 32px
+    gap: $space-3;
+    font-size: $text-lg; // 18px
+  }
+
+  .icon {
+    width: 32px;
+    font-size: $text-xl; // 20px
   }
 }

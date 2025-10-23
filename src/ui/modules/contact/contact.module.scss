@@ -1,65 +1,66 @@
-@import '@/theme/variables';
-@import '@/theme/mixins';
+@import "@/theme/tokens";
+@import "@/theme/mixins";
 
-/* ===== CONTACT SECTION ===== */
+/* ========================================
+   CONTACT - Standardisé avec tokens
+   ======================================== */
+
+/* ===== BASE ===== */
 .contact {
-  width: 100vw;
-  height: 100vh;
+  @include flex-column-center;
+  width: 100%;
+  height: 100%;
   color: $white;
   background: $black;
-  @include flex-center;
-  overflow: hidden;
 }
 
 .container {
-  @include module-layout; // 60% x 60% comme les autres modules
   @include flex-column-center;
-  gap: $space-sm;
-  padding: $space-md;
-  overflow: hidden;
+  width: 100%;
 }
 
 /* ===== HEADER ===== */
 .header {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  margin-bottom: $space-sm;
+  gap: 1rem;
 }
 
 .title {
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  font-weight: $font-weight-black;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    $white 0%,
+    $purple-light 40%,
+    $purple 100%
+  );
+  font-weight: $weight-black;
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  margin: 0 0 $space-xs;
-  
-  // Gradient comme Hero
-  background: linear-gradient(135deg, $white 0%, $light-purple 40%, $purple 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .subtitle {
-  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
-  font-weight: $font-weight-normal;
-  color: rgba($white, 0.8);
-  line-height: 1.4;
   margin: 0;
+  color: $gray;
+  font-weight: $weight-normal;
+  line-height: 1.4;
 }
 
 /* ===== FORM ===== */
 .form {
-  width: 900px; // Fixe, pas de max-width
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; // 3 colonnes pour nom, email, tel
-  gap: $space-sm $space-md; // Plus d'espace
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-// Champs qui prennent toute la largeur
-.formGroup:nth-child(4), // Service
-.formGroup:nth-child(5), // Message
-.formGroup:nth-child(6), // RGPD
+// Champs pleine largeur
+.formGroup:nth-child(4),
+.formGroup:nth-child(5),
+.formGroup:nth-child(6),
 .submitButton,
 .successMessage,
 .errorMessageGlobal {
@@ -69,216 +70,146 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 4px; // Un peu plus d'espace
+  gap: 4px;
 }
 
 .label {
-  font-size: 0.75rem; // Très petit
-  font-weight: $font-weight-bold;
   color: $white;
+  font-weight: $weight-bold;
   letter-spacing: 0.01em;
 }
 
 .required {
   color: $purple;
-  font-weight: $font-weight-black;
+  font-weight: $weight-black;
 }
 
 .optional {
-  font-size: 0.85rem;
-  font-weight: $font-weight-normal;
-  color: rgba($white, 0.5);
+  color: $gray;
+  font-weight: $weight-normal;
 }
 
-/* ===== INPUTS ===== */
 .input,
 .select,
 .textarea {
-  width: 100%;
-  padding: $space-xs $space-sm; // Compact
-  font-family: $font-primary;
-  font-size: 0.9rem; // Plus petit
-  line-height: 1.4;
-  color: $white;
+  padding: $space-2;
+  border: 1px solid rgba($purple, 0.3);
+  border-radius: $radius-sm;
   background: rgba($white, 0.05);
-  border: 2px solid rgba($purple, 0.3);
-  border-radius: $border-radius-md;
-  transition: all $transition-fast;
-
-  &::placeholder {
-    color: rgba($white, 0.4);
-  }
-
-  &:hover {
-    background: rgba($white, 0.08);
-    border-color: rgba($purple, 0.5);
-  }
+  color: $white;
+  font-family: $font-sans;
+  transition: all $transition-base;
 
   &:focus {
     outline: none;
-    background: rgba($white, 0.1);
     border-color: $purple;
-    box-shadow: 0 0 0 3px rgba($purple, 0.2);
+    background: rgba($white, 0.08);
+  }
+
+  &::placeholder {
+    color: $gray;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: $font-sans;
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239c97ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.inputError {
+  border-color: #ef4444;
+}
+
+.errorMessage {
+  color: #ef4444;
+  font-weight: $weight-normal;
+  animation: slideIn 0.3s ease;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.checkboxText {
+  color: $gray;
+  font-weight: $weight-normal;
+  line-height: 1.5;
+
+  a {
+    color: $purple-light;
+    text-decoration: underline;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.submitButton {
+  padding: $space-2 $space-4;
+  border: none;
+  border-radius: $radius-lg;
+  background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
+  color: $white;
+  font-family: $font-sans;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, $purple-light 0%, $purple 100%);
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-}
-
-.textarea {
-  min-height: 70px; // Zone message compacte
-  resize: vertical;
-  line-height: 1.4;
-}
-
-.select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a78bfa' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right $space-md center;
-  padding-right: $space-xl;
-
-  option {
-    background: $black;
-    color: $white;
-  }
-}
-
-/* ===== ERROR STATE ===== */
-.inputError {
-  border-color: #ef4444;
-
-  &:focus {
-    box-shadow: 0 0 0 3px rgba(#ef4444, 0.2);
-  }
-}
-
-.errorMessage {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.7rem; // Très petit
-  font-weight: $font-weight-normal;
-  color: #ef4444;
-  margin-top: 2px;
-
-  &::before {
-    content: '⚠';
-    font-size: 1rem;
-  }
-}
-
-/* ===== CHECKBOX ===== */
-.checkboxLabel {
-  display: flex;
-  align-items: flex-start;
-  gap: $space-xs;
-  cursor: pointer;
-  user-select: none;
-}
-
-.checkbox {
-  flex-shrink: 0;
-  width: 16px; // Plus petit
-  height: 16px;
-  margin-top: 1px;
-  cursor: pointer;
-  accent-color: $purple;
 
   &:focus-visible {
-    outline: 2px solid $purple;
-    outline-offset: 2px;
+    outline: 3px solid $purple-light;
+    outline-offset: 4px;
   }
-}
-
-.checkboxText {
-  font-size: 0.75rem; // Très petit
-  line-height: 1.3;
-  color: rgba($white, 0.9);
-}
-
-.link {
-  color: $purple;
-  text-decoration: underline;
-  transition: color $transition-fast;
-
-  &:hover {
-    color: $light-purple;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $purple;
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-}
-
-/* ===== SUBMIT BUTTON ===== */
-.submitButton {
-  @include button-reset;
-  @include focus-visible;
-
-  width: 100%;
-  min-height: 40px; // Plus petit
-  padding: $space-xs $space-md;
-  margin-top: 2px;
-  
-  font-size: 0.85rem; // Plus petit
-  font-weight: $font-weight-black;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: $white;
-  
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-  border: 2px solid transparent;
-  border-radius: $border-radius-lg;
-  box-shadow: 0 4px 20px rgba($purple, 0.3);
-  
-  cursor: pointer;
-  transition: all $transition-fast;
-
-  &:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba($purple, 0.5);
-    background: linear-gradient(135deg, $light-purple 0%, $purple 100%);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(0);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-}
-
-/* ===== FEEDBACK MESSAGES ===== */
-.successMessage,
-.errorMessageGlobal {
-  padding: $space-xs;
-  border-radius: $border-radius-md;
-  font-size: 0.75rem; // Très petit
-  font-weight: $font-weight-bold;
-  text-align: center;
-  margin-top: 2px;
-  animation: slideIn 0.3s ease-out;
 }
 
 .successMessage {
-  background: rgba(#10b981, 0.15);
+  padding: $space-2;
   border: 2px solid #10b981;
+  border-radius: $radius-sm;
+  background: rgba(#10b981, 0.15);
   color: #10b981;
+  animation: slideIn 0.3s ease;
 }
 
 .errorMessageGlobal {
-  background: rgba(#ef4444, 0.15);
+  padding: $space-2;
   border: 2px solid #ef4444;
+  border-radius: $radius-sm;
+  background: rgba(#ef4444, 0.15);
   color: #ef4444;
+  animation: slideIn 0.3s ease;
 }
 
 @keyframes slideIn {
@@ -293,57 +224,34 @@
 }
 
 /* ===== RESPONSIVE ===== */
-@include desktop {
-  .form {
-    width: 900px; // Fixe à 900px
-  }
-}
-
-@include tablet {
-  .form {
-    width: 90%; // Responsive sur tablet
-    grid-template-columns: 1fr 1fr; // 2 colonnes sur tablet
-    gap: $space-xs $space-sm;
-  }
-  
-  // Téléphone prend toute la largeur sur tablet
-  .formGroup:nth-child(3),
-  .formGroup:nth-child(4),
-  .formGroup:nth-child(5),
-  .formGroup:nth-child(6),
-  .submitButton,
-  .successMessage,
-  .errorMessageGlobal {
-    grid-column: 1 / -1;
-  }
-}
-
 @include mobile {
+  .contact {
+    gap: $space-4; // 32px
+    padding: $padding-mobile;
+  }
+
   .container {
-    width: 90%;
-    height: 90%;
-    padding: $space-md $space-sm;
+    gap: $space-2;
   }
 
   .header {
-    margin-bottom: $space-xs;
+    margin-bottom: $space-1;
   }
 
   .title {
-    font-size: clamp(1.3rem, 7vw, 1.8rem);
+    font-size: $heading-3; // 20-28px
   }
 
   .subtitle {
-    font-size: 0.85rem;
+    font-size: $text-sm; // 14px
   }
 
-  // Grid devient colonne unique sur mobile
   .form {
-    width: 100%; // Pleine largeur sur mobile
+    width: 100%;
     grid-template-columns: 1fr;
-    gap: $space-xs;
+    gap: $space-2;
   }
-  
+
   .formGroup:nth-child(3),
   .formGroup:nth-child(4),
   .formGroup:nth-child(5),
@@ -355,14 +263,14 @@
   }
 
   .label {
-    font-size: 0.7rem;
+    font-size: $text-xs; // 12px
   }
 
   .input,
   .select,
   .textarea {
-    padding: $space-xs;
-    font-size: 1rem; // 16px minimum pour éviter le zoom iOS
+    padding: $space-2;
+    font-size: $text-base; // 16px (évite zoom iOS)
   }
 
   .textarea {
@@ -370,17 +278,123 @@
   }
 
   .checkboxText {
-    font-size: 0.7rem;
+    font-size: $text-xs; // 12px
   }
 
   .submitButton {
-    min-height: 40px;
-    font-size: 0.8rem;
+    min-height: 44px;
+    font-size: $text-sm; // 14px
   }
 
   .successMessage,
   .errorMessageGlobal {
-    padding: $space-xs;
-    font-size: 0.7rem;
+    padding: $space-2;
+    font-size: $text-xs; // 12px
+  }
+}
+
+@include tablet {
+  .contact {
+    gap: $space-6; // 48px
+    padding: $padding-tablet;
+  }
+
+  .container {
+    gap: $space-2;
+  }
+
+  .header {
+    margin-bottom: $space-2;
+  }
+
+  .title {
+    font-size: $heading-2; // 24-36px
+  }
+
+  .subtitle {
+    font-size: $text-base; // 16px
+  }
+
+  .form {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-2 $space-3;
+  }
+
+  .formGroup:nth-child(3),
+  .formGroup:nth-child(4),
+  .formGroup:nth-child(5),
+  .formGroup:nth-child(6),
+  .submitButton,
+  .successMessage,
+  .errorMessageGlobal {
+    grid-column: 1 / -1;
+  }
+
+  .label {
+    font-size: $text-sm; // 14px
+  }
+
+  .input,
+  .select,
+  .textarea {
+    font-size: $text-base; // 16px
+  }
+
+  .checkboxText {
+    font-size: $text-sm; // 14px
+  }
+
+  .submitButton {
+    min-height: 48px;
+    font-size: $text-base; // 16px
+  }
+}
+
+@include desktop {
+  .contact {
+    gap: $space-6; // 48px
+    padding: $padding-desktop;
+  }
+
+  .container {
+    gap: $space-3;
+    max-width: 900px; // ✅ Max-width sur l'enfant
+  }
+
+  .header {
+    margin-bottom: $space-2;
+  }
+
+  .title {
+    font-size: $heading-1; // 32-48px
+  }
+
+  .subtitle {
+    font-size: $text-lg; // 18px
+  }
+
+  .form {
+    width: 100%;
+    gap: $space-2 $space-4;
+  }
+
+  .label {
+    font-size: $text-sm; // 14px
+  }
+
+  .input,
+  .select,
+  .textarea {
+    font-size: $text-base; // 16px
+  }
+
+  .checkboxText {
+    font-size: $text-sm; // 14px
+  }
+
+  .submitButton {
+    min-height: 52px;
+    font-size: $text-base; // 16px
   }
 }
