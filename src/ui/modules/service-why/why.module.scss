@@ -1,15 +1,19 @@
-@import '@/theme/variables';
-@import '@/theme/mixins';
+@import "@/theme/tokens";
+@import "@/theme/mixins";
 
-/* ===== WHY BASE ===== */
+/* ========================================
+   WHY - Standardisé avec tokens
+   ======================================== */
+
+/* ===== BASE ===== */
 .why {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 100%;
   height: 60%;
-  border-radius: $border-radius-md;
+  border-radius: $radius-md;
   color: $white;
-  font-family: $lato;
+  font-family: $font-sans;
   overflow: hidden;
 
   &:focus {
@@ -21,57 +25,48 @@
   }
 }
 
-/* ===== 🔥 TOP BAR (MacOS style) AMÉLIORÉE ===== */
+/* ===== TOP BAR (MacOS style) ===== */
 .bar {
   position: relative;
   height: 50px;
-  padding: 0 $space-md;
-
-  // ✅ Gradient plus subtil
+  padding: 0 $space-3;
   background: linear-gradient(135deg, $purple 0%, lighten($purple, 5%) 100%);
   flex-shrink: 0;
-  
-  // ✅ Ajout d'une ombre légère
   box-shadow: 0 2px 8px rgba($black, 0.3);
+  border-radius: $radius-md $radius-md 0 0;
 
   &::before {
     position: absolute;
     top: 50%;
-    left: $space-md;
+    left: $space-3;
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: $red;
+    background: #ff5f57;
     transform: translateY(-50%);
-    content: '';
+    content: "";
     box-shadow:
-      20px 0 0 $orange,
-      40px 0 0 $green;
+      20px 0 0 #ffbd2e,
+      40px 0 0 #28ca42;
   }
 }
 
-/* ===== CONTENT ===== */
+/* ===== CONTENT CONTAINER ===== */
 .content {
   display: flex;
   flex: 1;
   min-height: 0;
-
-  // ✅ Border plus subtile
   border-bottom: 1px solid rgba($purple, 0.2);
   border-right: 1px solid rgba($purple, 0.2);
-  border-bottom-right-radius: $border-radius-md;
+  border-bottom-right-radius: $radius-md;
 }
 
-/* ===== 🔥 NAVIGATION (25% left) AMÉLIORÉE ===== */
+/* ===== NAVIGATION SIDEBAR (25% left) ===== */
 .nav {
   width: 25%;
-  padding: $space-lg;
-
-  // ✅ Background légèrement plus clair
+  padding: $space-4;
   background: lighten($black, 8%);
   flex-shrink: 0;
-
-  // ✅ Border right pour séparer visuellement
   border-right: 1px solid rgba($purple, 0.15);
 
   @include flex-column-start;
@@ -81,26 +76,23 @@
   @include button-reset;
 
   width: 100%;
-  margin-bottom: $space-sm;
-
-  // ✅ AMÉLIORATION : Meilleur contraste
-  color: #f5f5f5; /* Au lieu de $white */
-  font-size: 0.85rem; /* Légèrement plus gros */
-  font-weight: $font-weight-black;
+  margin-bottom: $space-2;
+  color: $white;
+  font-size: $text-sm;
+  font-weight: $weight-black;
   text-align: left;
-  transition: color 0.3s ease;
+  transition: color $transition-base;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
   &.active {
-    color: #c9a6ff; /* Au lieu de $purple */
+    color: rgba($purple-light, 0.9);
   }
 
   &:hover {
-    color: $light-purple;
+    color: $purple-light;
   }
-  
-  // ✅ Focus pour accessibilité
+
   &:focus-visible {
     outline: 2px solid $purple;
     outline-offset: 2px;
@@ -109,7 +101,6 @@
 }
 
 .navigation {
-  // ✅ Border plus visible
   border-left: 2px solid rgba($purple, 0.3);
   width: 100%;
 }
@@ -119,87 +110,77 @@
 
   display: block;
   width: calc(100% - 18px);
-  padding: $space-xs $space-sm;
+  padding: $space-1 $space-2;
+  margin-left: $space-1;
   border-radius: 4px;
-
-  // ✅ AMÉLIORATION : Meilleur contraste
-  color: #d1d5db; /* Au lieu de rgba($white, 0.7) */
-  font-size: 0.8rem; /* Légèrement plus gros */
+  color: $gray;
+  font-size: $text-sm;
   text-align: left;
-  transition: all 0.2s ease;
-  margin-left: $space-xs;
+  transition: all $transition-fast;
 
   &.active {
     background: rgba($purple, 0.2);
-
-    // ✅ Blanc lumineux pour l'élément actif
-    color: #f5f5f5;
-    border-left: 3px solid $light-purple; /* Au lieu de $purple */
+    color: $white;
+    border-left: 3px solid $purple-light;
   }
 
   &:hover:not(.active) {
     background: rgba($white, 0.05);
-    color: #f5f5f5;
+    color: $white;
   }
-  
-  // ✅ Focus pour accessibilité
+
   &:focus-visible {
     outline: 2px solid $purple;
     outline-offset: -2px;
   }
 }
 
-/* ===== 🔥 MAIN CONTENT (75% right) AMÉLIORÉ ===== */
+/* ===== MAIN CONTENT (75% right) ===== */
 .main-content {
   justify-content: flex-start;
-  padding: $space-lg $space-xl;
+  padding: $space-4 $space-6;
   background: $black;
   flex: 1;
-  overflow: hidden;
-  border-bottom-right-radius: $border-radius-md;
+  overflow-y: auto;
+  border-bottom-right-radius: $radius-md;
+  border-bottom-left-radius: $radius-md;
 
   @include flex-column-start;
 }
 
-/* ===== 🔥 LANDING VIEW AMÉLIORÉE ===== */
+/* ===== LANDING VIEW (liste des services) ===== */
 .landing-content {
   align-items: flex-start;
   padding: 0;
-  gap: $space-lg;
+  gap: $space-4;
 
   @include flex-column-start;
 }
 
 .landing-item {
-  // ✅ Border plus visible avec couleur accent
   border-bottom: 1px solid rgba($purple, 0.25);
-  padding-bottom: $space-md;
+  padding-bottom: $space-3;
   width: 100%;
-  transition: all 0.3s ease;
-  
-  // ✅ Hover subtil
+  transition: all $transition-base;
+
   &:hover {
     border-bottom-color: rgba($purple, 0.4);
   }
 
   h3 {
-    margin: 0 0 $space-sm;
-
-    // ✅ Couleur plus lumineuse
-    color: #c9a6ff; /* Au lieu de $purple */
+    margin: 0 0 $space-2;
+    color: rgba($purple-light, 0.9);
     text-transform: uppercase;
-    font-size: 1.1rem;
-    font-weight: $font-weight-black;
+    font-size: $text-lg;
+    font-weight: $weight-black;
   }
 
   p {
     position: relative;
     margin: 0;
-
-    // ✅ AMÉLIORATION : Meilleur contraste
-    color: #d1d5db; /* Au lieu de rgba($white, 0.9) */
-    font-size: 0.95rem; /* Légèrement plus gros */
-    line-height: 1.6; /* Meilleure lisibilité */
+    color: $gray;
+    font-size: $text-base;
+    line-height: 1.6;
   }
 
   button {
@@ -208,22 +189,19 @@
     position: absolute;
     right: 0;
     bottom: 0;
-
-    // ✅ Couleur plus lumineuse
-    color: #c9a6ff; /* Au lieu de $purple */
-    font-size: 0.85rem;
-    font-weight: $font-weight-bold;
-    transition: all 0.3s ease;
+    color: rgba($purple-light, 0.9);
+    font-size: $text-sm;
+    font-weight: $weight-bold;
+    transition: all $transition-base;
     text-transform: uppercase;
     text-decoration: underline;
     text-underline-offset: 2px;
 
     &:hover {
-      color: $light-purple;
+      color: $purple-light;
       text-decoration-thickness: 2px;
     }
-    
-    // ✅ Focus pour accessibilité
+
     &:focus-visible {
       outline: 2px solid $purple;
       outline-offset: 2px;
@@ -232,94 +210,81 @@
   }
 }
 
-/* ===== 🔥 PAGE VIEW AMÉLIORÉE ===== */
+/* ===== PAGE VIEW (détail d'un service) ===== */
 .page-content {
   width: 100%;
-  padding: $space-md;
+  padding: $space-3;
 }
 
 .page-header {
   @include flex-start;
 
-  margin-bottom: $space-md;
-  gap: $space-sm;
+  margin-bottom: $space-3;
+  gap: $space-2;
 
   h3 {
     margin: 0;
-
-    // ✅ Blanc lumineux
-    color: #f5f5f5; /* Au lieu de $white */
+    color: $white;
     text-transform: uppercase;
-    font-size: 1.15rem; /* Légèrement plus gros */
-    font-weight: $font-weight-black;
+    font-size: $text-lg;
+    font-weight: $weight-black;
   }
 }
 
 .icon {
-  font-size: 2rem;
+  font-size: $text-xl;
   flex-shrink: 0;
 }
 
 .points {
-  margin: 0 0 $space-lg;
+  margin: 0 0 $space-4;
   padding: 0;
   list-style: none;
 
   li {
     position: relative;
-    padding: $space-xs 0 $space-xs $space-md;
-
-    // ✅ AMÉLIORATION : Meilleur contraste
-    color: #d1d5db; /* Au lieu de rgba($white, 0.9) */
-    font-size: 0.95rem; /* Légèrement plus gros */
-    line-height: 1.5; /* Meilleure lisibilité */
+    padding: $space-1 0 $space-1 $space-3;
+    color: $gray;
+    font-size: $text-base;
+    line-height: 1.6;
 
     &::before {
       position: absolute;
       left: 0;
-
-      // ✅ Couleur plus lumineuse
-      color: #b482ff; /* Au lieu de $purple */
-      font-size: 1.1rem;
-      font-weight: bold;
-      content: '✓'; /* ✓ au lieu de • */
+      color: rgba($purple-light, 0.8);
+      font-size: $text-base;
+      font-weight: $weight-bold;
+      content: "✓";
     }
   }
 }
 
-/* ===== 🔥 CONTACT BUTTON AMÉLIORÉ ===== */
+/* ===== CONTACT BUTTON ===== */
 .contact-btn {
   @include button-reset;
 
-  padding: $space-sm $space-lg;
+  padding: $space-2 $space-4;
   border: 2px solid transparent;
-  border-radius: $border-radius-lg;
-
-  // ✅ Gradient au lieu de solid
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-
-  // ✅ Blanc pur pour meilleur contraste
+  border-radius: $radius-md;
+  background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
   color: #fff;
-  font-size: 0.9rem;
-  font-weight: $font-weight-bold;
-
-  // ✅ Transition améliorée
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: $text-base;
+  font-weight: $weight-bold;
+  transition: all $transition-base;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   box-shadow: 0 4px 12px rgba($purple, 0.3);
 
   &:hover {
-    background: linear-gradient(135deg, $light-purple 0%, #d4b8ff 100%);
+    background: linear-gradient(135deg, $purple-light 0%, #d4b8ff 100%);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba($purple, 0.4);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
-  // ✅ Focus pour accessibilité
+
   &:focus-visible {
     outline: 3px solid rgba($purple, 0.5);
     outline-offset: 2px;
@@ -328,132 +293,214 @@
 
 /* ===== RESPONSIVE ===== */
 @include desktop {
+  .why {
+    width: 70vw;
+    max-width: 900px;
+  }
+
   .nav {
     width: 25%;
-    padding: $space-xl;
+    padding: $space-6;
   }
 
   .main-content {
-    padding: $space-xl;
-  }
-}
-
-@include tablet {
-  .nav {
-    width: 25%;
-    padding: $space-md $space-sm;
-
-    .index-title {
-      font-size: 0.75rem;
-      margin-bottom: $space-xs;
-    }
-
-    .nav-button {
-      padding: 6px $space-xs;
-      font-size: 0.75rem;
-    }
+    padding: $space-6;
   }
 
-  .main-content {
-    padding: $space-md $space-lg;
+  // Tailles de texte desktop
+  .index-title {
+    font-size: $text-sm; // 14px
+  }
+
+  .nav-button {
+    font-size: $text-sm; // 14px
   }
 
   .landing-item {
     h3 {
-      font-size: 1rem;
+      font-size: $text-lg; // 18px
     }
 
     p {
-      font-size: 0.9rem;
+      font-size: $text-base; // 16px
+    }
+
+    button {
+      font-size: $text-sm; // 14px
     }
   }
 
   .page-header h3 {
-    font-size: 1.05rem;
+    font-size: $text-lg; // 18px
+  }
+
+  .icon {
+    font-size: $text-xl; // 20px
   }
 
   .points li {
-    font-size: 0.9rem;
+    font-size: $text-base; // 16px
+  }
+
+  .contact-btn {
+    font-size: $text-base; // 16px
+  }
+}
+
+@include tablet {
+  .why {
+    padding: $padding-tablet;
+  }
+
+  .nav {
+    width: 25%;
+    padding: $space-3 $space-2;
+
+    .index-title {
+      font-size: $text-xs; // 12px
+      margin-bottom: $space-1;
+    }
+
+    .nav-button {
+      padding: $space-1;
+      font-size: $text-xs; // 12px
+    }
+  }
+
+  .main-content {
+    padding: $space-3 $space-4;
+  }
+
+  // Tailles de texte tablet
+  .landing-item {
+    h3 {
+      font-size: $text-base; // 16px
+    }
+
+    p {
+      font-size: $text-sm; // 14px
+    }
+
+    button {
+      font-size: $text-xs; // 12px
+    }
+  }
+
+  .page-header h3 {
+    font-size: $text-base; // 16px
+  }
+
+  .icon {
+    font-size: $text-lg; // 18px
+  }
+
+  .points li {
+    font-size: $text-sm; // 14px
+  }
+
+  .contact-btn {
+    font-size: $text-sm; // 14px
   }
 }
 
 @include mobile {
   .why {
     width: 90%;
-    height: 80%;
+    height: 60%; // Plus de hauteur
+    padding: 0; // Pas de padding externe
+  }
+
+  .bar {
+    height: 40px; // Bar plus petite
+    padding: 0 $space-2;
+
+    &::before {
+      width: 10px;
+      height: 10px;
+      left: $space-2;
+      box-shadow:
+        16px 0 0 #ffbd2e,
+        32px 0 0 #28ca42;
+    }
   }
 
   .content {
+    border-bottom-left-radius: $radius-md;
     flex-direction: row;
+    border-bottom: 1px solid rgba($purple, 0.2);
+    border-left: 1px solid rgba($purple, 0.2);
+    padding: 2rem;
   }
 
   .nav {
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 25%;
-    height: auto;
-    padding: $space-lg $space-sm;
-
-    .index-title {
-      margin-bottom: $space-sm;
-
-      // ✅ Taille minimale lisible sur mobile
-      font-size: 0.7rem; /* Au lieu de 0.65rem */
-    }
-
-    .navigation {
-      display: block;
-      border-left: 2px solid rgba($purple, 0.3);
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .nav-button {
-      width: calc(100% - 8px);
-      padding: 8px $space-xs; /* Plus d'espace pour faciliter le clic */
-      // ✅ Taille minimale lisible sur mobile
-      font-size: 0.7rem; /* Au lieu de 0.6rem */
-      margin-left: $space-xs;
-    }
+    display: none; // Masqué
   }
 
   .main-content {
-    padding: $space-md;
+    width: 100%;
+    padding: $space-2; // Padding minimal
+    overflow-y: auto; // Scroll si besoin
   }
 
+  .landing-content {
+    gap: $space-2; // Gap réduit
+  }
+
+  // Tailles de texte mobile réduites
   .landing-item {
+    padding-bottom: $space-2;
+
     h3 {
-      font-size: 1rem; /* Au lieu de 0.95rem */
+      font-size: $text-sm; // 14px au lieu de 16px
+      margin-bottom: $space-1;
     }
 
     p {
-      font-size: 0.85rem;
+      font-size: $text-xs; // 12px au lieu de 14px
+      line-height: 1.5;
     }
-    
+
     button {
-      position: static; /* Sur mobile, mettre le bouton en dessous */
-      margin-top: $space-xs;
+      position: static;
+      margin-top: $space-1;
+      font-size: 0.7rem; // 11px
     }
   }
 
+  .page-content {
+    padding: $space-2;
+  }
+
   .page-header {
+    margin-bottom: $space-2;
+    gap: $space-1;
+
     h3 {
-      font-size: 1rem;
+      font-size: $text-sm; // 14px
     }
   }
 
   .icon {
-    font-size: 1.75rem;
+    font-size: $text-base; // 16px
   }
 
-  .points li {
-    font-size: 0.85rem;
+  .points {
+    margin-bottom: $space-3;
+
+    li {
+      padding: $space-1 0 $space-1 $space-2;
+      font-size: $text-xs; // 12px
+      line-height: 1.4;
+
+      &::before {
+        font-size: $text-sm;
+      }
+    }
   }
 
   .contact-btn {
-    // ✅ Bouton pleine largeur sur mobile
     width: 100%;
-    padding: $space-sm $space-md;
-    font-size: 0.85rem;
+    padding: $space-2;
+    font-size: $text-xs; // 12px
   }
 }

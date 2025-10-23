@@ -1,11 +1,15 @@
-@import '@/theme/variables';
+@import '@/theme/tokens';
 @import '@/theme/mixins';
 
-/* ===== HOW BASE ===== */
+/* ========================================
+   HOW - Standardisé avec tokens
+   ======================================== */
+
+/* ===== BASE ===== */
 .how {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 100%;
   height: 60%;
   background: $black;
   color: $white;
@@ -19,32 +23,27 @@
   }
 }
 
-/* ===== 🔥 PROGRESS BAR AMÉLIORÉE ===== */
+/* ===== PROGRESS BAR ===== */
 .bar {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 5%;
-
-  // ✅ Border plus visible
   border: 1px solid rgba($purple, 0.3);
   background: lighten($black, 8%);
-
-  // ✅ Ajout d'une ombre
   box-shadow: 0 2px 8px rgba($black, 0.3);
+  border-radius: $radius-full;
 
   .percentage {
     position: absolute;
     z-index: 1;
-
-    // ✅ Blanc lumineux pour meilleur contraste
-    color: #f5f5f5;
-    font-size: $p1;
-    font-weight: bold;
-
-    // ✅ Ombre portée pour lisibilité sur la progress bar
+    color: $white;
+    font-size: $text-base;
+    font-weight: $weight-bold;
     text-shadow: 0 2px 4px rgba($black, 0.8);
+        display: none;
+
   }
 
   .active {
@@ -52,17 +51,14 @@
     top: 0;
     left: 0;
     height: 100%;
-
-    // ✅ Gradient violet au lieu de gris
-    background: linear-gradient(90deg, $purple 0%, $light-purple 100%);
+    background: linear-gradient(90deg, $purple 0%, $purple-light 100%);
     transition: width 0.4s ease-out;
-
-    // ✅ Ajout d'un glow subtil
     box-shadow: 0 0 20px rgba($purple, 0.4);
+    border-radius: $radius-full;
   }
 }
 
-/* ===== 🔥 STEP TITLES AMÉLIORÉS ===== */
+/* ===== STEP TITLES (navigation horizontale) ===== */
 .titles {
   display: flex;
   align-items: center;
@@ -74,45 +70,37 @@
     align-items: center;
     width: 20%;
     height: 100%;
-    padding: 0 15px;
-    border-radius: 8px;
-
-    // ✅ AMÉLIORATION : Meilleur contraste
-    color: #9ca3af; /* Au lieu de rgba($white, 0.5) */
-    transition: all 0.3s ease;
+    padding: 0 $space-2;
+    border-radius: $radius-sm;
+    color: rgba($gray, 0.7);
+    transition: all $transition-base;
     cursor: pointer;
 
     &:hover {
       background: rgba($white, 0.05);
-
-      // ✅ Couleur plus visible au hover
-      color: #d1d5db;
+      color: $gray;
     }
 
     &.active {
       background: rgba($purple, 0.1);
-
-      // ✅ Blanc lumineux pour l'actif
-      color: #f5f5f5;
+      color: $white;
     }
 
     .number {
-      font-size: 1.8rem;
+      font-size: $text-xl;
       margin-right: 5%;
-      font-weight: bold;
-
-      // ✅ Ajout d'un gradient pour l'actif
-      transition: all 0.3s ease;
+      font-weight: $weight-bold;
+      transition: all $transition-base;
+      display: none;
     }
 
     .title {
-      font-size: 0.9rem;
+      font-size: $text-sm;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.05em;
       line-height: 1.2;
     }
     
-    // ✅ Focus pour accessibilité
     &:focus-visible {
       outline: 2px solid $purple;
       outline-offset: 2px;
@@ -120,21 +108,16 @@
   }
 }
 
-/* ===== 🔥 CONTENT AREA AMÉLIORÉE ===== */
+/* ===== CONTENT AREA ===== */
 .content {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 0;
-
-  // ✅ Border pour délimiter la zone
-  border: 1px solid rgba($purple, 0.15);
-  border-radius: 8px;
-
-  // ✅ Gradient plus subtil
-  background: linear-gradient(135deg, lighten($black, 5%) 0%, lighten($black, 8%) 100%);
-  transition: opacity 0.3s ease;
+  align-items: center;
+  padding: $space-3 0;
+  border-radius: $radius-sm;
+  transition: opacity $transition-base;
   flex: 1;
   margin-top: 2vh;
   overflow: hidden;
@@ -144,7 +127,7 @@
   }
 
   .fade-content {
-    transition: opacity 0.3s ease;
+    transition: opacity $transition-base;
 
     &.fading {
       opacity: 0;
@@ -152,15 +135,13 @@
   }
 }
 
-/* ===== 🔥 STEP DISPLAY AMÉLIORÉ ===== */
+/* ===== STEP DISPLAY (contenu détaillé) ===== */
 .step {
   display: flex;
   align-items: flex-start;
-  padding: 15px 40px;
-
-  // ✅ AMÉLIORATION : Steps non actives plus visibles
-  color: #6b7280; /* Au lieu de rgba($white, 0.4) */
-  opacity: 0.7; /* Au lieu de 0.6 */
+  padding: $space-2 $space-6;
+  color: rgba($gray, 0.8);
+  opacity: 0.7;
   transition: all 0.4s ease;
 
   .number {
@@ -169,89 +150,79 @@
     align-items: center;
     width: 40px;
     height: 40px;
-
-    // ✅ Border plus visible
     border: 2px solid rgba($purple, 0.3);
-    border-radius: 8px;
-    background: linear-gradient(135deg, $dark-purple 0%, #3a3a5a 100%);
-
-    // ✅ Couleur plus visible
-    color: #9ca3af;
-    font-size: $p1;
-    font-weight: bold;
+    border-radius: $radius-sm;
+    background: linear-gradient(135deg, $purple-dark 0%, #3a3a5a 100%);
+    color: $gray;
+    font-size: $text-base;
+    font-weight: $weight-bold;
     transform: scale(0.9);
     transition: all 0.4s ease;
     flex-shrink: 0;
-    margin-right: 30px;
+    margin-right: $space-4;
   }
 
   p {
     max-width: 600px;
     margin: 0;
-    font-size: 0.95rem;
+    font-size: $text-sm;
     line-height: 1.6;
     transition: all 0.4s ease;
   }
 
-  // ✅ STEP PREVIOUS (grisée mais visible)
+  // STEP PREVIOUS (grisée mais visible)
   &.previous {
-    color: #6b7280;
+    color: rgba($gray, 0.6);
     opacity: 0.5;
     
     .number {
       border-color: rgba($white, 0.2);
-      background: rgba($dark-purple, 0.5);
-      color: #6b7280;
+      background: rgba($purple-dark, 0.5);
+      color: rgba($gray, 0.6);
     }
   }
 
-  // ✅ STEP ACTIVE (très visible)
+  // STEP ACTIVE (très visible)
   &.active {
-    // ✅ Blanc lumineux
-    color: #f5f5f5;
+    color: $white;
     opacity: 1;
     transform: translateX(0);
 
     .number {
-      border: 2px solid $light-purple;
-      background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
-
-      // ✅ Blanc pur sur fond coloré
+      border: 2px solid $purple-light;
+      background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
       color: #fff;
       transform: scale(1);
       box-shadow: 0 4px 12px rgba($purple, 0.4);
     }
 
     p {
-      // ✅ Couleur accent pour le texte actif
-      color: #c9a6ff;
+      color: rgba($purple-light, 0.9);
       transform: translateX(0);
     }
   }
   
-  // ✅ STEP NEXT (visible mais subtile)
+  // STEP NEXT (visible mais subtile)
   &.next {
-    color: #6b7280;
+    color: rgba($gray, 0.6);
     opacity: 0.5;
     
     .number {
       border-color: rgba($purple, 0.2);
-      background: rgba($dark-purple, 0.5);
-      color: #6b7280;
+      background: rgba($purple-dark, 0.5);
+      color: rgba($gray, 0.6);
     }
   }
 }
 
-/* ===== 🔥 CORNERS AMÉLIORÉS ===== */
+/* ===== CORNERS DÉCORATIFS ===== */
 .corner {
   position: absolute;
   z-index: 2;
   width: 20px;
   height: 20px;
-
-  // ✅ Border plus visible
-  border: 2px solid rgba($purple, 0.4);
-  transition: border-color 0.3s ease;
+  border: 3px solid rgba($purple, 0.4);
+  transition: border-color $transition-base;
 
   &[data-corner='top-left'] {
     top: 0;
@@ -285,34 +256,43 @@
 /* ===== RESPONSIVE ===== */
 @include desktop {
   .how {
+    // Base déjà optimale pour desktop
+    width: 70vw;
+    max-width: 900px;
+    
     .bar {
       .percentage {
-        font-size: $p1;
+        font-size: $text-base;
       }
     }
 
     .titles {
       .step {
+        padding: 0 $space-2;
+        
         .number {
-          font-size: 1.8rem;
+          font-size: $text-xl;
         }
 
         .title {
-          font-size: 0.9rem;
+          font-size: $text-sm;
         }
       }
     }
 
     .content {
       .step {
+        padding: $space-2 $space-6;
+        
         .number {
           width: 40px;
           height: 40px;
-          font-size: $p1;
+          font-size: $text-base;
+          margin-right: $space-4;
         }
 
         p {
-          font-size: 0.95rem;
+          font-size: $text-sm;
         }
       }
     }
@@ -321,39 +301,41 @@
 
 @include tablet {
   .how {
+    padding: $padding-tablet;
     .bar {
       .percentage {
-        font-size: $p2;
+        font-size: $text-sm;
       }
     }
 
     .titles {
       .step {
-        padding: 0 10px;
+        padding: 0 $space-1;
         
         .number {
-          font-size: 1.6rem;
+          font-size: $text-lg;
+          margin-right: 3%;
         }
 
         .title {
-          font-size: 0.8rem;
+          font-size: $text-xs;
         }
       }
     }
 
     .content {
       .step {
-        padding: 12px 30px;
+        padding: $space-2 $space-4;
 
         .number {
           width: 35px;
           height: 35px;
-          font-size: $p2;
-          margin-right: 25px;
+          font-size: $text-sm;
+          margin-right: $space-3;
         }
 
         p {
-          font-size: 0.9rem;
+          font-size: $text-sm;
         }
       }
     }
@@ -363,46 +345,45 @@
 @include mobile {
   .how {
     width: 90%;
-    height: 80%;
+    height: 60%;
+    padding: $padding-mobile;
     
     .bar {
-      height: 60px; /* Plus de hauteur sur mobile */
+      height: 3vh;
+      margin-bottom: 2vh;
 
       .percentage {
-        font-size: 1rem;
+        font-size: $text-base;
       }
     }
 
     .titles {
-      // ✅ Masqué sur mobile pour gagner de l'espace
+      // Masqué sur mobile pour gagner de l'espace
       display: none;
-      height: 60px;
     }
 
     .content {
-      margin-top: 1vh;
-      padding: 15px 0;
+      margin-top: $space-1;
+      padding: $space-2 0;
       
       .step {
-        padding: 15px 20px;
+        padding: $space-2 $space-3;
 
         .number {
-          width: 32px; /* Légèrement plus gros */
+          width: 32px;
           height: 32px;
-          font-size: 0.95rem;
-          margin-right: 15px;
+          font-size: $text-sm;
+          margin-right: $space-2;
         }
 
         p {
-          // ✅ Taille minimale lisible sur mobile
-          font-size: 0.9rem; /* Au lieu de 0.85rem */
+          font-size: $text-sm;
           line-height: 1.5;
         }
       }
     }
     
     .corner {
-      // ✅ Corners plus petits sur mobile
       width: 15px;
       height: 15px;
     }
