@@ -272,7 +272,7 @@ const Contact: React.FC = () => {
                     {/* Téléphone */}
                     <div className={styles.formGroup}>
                         <label htmlFor="phone" className={styles.label}>
-                            Téléphone <span className={styles.optional}>(optionnel)</span>
+                            Téléphone
                         </label>
                         <input
                             type="tel"
@@ -366,7 +366,6 @@ const Contact: React.FC = () => {
                                 <a href="/politique-confidentialite" className={styles.link} target="_blank">
                                     En savoir plus
                                 </a>
-                                <span className={styles.required} aria-label="requis"> *</span>
                             </span>
                         </label>
                         {errors.rgpd && touched.rgpd && (

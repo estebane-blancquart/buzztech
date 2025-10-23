@@ -1,7 +1,11 @@
-@import '@/theme/variables';
+@import '@/theme/tokens';
 @import '@/theme/mixins';
 
-/* ===== WHAT BASE ===== */
+/* ========================================
+   WHAT - Standardisé avec tokens
+   ======================================== */
+
+/* ===== BASE ===== */
 .what {
   @include flex-column-center;
   
@@ -9,7 +13,6 @@
   height: 100%;
   color: $white;
   text-align: center;
-  gap: $space-lg;
 
   &:focus {
     outline: none;
@@ -20,80 +23,87 @@
   }
 }
 
+/* ===== BADGE ===== */
 .badge {
-  padding: $space-xs $space-md;
-  border: 1px solid rgba($white, 0.2);
-  border-radius: $border-radius-round;
-  background: rgba($white, 0.1);
-  color: $white;
-  opacity: 0.8;
-  font-size: 0.75rem;
-  font-weight: $font-weight-bold;
-  transition: $transition-smooth;
+  border: 1px solid rgba($purple, 0.4);
+  border-radius: $radius-full;
+  background: rgba($purple, 0.15);
+  color: $purple-light;
+  font-weight: $weight-bold;
+  transition: all $transition-base;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-
-  &:hover {
-    background: rgba($purple, 0.1);
-    border-color: rgba($purple, 0.3);
-    opacity: 1;
-  }
+  box-shadow: 0 0 20px rgba($purple, 0.3);
 }
 
+/* ===== TITLE ===== */
 .title {
   margin: 0;
-  background: linear-gradient(135deg, $white 0%, $purple 50%, $light-purple 100%);
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
-  font-weight: $font-weight-black;
+  background: linear-gradient(135deg, $white 0%, $purple-light 50%, $purple 100%);
+  font-weight: $weight-black;
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 40px rgba($purple, 0.5));
+  animation: glow 3s ease-in-out infinite;
 }
 
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 40px rgba($purple, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 60px rgba($purple, 0.8));
+  }
+}
+
+/* ===== SUBTITLE ===== */
 .subtitle {
   max-width: 650px;
   margin: 0;
   color: $white;
   opacity: 0.9;
-  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
-  font-weight: $font-weight-normal;
+  font-weight: $weight-normal;
   line-height: 1.5;
 }
 
+/* ===== SCROLL INDICATOR ===== */
 .scroll-indicator {
   @include flex-column-center;
-  @include hover-lift;
 
-  gap: $space-xs;
-  margin-top: $space-md;
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
-  transition: $transition-smooth;
+  transition: all $transition-base;
 
   span {
     color: $white;
-    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: $font-weight-bold;
+    letter-spacing: 0.15em;
+    font-weight: $weight-bold;
+    text-shadow: 0 0 10px rgba($purple, 0.5);
   }
 
   &:hover {
     opacity: 1;
 
+    span {
+      color: $purple-light;
+      text-shadow: 0 0 20px rgba($purple, 0.8);
+    }
+
     .arrow {
-      animation-duration: 1s;
-      color: $purple;
+      color: $purple-light;
+      text-shadow: 0 0 20px rgba($purple, 0.8);
+      animation: bounce-glow 1s ease-in-out infinite;
     }
   }
 }
 
 .arrow {
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+  transition: all $transition-base;
   animation: bounce 2s infinite;
 }
 
@@ -109,90 +119,116 @@
   }
 }
 
+@keyframes bounce-glow {
+  0%,
+  100% {
+    transform: translateY(0);
+    text-shadow: 0 0 20px rgba($purple, 0.8);
+  }
+
+  50% {
+    transform: translateY(-15px);
+    text-shadow: 0 0 30px rgba($purple, 1);
+  }
+}
+
 /* ===== RESPONSIVE ===== */
-@include desktop {
+@include mobile {
   .what {
-    gap: $space-xl;
+    gap: $space-3; // 24px
+    padding: $padding-mobile;
   }
 
   .badge {
-    padding: $space-xs $space-md;
-    font-size: 0.8rem;
+    padding: $space-1 $space-2; // 8px 16px
+    font-size: $text-xs; // 12px
+  }
+
+  .title {
+    font-size: $heading-3; // 20-28px
+  }
+
+  .subtitle {
+    max-width: 100%;
+    font-size: $text-sm; // 14px
   }
 
   .scroll-indicator {
-    margin-top: $space-lg;
-    gap: $space-sm;
+    margin-top: $space-2; // 16px
+    gap: $space-1; // 8px
 
     span {
-      font-size: 0.9rem;
+      font-size: $text-xs; // 12px
     }
+  }
+
+  .arrow {
+    font-size: $text-lg; // 18px
   }
 }
 
 @include tablet {
   .what {
-    gap: $space-lg;
+    gap: $space-4; // 32px
+    padding: $padding-tablet;
   }
 
   .badge {
-    padding: $space-xs $space-sm;
-    font-size: 0.75rem;
+    padding: $space-1 $space-2; // 8px 16px
+    font-size: $text-xs; // 12px
   }
 
   .title {
-    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    font-size: $heading-2; // 24-36px
   }
 
   .subtitle {
-    max-width: 550px;
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-size: $text-base; // 16px
   }
 
   .scroll-indicator {
-    margin-top: $space-md;
-    gap: $space-xs;
+    margin-top: $space-3; // 24px
+    gap: $space-1; // 8px
 
     span {
-      font-size: 0.8rem;
+      font-size: $text-xs; // 12px
     }
   }
 
   .arrow {
-    font-size: 1.3rem;
+    font-size: $text-lg; // 18px
   }
 }
 
-@include mobile {
+@include desktop {
   .what {
-    gap: $space-md;
-    padding: 0 $space-lg;
+    gap: $space-6; // 48px
+    padding: $padding-desktop;
   }
 
   .badge {
-    padding: $space-xs $space-sm;
-    font-size: 0.7rem;
+    padding: $space-1 $space-3; // 8px 24px
+    font-size: $text-sm; // 14px
   }
 
   .title {
-    font-size: clamp(1.6rem, 8vw, 2rem);
+    font-size: $heading-1; // 32-48px
   }
 
   .subtitle {
-    max-width: 100%;
-    font-size: clamp(0.9rem, 4vw, 1.05rem);
+    font-size: $text-lg; // 18px
   }
 
   .scroll-indicator {
-    margin-top: $space-sm;
-    gap: $space-xs;
+    margin-top: $space-4; // 32px
+    gap: $space-1; // 8px
 
     span {
-      font-size: 0.75rem;
+      font-size: $text-sm; // 14px
     }
   }
 
   .arrow {
-    font-size: 1.2rem;
+    font-size: $text-xl; // 20px
   }
 }

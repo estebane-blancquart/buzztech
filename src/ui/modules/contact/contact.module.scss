@@ -77,6 +77,7 @@
   color: $white;
   font-weight: $weight-bold;
   letter-spacing: 0.01em;
+  display: flex;
 }
 
 .required {
@@ -134,6 +135,14 @@
   color: #ef4444;
   font-weight: $weight-normal;
   animation: slideIn 0.3s ease;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2vh;
+  gap: 1rem;
 }
 
 .checkboxGroup {
@@ -348,6 +357,8 @@
   .submitButton {
     min-height: 48px;
     font-size: $text-base; // 16px
+    width: 60%;
+    margin: 0 auto;
   }
 }
 
@@ -396,5 +407,7 @@
   .submitButton {
     min-height: 52px;
     font-size: $text-base; // 16px
+    width: 40%;
+    margin: 0 auto;
   }
 }

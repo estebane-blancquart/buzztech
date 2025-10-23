@@ -77,8 +77,8 @@ export const creationWebData = {
   prices: [
     {
       title: 'ESSENTIEL',
-      price: '1200',
-      unit: '€',
+      price: '1200€',
+      unit: '',
       features: [
         'Design créé sur mesure',
         "Adapté à toutes les tailles d'écran",
@@ -90,8 +90,8 @@ export const creationWebData = {
     },
     {
       title: 'INTÉGRAL',
-      price: '2000',
-      unit: '€',
+      price: '2000€',
+      unit: '',
       features: [
         'Design créé sur mesure',
         "Adapté à toutes les tailles d'écran",

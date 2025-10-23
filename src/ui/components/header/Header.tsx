@@ -51,7 +51,7 @@ const Header: React.FC = () => {
         aria-controls="main-navigation"
         aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
       >
-        ☰
+        {isOpen ? '✕' : '☰'}
       </button>
 
       <nav

@@ -81,6 +81,8 @@
 
   .nav {
     display: none;
+    height: 80vh;
+    margin-top: 10vh;
 
     &.open {
       @include flex-column-center;
