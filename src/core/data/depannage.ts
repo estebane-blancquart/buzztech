@@ -76,13 +76,15 @@ export const depannageData = {
 
   prices: [
     {
-      title: 'REMPLACEMENT',
-      price: '',
+      title: 'DIAGNOSTIC',
+      price: '45€',
       unit: '',
       features: [
-        'RAM, Stockage 30€',
-        'GPU, Carte réseau 40€',
-        'Carte mère, CPU 50€',
+        'Analyse complète du problème',
+        'Identification des causes',
+        'Devis détaillé gratuit',
+        'Conseils personnalisés',
+        'Déduit si réparation acceptée',
       ],
     },
     {
@@ -90,9 +92,9 @@ export const depannageData = {
       price: '50€',
       unit: '',
       features: [
-        'Dépoussiérage complet',
-        'Pâte thermique',
-        'Vérification thermique',
+        'Dépoussiérage complet interne',
+        'Remplacement pâte thermique',
+        'Vérification températures',
         'Test de stabilité',
       ],
     },
@@ -101,7 +103,7 @@ export const depannageData = {
       price: '50€',
       unit: '',
       features: [
-        'Suppression virus)',
+        'Suppression virus et malwares',
         'Restauration système',
         'Optimisation démarrage',
         'Mise à jour sécurité',

@@ -3,7 +3,7 @@ import Hero from '@/ui/modules/home-hero/Hero';
 import Presentation from '@/ui/modules/home-presentation/Presentation';
 import { homeData } from '@/core/data';
 import Video from '@/ui/modules/home-video/Video';
-import Contact from '../modules/contact/Contact';
+import Contact from '../modules/home-contact/Contact';
 
 const Home: React.FC = () => {
   return (
