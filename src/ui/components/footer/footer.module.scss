@@ -1,5 +1,5 @@
-@import '@/theme/tokens';
-@import '@/theme/mixins';
+@import "@/theme/tokens";
+@import "@/theme/mixins";
 
 /* ========================================
    FOOTER - Refonte avec système minimal
@@ -153,8 +153,8 @@
 
   .copyright {
     padding: 0 $space-1;
-    font-size: $text-xs; // 12px
-    
+    font-size: 10px; // 12px
+
     // Masquer "Site développé par BuzzTech"
     span:first-child,
     .separator:first-of-type {
@@ -167,6 +167,7 @@
     .copyright {
       flex-direction: column;
       gap: 0.25rem;
+      font-size: 8px; // 12px
     }
 
     .separator {
@@ -208,7 +209,7 @@
 
   .copyright {
     font-size: $text-xs; // 12px
-    
+
     // Masquer "Site développé par BuzzTech"
     span:first-child,
     .separator:first-of-type {
