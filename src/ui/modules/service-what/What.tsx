@@ -15,6 +15,7 @@ const What: React.FC<WhatProps> = ({
   scrollText = 'Découvrir le service',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasUserInteractedRef = useRef<boolean>(false);
 
   const handleScrollClick = (): void => {
     window.scrollTo({
@@ -41,17 +42,33 @@ const What: React.FC<WhatProps> = ({
     }, 100);
   };
 
+  // ===== FIX ACCESSIBILITÉ =====
+  // Ne plus forcer le focus automatiquement au chargement
+  // À la place, détecter si l'utilisateur navigue au clavier et focus SEULEMENT dans ce cas
   useEffect(() => {
-    // Focus automatique sur What au chargement de la page
-    const timer = setTimeout(() => {
-      if (containerRef.current) {
-        containerRef.current.focus();
+    const handleFirstTab = (e: KeyboardEvent): void => {
+      // Si l'utilisateur appuie sur Tab (navigation clavier)
+      if (e.key === 'Tab' && !hasUserInteractedRef.current) {
+        hasUserInteractedRef.current = true;
+        
+        // Focus sur le composant si pas déjà focus ailleurs
+        setTimeout(() => {
+          if (containerRef.current && !document.activeElement?.closest('[tabindex]')) {
+            containerRef.current.focus();
+          }
+        }, 0);
       }
-    }, 500); // Petit délai pour laisser la page se charger
+    };
 
-    return (): void => clearTimeout(timer);
+    // Écouter la première interaction clavier
+    window.addEventListener('keydown', handleFirstTab);
+
+    return (): void => {
+      window.removeEventListener('keydown', handleFirstTab);
+    };
   }, []);
 
+  // Gestion de la navigation clavier à l'intérieur du composant
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent): void => {
       const target = e.target as HTMLElement;
