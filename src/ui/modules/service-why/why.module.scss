@@ -2,6 +2,9 @@
    WHY - Standardisé avec tokens
    ======================================== */
 
+// ===== FIX : Import du module color pour SASS moderne =====
+@use "sass:color";
+
 /* ===== BASE ===== */
 .why {
   display: flex;
@@ -114,181 +117,189 @@
   padding: $space-1 $space-2;
   margin-left: $space-1;
   border-radius: 4px;
-  color: $gray;
-  font-size: $text-sm;
+  color: rgba($gray, 0.8);
+  font-size: $text-xs;
   text-align: left;
-  transition: all $transition-fast;
+  transition: all $transition-base;
 
-  &.active {
-    background: rgba($purple, 0.2);
+  &:hover {
+    background: rgba($purple, 0.1);
     color: $white;
-    border-left: 3px solid $purple-light;
   }
 
-  &:hover:not(.active) {
-    background: rgba($white, 0.05);
+  &.active {
+    background: rgba($purple, 0.15);
     color: $white;
+    font-weight: $weight-bold;
   }
 
   &:focus-visible {
     outline: 2px solid $purple;
-    outline-offset: -2px;
+    outline-offset: 2px;
   }
 }
 
-/* ===== MAIN CONTENT (75% right) ===== */
-.main-content {
-  justify-content: flex-start;
-  padding: $space-4 $space-6;
-  background: $black;
+/* ===== MAIN CONTENT AREA (75% right) ===== */
+.main {
   flex: 1;
+  min-width: 0;
   overflow-y: auto;
-  border-bottom-right-radius: $radius-md;
-  border-bottom-left-radius: $radius-md;
-
-  @include flex-column-start;
 }
 
-/* ===== LANDING VIEW (liste des services) ===== */
-.landing-content {
-  align-items: flex-start;
-  padding: 0;
-  gap: $space-4;
-
-  @include flex-column-start;
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $space-6;
+  background: $black;
 }
 
-.landing-item {
-  border-bottom: 1px solid rgba($purple, 0.25);
-  padding-bottom: $space-3;
-  width: 100%;
-  transition: all $transition-base;
-
-  &:hover {
-    border-bottom-color: rgba($purple, 0.4);
-  }
-
-  h3 {
-    margin: 0 0 $space-2;
-    color: rgba($purple-light, 0.9);
-    text-transform: uppercase;
-    font-size: $text-lg;
-    font-weight: $weight-black;
-  }
-
-  p {
-    position: relative;
-    margin: 0;
-    color: $gray;
-    font-size: $text-base;
-    line-height: 1.6;
-  }
-
-  button {
-    @include button-reset;
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    color: rgba($purple-light, 0.9);
-    font-size: $text-sm;
-    font-weight: $weight-bold;
-    transition: all $transition-base;
-    text-transform: uppercase;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-
-    &:hover {
-      color: $purple-light;
-      text-decoration-thickness: 2px;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $purple;
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-  }
+.page-title {
+  margin-bottom: $space-4;
+  color: $white;
+  font-size: $heading-3;  // Utilise heading-3 au lieu de text-2xl
+  font-weight: $weight-black;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* ===== PAGE VIEW (détail d'un service) ===== */
-.page-content {
-  width: 100%;
-  padding: $space-3;
-}
-
-.page-header {
-  @include flex-start;
-
-  margin-bottom: $space-3;
-  gap: $space-2;
-
-  h3 {
-    margin: 0;
-    color: $white;
-    text-transform: uppercase;
-    font-size: $text-lg;
-    font-weight: $weight-black;
-  }
-}
-
-.icon {
-  font-size: $text-xl;
-  flex-shrink: 0;
-}
-
-.points {
-  margin: 0 0 $space-4;
-  padding: 0;
+.page-list {
   list-style: none;
+  margin: 0;
+  padding: 0;
 
   li {
     position: relative;
-    padding: $space-1 0 $space-1 $space-3;
-    color: $gray;
-    font-size: $text-base;
+    margin-bottom: $space-2;
+    padding-left: $space-4;
+    color: rgba($gray, 0.9);
+    font-size: $text-sm;
     line-height: 1.6;
 
     &::before {
       position: absolute;
       left: 0;
-      color: rgba($purple-light, 0.8);
-      font-size: $text-base;
-      font-weight: $weight-bold;
       content: "✓";
+      color: $purple-light;
+      font-weight: $weight-bold;
     }
   }
 }
 
-/* ===== CONTACT BUTTON ===== */
-.contact-btn {
+/* ===== LANDING PAGE (index = 0) ===== */
+.landing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $space-4;
+  padding: $space-6;
+  background: $black;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.landing-card {
   @include button-reset;
 
-  padding: $space-2 $space-4;
-  border: 2px solid transparent;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: $space-4;
+  border: 1px solid rgba($purple, 0.3);
   border-radius: $radius-md;
-  background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
-  color: #fff;
-  font-size: $text-base;
-  font-weight: $weight-bold;
+  background: linear-gradient(
+    135deg,
+    rgba($purple-dark, 0.3) 0%,
+    rgba($purple-dark, 0.1) 100%
+  );
+  text-align: left;
   transition: all $transition-base;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba($purple, 0.3);
+  cursor: pointer;
+  overflow: hidden;
 
   &:hover {
-    background: linear-gradient(135deg, $purple-light 0%, #d4b8ff 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba($purple, 0.4);
-  }
-
-  &:active {
-    transform: translateY(0);
+    border-color: rgba($purple, 0.6);
+    background: linear-gradient(
+      135deg,
+      rgba($purple-dark, 0.5) 0%,
+      rgba($purple-dark, 0.2) 100%
+    );
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba($purple, 0.3);
   }
 
   &:focus-visible {
-    outline: 3px solid rgba($purple, 0.5);
+    outline: 2px solid $purple;
     outline-offset: 2px;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, $purple 0%, $purple-light 100%);
+    content: "";
+  }
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: $space-3;
+  filter: drop-shadow(0 0 10px rgba($purple, 0.5));
+}
+
+.card-title {
+  margin-bottom: $space-3;
+  color: $white;
+  font-size: $text-lg;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-description {
+  color: rgba($gray, 0.9);
+  font-size: $text-sm;
+  line-height: 1.6;
+}
+
+/* ===== CORNERS DÉCORATIFS ===== */
+.corner {
+  position: absolute;
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba($purple, 0.4);
+  transition: border-color $transition-base;
+
+  &[data-corner="top-left"] {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &[data-corner="top-right"] {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  &[data-corner="bottom-left"] {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+  }
+
+  &[data-corner="bottom-right"] {
+    right: 0;
+    bottom: 0;
+    border-left: none;
+    border-top: none;
   }
 }
 
@@ -299,209 +310,58 @@
     max-width: 900px;
   }
 
-  .nav {
-    width: 25%;
-    padding: $space-6;
-  }
-
-  .main-content {
-    padding: $space-6;
-  }
-
-  // Tailles de texte desktop
-  .index-title {
-    font-size: $text-sm; // 14px
-  }
-
-  .nav-button {
-    font-size: $text-sm; // 14px
-  }
-
-  .landing-item {
-    h3 {
-      font-size: $text-lg; // 18px
-    }
-
-    p {
-      font-size: $text-base; // 16px
-    }
-
-    button {
-      font-size: $text-sm; // 14px
-    }
-  }
-
-  .page-header h3 {
-    font-size: $text-lg; // 18px
-  }
-
-  .icon {
-    font-size: $text-xl; // 20px
-  }
-
-  .points li {
-    font-size: $text-base; // 16px
-  }
-
-  .contact-btn {
-    font-size: $text-base; // 16px
+  .landing {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @include tablet {
   .why {
-    padding: $padding-tablet;
+    width: 90vw;
   }
 
   .nav {
-    width: 25%;
-    padding: $space-3 $space-2;
-
-    .index-title {
-      font-size: $text-xs; // 12px
-      margin-bottom: $space-1;
-    }
-
-    .nav-button {
-      padding: $space-1;
-      font-size: $text-xs; // 12px
-    }
+    width: 30%;
   }
 
-  .main-content {
-    padding: $space-3 $space-4;
-  }
-
-  // Tailles de texte tablet
-  .landing-item {
-    h3 {
-      font-size: $text-base; // 16px
-    }
-
-    p {
-      font-size: $text-sm; // 14px
-    }
-
-    button {
-      font-size: $text-xs; // 12px
-    }
-  }
-
-  .page-header h3 {
-    font-size: $text-base; // 16px
-  }
-
-  .icon {
-    font-size: $text-lg; // 18px
-  }
-
-  .points li {
-    font-size: $text-sm; // 14px
-  }
-
-  .contact-btn {
-    font-size: $text-sm; // 14px
+  .landing {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @include mobile {
   .why {
-    width: 90%;
-    height: 60%; // Plus de hauteur
-    padding: 0; // Pas de padding externe
-  }
-
-  .bar {
-    height: 40px; // Bar plus petite
-    padding: 0 $space-2;
-
-    &::before {
-      left: $space-2;
-      width: 10px;
-      height: 10px;
-      box-shadow:
-        16px 0 0 #ffbd2e,
-        32px 0 0 #28ca42;
-    }
-  }
-
-  .content {
-    border-bottom-left-radius: $radius-md;
-    flex-direction: row;
-    border-bottom: 1px solid rgba($purple, 0.2);
-    border-left: 1px solid rgba($purple, 0.2);
-    padding: 2rem;
+    width: 90vw;
+    height: 85vh;
   }
 
   .nav {
-    display: none; // Masqué
+    display: none;
   }
 
-  .main-content {
-    width: 100%;
-    padding: $space-2; // Padding minimal
-    overflow-y: auto; // Scroll si besoin
+  .page,
+  .landing {
+    padding: $space-4;
   }
 
-  .landing-content {
-    gap: $space-2; // Gap réduit
+  .page-title {
+    font-size: $text-xl;
   }
 
-  // Tailles de texte mobile réduites
-  .landing-item {
-    padding-bottom: $space-2;
-
-    h3 {
-      font-size: $text-sm; // 14px au lieu de 16px
-      margin-bottom: $space-1;
-    }
-
-    p {
-      font-size: $text-xs; // 12px au lieu de 14px
-      line-height: 1.5;
-    }
-
-    button {
-      position: static;
-      margin-top: $space-1;
-      font-size: 0.7rem; // 11px
-    }
+  .landing {
+    grid-template-columns: 1fr;
+    gap: $space-3;
   }
 
-  .page-content {
-    padding: $space-2;
+  .landing-card {
+    padding: $space-4;
   }
 
-  .page-header {
-    margin-bottom: $space-2;
-    gap: $space-1;
-
-    h3 {
-      font-size: $text-sm; // 14px
-    }
+  .card-title {
+    font-size: $text-base;
   }
 
-  .icon {
-    font-size: $text-base; // 16px
-  }
-
-  .points {
-    margin-bottom: $space-3;
-
-    li {
-      padding: $space-1 0 $space-1 $space-2;
-      font-size: $text-xs; // 12px
-      line-height: 1.4;
-
-      &::before {
-        font-size: $text-sm;
-      }
-    }
-  }
-
-  .contact-btn {
-    width: 100%;
-    padding: $space-2;
-    font-size: $text-xs; // 12px
+  .card-description {
+    font-size: $text-xs;
   }
 }

@@ -2,6 +2,9 @@
    HOW - Standardisé avec tokens
    ======================================== */
 
+// ===== FIX : Import du module color pour SASS moderne =====
+@use "sass:color";
+
 /* ===== BASE ===== */
 .how {
   display: flex;
@@ -268,6 +271,7 @@
 
         .number {
           font-size: $text-xl;
+          display: flex;
         }
 
         .title {
@@ -277,18 +281,19 @@
     }
 
     .content {
+      padding: $space-4;
+
       .step {
-        padding: $space-2 $space-6;
+        padding: $space-3;
 
         .number {
-          width: 40px;
-          height: 40px;
-          font-size: $text-base;
-          margin-right: $space-4;
+          width: 50px;
+          height: 50px;
+          font-size: $text-lg;
         }
 
         p {
-          font-size: $text-sm;
+          font-size: $text-base;
         }
       }
     }
@@ -297,42 +302,13 @@
 
 @include tablet {
   .how {
-    padding: $padding-tablet;
-
-    .bar {
-      .percentage {
-        font-size: $text-sm;
-      }
-    }
+    width: 90vw;
 
     .titles {
       .step {
-        padding: 0 $space-1;
-
         .number {
           font-size: $text-lg;
-          margin-right: 3%;
-        }
-
-        .title {
-          font-size: $text-xs;
-        }
-      }
-    }
-
-    .content {
-      .step {
-        padding: $space-2 $space-4;
-
-        .number {
-          width: 35px;
-          height: 35px;
-          font-size: $text-sm;
-          margin-right: $space-3;
-        }
-
-        p {
-          font-size: $text-sm;
+          display: flex;
         }
       }
     }
@@ -341,48 +317,41 @@
 
 @include mobile {
   .how {
-    width: 90%;
-    height: 60%;
-    padding: $padding-mobile;
+    width: 90vw;
+    height: 85vh;
 
     .bar {
-      height: 3vh;
-      margin-bottom: 2vh;
+      height: 6%;
 
       .percentage {
-        font-size: $text-base;
+        display: flex;
+        font-size: $text-sm;
       }
     }
 
     .titles {
-      // Masqué sur mobile pour gagner de l'espace
       display: none;
     }
 
     .content {
-      margin-top: $space-1;
-      padding: $space-2 0;
+      padding: $space-2;
+      margin-top: 1vh;
 
       .step {
-        padding: $space-2 $space-3;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: $space-2;
 
         .number {
-          width: 32px;
-          height: 32px;
-          font-size: $text-sm;
-          margin-right: $space-2;
+          margin-right: 0;
+          margin-bottom: $space-2;
         }
 
         p {
-          font-size: $text-sm;
-          line-height: 1.5;
+          font-size: $text-xs;
         }
       }
-    }
-
-    .corner {
-      width: 15px;
-      height: 15px;
     }
   }
 }
