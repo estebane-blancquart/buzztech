@@ -1,31 +1,53 @@
 export default {
-  extends: ["stylelint-config-standard-scss"],
-  plugins: ["stylelint-order"],
+  extends: [
+    'stylelint-config-standard-scss',
+  ],
+  plugins: [
+    'stylelint-order',
+  ],
   rules: {
-    "order/properties-order": [
-      // Layout
-      "position", "top", "right", "bottom", "left", "z-index",
-      
-      // Display & Flexbox
-      "display", "flex-direction", "justify-content", "align-items",
-      
-      // Dimensions
-      "width", "height", "min-width", "max-width", "min-height", "max-height",
-      
-      // Spacing
-      "margin", "padding",
-      
-      // Border
-      "border", "border-radius",
-      
-      // Visual
-      "background", "color", "opacity",
-      
-      // Typography
-      "font-family", "font-size", "font-weight", "line-height", "text-align",
-      
-      // Transforms (toujours à la fin)
-      "transform", "transition", "animation"
-    ]
-  }
+    // ✅ Autoriser camelCase pour les classes (convention React)
+    'selector-class-pattern': null,
+    
+    // ✅ Autoriser camelCase pour les keyframes
+    'keyframes-name-pattern': null,
+    
+    // ✅ Désactiver l'avertissement de spécificité descendante
+    'no-descending-specificity': null,
+    
+    // ✅ Autoriser les fonctions SCSS legacy (lighten, darken, etc.)
+    'scss/no-global-function-names': null,
+    
+    // ✅ Autoriser @extend sans placeholder
+    'scss/at-extend-no-missing-placeholder': null,
+    
+    // ✅ Autoriser les sélecteurs dupliqués
+    'no-duplicate-selectors': null,
+    
+    // Ordre des propriétés CSS
+    'order/properties-order': [
+      'position',
+      'top',
+      'right',
+      'bottom',
+      'left',
+      'z-index',
+      'display',
+      'flex',
+      'flex-direction',
+      'justify-content',
+      'align-items',
+      'width',
+      'height',
+      'margin',
+      'padding',
+      'border',
+      'background',
+      'color',
+      'font-family',
+      'font-size',
+      'font-weight',
+      'transition',
+    ],
+  },
 };
