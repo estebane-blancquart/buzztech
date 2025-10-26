@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import CookieBanner from '@/ui/components/cookie-banner/CookieBanner';
 
 // Mock localStorage
@@ -7,14 +7,14 @@ const localStorageMock = (() => {
   let store: Record<string, string> = {};
 
   return {
-    getItem: (key: string) => store[key] || null,
-    setItem: (key: string, value: string) => {
+    getItem: (key: string): string | null => store[key] ?? null,
+    setItem: (key: string, value: string): void => {
       store[key] = value.toString();
     },
-    removeItem: (key: string) => {
+    removeItem: (key: string): void => {
       delete store[key];
     },
-    clear: () => {
+    clear: (): void => {
       store = {};
     },
   };
@@ -35,7 +35,10 @@ describe('CookieBanner Component', () => {
   });
 
   it('should not crash when consent is already stored', () => {
-    localStorageMock.setItem('cookie-consent', 'accepted');
+    localStorageMock.setItem('buzztech_cookie_consent', JSON.stringify({
+      value: 'accepted',
+      expiry: Date.now() + 1000000
+    }));
     
     const { container } = render(<CookieBanner />);
     expect(container).toBeInTheDocument();
