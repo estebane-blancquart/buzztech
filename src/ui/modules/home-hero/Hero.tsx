@@ -31,7 +31,6 @@ const InfoCard: React.FC<InfoStat> = ({ value, label }): JSX.Element => (
 );
 
 const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
-  // ✅ FIX 4: Utiliser companyData.phone au lieu du numéro en dur
   const whatsappNumber = companyData.phone.replace(/\s/g, '');
   const whatsappMessage = encodeURIComponent(
     'Bonjour, je souhaite un devis gratuit pour mes besoins informatiques !'
@@ -45,14 +44,15 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
     >
       <div className={styles['video-section']}>
         <div className={styles['video-wrapper']}>
+          {/* ✅ CORRECTION: lazy loading + decoding async pour performances */}
           <img
             src="/images/sphere.webp"
             alt="Animation sphère interactive BuzzTech"
             className={styles['background-video']}
-            loading="eager"
+            loading="lazy"
+            decoding="async"
             width="240"
             height="240"
-            fetchPriority="high"
           />
         </div>
       </div>
@@ -63,7 +63,6 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
         </h1>
         <p className={styles['hero-subtitle']}>{subtitle}</p>
         
-        {/* ✅ FIX 1: Remplacer button + window.open par <a> fiable */}
         <a
           href={whatsappUrl}
           className={styles['hero-cta']}
@@ -77,7 +76,6 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
 
       <div className={styles['info-section']}>
         <div className={styles['info-grid']}>
-          {/* ✅ FIX 5: Utiliser value comme key unique au lieu de index */}
           {stats.map((info) => (
             <InfoCard key={info.value} value={info.value} label={info.label} />
           ))}
