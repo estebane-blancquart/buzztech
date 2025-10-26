@@ -51,15 +51,13 @@
 
   h3 {
     margin: 0 0 0.5rem;
-    color: $light-purple;
-    font-size: $p1;
+    color: $purple-light;
     font-weight: $weight-bold;
   }
 
   p {
     margin: 0;
     opacity: 0.9;
-    font-size: $p3;
     line-height: 1.5;
   }
 }
@@ -72,9 +70,8 @@
 }
 
 .link {
-  color: $light-purple;
+  color: $purple-light;
   text-decoration: none;
-  font-size: $p3;
   transition: opacity 0.3s ease;
   margin-right: auto;
 
@@ -91,7 +88,6 @@
 
   min-height: 44px;
   padding: 0.875rem 1.5rem;         
-  font-size: $p3;
   font-weight: $weight-bold;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -99,7 +95,7 @@
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+  background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
   color: $white;
 
   &:hover {
@@ -145,7 +141,6 @@
 
   .text {
     h3 {
-      font-size: $p2;
     }
 
     p {
@@ -168,7 +163,6 @@
     .btnSecondary {
       width: 100%;
       padding: 0.75rem;
-      font-size: $p3;
     }
   }
 }

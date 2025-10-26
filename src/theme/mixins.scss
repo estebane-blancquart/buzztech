@@ -244,7 +244,7 @@
   overflow: hidden;
 }
 
-@mixin gradient-text($start: $purple, $end: $light-purple) {
+@mixin gradient-text($start: $purple, $end: $purple-light) {
   background: linear-gradient(135deg, $start 0%, $end 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -320,7 +320,7 @@
   padding: $space-xs $space-sm;
   border: 2px solid rgba($purple, 0.4);
   border-radius: $border-radius-round;
-  background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($light-purple, 0.1) 100%);
+  background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($purple-light, 0.1) 100%);
   color: $purple;
   font-size: $font-body-lg;
   font-weight: $font-weight-black;

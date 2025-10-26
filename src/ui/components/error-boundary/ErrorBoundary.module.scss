@@ -1,3 +1,27 @@
+// ===== VARIABLES DE COULEURS =====
+$black: #0a0a0a;
+$dark-purple: #1a0f2e;
+$purple: #8b5cf6;
+$purple-light: #a78bfa;
+$white: #ffffff;
+
+// ===== VARIABLES DE TYPOGRAPHIE =====
+$p2: 1rem;
+$weight-bold: 700;
+
+// ===== MIXINS =====
+@mixin button-reset {
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
 /* ===== ERROR BOUNDARY ===== */
 .errorBoundary {
   display: flex;
@@ -25,7 +49,6 @@
     opacity: 1;
     transform: scale(1);
   }
-
   50% {
     opacity: 0.7;
     transform: scale(1.05);
@@ -34,14 +57,13 @@
 
 .title {
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, $purple, $light-purple);
+  background: linear-gradient(135deg, $purple, $purple-light);
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .message {
   opacity: 0.9;
-  font-size: $p2;
   line-height: 1.6;
   margin-bottom: 2rem;
 }
@@ -56,19 +78,18 @@
 .btnPrimary,
 .btnSecondary {
   @include button-reset;
-  
+ 
   padding: 1rem 2rem;
   border-radius: 8px;
-  font-size: $p2;
   font-weight: $weight-bold;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, $purple 0%, $light-purple 100%);
+  background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
   color: $white;
-
+  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba($purple, 0.4);
@@ -79,7 +100,7 @@
   border: 1px solid rgba($white, 0.3);
   background: transparent;
   color: $white;
-
+  
   &:hover {
     background: rgba($white, 0.1);
     border-color: rgba($white, 0.5);
@@ -93,13 +114,13 @@
   background: rgba($black, 0.3);
   text-align: left;
   margin-top: 2rem;
-
+  
   summary {
-    color: $light-purple;
+    color: $purple-light;
     font-weight: $weight-bold;
     cursor: pointer;
     margin-bottom: 0.5rem;
-
+    
     &:hover {
       opacity: 0.8;
     }
@@ -122,21 +143,21 @@
   .errorBoundary {
     padding: 1rem;
   }
-
+  
   .icon {
     font-size: 3rem;
   }
-
+  
   .actions {
     flex-direction: column;
     width: 100%;
-
+    
     .btnPrimary,
     .btnSecondary {
       width: 100%;
     }
   }
-
+  
   .errorStack {
     font-size: 0.75rem;
   }
