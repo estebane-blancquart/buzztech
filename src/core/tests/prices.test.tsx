@@ -160,17 +160,22 @@ describe('Prices Component', () => {
     expect(screen.getByText('0')).toBeInTheDocument();
     expect(screen.getByText('Basic feature')).toBeInTheDocument();
   });
-
-  it('should render bullet points for features', () => {
+  it('should render features for all cards', () => {
     render(<Prices service="depannage" cards={mockCards} />);
 
-    const bullets = screen.getAllByText('•');
-    // Should have one bullet per feature across all cards
+    // Vérifier que toutes les features sont affichées
+    expect(screen.getByText('Feature 1')).toBeInTheDocument();
+    expect(screen.getByText('Premium feature 1')).toBeInTheDocument();
+    expect(screen.getByText('Enterprise feature 1')).toBeInTheDocument();
+    expect(screen.getByText('Enterprise feature 4')).toBeInTheDocument();
+
+    // Compter le nombre de feature-item
+    const features = document.querySelectorAll('[class*="feature-item"]');
     const totalFeatures = mockCards.reduce(
       (sum, card) => sum + card.features.length,
       0
     );
-    expect(bullets).toHaveLength(totalFeatures);
+    expect(features.length).toBe(totalFeatures);
   });
 
   it('should handle empty cards array', () => {
