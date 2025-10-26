@@ -44,7 +44,7 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 40px rgba($purple, 0.5));
@@ -55,6 +55,7 @@
   0%, 100% {
     filter: drop-shadow(0 0 40px rgba($purple, 0.5));
   }
+
   50% {
     filter: drop-shadow(0 0 60px rgba($purple, 0.8));
   }

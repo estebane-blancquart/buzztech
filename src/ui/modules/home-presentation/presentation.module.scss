@@ -8,6 +8,7 @@
 /* ===== BASE ===== */
 .presentation {
   @include flex-column-center;
+
   width: 100%;
   height: 100%;
   background: $black;
@@ -28,7 +29,7 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -43,12 +44,14 @@
 /* ===== SERVICES LIST ===== */
 .services-list {
   @include flex-column-start;
+
   width: 100%;
 }
 
 /* ===== SERVICE CARD ===== */
 .services-item {
   @include flex-between;
+
   width: 100%;
   border: 1px solid rgba($purple, 0.25);
   border-radius: $radius-lg;
@@ -61,6 +64,7 @@
   &:hover {
     background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($purple, 0.08) 100%);
     border-color: rgba($purple, 0.5);
+
     // ✅ Pas de transform
   }
 
@@ -76,10 +80,10 @@
 }
 
 .icon {
-  flex-shrink: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .service-info {

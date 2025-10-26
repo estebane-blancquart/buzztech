@@ -30,10 +30,10 @@
   position: relative;
   height: 50px;
   padding: 0 $space-3;
+  border-radius: $radius-md $radius-md 0 0;
   background: linear-gradient(135deg, $purple 0%, lighten($purple, 5%) 100%);
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba($black, 0.3);
-  border-radius: $radius-md $radius-md 0 0;
 
   &::before {
     position: absolute;
@@ -415,9 +415,9 @@
     padding: 0 $space-2;
 
     &::before {
+      left: $space-2;
       width: 10px;
       height: 10px;
-      left: $space-2;
       box-shadow:
         16px 0 0 #ffbd2e,
         32px 0 0 #28ca42;

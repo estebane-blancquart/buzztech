@@ -21,11 +21,13 @@
 /* ===== CONTACT SECTION (60% du footer) ===== */
 .contact {
   height: 60%;
+
   @include flex-between;
 }
 
 .tel {
   @include flex-start;
+
   width: 33%;
 
   a {
@@ -48,6 +50,7 @@
 
 .location {
   @include flex-center;
+
   width: 33%;
   color: $purple-light;
   font-weight: $weight-bold;
@@ -56,12 +59,14 @@
 
 .social {
   @include flex-end;
+
   width: 33%;
   gap: $space-2;
 }
 
 .socialIcon {
   @include flex-center;
+
   width: 2rem;
   height: 2rem;
   border-radius: $radius-full;
@@ -88,7 +93,9 @@
 /* ===== COPYRIGHT SECTION (40% du footer) ===== */
 .copyright {
   height: 40%;
+
   @include flex-center;
+
   gap: $space-1;
   flex-wrap: wrap;
   color: rgba($white, 0.7);
@@ -140,8 +147,8 @@
 
   // Social centré prend toute la largeur
   .social {
-    width: 100%;
     justify-content: center;
+    width: 100%;
     gap: $space-2;
   }
 
@@ -193,8 +200,8 @@
 
   // Réorganiser
   .location {
-    width: 50%;
     justify-content: flex-start;
+    width: 50%;
     font-size: $text-sm; // 14px
   }
 

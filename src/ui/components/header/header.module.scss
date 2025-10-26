@@ -42,9 +42,9 @@
 .toggle {
   @include button-reset;
 
+  padding: $space-2;
   color: $white;
   font-size: $text-xl;
-  padding: $space-2;
   cursor: pointer;
 }
 
@@ -72,6 +72,7 @@
 @include mobile {
   .header {
     @include flex-between;
+
     padding: $padding-mobile;
   }
 
@@ -108,6 +109,7 @@
 @include tablet {
   .header {
     @include flex-between;
+
     padding: $padding-tablet;
   }
 
@@ -132,6 +134,7 @@
 @include desktop {
   .header {
     @include flex-column-around;
+
     align-items: flex-start;
     padding: $padding-desktop;
   }

@@ -20,6 +20,7 @@
 /* ===== SPHERE ===== */
 .video-section {
   @include flex-center;
+
   position: relative;
   z-index: 1;
 }
@@ -52,7 +53,7 @@
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -99,6 +100,7 @@
 /* ===== INFO CARDS ===== */
 .info-section {
   width: 100%;
+
   @include flex-center;
 }
 
@@ -110,6 +112,7 @@
 
 .info-card {
   @include flex-center;
+
   border: 1px solid rgba($purple, 0.2);
   border-radius: $radius-md; // ✅ Ajout radius
   background: rgba($purple, 0.05);
@@ -127,6 +130,7 @@
 
 .info-text {
   @include flex-column-center;
+
   gap: 0.25rem;
 }
 
@@ -163,8 +167,8 @@
   }
 
   .hero-title {
-    font-size: $heading-3; // 20-28px
     padding: 0 $space-1;
+    font-size: $heading-3; // 20-28px
   }
 
   .hero-subtitle {
@@ -173,10 +177,10 @@
   }
 
   .hero-cta {
+    max-width: 90%;
     min-height: 44px;
     padding: $space-2 $space-3; // 16px 24px
     font-size: $text-sm; // 14px
-    max-width: 90%;
   }
 
   .info-grid {
@@ -216,13 +220,13 @@
 
   .hero-content {
     gap: $space-2; // 16px
-    margin: 2vh 0 5vh 0;
+    margin: 2vh 0 5vh;
 
   }
 
   .hero-title {
-    font-size: $heading-2; // 24-36px
     padding: 0 $space-2;
+    font-size: $heading-2; // 24-36px
   }
 
   .hero-subtitle {
@@ -289,9 +293,9 @@
   }
 
   .info-grid {
-    gap: $space-6; // 48px
-    max-width: none; // ✅ Enlever la contrainte de largeur
     width: 100%; // ✅ Pleine largeur disponible
+    max-width: none; // ✅ Enlever la contrainte de largeur
+    gap: $space-6; // 48px
   }
 
   .info-card {
