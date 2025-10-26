@@ -1,4 +1,3 @@
-
 /* ========================================
    HOW - Standardisé avec tokens
    ======================================== */
@@ -30,18 +29,17 @@
   height: 5%;
   border: 1px solid rgba($purple, 0.3);
   border-radius: $radius-full;
-  background: lighten($black, 8%);
+  background: color.adjust($black, $lightness: 8%);
   box-shadow: 0 2px 8px rgba($black, 0.3);
 
   .percentage {
     position: absolute;
     z-index: 1;
-        display: none;
+    display: none;
     color: $white;
     font-size: $text-base;
     font-weight: $weight-bold;
     text-shadow: 0 2px 4px rgba($black, 0.8);
-
   }
 
   .active {
@@ -98,7 +96,7 @@
       letter-spacing: 0.05em;
       line-height: 1.2;
     }
-    
+
     &:focus-visible {
       outline: 2px solid $purple;
       outline-offset: 2px;
@@ -172,7 +170,7 @@
   &.previous {
     color: rgba($gray, 0.6);
     opacity: 0.5;
-    
+
     .number {
       border-color: rgba($white, 0.2);
       background: rgba($purple-dark, 0.5);
@@ -199,12 +197,12 @@
       transform: translateX(0);
     }
   }
-  
+
   // STEP NEXT (visible mais subtile)
   &.next {
     color: rgba($gray, 0.6);
     opacity: 0.5;
-    
+
     .number {
       border-color: rgba($purple, 0.2);
       background: rgba($purple-dark, 0.5);
@@ -222,28 +220,28 @@
   border: 3px solid rgba($purple, 0.4);
   transition: border-color $transition-base;
 
-  &[data-corner='top-left'] {
+  &[data-corner="top-left"] {
     top: 0;
     left: 0;
     border-right: none;
     border-bottom: none;
   }
 
-  &[data-corner='top-right'] {
+  &[data-corner="top-right"] {
     top: 0;
     right: 0;
     border-left: none;
     border-bottom: none;
   }
 
-  &[data-corner='bottom-left'] {
+  &[data-corner="bottom-left"] {
     bottom: 0;
     left: 0;
     border-right: none;
     border-top: none;
   }
 
-  &[data-corner='bottom-right'] {
+  &[data-corner="bottom-right"] {
     right: 0;
     bottom: 0;
     border-left: none;
@@ -257,7 +255,7 @@
     // Base déjà optimale pour desktop
     width: 70vw;
     max-width: 900px;
-    
+
     .bar {
       .percentage {
         font-size: $text-base;
@@ -267,7 +265,7 @@
     .titles {
       .step {
         padding: 0 $space-2;
-        
+
         .number {
           font-size: $text-xl;
         }
@@ -281,7 +279,7 @@
     .content {
       .step {
         padding: $space-2 $space-6;
-        
+
         .number {
           width: 40px;
           height: 40px;
@@ -310,7 +308,7 @@
     .titles {
       .step {
         padding: 0 $space-1;
-        
+
         .number {
           font-size: $text-lg;
           margin-right: 3%;
@@ -346,7 +344,7 @@
     width: 90%;
     height: 60%;
     padding: $padding-mobile;
-    
+
     .bar {
       height: 3vh;
       margin-bottom: 2vh;
@@ -364,7 +362,7 @@
     .content {
       margin-top: $space-1;
       padding: $space-2 0;
-      
+
       .step {
         padding: $space-2 $space-3;
 
@@ -381,7 +379,7 @@
         }
       }
     }
-    
+
     .corner {
       width: 15px;
       height: 15px;

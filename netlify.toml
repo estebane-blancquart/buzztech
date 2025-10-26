@@ -37,6 +37,10 @@
     # Contrôle les infos envoyées lors de la navigation
     Referrer-Policy = "strict-origin-when-cross-origin"
     
+    # ===== Cross-Origin-Opener-Policy (COOP) ===== ✨ AJOUTÉ
+    # Isole le contexte de navigation pour plus de sécurité
+    Cross-Origin-Opener-Policy = "same-origin"
+    
     # ===== Permissions Policy =====
     # Désactive les APIs non utilisées
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
@@ -100,4 +104,5 @@
 # - VITE_SENTRY_DSN
 # - VITE_GTM_ID
 # - VITE_SITE_URL
-# - etc.
+# - VITE_SITE_NAME
+# - VITE_WHATSAPP_NUMBER
