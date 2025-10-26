@@ -17,7 +17,7 @@ export default defineConfig({
       scss: {
         additionalData: `
           @use "@/theme/mixins" as *;
-          @use "@/theme/variables" as *;
+          @use "@/theme/tokens" as *;
         `,
       },
     },

@@ -1,6 +1,6 @@
 /* ===== BREAKPOINTS ===== */
 @use 'sass:math';
-@use 'variables' as *; // Import des variables pour utiliser dans les mixins
+@use 'tokens' as *; // Import des variables pour utiliser dans les mixins
 
 @mixin mobile {
   @media (width <= 768px) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './Prices.module.scss';
+import styles from './prices.module.scss';
 import { PriceCard } from '@/core/types';
 
 interface PricesProps {

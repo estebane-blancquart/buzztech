@@ -1,5 +1,3 @@
-@import '@/theme/tokens';
-@import '@/theme/mixins';
 
 /* ========================================
    VIDEO - Standardisé avec tokens
@@ -30,7 +28,6 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }

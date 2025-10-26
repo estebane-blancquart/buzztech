@@ -13,8 +13,29 @@ export function useScroll({
   const [lastScrollTime, setLastScrollTime] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  
+  // ✅ Refs pour stocker les timeouts et les nettoyer
+  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const fadeInTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const focusTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const progressPercentage = ((activeItem + 1) / totalItems) * 100;
+
+  // ✅ Fonction de nettoyage des timeouts
+  const clearAllTimeouts = useCallback(() => {
+    if (fadeTimeoutRef.current) {
+      clearTimeout(fadeTimeoutRef.current);
+      fadeTimeoutRef.current = null;
+    }
+    if (fadeInTimeoutRef.current) {
+      clearTimeout(fadeInTimeoutRef.current);
+      fadeInTimeoutRef.current = null;
+    }
+    if (focusTimeoutRef.current) {
+      clearTimeout(focusTimeoutRef.current);
+      focusTimeoutRef.current = null;
+    }
+  }, []);
 
   const changeItem = useCallback(
     (newIndex: number): void => {
@@ -22,15 +43,18 @@ export function useScroll({
 
       setIsFading(true);
 
+      // ✅ Nettoyer les timeouts précédents
+      clearAllTimeouts();
+
       // Fade out → change content → fade in
-      setTimeout(() => {
+      fadeTimeoutRef.current = setTimeout(() => {
         setActiveItem(newIndex);
-        setTimeout(() => {
+        fadeInTimeoutRef.current = setTimeout(() => {
           setIsFading(false);
         }, 50);
       }, fadeDelay);
     },
-    [isFading, fadeDelay]
+    [isFading, fadeDelay, clearAllTimeouts]
   );
 
   const isThrottled = useCallback((): boolean => {
@@ -57,9 +81,14 @@ export function useScroll({
         behavior: bypassThrottle ? 'instant' : 'smooth', // Instant pour clavier
       });
 
+      // ✅ Nettoyer le timeout précédent avant d'en créer un nouveau
+      if (focusTimeoutRef.current) {
+        clearTimeout(focusTimeoutRef.current);
+      }
+
       // Focus automatique - plus rapide pour clavier
       const focusDelay = bypassThrottle ? 100 : 600;
-      setTimeout(() => {
+      focusTimeoutRef.current = setTimeout(() => {
         const nextModuleElement = document
           .elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)
           ?.closest('[tabindex="0"]') as HTMLElement;
@@ -90,9 +119,14 @@ export function useScroll({
         behavior: bypassThrottle ? 'instant' : 'smooth', // Instant pour clavier
       });
 
+      // ✅ Nettoyer le timeout précédent avant d'en créer un nouveau
+      if (focusTimeoutRef.current) {
+        clearTimeout(focusTimeoutRef.current);
+      }
+
       // Focus automatique - plus rapide pour clavier
       const focusDelay = bypassThrottle ? 100 : 600;
-      setTimeout(() => {
+      focusTimeoutRef.current = setTimeout(() => {
         const prevModuleElement = document
           .elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)
           ?.closest('[tabindex="0"]') as HTMLElement;
@@ -205,6 +239,13 @@ export function useScroll({
     setActiveItem(initialIndex);
     setLastScrollTime(0);
   }, [location.pathname, location.state, initialIndex]);
+
+  // ✅ Nettoyer tous les timeouts au démontage du composant
+  useEffect(() => {
+    return () => {
+      clearAllTimeouts();
+    };
+  }, [clearAllTimeouts]);
 
   const handleItemClick = useCallback(
     (index: number): void => {

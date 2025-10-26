@@ -97,3 +97,6 @@ playwright/.cache/
 
 # Sentry
 .sentryclirc
+# Fichiers compilés TypeScript
+vite.config.js
+vite.config.d.ts

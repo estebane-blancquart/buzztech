@@ -71,3 +71,6 @@ $desktop: 1440px;
 $transition-fast: 0.15s ease;
 $transition-base: 0.3s ease;
 $transition-slow: 0.5s ease;
+/* ===== ALIASES (rétrocompatibilité) ===== */
+$dark-purple: $purple-dark;
+$lato: $font-sans;
