@@ -3,22 +3,20 @@ import { Link } from 'react-router-dom';
 import styles from './CookieBanner.module.scss';
 
 const CONSENT_KEY = 'buzztech_cookie_consent';
-const CONSENT_EXPIRY_MONTHS = 13; // RGPD max
+const CONSENT_EXPIRY_MONTHS = 13;
 
-// Typage pour GTM
+// ✅ Fix: Typage propre pour GTM
 declare global {
   interface Window {
-    dataLayer?: any[];
+    dataLayer?: Array<Record<string, unknown>>;
   }
 }
 
-// Interface pour le consentement avec expiration
 interface ConsentData {
   value: 'accepted' | 'refused';
   expiry: number;
 }
 
-// Fonction pour stocker le consentement avec expiration
 const setConsentWithExpiry = (value: 'accepted' | 'refused'): void => {
   const now = new Date();
   const expiryDate = new Date(now.setMonth(now.getMonth() + CONSENT_EXPIRY_MONTHS));
@@ -31,7 +29,6 @@ const setConsentWithExpiry = (value: 'accepted' | 'refused'): void => {
   localStorage.setItem(CONSENT_KEY, JSON.stringify(consentData));
 };
 
-// Fonction pour récupérer le consentement (avec vérification expiration)
 const getConsent = (): string | null => {
   const stored = localStorage.getItem(CONSENT_KEY);
   
@@ -40,7 +37,6 @@ const getConsent = (): string | null => {
   try {
     const consentData: ConsentData = JSON.parse(stored);
     
-    // Vérifier si expiré
     if (new Date().getTime() > consentData.expiry) {
       localStorage.removeItem(CONSENT_KEY);
       return null;
@@ -48,19 +44,19 @@ const getConsent = (): string | null => {
     
     return consentData.value;
   } catch {
-    // Format invalide, supprimer
     localStorage.removeItem(CONSENT_KEY);
     return null;
   }
 };
 
-// Fonction pour charger GTM
 const loadGTM = (): void => {
-  const gtmId = import.meta.env.VITE_GTM_ID || 'GTM-PR9QVL2R';
+  // ✅ Fix: Utilise ?? au lieu de ||
+  const gtmId = import.meta.env.VITE_GTM_ID ?? 'GTM-PR9QVL2R';
 
   if (window.dataLayer) return;
 
-  window.dataLayer = window.dataLayer || [];
+  // ✅ Fix: Utilise ?? au lieu de ||
+  window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
 
   const script = document.createElement('script');
@@ -84,7 +80,7 @@ const loadGTM = (): void => {
 const CookieBanner: React.FC = () => {
   const [showBanner, setShowBanner] = useState(false);
 
-  useEffect(() => {
+  useEffect((): (() => void) | undefined => {
     const consent = getConsent();
 
     if (!consent) {
@@ -149,7 +145,6 @@ const CookieBanner: React.FC = () => {
   );
 };
 
-// Hook pour vérifier le consentement et charger GTM si déjà accepté
 export const useGTMConsent = (): void => {
   useEffect(() => {
     const consent = getConsent();
