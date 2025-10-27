@@ -29,13 +29,13 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   const [globalScrollDisabled, setGlobalScrollDisabled] = useState(false);
   const location = useLocation();
   const isTransitioningRef = useRef(false);
-  const animationFrameRef = useRef<number>();
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const lastWheelTimeRef = useRef<number>(0);
 
   const getTotalModules = (): number => {
     switch (location.pathname) {
       case '/':
-        return 3;
+        return 4;
       case '/depannage':
       case '/configuration':
       case '/creation-web':
@@ -50,6 +50,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   useEffect(() => {
     if (isChrome) {
       document.documentElement.style.scrollSnapType = 'none';
+      document.documentElement.style.scrollBehavior = 'smooth'; // ✅ Activer smooth pour Chrome aussi
     } else {
       document.documentElement.style.scrollSnapType = 'y mandatory';
       document.documentElement.style.scrollBehavior = 'smooth';
@@ -78,40 +79,26 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     };
   }, [currentModule, isScrollingState]);
 
-  const smoothScrollTo = useCallback((targetPosition: number, duration: number = 800) => {
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
+  // ✅ VERSION SIMPLIFIÉE: Utiliser behavior: 'smooth' natif pour Chrome aussi
+  const smoothScrollTo = (targetPosition: number) => {
+    console.log('🎯 Scrolling to:', targetPosition);
     
-    console.log('��� Smooth scroll:', { startPosition, targetPosition, distance });
+    // Utiliser le smooth scroll natif du navigateur
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
     
-    const startTime = performance.now();
-
-    const animateScroll = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easing = easeInOutCubic(progress);
-      
-      window.scrollTo(0, startPosition + distance * easing);
-
-      if (progress < 1) {
-        animationFrameRef.current = requestAnimationFrame(animateScroll);
-      } else {
-        console.log('✅ Snap terminé');
-        isTransitioningRef.current = false;
-        setIsScrollingState(false);
-      }
-    };
-
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
-    }
-
-    animationFrameRef.current = requestAnimationFrame(animateScroll);
-  }, []);
+    // Attendre que le scroll soit terminé
+    setTimeout(() => {
+      console.log('✅ Scroll complete, position:', window.scrollY);
+      isTransitioningRef.current = false;
+      setIsScrollingState(false);
+    }, 800);
+  };
 
   const snapToNearestModule = useCallback(() => {
     if (isTransitioningRef.current || globalScrollDisabled) {
-      console.log('⏭️ Snap bloqué:', { isTransitioning: isTransitioningRef.current, globalScrollDisabled });
       return;
     }
 
@@ -122,10 +109,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     const targetPosition = clampedModule * viewportHeight;
     const diff = Math.abs(scrollTop - targetPosition);
 
-    console.log('��� Snap check:', { scrollTop, targetModule, clampedModule, diff });
-
     if (diff < 5) {
-      console.log('✓ Déjà aligné');
       return;
     }
 
@@ -133,12 +117,77 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     setIsScrollingState(true);
     setCurrentModule(clampedModule);
 
-    smoothScrollTo(targetPosition, 800);
+    smoothScrollTo(targetPosition);
 
     if (onModuleChange) {
       onModuleChange(clampedModule, totalModules);
     }
-  }, [totalModules, globalScrollDisabled, smoothScrollTo, onModuleChange]);
+  }, [totalModules, globalScrollDisabled, onModuleChange]);
+
+  useEffect(() => {
+    if (!isChrome) {
+      return;
+    }
+
+    console.log('🎡 Installing Chrome WHEEL handler');
+
+    const handleWheel = (e: WheelEvent) => {
+      const target = e.target as HTMLElement;
+      const customScrollZone = target.closest('[data-custom-scroll="true"]');
+      
+      if (customScrollZone || globalScrollDisabled || isTransitioningRef.current) {
+        if (isTransitioningRef.current) {
+          e.preventDefault();
+        }
+        return;
+      }
+
+      const now = Date.now();
+      if (now - lastWheelTimeRef.current < 100) {
+        e.preventDefault();
+        return;
+      }
+
+      lastWheelTimeRef.current = now;
+
+      const scrollTop = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const currentModuleCalc = Math.floor(scrollTop / viewportHeight);
+      
+      let targetModule: number;
+      
+      if (e.deltaY > 0) {
+        targetModule = Math.min(currentModuleCalc + 1, totalModules - 1);
+      } else {
+        targetModule = Math.max(currentModuleCalc - 1, 0);
+      }
+
+      console.log('✅ Scrolling to module:', targetModule);
+      
+      e.preventDefault();
+      e.stopPropagation();
+      
+      isTransitioningRef.current = true;
+      setIsScrollingState(true);
+      setCurrentModule(targetModule);
+
+      const targetPosition = targetModule * viewportHeight;
+      smoothScrollTo(targetPosition);
+
+      if (onModuleChange) {
+        onModuleChange(targetModule, totalModules);
+      }
+    };
+
+    document.addEventListener('wheel', handleWheel, { 
+      passive: false,
+      capture: true
+    });
+    
+    return () => {
+      document.removeEventListener('wheel', handleWheel, { capture: true } as any);
+    };
+  }, [totalModules, globalScrollDisabled, onModuleChange]);
 
   useEffect(() => {
     if (!isChrome) return;
@@ -162,19 +211,15 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
       }
 
       scrollTimeoutRef.current = setTimeout(() => {
-        console.log('⏸️ Scroll arrêté, lancement du snap');
         setIsScrollingState(false);
         snapToNearestModule();
-      }, 100);
+      }, 150);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
@@ -208,16 +253,17 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   }, [currentModule, totalModules, globalScrollDisabled, onModuleChange]);
 
   useEffect(() => {
+    console.log('🔄 Route change:', location.pathname);
     setCurrentModule(0);
     setGlobalScrollDisabled(false);
     isTransitioningRef.current = false;
     
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
     }
     
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [location.pathname]);
+  }, [location.pathname, totalModules]);
 
   return <div>{children}</div>;
 }

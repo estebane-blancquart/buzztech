@@ -18,9 +18,9 @@
 /* HTML & Body */
 html {
   /* ❌ DÉSACTIVÉ: Cause des conflits avec le scroller JS sur Chrome */
-  scroll-snap-type: y proximity;
   /* scroll-behavior: smooth; */
-  -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* Éviter le scroll horizontal */
   -moz-osx-font-smoothing: grayscale;
 }
 
