@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Video.module.scss';
+import styles from './video.module.scss';
 import { VideoHighlight, VideoProps } from '@/core/types';
 
 const HighlightComponent: React.FC<{ highlight: VideoHighlight }> = ({
