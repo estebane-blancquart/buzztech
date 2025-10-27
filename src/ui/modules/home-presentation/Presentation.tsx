@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Presentation.module.scss';
+import styles from './presentation.module.scss';
 import { ServiceItem } from '@/core/types';
 
 interface PresentationProps {
