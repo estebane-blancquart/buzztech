@@ -1,7 +1,9 @@
+// src/Router.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from './Layout';
 
+// ===== LAZY LOADING =====
 const Home = lazy(() => import('@/ui/pages/Home'));
 const Depannage = lazy(() => import('@/ui/pages/Depannage'));
 const Configuration = lazy(() => import('@/ui/pages/Configuration'));
@@ -15,10 +17,28 @@ const ConditionsGenerales = lazy(
 );
 const Error = lazy(() => import('@/ui/pages/Error'));
 
+// ===== FALLBACK COMPONENT =====
+const LoadingFallback = (): JSX.Element => (
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+      fontSize: '1.2rem',
+      color: '#a367ff',
+    }}
+    aria-live="polite"
+    aria-busy="true"
+  >
+    Chargement...
+  </div>
+);
+
 function Router(): JSX.Element {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Chargement...</div>}>
+      <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

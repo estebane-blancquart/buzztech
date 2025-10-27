@@ -181,7 +181,7 @@ export const env = loadEnvConfig();
  * Log de la config au démarrage (sans les secrets)
  */
 if (env.isDevelopment) {
-  console.log('🔧 Environment configuration:', {
+  console.info('🔧 Environment configuration:', {
     mode: import.meta.env.MODE,
     siteUrl: env.siteUrl,
     siteName: env.siteName,

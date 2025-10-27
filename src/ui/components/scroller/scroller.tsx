@@ -20,6 +20,13 @@ interface ScrollerControl {
 const isChrome =
   /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
+// ✅ Liste des routes où le scroller est désactivé
+const SCROLL_DISABLED_ROUTES = [
+  '/mentions-legales',
+  '/politique-confidentialite',
+  '/conditions-generales',
+];
+
 function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   const [currentModule, setCurrentModule] = useState(0);
   const [isScrollingState, setIsScrollingState] = useState(false);
@@ -28,6 +35,9 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   const isTransitioningRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const lastWheelTimeRef = useRef<number>(0);
+
+  // ✅ Détecte si on est sur une page légale
+  const isLegalPage = SCROLL_DISABLED_ROUTES.includes(location.pathname);
 
   const getTotalModules = (): number => {
     switch (location.pathname) {
@@ -44,10 +54,19 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
 
   const totalModules = getTotalModules();
 
+  // ✅ Désactive le scroller sur les pages légales
   useEffect(() => {
+    if (isLegalPage) {
+      // Reset les styles pour scroll normal
+      document.documentElement.style.scrollSnapType = '';
+      document.documentElement.style.scrollBehavior = 'smooth';
+      return;
+    }
+
+    // Comportement normal pour les autres pages
     if (isChrome) {
       document.documentElement.style.scrollSnapType = 'none';
-      document.documentElement.style.scrollBehavior = 'smooth'; // ✅ Activer smooth pour Chrome aussi
+      document.documentElement.style.scrollBehavior = 'smooth';
     } else {
       document.documentElement.style.scrollSnapType = 'y mandatory';
       document.documentElement.style.scrollBehavior = 'smooth';
@@ -57,7 +76,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
       document.documentElement.style.scrollSnapType = '';
       document.documentElement.style.scrollBehavior = '';
     };
-  }, []);
+  }, [isLegalPage]);
 
   useEffect(() => {
     (window as WindowWithScroller).scrollerControl = {
@@ -76,26 +95,20 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     };
   }, [currentModule, isScrollingState]);
 
-  // ✅ VERSION SIMPLIFIÉE: Utiliser behavior: 'smooth' natif pour Chrome aussi
   const smoothScrollTo = (targetPosition: number) => {
-    console.log('🎯 Scrolling to:', targetPosition);
-
-    // Utiliser le smooth scroll natif du navigateur
     window.scrollTo({
       top: targetPosition,
       behavior: 'smooth',
     });
 
-    // Attendre que le scroll soit terminé
     setTimeout(() => {
-      console.log('✅ Scroll complete, position:', window.scrollY);
       isTransitioningRef.current = false;
       setIsScrollingState(false);
     }, 800);
   };
 
   const snapToNearestModule = useCallback(() => {
-    if (isTransitioningRef.current || globalScrollDisabled) {
+    if (isTransitioningRef.current || globalScrollDisabled || isLegalPage) {
       return;
     }
 
@@ -119,14 +132,13 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     if (onModuleChange) {
       onModuleChange(clampedModule, totalModules);
     }
-  }, [totalModules, globalScrollDisabled, onModuleChange]);
+  }, [totalModules, globalScrollDisabled, onModuleChange, isLegalPage]);
 
+  // ✅ Chrome wheel handler - DÉSACTIVÉ sur pages légales
   useEffect(() => {
-    if (!isChrome) {
+    if (!isChrome || isLegalPage) {
       return;
     }
-
-    console.log('🎡 Installing Chrome WHEEL handler');
 
     const handleWheel = (e: WheelEvent) => {
       const target = e.target as HTMLElement;
@@ -163,8 +175,6 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
         targetModule = Math.max(currentModuleCalc - 1, 0);
       }
 
-      console.log('✅ Scrolling to module:', targetModule);
-
       e.preventDefault();
       e.stopPropagation();
 
@@ -190,10 +200,11 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
         capture: true,
       } as any);
     };
-  }, [totalModules, globalScrollDisabled, onModuleChange]);
+  }, [totalModules, globalScrollDisabled, onModuleChange, isLegalPage]);
 
+  // ✅ Chrome scroll handler - DÉSACTIVÉ sur pages légales
   useEffect(() => {
-    if (!isChrome) return;
+    if (!isChrome || isLegalPage) return;
 
     const handleScroll = () => {
       if (globalScrollDisabled || isTransitioningRef.current) return;
@@ -227,10 +238,11 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [currentModule, totalModules, globalScrollDisabled, snapToNearestModule]);
+  }, [currentModule, totalModules, globalScrollDisabled, snapToNearestModule, isLegalPage]);
 
+  // ✅ Firefox scroll handler - DÉSACTIVÉ sur pages légales
   useEffect(() => {
-    if (isChrome) return;
+    if (isChrome || isLegalPage) return;
 
     const handleScroll = () => {
       if (globalScrollDisabled) return;
@@ -253,10 +265,10 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [currentModule, totalModules, globalScrollDisabled, onModuleChange]);
+  }, [currentModule, totalModules, globalScrollDisabled, onModuleChange, isLegalPage]);
 
+  // Reset on route change
   useEffect(() => {
-    console.log('🔄 Route change:', location.pathname);
     setCurrentModule(0);
     setGlobalScrollDisabled(false);
     isTransitioningRef.current = false;
