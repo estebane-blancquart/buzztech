@@ -1,32 +1,18 @@
 import { useRef } from 'react';
 import styles from './what.module.scss';
-import { WhatItem, WhatProps } from '@/core/types';
 
-const WhatItemComponent = ({
-  icon,
-  title,
-  description,
-}: WhatItem): JSX.Element => (
-  <div className={styles.item}>
-    <div className={styles.iconWrapper}>
-      <span className={styles.icon}>{icon}</span>
-    </div>
-    <h3 className={styles.title}>{title}</h3>
-    <p className={styles.description}>{description}</p>
-  </div>
-);
+interface WhatProps {
+  badge: string;
+  title: string;
+  subtitle: string;
+}
 
-const What = ({
-  items = [], // ✅ FIX: Valeur par défaut
-  heading = 'En quoi ça consiste ?',
-  subheading = 'Je vous explique',
-  buttonText = 'Continuer',
-}: WhatProps): JSX.Element => {
+const What = ({ badge, title, subtitle }: WhatProps): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasUserInteractedRef = useRef<boolean>(false);
 
   const handleScrollClick = (): void => {
-    // ✅ FIX: Désactiver le scroller global temporairement
+    // Désactiver le scroller global temporairement
     const scrollerControl = (window as any).scrollerControl;
     
     if (scrollerControl) {
@@ -43,7 +29,7 @@ const What = ({
       if (scrollerControl) {
         scrollerControl.enableGlobalScroll();
       }
-    }, 800); // Durée de l'animation smooth scroll
+    }, 800);
   };
 
   const goToNextModule = (): void => {
@@ -81,27 +67,18 @@ const What = ({
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
-      <div className={styles.header}>
-        <h2 id="what-heading" className={styles.heading}>
-          {heading}
-        </h2>
-        <p className={styles.subheading}>{subheading}</p>
-      </div>
+      <div className={styles.badge}>{badge}</div>
 
-      <div className={styles.grid}>
-        {items.map((item) => (
-          <WhatItemComponent key={item.title} {...item} />
-        ))}
-      </div>
+      <h1 id="what-heading" className={styles.title}>
+        {title}
+      </h1>
 
-      <button
-        type="button"
-        onClick={handleScrollClick}
-        className={styles.scrollButton}
-        aria-label={buttonText}
-      >
-        {buttonText}
-      </button>
+      <p className={styles.subtitle}>{subtitle}</p>
+
+      <div className={styles.scrollIndicator} onClick={handleScrollClick}>
+        <span>Continuer</span>
+        <div className={styles.arrow}>↓</div>
+      </div>
     </section>
   );
 };

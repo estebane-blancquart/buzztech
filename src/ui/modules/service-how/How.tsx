@@ -76,7 +76,6 @@ function How({ steps }: HowProps): JSX.Element {
       role="region"
       aria-label="Navigation des étapes du processus"
     >
-      {' '}
       <div className={styles['bar']}>
         <p className={styles['percentage']}>
           {Math.round(progressPercentage)}%
@@ -88,14 +87,14 @@ function How({ steps }: HowProps): JSX.Element {
       </div>
       <div className={styles['titles']}>
         {steps.map((step, index) => (
-          <div // ← Gardez div
+          <div
             className={classNames(styles['step'], {
               [styles['active'] as string]: activeItem === index,
             })}
             key={`step-${step.title}-${index}`}
             onClick={() => handleStepClick(index)}
-            role="button" // ← Ajoutez juste ça
-            tabIndex={0} // ← Et ça
+            role="button"
+            tabIndex={0}
             aria-pressed={activeItem === index}
             aria-label={`Étape ${index + 1}: ${step.title}`}
           >
@@ -104,7 +103,7 @@ function How({ steps }: HowProps): JSX.Element {
           </div>
         ))}
       </div>
-      <div className={styles['content']}>
+      <div className={styles['content']} data-custom-scroll="true">
         <div className={styles['corner']} data-corner="top-left"></div>
         <div className={styles['corner']} data-corner="top-right"></div>
         <div className={styles['corner']} data-corner="bottom-left"></div>

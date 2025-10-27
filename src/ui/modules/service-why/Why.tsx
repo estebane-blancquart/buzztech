@@ -43,21 +43,25 @@ function WhyHome({
   onPageClick: (index: number) => void;
 }): JSX.Element {
   return (
-    <div className={styles['landing-content']}>
+    <div className={styles['landing-simple']}>
       {children.map((child, index) => (
-        <div key={index} className={styles['landing-item']}>
-          <h3>{child.props.title}</h3>
+        <div key={index} className={styles['landing-simple-item']}>
+          <div className={styles['item-header']}>
+            {child.props.icon && <span className={styles['item-icon']}>{child.props.icon}</span>}
+            <h3 className={styles['item-title']}>{child.props.title}</h3>
+          </div>
           {child.props.landingDescription && (
-            <p>
-              <span>{child.props.landingDescription}</span>
-              <button
-                onClick={() => onPageClick(index)}
-                aria-label={`Voir les détails de ${child.props.title}`}
-              >
-                voir plus
-              </button>
+            <p className={styles['item-description']}>
+              {child.props.landingDescription}
             </p>
           )}
+          <button
+            className={styles['item-button']}
+            onClick={() => onPageClick(index)}
+            aria-label={`Voir les détails de ${child.props.title}`}
+          >
+            Voir plus →
+          </button>
         </div>
       ))}
     </div>
@@ -152,6 +156,7 @@ function Why({ title, children }: WhyProps): JSX.Element {
           })}
           role="tabpanel"
           aria-live="polite"
+          data-custom-scroll="true"
         >
           {getActiveContent()}
         </div>
