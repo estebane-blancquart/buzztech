@@ -1,13 +1,78 @@
-* {
-  margin: 0;
-  padding: 0;
+/* ========================================
+   RESET CSS - Modern & Minimal
+   ======================================== */
+
+/* Box-sizing border-box par défaut */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+/* Reset des marges et paddings */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* HTML & Body */
 html {
-  height: 100%;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  font-family: $lato;
+  /* ❌ DÉSACTIVÉ: Cause des conflits avec le scroller JS sur Chrome */
+  scroll-snap-type: y proximity;
+  /* scroll-behavior: smooth; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Images et médias */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Formulaires */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Titres */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Liens */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Lists */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default button styles */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }

@@ -12,7 +12,6 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
   const [isMobile, setIsMobile] = useState(false);
 
-  // ✅ Détection mobile
   useEffect(() => {
     const checkMobile = (): void => {
       setIsMobile(window.innerWidth < 768);
@@ -35,10 +34,9 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
     }
   };
 
-  // ✅ Toggle flip
   const handleCardClick = (index: number): void => {
-    if (!isMobile) return; // Flip seulement sur mobile
-    
+    if (!isMobile) return;
+
     setFlippedCards((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(index)) {
@@ -50,7 +48,6 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
     });
   };
 
-  // ✅ Déterminer si premium
   const isPremiumCard = (index: number): boolean => {
     if (service === 'creation-web' && index === 1) return true;
     if (service === 'configuration' && index === 1) return true;
@@ -58,6 +55,13 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
   };
 
   const goToPreviousModule = (): void => {
+    // ✅ FIX: Désactiver le scroller global temporairement
+    const scrollerControl = (window as any).scrollerControl;
+    
+    if (scrollerControl) {
+      scrollerControl.disableGlobalScroll();
+    }
+
     const currentScrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
     const currentModule = Math.round(currentScrollY / viewportHeight);
@@ -78,6 +82,11 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
 
       if (prevModuleElement) {
         prevModuleElement.focus();
+      }
+
+      // Réactiver le scroller
+      if (scrollerControl) {
+        scrollerControl.enableGlobalScroll();
       }
     }, 100);
   };
@@ -123,14 +132,12 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
           role={isMobile ? 'button' : undefined}
           tabIndex={isMobile ? 0 : undefined}
         >
-          {/* ✅ Wrapper pour flip 3D (mobile uniquement) */}
-          <div 
+          <div
             className={`
               ${isMobile ? styles['card-inner'] : ''}
               ${isMobile && flippedCards.has(index) ? styles['flipped'] : ''}
             `}
           >
-            {/* Face AVANT - Header */}
             <div className={styles['card-header']}>
               <h3 className={styles['title']}>{card.title}</h3>
               <div className={styles['price-section']}>
@@ -139,7 +146,6 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
               </div>
             </div>
 
-            {/* Face ARRIÈRE - Features */}
             <div className={styles['features']}>
               {card.features.map((feature, featureIndex) => (
                 <div key={featureIndex} className={styles['feature-item']}>

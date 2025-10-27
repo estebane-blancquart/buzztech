@@ -73,3 +73,17 @@ export interface UseScrollReturn {
   handleItemClick: (index: number) => void;
   isFading: boolean;
 }
+
+// ✅ AJOUT: Types manquants pour What component
+export interface WhatItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface WhatProps {
+  items?: WhatItem[];
+  heading?: string;
+  subheading?: string;
+  buttonText?: string;
+}
