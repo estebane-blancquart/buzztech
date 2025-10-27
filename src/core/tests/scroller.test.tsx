@@ -18,9 +18,9 @@ Object.defineProperty(window, 'scrollY', {
 });
 
 // Mock location
-const mockLocation: { pathname: string; state: null | { resetKey: number } } = { 
-  pathname: '/', 
-  state: null 
+const mockLocation: { pathname: string; state: null | { resetKey: number } } = {
+  pathname: '/',
+  state: null,
 };
 
 vi.mock('react-router-dom', async () => {
@@ -31,9 +31,11 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-const RouterWrapper = ({ children }: { children: React.ReactNode }): JSX.Element => (
-  <BrowserRouter>{children}</BrowserRouter>
-);
+const RouterWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => <BrowserRouter>{children}</BrowserRouter>;
 
 describe('Scroller Component', () => {
   beforeEach(() => {
@@ -239,7 +241,7 @@ describe('Scroller Component', () => {
 
     // Changer le state
     mockLocation.state = { resetKey: Date.now() };
-    
+
     rerender(
       <RouterWrapper>
         <Scroller>

@@ -4,7 +4,6 @@
 
 # ===== DEPENDENCIES =====
 node_modules/
-package-lock.json
 
 # ===== BUILD OUTPUT =====
 dist/
@@ -12,14 +11,19 @@ dist-ssr/
 *.local
 
 # ===== ENVIRONMENT VARIABLES =====
-# Ne JAMAIS commiter les fichiers .env avec des secrets
+# Stratégie: .env.development est committé (sans secrets)
+# Les overrides locaux (.local) ne sont jamais committés
+
+# Bloquer tous les .env par défaut
 .env
 .env.local
+.env.development.local
 .env.production
 .env.production.local
-.env.development.local
+.env.test
+.env.test.local
 
-# On garde .env.example et .env.development comme templates
+# Autoriser explicitement les templates (sans secrets)
 !.env.example
 !.env.development
 
@@ -34,6 +38,12 @@ lerna-debug.log*
 
 # ===== TYPESCRIPT =====
 *.tsbuildinfo
+# Fichiers compilés TypeScript
+vite.config.js
+vite.config.d.ts
+
+# ===== TYPESCRIPT BUILD CACHE =====
+node_modules/.tmp/
 
 # ===== EDITOR =====
 # VS Code
@@ -49,10 +59,8 @@ lerna-debug.log*
 # Vim
 *.swp
 *.swo
-*~
 
 # Emacs
-*~
 \#*\#
 /.emacs.desktop
 /.emacs.desktop.lock
@@ -86,17 +94,29 @@ test-results/
 playwright-report/
 playwright/.cache/
 
-# ===== MISC =====
-# Temporary files
+# ===== TEMPORARY FILES =====
+tmp/
+temp/
 *.tmp
 *.temp
 
-# Backup files
+# ===== BACKUP FILES =====
 *.bak
 *.backup
 
+# ===== DEPLOYMENT =====
 # Sentry
 .sentryclirc
-# Fichiers compilés TypeScript
-vite.config.js
-vite.config.d.ts
+
+# Vercel
+.vercel/
+
+# Netlify (local CLI)
+.netlify/
+
+# Turbo
+.turbo/
+
+# ===== MISC =====
+# Debug
+debug.log

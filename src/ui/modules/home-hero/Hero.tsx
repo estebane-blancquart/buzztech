@@ -38,10 +38,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
-    <section 
-      className={styles['hero']}
-      aria-labelledby="hero-title"
-    >
+    <section className={styles['hero']} aria-labelledby="hero-title">
       <div className={styles['video-section']}>
         <div className={styles['video-wrapper']}>
           {/* ✅ CORRECTION: lazy loading + decoding async pour performances */}
@@ -62,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
           {title}
         </h1>
         <p className={styles['hero-subtitle']}>{subtitle}</p>
-        
+
         <a
           href={whatsappUrl}
           className={styles['hero-cta']}
@@ -76,7 +73,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, stats }) => {
 
       <div className={styles['info-section']}>
         <div className={styles['info-grid']}>
-          {stats.map((info) => (
+          {stats.map(info => (
             <InfoCard key={info.value} value={info.value} label={info.label} />
           ))}
         </div>

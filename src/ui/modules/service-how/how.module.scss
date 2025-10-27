@@ -111,13 +111,13 @@
 .content {
   position: relative;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: $space-3 0;
   border-radius: $radius-sm;
   transition: opacity $transition-base;
-  flex: 1;
   margin-top: 2vh;
   overflow: hidden;
 
@@ -270,8 +270,8 @@
         padding: 0 $space-2;
 
         .number {
-          font-size: $text-xl;
           display: flex;
+          font-size: $text-xl;
         }
 
         .title {
@@ -307,8 +307,8 @@
     .titles {
       .step {
         .number {
-          font-size: $text-lg;
           display: flex;
+          font-size: $text-lg;
         }
       }
     }
@@ -340,8 +340,8 @@
       .step {
         flex-direction: column;
         align-items: center;
-        text-align: center;
         padding: $space-2;
+        text-align: center;
 
         .number {
           margin-right: 0;

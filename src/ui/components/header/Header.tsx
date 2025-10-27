@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './header.module.scss';
-import ScrollLink from '../scroller/scrollLink';
 import { useToggle } from '@/core/hooks/useToggle';
+import ScrollLink from '@/ui/components/scroller/scrollLink';
 
 interface NavItem {
   to: string;

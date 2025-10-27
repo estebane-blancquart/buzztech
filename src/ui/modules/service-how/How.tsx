@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './how.module.scss';
 import classNames from 'classnames';
 import { useScroll } from '@/core/hooks/useScroll';

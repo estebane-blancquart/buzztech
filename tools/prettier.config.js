@@ -1,24 +1,41 @@
 export default {
-  // Indentation
+  // ===== INDENTATION =====
   tabWidth: 2,
   useTabs: false,
-  
-  // Quotes
+
+  // ===== QUOTES =====
   singleQuote: true,
   jsxSingleQuote: false,
-  
-  // Semicolons et virgules
+
+  // ===== SEMICOLONS ET VIRGULES =====
   semi: true,
   trailingComma: 'es5',
-  
-  // Ligne
+
+  // ===== LIGNE =====
   printWidth: 80,
-  
-  // Brackets
+
+  // ===== BRACKETS =====
   bracketSpacing: true,
   bracketSameLine: false,
-  
-  // Autres
+
+  // ===== AUTRES =====
   arrowParens: 'avoid',
   endOfLine: 'lf',
+
+  // ===== OVERRIDES SPÉCIFIQUES =====
+  overrides: [
+    {
+      files: '*.scss',
+      options: {
+        parser: 'scss',
+        singleQuote: false,
+      },
+    },
+    {
+      files: '*.json',
+      options: {
+        printWidth: 120,
+      },
+    },
+  ],
 };

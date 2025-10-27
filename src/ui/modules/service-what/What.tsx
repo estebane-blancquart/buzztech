@@ -14,7 +14,7 @@ const What = ({ badge, title, subtitle }: WhatProps): JSX.Element => {
   const handleScrollClick = (): void => {
     // Désactiver le scroller global temporairement
     const scrollerControl = (window as any).scrollerControl;
-    
+
     if (scrollerControl) {
       scrollerControl.disableGlobalScroll();
     }

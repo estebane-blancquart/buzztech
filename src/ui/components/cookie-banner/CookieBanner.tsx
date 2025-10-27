@@ -19,29 +19,31 @@ interface ConsentData {
 
 const setConsentWithExpiry = (value: 'accepted' | 'refused'): void => {
   const now = new Date();
-  const expiryDate = new Date(now.setMonth(now.getMonth() + CONSENT_EXPIRY_MONTHS));
-  
+  const expiryDate = new Date(
+    now.setMonth(now.getMonth() + CONSENT_EXPIRY_MONTHS)
+  );
+
   const consentData: ConsentData = {
     value,
     expiry: expiryDate.getTime(),
   };
-  
+
   localStorage.setItem(CONSENT_KEY, JSON.stringify(consentData));
 };
 
 const getConsent = (): string | null => {
   const stored = localStorage.getItem(CONSENT_KEY);
-  
+
   if (!stored) return null;
-  
+
   try {
     const consentData: ConsentData = JSON.parse(stored);
-    
+
     if (new Date().getTime() > consentData.expiry) {
       localStorage.removeItem(CONSENT_KEY);
       return null;
     }
-    
+
     return consentData.value;
   } catch {
     localStorage.removeItem(CONSENT_KEY);
@@ -115,8 +117,9 @@ const CookieBanner: React.FC = () => {
           <div className={styles.text}>
             <h3>Cookies et vie privée</h3>
             <p>
-              Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic du site.
-              Ces données nous aident à mieux comprendre vos besoins.
+              Nous utilisons des cookies pour améliorer votre expérience et
+              analyser le trafic du site. Ces données nous aident à mieux
+              comprendre vos besoins.
             </p>
           </div>
         </div>

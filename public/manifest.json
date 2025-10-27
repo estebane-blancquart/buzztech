@@ -10,31 +10,33 @@
   "icons": [
     {
       "src": "/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon",
+      "purpose": "any"
     }
   ],
   "categories": ["business", "productivity"],
   "lang": "fr-FR",
   "dir": "ltr",
   "scope": "/",
-  "screenshots": [
+  "shortcuts": [
     {
-      "src": "/images/og-home.jpg",
-      "sizes": "1200x630",
-      "type": "image/jpeg"
+      "name": "Dépannage",
+      "short_name": "Dépannage",
+      "description": "Services de dépannage informatique",
+      "url": "/depannage"
+    },
+    {
+      "name": "Configuration PC",
+      "short_name": "Config PC",
+      "description": "Configuration de PC sur mesure",
+      "url": "/configuration"
+    },
+    {
+      "name": "Création Web",
+      "short_name": "Web",
+      "description": "Création de sites web professionnels",
+      "url": "/creation-web"
     }
   ]
 }

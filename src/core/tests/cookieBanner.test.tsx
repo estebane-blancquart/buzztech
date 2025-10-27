@@ -35,11 +35,14 @@ describe('CookieBanner Component', () => {
   });
 
   it('should not crash when consent is already stored', () => {
-    localStorageMock.setItem('buzztech_cookie_consent', JSON.stringify({
-      value: 'accepted',
-      expiry: Date.now() + 1000000
-    }));
-    
+    localStorageMock.setItem(
+      'buzztech_cookie_consent',
+      JSON.stringify({
+        value: 'accepted',
+        expiry: Date.now() + 1000000,
+      })
+    );
+
     const { container } = render(<CookieBanner />);
     expect(container).toBeInTheDocument();
   });

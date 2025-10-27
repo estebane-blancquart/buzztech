@@ -1,6 +1,6 @@
 /* ===== BREAKPOINTS ===== */
-@use 'sass:math';
-@use 'tokens' as *; // Import des variables pour utiliser dans les mixins
+@use "sass:math";
+@use "tokens" as *; // Import des variables pour utiliser dans les mixins
 
 @mixin mobile {
   @media (width <= 768px) {
@@ -216,7 +216,7 @@
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     padding-top: math.percentage(1 / $ratio);
   }
@@ -320,7 +320,11 @@
   padding: $space-xs $space-sm;
   border: 2px solid rgba($purple, 0.4);
   border-radius: $border-radius-round;
-  background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($purple-light, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba($purple, 0.15) 0%,
+    rgba($purple-light, 0.1) 100%
+  );
   color: $purple;
   font-size: $font-body-lg;
   font-weight: $font-weight-black;

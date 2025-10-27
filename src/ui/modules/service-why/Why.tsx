@@ -47,7 +47,9 @@ function WhyHome({
       {children.map((child, index) => (
         <div key={index} className={styles['landing-simple-item']}>
           <div className={styles['item-header']}>
-            {child.props.icon && <span className={styles['item-icon']}>{child.props.icon}</span>}
+            {child.props.icon && (
+              <span className={styles['item-icon']}>{child.props.icon}</span>
+            )}
             <h3 className={styles['item-title']}>{child.props.title}</h3>
           </div>
           {child.props.landingDescription && (

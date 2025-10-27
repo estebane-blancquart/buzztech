@@ -1,10 +1,30 @@
 {
   "compilerOptions": {
+    /* Project References */
     "composite": true,
-    "skipLibCheck": true,
+    
+    /* Modules */
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "resolveJsonModule": true,
+    
+    /* Interop */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    
+    /* Completeness */
+    "skipLibCheck": true,
+    
+    /* Environment */
+    "types": ["node"]
   },
   "include": ["vite.config.ts"]
 }

@@ -19,16 +19,16 @@ const Footer: React.FC = () => {
 
         <div className={styles.social}>
           {/* Icône téléphone - visible uniquement sur mobile/tablet */}
-          <a 
+          <a
             href={`tel:${companyData.phone.replace(/\s/g, '')}`}
             className={`${styles.socialIcon} ${styles.phoneIcon}`}
             aria-label="Nous appeler"
           >
             <FaPhone aria-hidden="true" />
           </a>
-          
-          <a 
-            href={`mailto:${companyData.email}`} 
+
+          <a
+            href={`mailto:${companyData.email}`}
             className={styles.socialIcon}
             aria-label="Nous contacter par email"
           >

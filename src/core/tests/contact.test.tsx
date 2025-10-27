@@ -37,7 +37,7 @@ describe('Contact Component', () => {
     render(<Contact />);
 
     const submitButton = screen.getByRole('button', { name: /envoyer/i });
-    
+
     // Soumettre sans remplir
     fireEvent.click(submitButton);
 
@@ -68,7 +68,7 @@ describe('Contact Component', () => {
 
     const select = screen.getByLabelText(/service concerné/i);
     expect(select).toBeInTheDocument();
-    
+
     // Vérifier les options
     expect(screen.getByText(/Dépannage informatique/i)).toBeInTheDocument();
     expect(screen.getByText(/Configuration PC/i)).toBeInTheDocument();

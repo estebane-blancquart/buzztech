@@ -17,11 +17,8 @@ interface ScrollerControl {
   isScrolling: () => boolean;
 }
 
-const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-
-const easeInOutCubic = (t: number): number => {
-  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-};
+const isChrome =
+  /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
 function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   const [currentModule, setCurrentModule] = useState(0);
@@ -82,13 +79,13 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   // ✅ VERSION SIMPLIFIÉE: Utiliser behavior: 'smooth' natif pour Chrome aussi
   const smoothScrollTo = (targetPosition: number) => {
     console.log('🎯 Scrolling to:', targetPosition);
-    
+
     // Utiliser le smooth scroll natif du navigateur
     window.scrollTo({
       top: targetPosition,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
-    
+
     // Attendre que le scroll soit terminé
     setTimeout(() => {
       console.log('✅ Scroll complete, position:', window.scrollY);
@@ -134,8 +131,12 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     const handleWheel = (e: WheelEvent) => {
       const target = e.target as HTMLElement;
       const customScrollZone = target.closest('[data-custom-scroll="true"]');
-      
-      if (customScrollZone || globalScrollDisabled || isTransitioningRef.current) {
+
+      if (
+        customScrollZone ||
+        globalScrollDisabled ||
+        isTransitioningRef.current
+      ) {
         if (isTransitioningRef.current) {
           e.preventDefault();
         }
@@ -153,9 +154,9 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
       const scrollTop = window.scrollY;
       const viewportHeight = window.innerHeight;
       const currentModuleCalc = Math.floor(scrollTop / viewportHeight);
-      
+
       let targetModule: number;
-      
+
       if (e.deltaY > 0) {
         targetModule = Math.min(currentModuleCalc + 1, totalModules - 1);
       } else {
@@ -163,10 +164,10 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
       }
 
       console.log('✅ Scrolling to module:', targetModule);
-      
+
       e.preventDefault();
       e.stopPropagation();
-      
+
       isTransitioningRef.current = true;
       setIsScrollingState(true);
       setCurrentModule(targetModule);
@@ -179,13 +180,15 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
       }
     };
 
-    document.addEventListener('wheel', handleWheel, { 
+    document.addEventListener('wheel', handleWheel, {
       passive: false,
-      capture: true
+      capture: true,
     });
-    
+
     return () => {
-      document.removeEventListener('wheel', handleWheel, { capture: true } as any);
+      document.removeEventListener('wheel', handleWheel, {
+        capture: true,
+      } as any);
     };
   }, [totalModules, globalScrollDisabled, onModuleChange]);
 
@@ -217,7 +220,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (scrollTimeoutRef.current) {
@@ -246,7 +249,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -257,11 +260,11 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     setCurrentModule(0);
     setGlobalScrollDisabled(false);
     isTransitioningRef.current = false;
-    
+
     if (scrollTimeoutRef.current) {
       clearTimeout(scrollTimeoutRef.current);
     }
-    
+
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname, totalModules]);
 

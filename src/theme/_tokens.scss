@@ -15,8 +15,8 @@ $purple-dark: #2d314b;
 
 /* ===== TYPOGRAPHIE ===== */
 // Fonts
-$font-sans: 'Lato', sans-serif;
-$font-mono: 'Ubuntu Sans Mono', monospace;
+$font-sans: "Lato", sans-serif;
+$font-mono: "Ubuntu Sans Mono", monospace;
 
 // Weights
 $weight-normal: 400;
@@ -24,25 +24,25 @@ $weight-bold: 700;
 $weight-black: 900;
 
 // Sizes - Scale cohérente
-$text-xs: 0.75rem;      // 12px - Captions uniquement
-$text-sm: 0.875rem;     // 14px - Texte secondaire
-$text-base: 1rem;       // 16px - Texte par défaut
-$text-lg: 1.125rem;     // 18px - Texte important
-$text-xl: 1.25rem;      // 20px - Petits titres
+$text-xs: 0.75rem; // 12px - Captions uniquement
+$text-sm: 0.875rem; // 14px - Texte secondaire
+$text-base: 1rem; // 16px - Texte par défaut
+$text-lg: 1.125rem; // 18px - Texte important
+$text-xl: 1.25rem; // 20px - Petits titres
 
 // Headings - Responsive avec clamp()
-$heading-1: clamp(2rem, 5vw, 3rem);         // 32-48px
-$heading-2: clamp(1.5rem, 4vw, 2.25rem);    // 24-36px
-$heading-3: clamp(1.25rem, 3vw, 1.75rem);   // 20-28px
+$heading-1: clamp(2rem, 5vw, 3rem); // 32-48px
+$heading-2: clamp(1.5rem, 4vw, 2.25rem); // 24-36px
+$heading-3: clamp(1.25rem, 3vw, 1.75rem); // 20-28px
 
 /* ===== SPACING ===== */
 // Scale 8px
-$space-1: 0.5rem;   // 8px
-$space-2: 1rem;     // 16px
-$space-3: 1.5rem;   // 24px
-$space-4: 2rem;     // 32px
-$space-6: 3rem;     // 48px
-$space-8: 4rem;     // 64px
+$space-1: 0.5rem; // 8px
+$space-2: 1rem; // 16px
+$space-3: 1.5rem; // 24px
+$space-4: 2rem; // 32px
+$space-6: 3rem; // 48px
+$space-8: 4rem; // 64px
 
 /* ===== LAYOUT ===== */
 // Containers
@@ -71,6 +71,7 @@ $desktop: 1440px;
 $transition-fast: 0.15s ease;
 $transition-base: 0.3s ease;
 $transition-slow: 0.5s ease;
+
 /* ===== ALIASES (rétrocompatibilité) ===== */
 $dark-purple: $purple-dark;
 $lato: $font-sans;

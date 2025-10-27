@@ -70,13 +70,13 @@ export const schemaOrgData = {
   url: 'https://www.buzztech-informatique.fr',
   telephone: '+33660352267',
   email: 'contact@buzztech-informatique.fr',
-  
+
   // ✅ AJOUTS pour meilleur SEO
   image: 'https://www.buzztech-informatique.fr/images/og-home.jpg',
   priceRange: '€€',
   paymentAccepted: 'Cash, Credit Card, Bank Transfer',
   currenciesAccepted: 'EUR',
-  
+
   address: {
     '@type': 'PostalAddress',
     streetAddress: '20b Impasse Montesquieu',
@@ -85,33 +85,33 @@ export const schemaOrgData = {
     postalCode: '42100',
     addressCountry: 'FR',
   },
-  
+
   geo: {
     '@type': 'GeoCoordinates',
     latitude: 45.4397,
     longitude: 4.3872,
   },
-  
+
   openingHours: 'Mo-Fr 08:00-18:00',
-  
+
   serviceArea: {
     '@type': 'City',
     name: 'Saint-Étienne',
   },
-  
+
   // ✅ AJOUT : Réseaux sociaux
   sameAs: [
     'https://www.facebook.com/profile.php?id=61565433387725',
     'https://www.instagram.com/buzztech_informatique/',
   ],
-  
+
   // ✅ AJOUT : Reviews (si tu en as, sinon enlève ce bloc)
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '5',
     reviewCount: '12',
   },
-  
+
   services: [
     {
       '@type': 'Service',

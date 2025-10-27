@@ -1,4 +1,3 @@
-
 /* ========================================
    HERO - Ajustement tailles + marges
    ======================================== */
@@ -46,7 +45,12 @@
 
 .hero-title {
   margin: 0;
-  background: linear-gradient(135deg, $white 0%, $purple-light 40%, $purple 100%);
+  background: linear-gradient(
+    135deg,
+    $white 0%,
+    $purple-light 40%,
+    $purple 100%
+  );
   font-weight: $weight-black;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -59,9 +63,9 @@
   max-width: 600px;
   margin: 0;
   color: $gray;
-  opacity: 0.9;
   font-weight: $weight-normal;
   line-height: 1.4;
+  opacity: 0.9;
   letter-spacing: 0.01em;
 }
 
@@ -181,14 +185,14 @@
   }
 
   .info-grid {
-    grid-template-columns: 1fr;
     gap: $space-2; // 16px
+    grid-template-columns: 1fr;
     padding: 0; // ✅ Pas de padding supplémentaire, utilise celui du hero
   }
 
   .info-card {
-    padding: $space-2; // 16px
     gap: $space-2;
+    padding: $space-2; // 16px
   }
 
   .info-icon {
@@ -218,7 +222,6 @@
   .hero-content {
     gap: $space-2; // 16px
     margin: 2vh 0 5vh;
-
   }
 
   .hero-title {
@@ -243,8 +246,8 @@
   }
 
   .info-card {
-    padding: $space-2; // 16px
     gap: $space-1;
+    padding: $space-2; // 16px
   }
 
   .info-icon {
@@ -290,14 +293,14 @@
   }
 
   .info-grid {
+    gap: $space-6; // 48px
     width: 100%; // ✅ Pleine largeur disponible
     max-width: none; // ✅ Enlever la contrainte de largeur
-    gap: $space-6; // 48px
   }
 
   .info-card {
-    padding: $space-4; // 32px
     gap: $space-2;
+    padding: $space-4; // 32px
   }
 
   .info-icon {

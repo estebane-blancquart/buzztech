@@ -1,8 +1,27 @@
 {
   "name": "buzztech",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "description": "Site vitrine professionnel BuzzTech - Services informatiques à Saint-Étienne : dépannage, configuration PC, création web",
+  "author": "BuzzTech",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/estebane-blancquart/buzztech"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "vite",
+    "buzztech",
+    "informatique",
+    "saint-etienne"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,8 +29,15 @@
     "lint:js": "eslint src/ --config tools/eslint.config.js",
     "lint:css": "stylelint \"src/**/*.scss\" --config tools/stylelint.config.js",
     "lint:fix": "npm run lint:css -- --fix",
+    "lint": "npm run lint:js && npm run lint:css",
     "format": "prettier --write src/ --config tools/prettier.config.js",
-    "test": "vitest"
+    "format:check": "prettier --check src/ --config tools/prettier.config.js",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "type-check": "tsc --noEmit",
+    "validate": "npm run type-check && npm run lint && npm run test:run"
   },
   "dependencies": {
     "@sentry/react": "^10.21.0",

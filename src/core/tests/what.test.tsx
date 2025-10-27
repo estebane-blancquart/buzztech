@@ -100,7 +100,7 @@ describe('What Component', () => {
     const component = screen.getByRole('region');
 
     fireEvent.keyDown(component, { key: 'ArrowDown' });
-    
+
     expect(mockScrollTo).toHaveBeenCalledWith({
       top: 768,
       behavior: 'instant',
@@ -113,7 +113,7 @@ describe('What Component', () => {
     const component = screen.getByRole('region');
 
     fireEvent.keyDown(component, { key: 'ArrowRight' });
-    
+
     expect(mockScrollTo).toHaveBeenCalledWith({
       top: 768,
       behavior: 'instant',
@@ -146,7 +146,7 @@ describe('What Component', () => {
 
     const component = container.querySelector('[tabindex="0"]');
     expect(component).toBeInTheDocument();
-    
+
     // Le composant NE doit PAS avoir le focus automatiquement
     expect(document.activeElement).not.toBe(component);
   });

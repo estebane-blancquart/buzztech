@@ -1,4 +1,3 @@
-
 /* ========================================
    FOOTER - Refonte avec système minimal
    ======================================== */
@@ -57,9 +56,9 @@
 
 .social {
   @include flex-end;
+  gap: $space-2;
 
   width: 33%;
-  gap: $space-2;
 }
 
 .socialIcon {
@@ -90,14 +89,14 @@
 
 /* ===== COPYRIGHT SECTION (40% du footer) ===== */
 .copyright {
-  height: 40%;
-
-  @include flex-center;
+  flex-wrap: wrap;
 
   gap: $space-1;
-  flex-wrap: wrap;
+  height: 40%;
   color: rgba($white, 0.7);
   font-weight: $weight-normal;
+
+  @include flex-center;
 }
 
 .separator {
@@ -146,8 +145,8 @@
   // Social centré prend toute la largeur
   .social {
     justify-content: center;
-    width: 100%;
     gap: $space-2;
+    width: 100%;
   }
 
   .socialIcon {
@@ -204,8 +203,8 @@
   }
 
   .social {
-    width: 50%;
     gap: $space-2;
+    width: 50%;
   }
 
   .socialIcon {

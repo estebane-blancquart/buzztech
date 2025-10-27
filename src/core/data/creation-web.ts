@@ -80,7 +80,7 @@ export const creationWebData = {
       price: '1200€',
       unit: '',
       features: [
-        'Jusqu\'à 5 pages incluses',
+        "Jusqu'à 5 pages incluses",
         'Template WordPress personnalisé',
         'Design adapté mobile/tablette/PC',
         'Référencement SEO de base',

@@ -7,8 +7,12 @@ const Depannage = lazy(() => import('@/ui/pages/Depannage'));
 const Configuration = lazy(() => import('@/ui/pages/Configuration'));
 const CreationWeb = lazy(() => import('@/ui/pages/CreationWeb'));
 const MentionsLegales = lazy(() => import('@/ui/pages/MentionsLegales'));
-const PolitiqueConfidentialite = lazy(() => import('@/ui/pages/PolitiqueConfidentialite'));
-const ConditionsGenerales = lazy(() => import('@/ui/pages/ConditionsGenerales'));
+const PolitiqueConfidentialite = lazy(
+  () => import('@/ui/pages/PolitiqueConfidentialite')
+);
+const ConditionsGenerales = lazy(
+  () => import('@/ui/pages/ConditionsGenerales')
+);
 const Error = lazy(() => import('@/ui/pages/Error'));
 
 function Router(): JSX.Element {
@@ -22,8 +26,14 @@ function Router(): JSX.Element {
             <Route path="configuration" element={<Configuration />} />
             <Route path="creation-web" element={<CreationWeb />} />
             <Route path="mentions-legales" element={<MentionsLegales />} />
-            <Route path="politique-confidentialite" element={<PolitiqueConfidentialite />} />
-            <Route path="conditions-generales" element={<ConditionsGenerales />} />
+            <Route
+              path="politique-confidentialite"
+              element={<PolitiqueConfidentialite />}
+            />
+            <Route
+              path="conditions-generales"
+              element={<ConditionsGenerales />}
+            />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

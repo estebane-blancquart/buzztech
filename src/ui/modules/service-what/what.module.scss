@@ -1,4 +1,3 @@
-
 /* ========================================
    WHAT - Standardisé avec tokens
    ======================================== */
@@ -6,7 +5,7 @@
 /* ===== BASE ===== */
 .what {
   @include flex-column-center;
-  
+
   width: 100%;
   height: 100%;
   color: $white;
@@ -37,7 +36,12 @@
 /* ===== TITLE ===== */
 .title {
   margin: 0;
-  background: linear-gradient(135deg, $white 0%, $purple-light 50%, $purple 100%);
+  background: linear-gradient(
+    135deg,
+    $white 0%,
+    $purple-light 50%,
+    $purple 100%
+  );
   font-weight: $weight-black;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -49,7 +53,8 @@
 }
 
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     filter: drop-shadow(0 0 40px rgba($purple, 0.5));
   }
 
@@ -63,9 +68,9 @@
   max-width: 650px;
   margin: 0;
   color: $white;
-  opacity: 0.9;
   font-weight: $weight-normal;
   line-height: 1.5;
+  opacity: 0.9;
 }
 
 /* ===== SCROLL INDICATOR ===== */

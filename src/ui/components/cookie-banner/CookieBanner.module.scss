@@ -57,16 +57,16 @@
 
   p {
     margin: 0;
-    opacity: 0.9;
     line-height: 1.5;
+    opacity: 0.9;
   }
 }
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .link {
@@ -84,10 +84,10 @@
 .btnPrimary,
 .btnSecondary {
   @include button-reset;
-  @include focus-visible; 
+  @include focus-visible;
 
   min-height: 44px;
-  padding: 0.875rem 1.5rem;         
+  padding: 0.875rem 1.5rem;
   font-weight: $weight-bold;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -150,8 +150,8 @@
 
   .actions {
     flex-direction: column;
-    width: 100%;
     gap: 0.75rem;
+    width: 100%;
 
     .link {
       margin-right: 0;

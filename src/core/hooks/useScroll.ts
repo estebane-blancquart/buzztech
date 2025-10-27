@@ -13,7 +13,7 @@ export function useScroll({
   const [lastScrollTime, setLastScrollTime] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  
+
   // ✅ Refs pour stocker les timeouts et les nettoyer
   const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const fadeInTimeoutRef = useRef<NodeJS.Timeout | null>(null);

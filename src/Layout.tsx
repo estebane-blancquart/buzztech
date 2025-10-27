@@ -4,7 +4,9 @@ import Header from '@/ui/components/header/Header';
 import Footer from '@/ui/components/footer/Footer';
 import Scroller from '@/ui/components/scroller/scroller';
 import { useSEO } from '@/core/hooks/useSEO';
-import CookieBanner, { useGTMConsent } from './ui/components/cookie-banner/CookieBanner';
+import CookieBanner, {
+  useGTMConsent,
+} from './ui/components/cookie-banner/CookieBanner';
 
 const Layout: React.FC = () => {
   useSEO();

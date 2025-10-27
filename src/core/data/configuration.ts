@@ -100,14 +100,10 @@ export const configurationData = {
       ],
     },
     {
-      title: "WINDOWS PRO",
+      title: 'WINDOWS PRO',
       price: '30€',
       unit: '',
-      features: [
-        'Windows 11 Pro',
-        'Licence légale',
-        'MAJ complètes',
-      ],
+      features: ['Windows 11 Pro', 'Licence légale', 'MAJ complètes'],
     },
     {
       title: 'PILOTES & OPTIMISATION',

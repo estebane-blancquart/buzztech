@@ -37,7 +37,7 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
   const handleCardClick = (index: number): void => {
     if (!isMobile) return;
 
-    setFlippedCards((prev) => {
+    setFlippedCards(prev => {
       const newSet = new Set(prev);
       if (newSet.has(index)) {
         newSet.delete(index);
@@ -57,7 +57,7 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
   const goToPreviousModule = (): void => {
     // ✅ FIX: Désactiver le scroller global temporairement
     const scrollerControl = (window as any).scrollerControl;
-    
+
     if (scrollerControl) {
       scrollerControl.disableGlobalScroll();
     }
@@ -142,7 +142,9 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
               <h3 className={styles['title']}>{card.title}</h3>
               <div className={styles['price-section']}>
                 <span className={styles['price']}>{card.price}</span>
-                {card.unit && <span className={styles['unit']}>{card.unit}</span>}
+                {card.unit && (
+                  <span className={styles['unit']}>{card.unit}</span>
+                )}
               </div>
             </div>
 

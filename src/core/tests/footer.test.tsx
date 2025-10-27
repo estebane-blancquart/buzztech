@@ -3,9 +3,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 import Footer from '@/ui/components/footer/Footer';
 
-const RouterWrapper = ({ children }: { children: React.ReactNode }): JSX.Element => (
-  <BrowserRouter>{children}</BrowserRouter>
-);
+const RouterWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => <BrowserRouter>{children}</BrowserRouter>;
 
 describe('Footer Component', () => {
   it('should render company name', () => {

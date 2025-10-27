@@ -1,19 +1,27 @@
 {
   "compilerOptions": {
+    /* Language and Environment */
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Ultra-Strict Mode */
+    /* Modules */
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    
+    /* Emit */
+    "noEmit": true,
+    "isolatedModules": true,
+    "sourceMap": false,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking - Ultra-Strict Mode */
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -26,9 +34,19 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
 
-    /* Path mapping */
-    "baseUrl": ".",
+    /* Completeness */
+    "skipLibCheck": true,
+
+    /* Performance */
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+
+    /* Path Mapping - Géré par Vite (voir vite.config.ts) */
     "paths": {
       "@/*": ["./src/*"]
     }

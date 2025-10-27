@@ -22,60 +22,73 @@
   
   [headers.values]
     # ===== Protection XSS =====
-    # Empêche le navigateur d'exécuter du code malveillant
     X-XSS-Protection = "1; mode=block"
     
     # ===== Protection Clickjacking =====
-    # Empêche ton site d'être affiché dans une iframe
     X-Frame-Options = "DENY"
     
     # ===== Protection MIME Sniffing =====
-    # Force le navigateur à respecter les types MIME
     X-Content-Type-Options = "nosniff"
     
     # ===== Referrer Policy =====
-    # Contrôle les infos envoyées lors de la navigation
     Referrer-Policy = "strict-origin-when-cross-origin"
     
-    # ===== Cross-Origin-Opener-Policy (COOP) ===== ✨ AJOUTÉ
-    # Isole le contexte de navigation pour plus de sécurité
+    # ===== Cross-Origin Policies =====
     Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
     
     # ===== Permissions Policy =====
-    # Désactive les APIs non utilisées
-    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=()"
     
     # ===== Content Security Policy (CSP) =====
-    # La plus importante : définit ce qui peut s'exécuter sur ton site
     Content-Security-Policy = """
       default-src 'self';
       script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.sentry-cdn.com;
-      style-src 'self' 'unsafe-inline';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       img-src 'self' data: https: blob:;
-      font-src 'self' data:;
+      font-src 'self' data: https://fonts.gstatic.com;
       connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.sentry.io https://*.ingest.sentry.io https://formspree.io;
       frame-src 'none';
       object-src 'none';
       base-uri 'self';
       form-action 'self' https://wa.me;
       upgrade-insecure-requests;
+      block-all-mixed-content;
     """
     
     # ===== Strict Transport Security (HSTS) =====
-    # Force HTTPS pendant 1 an
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     
     # ===== Cache Control =====
-    # Cache les ressources pour 1 heure
     Cache-Control = "public, max-age=3600, must-revalidate"
+    
+    # ===== Network Error Logging =====
+    NEL = '{"report_to":"default","max_age":31536000,"include_subdomains":true}'
+    
+    # ===== Reporting API =====
+    Report-To = '{"group":"default","max_age":31536000,"endpoints":[{"url":"https://buzztech.report-uri.com/a/d/g"}],"include_subdomains":true}'
+
+# ===== HEADERS POUR FONTS =====
+[[headers]]
+  for = "/fonts/*"
+  
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Cross-Origin-Resource-Policy = "cross-origin"
 
 # ===== CACHE AGRESSIF POUR LES ASSETS =====
-# Les fichiers avec hash dans le nom peuvent être cachés longtemps
 [[headers]]
   for = "/assets/*"
   
   [headers.values]
-    # Cache 1 an (les fichiers ont un hash, donc safe)
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ===== HEADERS POUR IMAGES =====
+[[headers]]
+  for = "/images/*"
+  
+  [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 # ===== REDIRECTS =====
@@ -85,24 +98,21 @@
   to = "/index.html"
   status = 200
 
-# ===== ERREURS PERSONNALISÉES =====
-# Page 404 personnalisée (optionnel, si tu en crées une)
-# [[redirects]]
-#   from = "/*"
-#   to = "/404.html"
-#   status = 404
-
 # ===== OPTIMISATIONS =====
-# Compression Brotli activée par défaut sur Netlify ✅
-# HTTPS activé par défaut ✅
-# CDN mondial activé par défaut ✅
+# ✅ Compression Brotli activée par défaut sur Netlify
+# ✅ HTTPS activé par défaut
+# ✅ CDN mondial activé par défaut
+# ✅ HTTP/2 & HTTP/3 activés par défaut
 
 # ===== ENVIRONNEMENT VARIABLES =====
 # Les variables d'environnement se configurent dans l'interface Netlify :
 # Site settings > Environment variables
-# Il faudra ajouter :
-# - VITE_SENTRY_DSN
-# - VITE_GTM_ID
-# - VITE_SITE_URL
-# - VITE_SITE_NAME
-# - VITE_WHATSAPP_NUMBER
+# 
+# Variables requises :
+# - VITE_SITE_URL=https://www.buzztech-informatique.fr
+# - VITE_SITE_NAME=BuzzTech
+# - VITE_WHATSAPP_NUMBER=33660352267
+# 
+# Variables optionnelles :
+# - VITE_SENTRY_DSN=https://xxxxx@xxxxx.ingest.sentry.io/xxxxx
+# - VITE_GTM_ID=GTM-XXXXXXX

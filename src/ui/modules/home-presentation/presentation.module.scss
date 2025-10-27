@@ -1,4 +1,3 @@
-
 /* ========================================
    PRESENTATION - Standardisé avec tokens
    ======================================== */
@@ -22,7 +21,12 @@
 
 .title {
   margin: 0;
-  background: linear-gradient(135deg, $white 0%, $purple 50%, $purple-light 100%);
+  background: linear-gradient(
+    135deg,
+    $white 0%,
+    $purple 50%,
+    $purple-light 100%
+  );
   font-weight: $weight-black;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -52,14 +56,22 @@
   width: 100%;
   border: 1px solid rgba($purple, 0.25);
   border-radius: $radius-lg;
-  background: linear-gradient(135deg, rgba($purple, 0.08) 0%, rgba($purple, 0.04) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba($purple, 0.08) 0%,
+    rgba($purple, 0.04) 100%
+  );
   color: inherit;
   text-decoration: none;
   transition: all $transition-base;
   cursor: pointer;
 
   &:hover {
-    background: linear-gradient(135deg, rgba($purple, 0.15) 0%, rgba($purple, 0.08) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba($purple, 0.15) 0%,
+      rgba($purple, 0.08) 100%
+    );
     border-color: rgba($purple, 0.5);
 
     // ✅ Pas de transform
@@ -143,8 +155,8 @@
   }
 
   .service-left {
-    gap: $space-2;
     align-items: center; // ✅ Centre icône avec le texte
+    gap: $space-2;
   }
 
   .icon {

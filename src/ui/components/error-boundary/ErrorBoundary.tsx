@@ -1,4 +1,5 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component } from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
 import * as Sentry from '@sentry/react';
 import styles from './ErrorBoundary.module.scss';
 import { env } from '@/core/config/env';
@@ -43,7 +44,7 @@ class ErrorBoundary extends Component<Props, State> {
     }
 
     // Envoyer à Sentry
-    Sentry.withScope((scope) => {
+    Sentry.withScope(scope => {
       // Ajouter contexte React
       scope.setContext('react', {
         componentStack: errorInfo.componentStack,
@@ -79,17 +80,17 @@ class ErrorBoundary extends Component<Props, State> {
       Sentry.showReportDialog({
         eventId: this.state.eventId,
         title: 'Signaler un problème',
-        subtitle:
-          'Vous pouvez nous aider en décrivant ce qui s\'est passé.',
+        subtitle: "Vous pouvez nous aider en décrivant ce qui s'est passé.",
         subtitle2: 'Nous vous recontacterons si besoin.',
         labelName: 'Nom',
         labelEmail: 'Email',
-        labelComments: 'Que s\'est-il passé ?',
+        labelComments: "Que s'est-il passé ?",
         labelClose: 'Fermer',
         labelSubmit: 'Envoyer',
         errorGeneric:
-          'Une erreur est survenue lors de l\'envoi du rapport. Veuillez réessayer.',
-        errorFormEntry: 'Certains champs sont invalides. Merci de les corriger.',
+          "Une erreur est survenue lors de l'envoi du rapport. Veuillez réessayer.",
+        errorFormEntry:
+          'Certains champs sont invalides. Merci de les corriger.',
         successMessage: 'Merci pour votre retour !',
       });
     }

@@ -1,4 +1,21 @@
+# ========================================
+# BuzzTech - Robots.txt
+# ========================================
+# Services informatiques à Saint-Étienne
+# Site: https://www.buzztech-informatique.fr
+# ========================================
+
+# Tous les robots sont autorisés
 User-agent: *
 Allow: /
 
+# Bloquer les fichiers techniques (optimisation crawl budget)
+Disallow: /assets/*.map
+Disallow: /*.json$
+Disallow: /manifest.json
+
+# Sitemap XML
 Sitemap: https://www.buzztech-informatique.fr/sitemap.xml
+
+# Domaine canonique
+Host: https://www.buzztech-informatique.fr

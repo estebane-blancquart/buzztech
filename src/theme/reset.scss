@@ -18,8 +18,9 @@
 /* HTML & Body */
 html {
   /* ❌ DÉSACTIVÉ: Cause des conflits avec le scroller JS sur Chrome */
+
   /* scroll-behavior: smooth; */
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden; /* Éviter le scroll horizontal */
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,7 +28,10 @@ html {
 body {
   min-height: 100vh;
   line-height: 1.5;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 /* Images et médias */

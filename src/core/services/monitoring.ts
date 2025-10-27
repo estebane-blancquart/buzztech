@@ -28,7 +28,7 @@ function getMonitoringConfig(): MonitoringConfig {
     enabled,
     dsn: env.sentryDsn,
     environment: env.isProduction ? 'production' : 'development',
-    
+
     // Version de l'app (optionnel, utile pour tracking)
     release: `buzztech@${import.meta.env.VITE_APP_VERSION ?? 'unknown'}`,
 
@@ -39,7 +39,7 @@ function getMonitoringConfig(): MonitoringConfig {
     // Session Replay
     // Enregistre 10% des sessions normales
     replaysSessionSampleRate: env.isProduction ? 0.1 : 0,
-    
+
     // Enregistre 100% des sessions avec erreurs
     replaysOnErrorSampleRate: 1.0,
   };
@@ -58,7 +58,9 @@ export function initMonitoring(): void {
     if (env.isDevelopment) {
       console.log('📊 Monitoring désactivé en développement');
     } else {
-      console.warn('⚠️  Sentry non configuré - Monitoring désactivé en production');
+      console.warn(
+        '⚠️  Sentry non configuré - Monitoring désactivé en production'
+      );
     }
     return;
   }
@@ -74,7 +76,7 @@ export function initMonitoring(): void {
       integrations: [
         // Browser Tracing pour performance monitoring
         Sentry.browserTracingIntegration(),
-        
+
         // Session Replay pour voir ce que l'utilisateur faisait
         Sentry.replayIntegration({
           maskAllText: true, // Masquer le texte pour RGPD
@@ -110,19 +112,19 @@ export function initMonitoring(): void {
         'Network request failed',
         'Failed to fetch',
         'Load failed',
-        
+
         // Erreurs extensions navigateur
         'Extension context invalidated',
         'chrome-extension://',
         'moz-extension://',
-        
+
         // Erreurs adblockers
         'ad blocker',
         'adblock',
-        
+
         // Erreurs Safari
         'ResizeObserver loop',
-        
+
         // Annulations utilisateur
         'cancelled',
         'AbortError',
@@ -134,7 +136,7 @@ export function initMonitoring(): void {
         /extensions\//i,
         /^chrome:\/\//i,
         /^moz-extension:\/\//i,
-        
+
         // Scripts tiers problématiques
         /google-analytics\.com/i,
         /googletagmanager\.com/i,
@@ -147,7 +149,7 @@ export function initMonitoring(): void {
       tracesSampleRate: `${config.tracesSampleRate * 100}%`,
     });
   } catch (error) {
-    console.error('❌ Erreur lors de l\'initialisation de Sentry:', error);
+    console.error("❌ Erreur lors de l'initialisation de Sentry:", error);
   }
 }
 
@@ -216,11 +218,13 @@ export function addBreadcrumb(
  * Définit l'utilisateur courant (pour tracking)
  * Usage: setUser({ id: '123', email: 'user@example.com' })
  */
-export function setUser(user: {
-  id?: string;
-  email?: string;
-  username?: string;
-} | null): void {
+export function setUser(
+  user: {
+    id?: string;
+    email?: string;
+    username?: string;
+  } | null
+): void {
   if (env.isDevelopment) {
     console.log('👤 User set:', user);
     return;
@@ -260,7 +264,7 @@ export function setContext(
 
 /**
  * Wrapper pour tracker les performances d'une fonction
- * Usage: 
+ * Usage:
  * await trackPerformance('fetchData', async () => {
  *   return await fetch('/api/data')
  * })

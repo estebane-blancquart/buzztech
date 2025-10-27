@@ -3,7 +3,7 @@ $black: #0a0a0a;
 $dark-purple: #1a0f2e;
 $purple: #8b5cf6;
 $purple-light: #a78bfa;
-$white: #ffffff;
+$white: #fff;
 
 // ===== VARIABLES DE TYPOGRAPHIE =====
 $p2: 1rem;
@@ -17,7 +17,7 @@ $weight-bold: 700;
 }
 
 @mixin mobile {
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     @content;
   }
 }
@@ -45,7 +45,8 @@ $weight-bold: 700;
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -63,22 +64,22 @@ $weight-bold: 700;
 }
 
 .message {
-  opacity: 0.9;
   line-height: 1.6;
+  opacity: 0.9;
   margin-bottom: 2rem;
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .btnPrimary,
 .btnSecondary {
   @include button-reset;
- 
+
   padding: 1rem 2rem;
   border-radius: 8px;
   font-weight: $weight-bold;
@@ -89,7 +90,7 @@ $weight-bold: 700;
 .btnPrimary {
   background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
   color: $white;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba($purple, 0.4);
@@ -100,7 +101,7 @@ $weight-bold: 700;
   border: 1px solid rgba($white, 0.3);
   background: transparent;
   color: $white;
-  
+
   &:hover {
     background: rgba($white, 0.1);
     border-color: rgba($white, 0.5);
@@ -114,13 +115,13 @@ $weight-bold: 700;
   background: rgba($black, 0.3);
   text-align: left;
   margin-top: 2rem;
-  
+
   summary {
     color: $purple-light;
     font-weight: $weight-bold;
     cursor: pointer;
     margin-bottom: 0.5rem;
-    
+
     &:hover {
       opacity: 0.8;
     }
@@ -143,21 +144,21 @@ $weight-bold: 700;
   .errorBoundary {
     padding: 1rem;
   }
-  
+
   .icon {
     font-size: 3rem;
   }
-  
+
   .actions {
     flex-direction: column;
     width: 100%;
-    
+
     .btnPrimary,
     .btnSecondary {
       width: 100%;
     }
   }
-  
+
   .errorStack {
     font-size: 0.75rem;
   }

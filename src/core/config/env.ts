@@ -149,13 +149,11 @@ function loadEnvConfig(): EnvConfig {
   // Warnings en production
   if (isProduction) {
     if (!gtmId) {
-      console.warn(
-        '⚠️  VITE_GTM_ID non configuré - Analytics désactivés'
-      );
+      console.warn('⚠️  VITE_GTM_ID non configuré - Analytics désactivés');
     }
     if (!sentryDsn) {
       console.warn(
-        '⚠️  VITE_SENTRY_DSN non configuré - Monitoring d\'erreurs désactivé'
+        "⚠️  VITE_SENTRY_DSN non configuré - Monitoring d'erreurs désactivé"
       );
     }
   }

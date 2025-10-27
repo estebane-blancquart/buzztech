@@ -23,9 +23,11 @@ Object.defineProperty(window, 'scrollTo', {
   writable: true,
 });
 
-const RouterWrapper = ({ children }: { children: React.ReactNode }): JSX.Element => (
-  <BrowserRouter>{children}</BrowserRouter>
-);
+const RouterWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => <BrowserRouter>{children}</BrowserRouter>;
 
 describe('ScrollLink Component', () => {
   beforeEach(() => {
@@ -117,8 +119,11 @@ describe('ScrollLink Component', () => {
     );
 
     const link = screen.getByText('Link');
-    const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
-    
+    const clickEvent = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    });
+
     const preventDefaultSpy = vi.spyOn(clickEvent, 'preventDefault');
     link.dispatchEvent(clickEvent);
 
@@ -189,13 +194,13 @@ describe('ScrollLink Component', () => {
     );
 
     const link = screen.getByText('Click Multiple');
-    
+
     fireEvent.click(link);
     const firstCall = mockNavigate.mock.calls[0];
-    
+
     // Attendre un peu pour que Date.now() change
     await new Promise(resolve => setTimeout(resolve, 10));
-    
+
     fireEvent.click(link);
     const secondCall = mockNavigate.mock.calls[1];
 
@@ -205,7 +210,9 @@ describe('ScrollLink Component', () => {
 
     // resetKey devrait être différent à chaque clic
     if (firstCall && secondCall) {
-      expect(firstCall[1].state.resetKey).not.toBe(secondCall[1].state.resetKey);
+      expect(firstCall[1].state.resetKey).not.toBe(
+        secondCall[1].state.resetKey
+      );
     }
   });
 });
