@@ -3,7 +3,7 @@
 @use "tokens" as *; // Import des variables pour utiliser dans les mixins
 
 @mixin mobile {
-  @media (width <= 768px) {
+  @media (width <= 767px) {
     @content;
   }
 }
