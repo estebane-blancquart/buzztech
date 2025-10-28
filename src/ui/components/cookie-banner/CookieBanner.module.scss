@@ -23,7 +23,6 @@
 }
 
 .banner {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
   border: 1px solid rgba($purple, 0.3);
@@ -127,6 +126,7 @@
 
   .banner {
     padding: 1rem;
+    padding: $padding-mobile 1vh;
   }
 
   .content {
@@ -168,6 +168,7 @@
 }
 
 @include tablet {
+  
   .content {
     margin-bottom: 1.25rem;
   }
