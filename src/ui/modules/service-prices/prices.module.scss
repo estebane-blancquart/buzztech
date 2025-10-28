@@ -1,5 +1,5 @@
 /* ========================================
-   PRICES - Version finale corrigée
+   PRICES - Version V3 avec hauteurs fixes
    ======================================== */
 
 /* ===== BASE ===== */
@@ -275,47 +275,66 @@
 
 /* ===== RESPONSIVE ===== */
 
-/* 🎯 MOBILE - TOUT RENTRE DANS 70VH SANS SCROLL */
+/* 🎯 MOBILE - HAUTEURS FIXES CALCULÉES */
 @include mobile {
   .prices {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90vw; /* ✅ Marges horizontales */
-    height: 70vh; /* ✅ Hauteur fixe */
+    width: 90vw;
+    height: 70vh;
     max-height: 70vh;
-    padding: $space-2 0; /* ✅ Padding vertical pour éviter les coupures */
+    padding: 0;
+    overflow: hidden;
   }
 
-  /* ✅ Container flex pour répartir l'espace */
+  /* ✅ Container flex */
   .layout-depannage-custom,
   .layout-configuration-custom,
   .layout-grid {
     display: flex !important;
     flex-direction: column;
-    justify-content: space-evenly; /* ✅ Répartition équitable au lieu de center */
+    justify-content: space-between;
     align-items: stretch;
-    gap: 12px; /* ✅ Gap légèrement augmenté */
     width: 100%;
     height: 100%;
-    padding: $space-1 0; /* ✅ Padding interne */
   }
 
-  /* ✅ FLIP CARDS - Hauteur dynamique selon le nombre */
+  /* ✅ Padding spécifique par layout */
+  .layout-grid,
+  .layout-depannage-custom {
+    padding: 1vh 0;
+  }
+
+  .layout-configuration-custom {
+    padding: 0.75vh 0; /* Réduit pour 5 cartes */
+  }
+
+  /* ✅ GAPS FIXES */
+  .layout-grid {
+    gap: 2vh; /* 2 cartes */
+  }
+
+  .layout-depannage-custom {
+    gap: 1.5vh; /* 3 cartes */
+  }
+
+  .layout-configuration-custom {
+    gap: 0.8vh; /* 5 cartes - réduit pour compenser */
+  }
+
+  /* ✅ FLIP CARDS - Base */
   .card {
     position: relative;
-    flex: 1;
     width: 100%;
-    min-height: 100px; /* ✅ Augmenté */
-    max-height: 170px; /* ✅ Augmenté */
     padding: 0;
     border: none;
     background: none;
     cursor: pointer;
     perspective: 1000px;
     -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0; /* ✅ Empêche compression */
 
-    // Reset styles desktop
     &:hover {
       background: none;
       transform: none;
@@ -343,7 +362,6 @@
       transform: rotateY(180deg);
     }
 
-    /* ✅ S'assurer que les enfants sont bien positionnés */
     > * {
       position: absolute;
       width: 100%;
@@ -358,11 +376,10 @@
     left: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* ✅ Répartition optimale */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 16px 18px; /* ✅ Padding augmenté */
     border: 2px solid rgba($purple, 0.4);
     border-radius: $radius-lg;
     background: linear-gradient(
@@ -375,28 +392,22 @@
     box-shadow: 0 4px 16px rgba($black, 0.4);
     overflow: hidden;
 
-    /* ✅ Section du haut - Titre */
     .title {
       width: 100%;
       margin: 0;
       color: $purple-light;
-      font-size: 14px; /* ✅ Augmenté */
       font-weight: $weight-black;
-      line-height: 1.3;
       text-align: center;
       letter-spacing: 0.08em;
     }
 
-    /* ✅ Section du bas - Prix */
     .price-section {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
 
       .price {
         background: linear-gradient(135deg, $white 0%, $purple-light 100%);
-        font-size: clamp(26px, 6vw, 32px); /* ✅ Plus gros */
         font-weight: $weight-black;
         line-height: 1;
         -webkit-text-fill-color: transparent;
@@ -405,37 +416,32 @@
 
       .unit {
         color: $gray;
-        font-size: 11px; /* ✅ Légèrement augmenté */
         font-weight: $weight-normal;
         opacity: 0.9;
       }
     }
   }
 
-  /* ✅ Badge POPULAIRE sur face avant premium */
+  /* ✅ Badge POPULAIRE premium */
   .card.premium .card-header {
-    border-color: rgba($purple-light, 0.7); /* ✅ Border plus visible */
+    border-color: rgba($purple-light, 0.7);
     background: linear-gradient(
       135deg,
       rgba($purple, 0.18) 0%,
       rgba($purple-light, 0.1) 100%
     );
-    box-shadow: 0 4px 20px rgba($purple-light, 0.2); /* ✅ Glow effect */
+    box-shadow: 0 4px 20px rgba($purple-light, 0.2);
 
     .title {
-      color: $white; /* ✅ Titre en blanc pour premium */
+      color: $white;
     }
 
     &::after {
       content: "POPULAIRE";
       position: absolute;
-      right: -18px;
-      bottom: 20px; /* ✅ Ajusté */
       z-index: 2;
-      padding: 3px 26px; /* ✅ Padding augmenté */
       background: linear-gradient(135deg, $purple 0%, $purple-light 100%);
       color: $white;
-      font-size: 7.5px; /* ✅ Légèrement augmenté */
       font-weight: $weight-black;
       transform: rotate(-45deg);
       letter-spacing: 0.12em;
@@ -443,141 +449,213 @@
     }
   }
 
-  /* ===== FACE ARRIÈRE (Features) ===== */
+  /* ===== FACE ARRIÈRE (Features) - GRID 2 COLONNES OPTIMISÉ ===== */
   .features {
     position: absolute;
     top: 0;
     left: 0;
-    display: grid; /* ✅ Grid au lieu de flex */
-    gap: 8px 12px; /* ✅ Gap horizontal augmenté */
-    grid-template-columns: 1fr 1fr; /* ✅ 2 colonnes égales */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-content: center;
+    align-items: start;
     width: 100%;
     height: 100%;
-    padding: 16px 20px; /* ✅ Padding horizontal augmenté */
-    border: 2px solid rgba($purple-light, 0.6);
+    border: 2px solid rgba($purple-light, 0.7); /* ✅ Border plus visible */
     border-radius: $radius-lg;
     background: linear-gradient(
       135deg,
-      rgba($purple, 0.2) 0%,
-      rgba($purple-light, 0.12) 100%
-    );
+      rgba($purple, 0.25) 0%,
+      rgba($purple-light, 0.15) 100%
+    ); /* ✅ Background plus contrasté */
     transform: rotateY(180deg);
-    place-content: center center; /* ✅ Centrage horizontal du grid */
     backface-visibility: hidden;
-    grid-auto-rows: min-content; /* ✅ Hauteur automatique */ /* ✅ Centrage vertical */
-    justify-items: start; /* ✅ Items alignés à gauche dans leur cellule */
-    overflow: hidden auto;
-    box-shadow: 0 4px 16px rgba($purple, 0.3);
-
-    /* ✅ Custom scrollbar élégante */
-    &::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 3px;
-      background: rgba($purple, 0.15);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 3px;
-      background: rgba($purple-light, 0.5);
-
-      &:hover {
-        background: rgba($purple-light, 0.7);
-      }
-    }
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba($purple-light, 0.25); /* ✅ Shadow plus prononcée */
 
     .feature-item {
       display: flex;
       align-items: flex-start;
-      width: 100%; /* ✅ Prend toute la largeur de sa cellule */
+      width: 100%;
       color: $white;
-      font-size: 10px;
-      font-weight: $weight-normal;
-      line-height: 1.4;
+      font-weight: 500; /* ✅ Medium weight (500) */
+      line-height: 1.35;
 
       &::before {
         content: "✓";
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 14px;
-        height: 14px;
         border-radius: 3px;
-        background: rgba($purple-light, 0.4);
+        background: rgba($purple-light, 0.5); /* ✅ Checkmark plus visible */
         color: $white;
-        font-size: 8px;
         font-weight: $weight-black;
         flex-shrink: 0;
-        margin-right: 6px;
-        margin-top: 1px;
       }
     }
   }
 
-  /* ✅ Ajustements spécifiques par layout */
-
-  /* 2 cartes (Création Web) - Plus grandes */
+  /* ===== CRÉATION WEB (2 cartes) - 32vh par carte ===== */
   .layout-grid .card {
-    min-height: 150px; /* ✅ Augmenté */
-    max-height: 200px; /* ✅ Augmenté */
+    height: 32vh; /* ✅ FIXE : 32vh + 2vh gap + 2vh padding = 68vh */
+    min-height: 32vh;
+    max-height: 32vh;
   }
 
-  /* 3 cartes (Dépannage) - Taille moyenne */
-  .layout-depannage-custom .card {
-    min-height: 120px; /* ✅ Augmenté */
-    max-height: 160px; /* ✅ Augmenté */
-  }
-
-  /* 5 cartes (Configuration) - Plus compactes mais optimisées */
-  .layout-configuration-custom {
-    gap: 10px;
-
-    .card {
-      min-height: 95px;
-      max-height: 125px;
-    }
-
-    /* Face avant - Configuration */
+  .layout-grid {
     .card-header {
-      padding: 14px 16px; /* ✅ Padding optimisé */
+      padding: 2.5vh 3vh;
 
       .title {
-        font-size: 12px; /* ✅ Taille ajustée */
+        font-size: 13px;
+        line-height: 1.25;
       }
 
-      .price-section .price {
-        font-size: clamp(22px, 5vw, 28px); /* ✅ Prix ajusté */
-      }
+      .price-section {
+        gap: 0.5vh;
 
-      .unit {
-        font-size: 10px;
+        .price {
+          font-size: 28px;
+        }
+
+        .unit {
+          font-size: 10px;
+        }
       }
     }
 
-    /* Badge premium - Configuration */
     .card.premium .card-header::after {
-      right: -16px;
-      bottom: 16px; /* ✅ Position ajustée */
-      padding: 2px 22px; /* ✅ Padding ajusté */
-      font-size: 6.5px; /* ✅ Taille ajustée */
+      right: -25px;
+      bottom: 25px;
+      padding: 0.4vh 4vh;
+      font-size: 7px;
     }
 
-    /* Face arrière - Configuration */
     .features {
-      gap: 5px; /* ✅ Gap ajusté */
-      padding: 12px 20px; /* ✅ Padding ajusté */
+      gap: 1vh 1.8vh; /* ✅ Gap horizontal augmenté */
+      padding: 2.8vh 3.2vh; /* ✅ Padding augmenté */
 
       .feature-item {
-        font-size: 9.5px; /* ✅ Texte ajusté */
-        line-height: 1.35;
+        font-size: 10px; /* ✅ Texte plus gros */
 
         &::before {
-          width: 12px; /* ✅ Icône ajustée */
-          height: 12px;
+          width: 14px;
+          height: 14px;
+          font-size: 8.5px;
+          margin-right: 0.9vh;
+          margin-top: 1px;
+        }
+      }
+    }
+  }
+
+  /* ===== DÉPANNAGE (3 cartes) - 21vh par carte ===== */
+  .layout-depannage-custom .card {
+    height: 21vh; /* ✅ FIXE : 21vh × 3 + 1.5vh × 2 gaps + 2vh padding = 69vh */
+    min-height: 21vh;
+    max-height: 21vh;
+  }
+
+  .layout-depannage-custom {
+    .card-header {
+      padding: 2vh 2.5vh;
+
+      .title {
+        font-size: 12px;
+        line-height: 1.2;
+      }
+
+      .price-section {
+        gap: 0.4vh;
+
+        .price {
+          font-size: 24px;
+        }
+
+        .unit {
+          font-size: 9.5px;
+        }
+      }
+    }
+
+    .card.premium .card-header::after {
+      right: -25px;
+      bottom: 25px;
+      padding: 0.3vh 3.5vh;
+      font-size: 6.5px;
+    }
+
+    .features {
+      gap: 0.8vh 1.5vh; /* ✅ Gap horizontal augmenté */
+      padding: 2.2vh 2.6vh; /* ✅ Padding augmenté */
+
+      .feature-item {
+        font-size: 9.5px; /* ✅ Texte plus gros */
+
+        &::before {
+          width: 12.5px;
+          height: 12.5px;
           font-size: 8px;
-          margin-right: 7px;
+          margin-right: 0.8vh;
+          margin-top: 1px;
+        }
+      }
+    }
+  }
+
+  /* ===== CONFIGURATION (5 cartes) - 13.5vh par carte ===== */
+  .layout-configuration-custom .card {
+    height: 13.5vh; /* ✅ FIXE : 13.5vh × 5 + 0.8vh × 4 gaps + 1.5vh padding = 70.7vh */
+    min-height: 13.5vh;
+    max-height: 13.5vh;
+  }
+
+  .layout-configuration-custom {
+
+    .card {
+      padding: $space-2;
+    }
+    .card-header {
+      padding: 1.6vh 2.2vh;
+
+      .title {
+        font-size: 11.5px;
+        line-height: 1.2;
+      }
+
+      .price-section {
+        gap: 0.4vh;
+
+        .price {
+          font-size: 24px;
+        }
+
+        .unit {
+          font-size: 9px;
+        }
+      }
+    }
+
+    .card.premium .card-header::after {
+      right: -20px;
+      bottom: 20px;
+      padding: 0.3vh 3.2vh;
+      font-size: 6.5px;
+    }
+
+    .features {
+      gap: 0.7vh 1.3vh;
+      padding: 1.8vh 2.3vh;
+
+      .feature-item {
+        font-size: 9.2px;
+        line-height: 1.3;
+
+        &::before {
+          width: 12px;
+          height: 12px;
+          font-size: 7.5px;
+          margin-right: 0.7vh;
+          margin-top: 0.5px;
         }
       }
     }

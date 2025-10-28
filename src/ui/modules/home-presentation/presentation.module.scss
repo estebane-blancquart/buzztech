@@ -127,111 +127,113 @@
 /* ===== RESPONSIVE ===== */
 @include mobile {
   .presentation {
-    gap: $space-3; // 24px
+    gap: $space-2; // 16px - OK
     padding: $padding-mobile;
   }
 
   .header {
-    gap: $space-1; // 8px
+    gap: $space-1; // 8px - OK
+    margin-bottom: $space-1; // 8px - Réduit de 16px
   }
 
   .title {
-    font-size: $heading-3; // 20-28px
+    font-size: clamp(1.125rem, 4vw, 1.5rem); // Légèrement plus petit
   }
 
   .subtitle {
-    font-size: $text-sm; // 14px
+    font-size: 0.8125rem; // 13px - Réduit de 14px
   }
 
   .services-list {
-    gap: $space-3; // 24px - ✅ Augmenté pour plus d'espace entre cards
+    gap: $space-4; // 16px - OK
   }
 
   .services-item {
     flex-direction: column;
     align-items: stretch;
-    gap: $space-2;
-    padding: $space-2; // 16px - ✅ Réduit pour cards moins hautes
+    gap: $space-1; // 8px - Réduit de 16px
+    padding: $space-2; // 16px - OK
   }
 
   .service-left {
-    align-items: center; // ✅ Centre icône avec le texte
-    gap: $space-2;
+    align-items: center;
+    gap: $space-2; // 16px - OK
   }
 
   .icon {
-    font-size: $text-xl; // 20px
+    font-size: $text-base; // 16px - Réduit de 18px
   }
 
   .service-info {
-    gap: $space-1;
+    gap: 0.25rem; // 4px - Réduit de 8px
   }
 
   .service-name {
-    font-size: $text-base; // 16px
+    font-size: $text-sm; // 14px - Réduit de 16px
   }
 
   .service-desc {
-    font-size: $text-sm; // 14px
+    font-size: 0.75rem; // 12px - Réduit de 13px
   }
 
   .service-price {
     width: 100%;
-    padding: $space-2 $space-3; // ✅ Padding uniforme
-    font-size: $text-base; // 16px
+    padding: $space-1 $space-2; // 8px 16px - Réduit
+    font-size: $text-sm; // 14px - OK
   }
 }
-
 @include tablet {
   .presentation {
-    gap: $space-4; // 32px
+    gap: $space-6; // 48px - Plus d'air vertical (était 32px)
     padding: $padding-tablet;
   }
 
   .header {
-    gap: $space-2; // 16px
+    gap: $space-2; // 16px - OK
+    margin-bottom: $space-3; // 24px - AJOUTE espace avant cards
   }
 
   .title {
-    font-size: $heading-2; // 24-36px
+    font-size: $heading-2; // 24-36px - OK
   }
 
   .subtitle {
-    font-size: $text-base; // 16px
+    font-size: $text-base; // 16px - OK
   }
 
   .services-list {
-    gap: $space-2; // 16px
+    gap: $space-3; // 24px - Plus d'air entre cards (était 16px)
+    margin-bottom: $space-4; // 32px - AJOUTE espace avant footer
   }
 
   .services-item {
-    padding: $space-3 $space-4; // 24px 32px
+    padding: $space-3;// 32px - Plus spacieux (était 24px 32px)
   }
 
   .service-left {
-    gap: $space-3; // 24px
+    gap: $space-3; // 24px - OK
   }
 
   .icon {
-    font-size: $text-xl; // 20px
+    font-size: $text-xl; // 20px - OK
   }
 
   .service-info {
-    gap: $space-1;
+    gap: $space-1; // 8px - OK
   }
 
   .service-name {
-    font-size: $text-lg; // 18px
+    font-size: $text-lg; // 18px - OK
   }
 
   .service-desc {
-    font-size: $text-sm; // 14px
+    font-size: $text-sm; // 14px - OK
   }
 
   .service-price {
-    min-width: 200px; // ✅ Taille fixe
-    padding: $space-2 $space-3; // ✅ Padding uniforme
-    font-size: $text-base; // 16px
+    min-width: 200px;
+    padding: $space-2 $space-3; // 16px 24px - OK
+    font-size: $text-base; // 16px - OK
   }
 }
 

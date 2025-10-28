@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 60%;
+  height: 70vh;
   border-radius: $radius-md;
   color: $white;
   font-family: $font-sans;
@@ -63,13 +63,14 @@
   border-bottom: 1px solid rgba($purple, 0.2);
   border-right: 1px solid rgba($purple, 0.2);
   border-bottom-right-radius: $radius-md;
+  border-bottom-left-radius: $radius-md;
   overflow: hidden;
 }
 
 /* ===== NAVIGATION SIDEBAR (25% left) ===== */
 .nav {
   width: 25%;
-  padding: $space-4;
+  padding: $space-2;
   background: color.adjust($black, $lightness: 8%);
   flex-shrink: 0;
   border-right: 1px solid rgba($purple, 0.15);
@@ -247,7 +248,7 @@
   flex-direction: column;
   gap: $space-2; // Ultra compact
   height: 100%;
-  padding: $space-3 $space-4; // Padding minimal
+  padding: $space-1 $space-2; // Padding minimal
   background: $black;
   overflow-y: auto;
 }
@@ -329,55 +330,81 @@
     width: 70vw;
     max-width: 900px;
   }
+
+  .landing-simple {
+    justify-content: space-around;
+    padding: 2rem;
+  }
 }
 
 @include tablet {
   .why {
-    width: 90vw;
+    padding: $padding-tablet;
   }
 
   .nav {
     width: 30%;
-  }
-}
-
-@include mobile {
-  .why {
-    width: 90vw;
-    height: 85vh;
-  }
-
-  .nav {
-    display: none;
-  }
-
-  .page-content {
-    padding: $space-4;
-  }
-
-  .page-header h3 {
-    font-size: $text-xl;
-  }
-
-  .landing-simple {
-    gap: $space-1;
-    padding: $space-2 $space-3;
   }
 
   .item-icon {
     font-size: 1.5rem;
   }
 
+  .landing-simple {
+    justify-content: space-around;
+    padding: 1rem;
+  }
+}
+
+@include mobile {
+  .why {
+    width: 90vw;
+    height: 70vh; // ✅ OK - Garde 70vh
+  }
+
+  .nav {
+    display: none; // ✅ OK
+  }
+
+  .page-content {
+    padding: $space-2; // ✅ 16px - Réduit de 32px pour gagner de l'espace
+    border-left: 1px solid rgba($purple, 0.2); // ✅ OK
+  }
+
+  .page-header h3 {
+    font-size: $text-lg; // ✅ 18px au lieu de 20px (plus compact)
+    margin-bottom: $space-1; // ✅ 8px - Espace minimal
+  }
+
+  .landing-simple {
+    gap: $space-1; // ✅ 8px - OK, garde compact
+    padding: $space-2; // ✅ 16px uniforme (compact mais lisible)
+    border-left: 1px solid rgba($purple, 0.2); // ✅ OK
+    justify-content: space-around;
+  }
+
+  .item-icon {
+    font-size: 1.25rem; // ✅ 20px - Compact
+  }
+
   .item-title {
-    font-size: $text-sm;
+    font-size: $text-sm; // ✅ 14px - OK
   }
 
   .item-description {
-    font-size: 0.7rem;
+    font-size: 0.6875rem; // ✅ 11px - Compact mais lisible
+    line-height: 1.3; // ✅ Compact
   }
 
   .item-button {
-    padding: 4px 10px;
-    font-size: 0.65rem;
+    margin-top: $space-1; // ✅ 8px - Minimal
+    padding: 0.25rem 0.5rem; // ✅ 4px 8px - Compact
+    font-size: 0.5625rem; // ✅ 9px - Petit mais lisible
+  }
+
+  .contact-btn {
+    padding: $space-1 $space-3; // ✅ 8px 24px - Compact mais utilisable
+    font-size: $text-sm; // ✅ 14px - Lisible
+    margin-bottom: 2vh;
   }
 }

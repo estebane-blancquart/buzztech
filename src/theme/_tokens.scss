@@ -31,7 +31,7 @@ $text-lg: 1.125rem; // 18px - Texte important
 $text-xl: 1.25rem; // 20px - Petits titres
 
 // Headings - Responsive avec clamp()
-$heading-1: clamp(2rem, 5vw, 3rem); // 32-48px
+$heading-1: clamp(2rem, 5vw, 2.8rem); // 32-48px
 $heading-2: clamp(1.5rem, 4vw, 2.25rem); // 24-36px
 $heading-3: clamp(1.25rem, 3vw, 1.75rem); // 20-28px
 

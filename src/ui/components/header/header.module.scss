@@ -100,6 +100,7 @@
 
   .toggle {
     display: block;
+    padding: 0;
   }
 }
 
@@ -137,7 +138,7 @@
   }
 
   .logo {
-    font-size: $heading-1; // 32-48px
+    font-size: $heading-2; // 32-48px
   }
 
   .nav {
@@ -145,7 +146,7 @@
     gap: $space-4;
 
     a {
-      font-size: $text-base; // 16px
+      font-size: $text-sm; // 16px
     }
   }
 

@@ -169,13 +169,8 @@
   // Stack vertical sur très petits écrans
   @media (width <= 380px) {
     .copyright {
-      flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.5rem;
       font-size: 8px; // 12px
-    }
-
-    .separator {
-      display: none;
     }
   }
 }

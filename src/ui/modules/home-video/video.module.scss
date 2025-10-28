@@ -154,79 +154,83 @@
 /* ===== RESPONSIVE ===== */
 @include mobile {
   .video {
-    gap: $space-4; // 32px
+    gap: $space-2; // 16px - Réduit de 32px pour tout faire tenir
     padding: $padding-mobile;
   }
 
   .text {
-    gap: $space-1; // 8px
+    gap: $space-1; // 8px - OK
+    margin-bottom: $space-2; // 16px - AJOUTE séparation header → vidéo
   }
 
   .title {
-    font-size: $heading-3; // 20-28px
+    font-size: $heading-3; // 20-28px - OK
   }
 
   .description {
-    font-size: $text-sm; // 14px
+    font-size: $text-sm; // 14px - OK
   }
 
   .content-grid {
-    gap: $space-3; // 24px
+    gap: $space-2; // 16px - Réduit de 24px (vidéo moins loin des cards)
     grid-template-columns: 1fr;
   }
 
   .highlights {
-    gap: $space-2; // 16px
+    gap: $space-2; // 16px - OK
+    margin-bottom: $space-3; // 24px - AJOUTE séparation cards → footer
   }
 
   .highlight {
-    gap: $space-2;
-    padding: $space-2 $space-3; // 16px 24px
-    font-size: $text-base; // 16px
+    gap: $space-2; // 16px - OK
+    padding: $space-2; // 16px uniforme - Réduit
+    font-size: $text-sm; // 14px - Réduit de 16px
   }
 
   .icon {
-    width: 28px;
-    font-size: $text-lg; // 18px
+    width: 24px; // Réduit de 28px
+    font-size: $text-base; // 16px - Réduit de 18px
   }
 }
 
 @include tablet {
   .video {
-    gap: $space-6; // 48px
+    gap: $space-6; // 48px - OK (garde la grosse séparation)
     padding: $padding-tablet;
   }
 
   .text {
-    gap: $space-2; // 16px
+    gap: $space-2; // 16px - OK
+    margin-bottom: $space-4; // 32px - AJOUTE séparation header → content
   }
 
   .title {
-    font-size: $heading-2; // 24-36px
+    font-size: $heading-2; // 24-36px - OK
   }
 
   .description {
-    font-size: $text-base; // 16px
+    font-size: $text-base; // 16px - OK
   }
 
   .content-grid {
-    gap: $space-6; // 48px
+    gap: $space-6; // 48px - OK
     grid-template-columns: 1.2fr 1fr;
+    margin-bottom: $space-6; // 48px - AJOUTE séparation content → footer
   }
 
   .highlights {
-    gap: $space-3; // 24px
+    gap: $space-4; // 32px - Plus généreux (était 24px)
   }
 
   .highlight {
-    gap: $space-3;
-    padding: $space-3 $space-4; // 24px 32px
-    font-size: $text-base; // 16px
+    gap: $space-3; // 24px - OK
+    padding: $space-3 $space-4; // 24px 32px - OK
+    font-size: $text-base; // 16px - OK
   }
 
   .icon {
-    width: 32px;
-    font-size: $text-xl; // 20px
+    width: 32px; // OK
+    font-size: $text-xl; // 20px - OK
   }
 }
 

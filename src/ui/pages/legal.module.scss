@@ -8,10 +8,9 @@
 
 /* ===== PAGE CONTAINER ===== */
 .legalPage {
-  min-height: 100vh;
-  padding: 15vh 0;
-  background: linear-gradient(135deg, $black 0%, $purple-dark 100%);
   color: $white;
+  background-color: $black;
+  padding: $padding-desktop;
 
   @include mobile {
     padding: $space-6 $space-3;
@@ -21,7 +20,7 @@
 /* ===== CONTENT WRAPPER ===== */
 .container {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 10vh auto;
 }
 
 /* ===== MAIN TITLE ===== */
@@ -163,6 +162,9 @@
 @include tablet {
   .container {
     max-width: 750px;
+  }
+  .legalPage {
+    padding: $padding-tablet;
   }
 }
 

@@ -138,8 +138,9 @@
 /* ===== RESPONSIVE ===== */
 @include mobile {
   .what {
-    gap: $space-3; // 24px
+    gap: $space-4; // 32px - Plus d'air entre éléments (au lieu de probablement 16-24px)
     padding: $padding-mobile;
+    justify-content: center; // ✅ Centre verticalement le contenu
   }
 
   .badge {
@@ -154,10 +155,11 @@
   .subtitle {
     max-width: 100%;
     font-size: $text-sm; // 14px
+    padding: 0 $space-2; // ✅ Padding latéral pour ne pas être trop large
   }
 
   .scroll-indicator {
-    margin-top: $space-2; // 16px
+    margin-top: $space-4; // 32px - ✅ AJOUTE espace avant l'indicateur
     gap: $space-1; // 8px
 
     span {

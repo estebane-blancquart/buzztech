@@ -153,75 +153,76 @@
 /* ===== RESPONSIVE - Tailles + Marges uniquement ===== */
 @include mobile {
   .hero {
-    gap: $space-2; // 16px
-    padding: $padding-mobile; // ✅ Padding global
+    gap: $space-4; // 32px - Espace sphère → content (au lieu de 48px)
+    padding: $padding-mobile;
   }
 
   .background-video {
-    width: 11rem;
-    height: 11rem;
+    width: 9rem; // Réduit encore la sphère (au lieu de 10rem)
+    height: 9rem;
   }
 
   .hero-content {
-    gap: $space-2; // 16px
-    margin-bottom: 5vh;
+    gap: $space-2; // 16px - Serré à l'intérieur
+    margin-bottom: $space-4; // 32px - Espace avant cards (au lieu de 48px)
   }
 
   .hero-title {
     padding: 0 $space-1;
-    font-size: $heading-3; // 20-28px
+    font-size: clamp(1.125rem, 5vw, 1.5rem); // Titre légèrement plus petit
   }
 
   .hero-subtitle {
     padding: 0 $space-2;
-    font-size: $text-sm; // 14px
+    font-size: 0.8125rem; // 13px au lieu de 14px
   }
 
   .hero-cta {
-    max-width: 90%;
+    max-width: 85%;
     min-height: 44px;
-    padding: $space-2 $space-3; // 16px 24px
-    font-size: $text-sm; // 14px
+    padding: $space-2 $space-3;
+    font-size: $text-sm;
   }
 
   .info-grid {
-    gap: $space-2; // 16px
+    gap: $space-3; // 24px entre cards
     grid-template-columns: 1fr;
-    padding: 0; // ✅ Pas de padding supplémentaire, utilise celui du hero
+    padding: 0;
+    margin-bottom: $space-3; // 24px avant footer (au lieu de 32px)
   }
 
   .info-card {
     gap: $space-2;
-    padding: $space-2; // 16px
+    padding: $space-2; // Réduit padding interne (16px au lieu de 16px 24px)
   }
 
   .info-icon {
-    font-size: $text-lg; // 18px
+    font-size: $text-base; // 16px au lieu de 18px
   }
 
   .info-value {
-    font-size: $text-base; // 16px
+    font-size: $text-sm; // 14px au lieu de 16px
   }
 
   .info-label {
-    font-size: $text-xs; // 12px
+    font-size: 0.6875rem; // 11px au lieu de 12px
   }
 }
 
 @include tablet {
   .hero {
-    gap: $space-3; // 24px
-    padding: $padding-tablet; // ✅ Padding global identique header/footer
+    gap: $space-4; // 32px - Réduit de 48px (sphère pas trop loin)
+    padding: $padding-tablet;
   }
 
   .background-video {
-    width: 12rem;
+    width: 12rem; // Revenir à la taille originale (était 13rem)
     height: 12rem;
   }
 
   .hero-content {
-    gap: $space-2; // 16px
-    margin: 2vh 0 5vh;
+    gap: $space-3; // 24px - Garde l'air interne
+    margin-bottom: $space-4; // 32px - Réduit de 48px
   }
 
   .hero-title {
@@ -240,42 +241,46 @@
   }
 
   .info-grid {
-    gap: $space-3; // 24px
+    gap: $space-4; // 32px - Garde entre cards
     max-width: none;
-    padding: 0; // ✅ Pas de padding, hérite du hero ($padding-tablet)
+    padding: 0;
+    margin-bottom: $space-6; // 48px - Plus d'espace avant footer (était 32px)
   }
 
   .info-card {
-    gap: $space-1;
-    padding: $space-2; // 16px
+    gap: $space-2; // 16px
+    padding: $space-3 $space-2; // 24px vertical, 16px horizontal
   }
 
   .info-icon {
-    font-size: $text-lg; // 18px
+    font-size: $text-xl; // 20px
   }
 
   .info-value {
-    font-size: $text-base; // 16px
+    font-size: $text-base; // 16px - Réduit pour éviter coupure (était 18px)
+    white-space: nowrap; // Empêche retour à la ligne
   }
 
   .info-label {
-    font-size: $text-xs; // 12px
+    font-size: 0.6875rem; // 11px - Réduit pour éviter coupure (était 12px)
+    white-space: nowrap; // Empêche retour à la ligne
   }
 }
 
 @include desktop {
   .hero {
-    gap: $space-6; // 48px
+    gap: $space-4; // 32px - Réduit de 48px
     max-width: 900px;
   }
 
   .background-video {
-    width: 15rem;
-    height: 15rem;
+    width: 14rem; // Réduit de 15rem
+    height: 14rem;
   }
 
   .hero-content {
     gap: $space-3; // 24px
+    margin-bottom: $space-6; // 48px
   }
 
   .hero-title {
@@ -288,30 +293,32 @@
 
   .hero-cta {
     min-height: 52px;
-    padding: $space-3 $space-6; // 24px 48px
+    padding: $space-2 $space-4; // 24px 48px
     font-size: $text-base; // 16px
+    margin-top: 2vh;
   }
 
   .info-grid {
-    gap: $space-6; // 48px
-    width: 100%; // ✅ Pleine largeur disponible
-    max-width: none; // ✅ Enlever la contrainte de largeur
+    gap: $space-4; // 32px
+    width: 100%;
+    max-width: none;
+    margin-bottom: $space-6; // 48px - Équilibré
   }
 
   .info-card {
     gap: $space-2;
-    padding: $space-4; // 32px
+    padding: $space-3; // 24px uniforme - Moins imposant
   }
 
   .info-icon {
-    font-size: $text-xl; // 20px
+    font-size: $text-lg; // 18px - Réduit de 20px
   }
 
   .info-value {
-    font-size: $text-lg; // 18px
+    font-size: $text-base; // 16px - Réduit de 18px
   }
 
   .info-label {
-    font-size: $text-xs; // 12px
+    font-size: 0.6875rem; // 11px - Réduit de 12px
   }
 }

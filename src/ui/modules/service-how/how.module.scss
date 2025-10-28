@@ -302,15 +302,53 @@
 
 @include tablet {
   .how {
-    width: 90vw;
+    padding: $padding-tablet;
+  }
 
-    .titles {
-      .step {
-        .number {
-          display: flex;
-          font-size: $text-lg;
-        }
-      }
+  .bar {
+    height: 6%; // ✅ OK
+    margin-bottom: $space-3; // ✅ AJOUTE 24px - Espace barre → titres
+
+    .percentage {
+      font-size: $text-sm; // ✅ 14px
+    }
+  }
+
+  .titles {
+    display: flex; // ✅ Titres visibles
+    gap: $space-2; // ✅ 16px - Entre titres
+    margin-bottom: $space-4; // ✅ AJOUTE 32px - Espace titres → étapes
+  }
+
+  .step-title {
+    padding: $space-2; // ✅ 16px
+    font-size: $text-sm; // ✅ 14px
+  }
+
+  .content {
+    padding: $space-3; // ✅ 24px
+    margin-top: 1vh; // ✅ OK
+    margin-bottom: $space-4; // ✅ AJOUTE 32px - Espace étapes → footer
+  }
+
+  .step {
+    flex-direction: row; // ✅ Horizontal : numéro + texte côte à côte
+    align-items: flex-start;
+    padding: $space-3; // ✅ 24px
+    margin-bottom: $space-3; // ✅ AJOUTE 24px - Espace entre étapes
+    text-align: left;
+
+    .number {
+      width: 40px;
+      height: 40px;
+      margin-right: $space-2; // ✅ 16px - Espace numéro → texte
+      margin-bottom: 0;
+      font-size: $text-base; // ✅ 16px
+    }
+
+    p {
+      font-size: $text-sm; // ✅ 14px
+      line-height: 1.5; // ✅ Lisible
     }
   }
 }
@@ -318,7 +356,7 @@
 @include mobile {
   .how {
     width: 90vw;
-    height: 85vh;
+    height: 70vh;
 
     .bar {
       height: 6%;
