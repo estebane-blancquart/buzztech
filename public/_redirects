@@ -1,11 +1,14 @@
-# ========================================
+# ==========================================
 # BuzzTech - Redirects Netlify
-# ========================================
+# ==========================================
 
 # Force www (redirection permanente)
 https://buzztech-informatique.fr/* https://www.buzztech-informatique.fr/:splat 301!
 
+# Redirection du sitemap vers la version PHP
+/sitemap.xml  /sitemap.php  200
+
 # Single Page Application (SPA) fallback
 # Toutes les routes doivent pointer vers index.html
 # Pour que React Router fonctionne correctement
-/*    /index.html   200
+/*    /index.html    200

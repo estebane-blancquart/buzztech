@@ -3,7 +3,6 @@ header('Content-Type: application/xml; charset=UTF-8');
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Page d'accueil -->
   <url>
     <loc>https://www.buzztech-informatique.fr/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
@@ -11,7 +10,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     <priority>1.0</priority>
   </url>
   
-  <!-- Services -->
   <url>
     <loc>https://www.buzztech-informatique.fr/depannage</loc>
     <lastmod>2025-01-20T00:00:00+00:00</lastmod>
@@ -33,7 +31,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     <priority>0.8</priority>
   </url>
   
-  <!-- Pages légales -->
   <url>
     <loc>https://www.buzztech-informatique.fr/mentions-legales</loc>
     <lastmod>2024-12-15T00:00:00+00:00</lastmod>
