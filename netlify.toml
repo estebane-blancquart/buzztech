@@ -91,6 +91,14 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# ===== HEADERS POUR SITEMAP =====
+[[headers]]
+  for = "/sitemap.xml"
+  
+  [headers.values]
+    Content-Type = "application/xml; charset=UTF-8"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
 # ===== REDIRECTS =====
 # Redirige toutes les 404 vers la page d'accueil (SPA)
 [[redirects]]
