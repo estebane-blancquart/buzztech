@@ -3,6 +3,8 @@
  * Avec validation au démarrage pour éviter les erreurs en prod
  */
 
+import { logger } from '@/core/utils/logger';
+
 // ===== TYPES =====
 interface EnvConfig {
   // Site
@@ -85,8 +87,10 @@ function validateSentryDsn(dsn: string): void {
   }
 
   if (!dsn.includes('ingest.sentry.io')) {
-    console.warn(
-      `⚠️  VITE_SENTRY_DSN ne semble pas être un DSN Sentry valide: ${dsn}`
+    logger.warn(
+      'VITE_SENTRY_DSN ne semble pas être un DSN Sentry valide',
+      { dsn },
+      'env'
     );
   }
 }
@@ -149,11 +153,13 @@ function loadEnvConfig(): EnvConfig {
   // Warnings en production
   if (isProduction) {
     if (!gtmId) {
-      console.warn('⚠️  VITE_GTM_ID non configuré - Analytics désactivés');
+      logger.warn('VITE_GTM_ID non configuré - Analytics désactivés', undefined, 'env');
     }
     if (!sentryDsn) {
-      console.warn(
-        "⚠️  VITE_SENTRY_DSN non configuré - Monitoring d'erreurs désactivé"
+      logger.warn(
+        "VITE_SENTRY_DSN non configuré - Monitoring d'erreurs désactivé",
+        undefined,
+        'env'
       );
     }
   }
@@ -181,7 +187,7 @@ export const env = loadEnvConfig();
  * Log de la config au démarrage (sans les secrets)
  */
 if (env.isDevelopment) {
-  console.info('🔧 Environment configuration:', {
+  logger.info('Environment configuration', {
     mode: import.meta.env.MODE,
     siteUrl: env.siteUrl,
     siteName: env.siteName,
@@ -189,5 +195,5 @@ if (env.isDevelopment) {
     sentryDsn: env.sentryDsn ? '✅ Configuré' : '❌ Non configuré',
     whatsappNumber: env.whatsappNumber ? '✅ Configuré' : '❌ Non configuré',
     apiUrl: env.apiUrl || '❌ Non configuré',
-  });
+  }, 'env');
 }

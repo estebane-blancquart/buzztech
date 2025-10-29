@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { seoData, schemaOrgData, SEOData } from '@/core/data/seo';
+import { seoData, schemaOrgData, type SEOData } from '@/core/data/seo';
 
 const getDefaultSEO = (): SEOData => ({
   title: 'BuzzTech - Services Informatiques',
@@ -56,32 +56,30 @@ export const useSEO = (): void => {
     updateJsonLd();
 
     // Canonical URL
-    updateCanonical(`https://www.buzztech-informatique.fr${location.pathname}`);
+    updateCanonical(
+      `https://www.buzztech-informatique.fr${location.pathname}`
+    );
   }, [location.pathname]);
 };
 
 // Fonctions utilitaires
 const updateMetaTag = (name: string, content: string): void => {
   let element = document.querySelector(`meta[name="${name}"]`);
-
   if (!element) {
     element = document.createElement('meta');
     element.setAttribute('name', name);
     document.head.appendChild(element);
   }
-
   element.setAttribute('content', content);
 };
 
 const updateMetaProperty = (property: string, content: string): void => {
   let element = document.querySelector(`meta[property="${property}"]`);
-
   if (!element) {
     element = document.createElement('meta');
     element.setAttribute('property', property);
     document.head.appendChild(element);
   }
-
   element.setAttribute('content', content);
 };
 
@@ -101,12 +99,10 @@ const updateJsonLd = (): void => {
 
 const updateCanonical = (url: string): void => {
   let element = document.querySelector('link[rel="canonical"]');
-
   if (!element) {
     element = document.createElement('link');
     element.setAttribute('rel', 'canonical');
     document.head.appendChild(element);
   }
-
   element.setAttribute('href', url);
 };

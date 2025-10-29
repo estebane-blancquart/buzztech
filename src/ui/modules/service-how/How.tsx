@@ -1,7 +1,7 @@
 import styles from './how.module.scss';
 import classNames from 'classnames';
 import { useScroll } from '@/core/hooks/useScroll';
-import { Step } from '@/core/types';
+import type { Step } from '@/core/types';
 
 interface HowProps {
   steps: Step[];

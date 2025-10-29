@@ -312,18 +312,18 @@
 
   .errorMessage {
     position: absolute; // ✅ CRITIQUE : Position absolue pour ne pas décaler
+    right: 0;
     bottom: 0; // ✅ En bas du formGroup
     left: 0;
-    right: 0;
-    margin-top: 0.25rem; // 4px
     font-size: 0.5625rem; // 9px - OK
     line-height: 1.2;
+    margin-top: 0.25rem; // 4px
   }
 
   .checkboxWrapper {
+    align-items: flex-start;
     gap: 0.5rem; // 8px - Plus d'air
     margin-top: 0.25rem; // 4px
-    align-items: flex-start;
   }
 
   .checkbox {

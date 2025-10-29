@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './prices.module.scss';
-import { PriceCard } from '@/core/types';
+import type { PriceCard } from '@/core/types';
 
 interface PricesProps {
   service: 'depannage' | 'configuration' | 'creation-web';
   cards: PriceCard[];
+}
+
+interface ScrollerControl {
+  disableGlobalScroll: () => void;
+  enableGlobalScroll: () => void;
 }
 
 const Prices: React.FC<PricesProps> = ({ service, cards }) => {
@@ -18,7 +23,7 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    return (): void => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const getLayoutClass = (): string => {
@@ -56,7 +61,7 @@ const Prices: React.FC<PricesProps> = ({ service, cards }) => {
 
   const goToPreviousModule = (): void => {
     // ✅ FIX: Désactiver le scroller global temporairement
-    const scrollerControl = (window as any).scrollerControl;
+    const scrollerControl = (window as Window & { scrollerControl?: ScrollerControl }).scrollerControl;
 
     if (scrollerControl) {
       scrollerControl.disableGlobalScroll();

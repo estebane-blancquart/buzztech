@@ -377,10 +377,10 @@
   }
 
   .landing-simple {
+    justify-content: space-around;
     gap: $space-1; // ✅ 8px - OK, garde compact
     padding: $space-2; // ✅ 16px uniforme (compact mais lisible)
     border-left: 1px solid rgba($purple, 0.2); // ✅ OK
-    justify-content: space-around;
   }
 
   .item-icon {

@@ -103,8 +103,8 @@ describe('Why Component', () => {
       </RouterWrapper>
     );
 
-    // Click on "voir plus" button for first service
-    const voirPlusButtons = screen.getAllByText('voir plus');
+    // Click on "Voir plus →" button for first service (regex pour supporter les variations)
+    const voirPlusButtons = screen.getAllByText(/Voir plus/i);
     expect(voirPlusButtons.length).toBeGreaterThan(0);
 
     if (voirPlusButtons[0]) {

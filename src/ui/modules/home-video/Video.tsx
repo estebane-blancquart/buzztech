@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './video.module.scss';
-import { VideoHighlight, VideoProps } from '@/core/types';
+import type { VideoHighlight, VideoProps } from '@/core/types';
 
 const HighlightComponent: React.FC<{ highlight: VideoHighlight }> = ({
   highlight,

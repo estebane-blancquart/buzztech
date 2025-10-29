@@ -182,6 +182,7 @@
     font-size: $text-sm; // 14px - OK
   }
 }
+
 @include tablet {
   .presentation {
     gap: $space-6; // 48px - Plus d'air vertical (était 32px)

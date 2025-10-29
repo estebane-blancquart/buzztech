@@ -1,7 +1,7 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { useScroll } from '@/core/hooks/useScroll';
 
 const wrapper = ({ children }: { children: ReactNode }): JSX.Element => (

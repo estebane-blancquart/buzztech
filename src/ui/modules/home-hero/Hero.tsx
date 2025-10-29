@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './hero.module.scss';
-import { InfoStat } from '@/core/types';
+import type { InfoStat } from '@/core/types';
 import { companyData } from '@/core/data';
 
 interface HeroProps {

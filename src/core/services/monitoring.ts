@@ -4,6 +4,7 @@
 
 import * as Sentry from '@sentry/react';
 import { env } from '@/core/config/env';
+import { logger } from '@/core/utils/logger';
 
 // ===== TYPES =====
 interface MonitoringConfig {
@@ -56,10 +57,12 @@ export function initMonitoring(): void {
   // Ne rien faire si monitoring désactivé
   if (!config.enabled) {
     if (env.isDevelopment) {
-      console.log('📊 Monitoring désactivé en développement');
+      logger.info('Monitoring désactivé en développement', undefined, 'monitoring');
     } else {
-      console.warn(
-        '⚠️  Sentry non configuré - Monitoring désactivé en production'
+      logger.warn(
+        'Sentry non configuré - Monitoring désactivé en production',
+        undefined,
+        'monitoring'
       );
     }
     return;
@@ -143,13 +146,13 @@ export function initMonitoring(): void {
       ],
     });
 
-    console.log('✅ Sentry initialisé:', {
+    logger.info('Sentry initialisé', {
       environment: config.environment,
       release: config.release,
       tracesSampleRate: `${config.tracesSampleRate * 100}%`,
-    });
+    }, 'monitoring');
   } catch (error) {
-    console.error("❌ Erreur lors de l'initialisation de Sentry:", error);
+    logger.error("Erreur lors de l'initialisation de Sentry", error, 'monitoring');
   }
 }
 
@@ -163,7 +166,7 @@ export function captureError(
   context?: Record<string, unknown>
 ): void {
   if (env.isDevelopment) {
-    console.error('🐛 Erreur capturée:', error, context);
+    logger.error('Erreur capturée', { error, context }, 'monitoring');
     return;
   }
 
@@ -186,7 +189,7 @@ export function captureMessage(
   level: 'fatal' | 'error' | 'warning' | 'info' | 'debug' = 'info'
 ): void {
   if (env.isDevelopment) {
-    console.log(`📝 [${level}]`, message);
+    logger.info(`[${level}] ${message}`, undefined, 'monitoring');
     return;
   }
 
@@ -202,7 +205,7 @@ export function addBreadcrumb(
   data?: Record<string, unknown>
 ): void {
   if (env.isDevelopment) {
-    console.log('🍞 Breadcrumb:', message, data);
+    logger.debug('Breadcrumb', { message, data }, 'monitoring');
     return;
   }
 
@@ -226,7 +229,7 @@ export function setUser(
   } | null
 ): void {
   if (env.isDevelopment) {
-    console.log('👤 User set:', user);
+    logger.debug('User set', user, 'monitoring');
     return;
   }
 
@@ -239,7 +242,7 @@ export function setUser(
  */
 export function setTag(key: string, value: string): void {
   if (env.isDevelopment) {
-    console.log(`🏷️  Tag: ${key} = ${value}`);
+    logger.debug(`Tag: ${key} = ${value}`, undefined, 'monitoring');
     return;
   }
 
@@ -255,7 +258,7 @@ export function setContext(
   context: Record<string, unknown>
 ): void {
   if (env.isDevelopment) {
-    console.log(`🔖 Context: ${name}`, context);
+    logger.debug(`Context: ${name}`, context, 'monitoring');
     return;
   }
 

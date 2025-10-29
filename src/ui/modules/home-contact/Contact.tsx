@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, type FormEvent } from 'react';
 import styles from './contact.module.scss';
 
 interface FormData {
@@ -212,6 +212,7 @@ const Contact: React.FC = () => {
         throw new Error('Erreur serveur');
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Erreur lors de l'envoi:", error);
       setStatus('error');
 

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { UseScrollOptions, UseScrollReturn } from '@/core/types';
+import type { UseScrollOptions, UseScrollReturn } from '@/core/types';
 
 export function useScroll({
   totalItems,
@@ -22,7 +22,7 @@ export function useScroll({
   const progressPercentage = ((activeItem + 1) / totalItems) * 100;
 
   // ✅ Fonction de nettoyage des timeouts
-  const clearAllTimeouts = useCallback(() => {
+  const clearAllTimeouts = useCallback((): void => {
     if (fadeTimeoutRef.current) {
       clearTimeout(fadeTimeoutRef.current);
       fadeTimeoutRef.current = null;
@@ -242,7 +242,7 @@ export function useScroll({
 
   // ✅ Nettoyer tous les timeouts au démontage du composant
   useEffect(() => {
-    return () => {
+    return (): void => {
       clearAllTimeouts();
     };
   }, [clearAllTimeouts]);

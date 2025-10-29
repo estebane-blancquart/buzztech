@@ -1,18 +1,25 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, type Location } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import type * as ReactRouterDom from 'react-router-dom';
 import ScrollLink from '@/ui/components/scroller/scrollLink';
 
 // Mock useLocation and useNavigate
 const mockNavigate = vi.fn();
-const mockLocation = { pathname: '/' };
+const mockLocation: Location = {
+  pathname: '/',
+  search: '',
+  hash: '',
+  state: undefined,
+  key: 'default',
+};
 
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+vi.mock('react-router-dom', async (): Promise<typeof ReactRouterDom> => {
+  const actual = await vi.importActual<typeof ReactRouterDom>('react-router-dom');
   return {
     ...actual,
-    useNavigate: () => mockNavigate,
-    useLocation: () => mockLocation,
+    useNavigate: (): typeof mockNavigate => mockNavigate,
+    useLocation: (): Location => mockLocation,
   };
 });
 

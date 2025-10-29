@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './why.module.scss';
 import classNames from 'classnames';
 import { useScroll } from '@/core/hooks/useScroll';
-import { WhyPageProps } from '@/core/types';
+import type { WhyPageProps } from '@/core/types';
 
 interface WhyProps {
   title: string;

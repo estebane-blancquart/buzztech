@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import CookieBanner from '@/ui/components/cookie-banner/CookieBanner';
 
 // Mock localStorage
-const localStorageMock = (() => {
+const localStorageMock = ((): Storage => {
   let store: Record<string, string> = {};
 
   return {
@@ -16,6 +16,13 @@ const localStorageMock = (() => {
     },
     clear: (): void => {
       store = {};
+    },
+    key: (index: number): string | null => {
+      const keys = Object.keys(store);
+      return keys[index] ?? null;
+    },
+    get length(): number {
+      return Object.keys(store).length;
     },
   };
 })();
@@ -42,7 +49,6 @@ describe('CookieBanner Component', () => {
         expiry: Date.now() + 1000000,
       })
     );
-
     const { container } = render(<CookieBanner />);
     expect(container).toBeInTheDocument();
   });
