@@ -4,16 +4,7 @@
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  
-# Autoriser les scripts nécessaires
-/
-Content-Security-Policy: default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com;
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  font-src 'self' https://fonts.gstatic.com;
-  img-src 'self' data: https:;
-  connect-src 'self' https://www.google-analytics.com https://o4508367282135040.ingest.de.sentry.io;
-  frame-src 'self' https://www.google.com https://www.googletagmanager.com;
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://o4508367282135040.ingest.de.sentry.io; frame-src https://www.googletagmanager.com;
 
 # Cache des assets statiques (1 an)
 /assets/*
@@ -22,3 +13,14 @@ Content-Security-Policy: default-src 'self';
 # Cache du HTML (0 - toujours vérifier)
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+```
+
+## Changements effectués :
+
+1. **Supprimé `'self'` de `frame-src`** : Vous aviez `frame-src 'self' https://www.google.com https://www.googletagmanager.com;`, or GTM charge l'iframe depuis `https://www.googletagmanager.com/ns.html` qui n'est pas sur votre domaine
+2. **Supprimé `https://www.google.com`** : Pas nécessaire pour GTM
+3. **Mis toute la CSP sur une seule ligne** : C'est plus propre et évite les problèmes de parsing
+
+Si le problème persiste après le redéploiement, essayez aussi d'ajouter `https://www.googletagmanager.com` dans `default-src` (même si normalement `frame-src` devrait suffire) :
+```
+Content-Security-Policy: default-src 'self' https://www.googletagmanager.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; ...
