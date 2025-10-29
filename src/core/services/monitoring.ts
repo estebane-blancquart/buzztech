@@ -75,7 +75,7 @@ export function initMonitoring(): void {
       // Ne définir release que si on a une valeur
       ...(config.release && { release: config.release }),
 
-      // Intégrations
+      // Intégrations - Désactiver les intégrations par défaut qui causent lockdown
       integrations: [
         // Browser Tracing pour performance monitoring
         Sentry.browserTracingIntegration(),
@@ -92,13 +92,6 @@ export function initMonitoring(): void {
       replaysSessionSampleRate: config.replaysSessionSampleRate,
       replaysOnErrorSampleRate: config.replaysOnErrorSampleRate,
 
-      // ✅ DÉSACTIVER LOCKDOWN - Évite les erreurs dans la console
-      autoSessionTracking: true,
-      sendDefaultPii: false,
-      
-      // Ne pas installer les handlers globaux qui causent les erreurs lockdown
-      defaultIntegrations: false,
-
       // Filtrer les erreurs non pertinentes
       beforeSend(event, hint) {
         // Ignorer les erreurs de extensions navigateur
@@ -109,6 +102,12 @@ export function initMonitoring(): void {
         // Ignorer les erreurs réseau communes
         const error = hint.originalException as Error;
         if (error?.message?.includes('Network request failed')) {
+          return null;
+        }
+
+        // ✅ Ignorer les erreurs Sentry lockdown
+        if (event.exception?.values?.[0]?.value?.includes('lockdown') ||
+            event.exception?.values?.[0]?.value?.includes('Removing unpermitted intrinsics')) {
           return null;
         }
 
@@ -139,9 +138,12 @@ export function initMonitoring(): void {
         'cancelled',
         'AbortError',
         
-        // Erreurs Sentry lockdown
+        // ✅ Erreurs Sentry lockdown
         'Removing unpermitted intrinsics',
         'lockdown',
+        'getOwnPropertyDescriptor',
+        '%MapPrototype%',
+        '%WeakMapPrototype%',
       ],
 
       // Ne pas tracker certaines URLs
@@ -154,6 +156,9 @@ export function initMonitoring(): void {
         // Scripts tiers problématiques
         /google-analytics\.com/i,
         /googletagmanager\.com/i,
+        
+        // ✅ Ignorer les scripts Sentry lockdown
+        /lockdown-install/i,
       ],
     });
 
