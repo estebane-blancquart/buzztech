@@ -17,7 +17,7 @@ export const seoData: Record<string, SEOData> = {
       'informatique Saint-Étienne, dépannage ordinateur, configuration PC, création site web, BuzzTech, Loire 42',
     ogTitle: 'BuzzTech - Votre expert informatique à Saint-Étienne',
     ogDescription:
-      'Services informatiques professionnelles : dépannage, configuration PC et sites web.',
+      'Services informatiques professionnels : dépannage, configuration PC et sites web.',
     ogImage: '/images/og-home.jpg',
   },
 
@@ -61,7 +61,6 @@ export const seoData: Record<string, SEOData> = {
 };
 
 // Schema.org data pour les données structurées
-// Schema.org data pour les données structurées
 export const schemaOrgData = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
@@ -71,12 +70,25 @@ export const schemaOrgData = {
   telephone: '+33660352267',
   email: 'contact@buzztech-informatique.fr',
 
-  // ✅ AJOUTS pour meilleur SEO
+  // ✅ Logo de l'entreprise (utilise le favicon)
+  logo: 'https://www.buzztech-informatique.fr/favicon.ico',
+  
+  // ✅ Image principale
   image: 'https://www.buzztech-informatique.fr/images/og-home.jpg',
+  
+  // ✅ Informations commerciales
   priceRange: '€€',
   paymentAccepted: 'Cash, Credit Card, Bank Transfer',
   currenciesAccepted: 'EUR',
 
+  // ✅ Date de création et fondateur
+  foundingDate: '2024',
+  founder: {
+    '@type': 'Person',
+    name: 'Estebane Blancquart',
+  },
+
+  // ✅ Adresse complète
   address: {
     '@type': 'PostalAddress',
     streetAddress: '20b Impasse Montesquieu',
@@ -86,47 +98,96 @@ export const schemaOrgData = {
     addressCountry: 'FR',
   },
 
+  // ✅ Coordonnées géographiques
   geo: {
     '@type': 'GeoCoordinates',
     latitude: 45.4397,
     longitude: 4.3872,
   },
 
-  openingHours: 'Mo-Fr 08:00-18:00',
+  // ✅ Horaires d'ouverture détaillés
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+  ],
 
+  // ✅ Zone de service
   serviceArea: {
     '@type': 'City',
     name: 'Saint-Étienne',
   },
 
-  // ✅ AJOUT : Réseaux sociaux
+  // ✅ Réseaux sociaux
   sameAs: [
     'https://www.facebook.com/profile.php?id=61565433387725',
     'https://www.instagram.com/buzztech_informatique/',
   ],
 
-  // ✅ AJOUT : Reviews (si tu en as, sinon enlève ce bloc)
+  // ✅ Services proposés
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services informatiques',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Dépannage informatique',
+          description:
+            'Réparation ordinateurs à distance, en atelier ou à domicile. Virus, lenteurs, pannes matérielles.',
+          serviceType: 'Dépannage informatique',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Configuration PC sur mesure',
+          description:
+            'Assemblage PC personnalisé : gaming, bureautique ou professionnel. Composants de qualité.',
+          serviceType: 'Configuration PC',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Création de sites web',
+          description:
+            'Sites vitrines professionnels responsive et optimisés SEO. Design moderne et sur mesure.',
+          serviceType: 'Développement web',
+        },
+      },
+    ],
+  },
+
+  // ⚠️ NOTE: Avis clients à ajouter plus tard quand tu en auras
+  // Décommente et remplis quand tu auras de vrais avis :
+  /*
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '5',
     reviewCount: '12',
   },
-
-  services: [
+  review: [
     {
-      '@type': 'Service',
-      name: 'Dépannage informatique',
-      description: 'Réparation ordinateurs à distance, atelier ou domicile',
-    },
-    {
-      '@type': 'Service',
-      name: 'Configuration PC',
-      description: 'Assemblage PC sur mesure selon vos besoins',
-    },
-    {
-      '@type': 'Service',
-      name: 'Création sites web',
-      description: 'Sites vitrines professionnels responsive',
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5',
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Jean D.',
+      },
+      reviewBody: 'Service rapide et efficace, mon PC est reparti comme neuf !',
+      datePublished: '2024-10-15',
     },
   ],
+  */
 };

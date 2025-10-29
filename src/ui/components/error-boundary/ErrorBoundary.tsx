@@ -1,5 +1,4 @@
-import { Component } from 'react';
-import type { ErrorInfo, ReactNode } from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 import * as Sentry from '@sentry/react';
 import styles from './ErrorBoundary.module.scss';
 import { env } from '@/core/config/env';
@@ -40,6 +39,7 @@ class ErrorBoundary extends Component<Props, State> {
   override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Log en console en dev
     if (env.isDevelopment) {
+      // eslint-disable-next-line no-console
       console.error('🔴 ErrorBoundary caught an error:', error, errorInfo);
     }
 

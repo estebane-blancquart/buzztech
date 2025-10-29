@@ -110,7 +110,9 @@ const Contact: React.FC = () => {
   ): void => {
     const { name, value, type } = e.target;
     const checked =
-      type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+      type === 'checkbox'
+        ? (e.target as HTMLInputElement).checked
+        : undefined;
 
     setFormData(prev => ({
       ...prev,
@@ -119,7 +121,6 @@ const Contact: React.FC = () => {
 
     // Validation en temps réel si le champ a été touché
     if (touched[name]) {
-      // ✅ Utiliser ?? au lieu de !
       const error = validateField(
         name as keyof FormData,
         type === 'checkbox' ? (checked ?? false) : value
@@ -139,11 +140,12 @@ const Contact: React.FC = () => {
   ): void => {
     const { name, value, type } = e.target;
     const checked =
-      type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+      type === 'checkbox'
+        ? (e.target as HTMLInputElement).checked
+        : undefined;
 
     setTouched(prev => ({ ...prev, [name]: true }));
 
-    // ✅ Utiliser ?? au lieu de !
     const error = validateField(
       name as keyof FormData,
       type === 'checkbox' ? (checked ?? false) : value
@@ -155,7 +157,7 @@ const Contact: React.FC = () => {
   };
 
   // Soumission du formulaire
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
     // Marquer tous les champs comme touchés
@@ -175,8 +177,6 @@ const Contact: React.FC = () => {
     setStatus('submitting');
 
     try {
-      // ⚠️ REMPLACE 'YOUR_FORM_ID' par ton vrai ID Formspree
-      // Exemple: https://formspree.io/f/xpwzgknr
       const response = await fetch('https://formspree.io/f/xrbyvjrd', {
         method: 'POST',
         headers: {

@@ -22,12 +22,12 @@ const ScrollLink = ({
 
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (location.pathname === to) {
-      navigate(to, {
+      void navigate(to, {
         replace: true,
         state: { resetKey: Date.now() },
       });
     } else {
-      navigate(to, { state: { resetKey: Date.now() } });
+      void navigate(to, { state: { resetKey: Date.now() } });
     }
 
     if (onClick) {

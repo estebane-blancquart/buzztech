@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState, useRef, useCallback } from 'react';
+import { type ReactNode, useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface WindowWithScroller extends Window {
@@ -55,12 +55,15 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   const totalModules = getTotalModules();
 
   // ✅ Désactive le scroller sur les pages légales
-  useEffect(() => {
+  useEffect((): (() => void) => {
     if (isLegalPage) {
       // Reset les styles pour scroll normal
       document.documentElement.style.scrollSnapType = '';
       document.documentElement.style.scrollBehavior = 'smooth';
-      return;
+      return () => {
+        document.documentElement.style.scrollSnapType = '';
+        document.documentElement.style.scrollBehavior = '';
+      };
     }
 
     // Comportement normal pour les autres pages
@@ -72,13 +75,13 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
       document.documentElement.style.scrollBehavior = 'smooth';
     }
 
-    return () => {
+    return (): void => {
       document.documentElement.style.scrollSnapType = '';
       document.documentElement.style.scrollBehavior = '';
     };
   }, [isLegalPage]);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     (window as WindowWithScroller).scrollerControl = {
       disableGlobalScroll: (): void => {
         setGlobalScrollDisabled(true);
@@ -95,19 +98,19 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
     };
   }, [currentModule, isScrollingState]);
 
-  const smoothScrollTo = (targetPosition: number) => {
+  const smoothScrollTo = (targetPosition: number): void => {
     window.scrollTo({
       top: targetPosition,
       behavior: 'smooth',
     });
 
-    setTimeout(() => {
+    setTimeout((): void => {
       isTransitioningRef.current = false;
       setIsScrollingState(false);
     }, 800);
   };
 
-  const snapToNearestModule = useCallback(() => {
+  const snapToNearestModule = useCallback((): void => {
     if (isTransitioningRef.current || globalScrollDisabled || isLegalPage) {
       return;
     }
@@ -135,12 +138,12 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   }, [totalModules, globalScrollDisabled, onModuleChange, isLegalPage]);
 
   // ✅ Chrome wheel handler - DÉSACTIVÉ sur pages légales
-  useEffect(() => {
+  useEffect((): (() => void) | void => {
     if (!isChrome || isLegalPage) {
       return;
     }
 
-    const handleWheel = (e: WheelEvent) => {
+    const handleWheel = (e: WheelEvent): void => {
       const target = e.target as HTMLElement;
       const customScrollZone = target.closest('[data-custom-scroll="true"]');
 
@@ -195,18 +198,18 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
       capture: true,
     });
 
-    return () => {
+    return (): void => {
       document.removeEventListener('wheel', handleWheel, {
         capture: true,
-      } as any);
+      } as EventListenerOptions);
     };
   }, [totalModules, globalScrollDisabled, onModuleChange, isLegalPage]);
 
   // ✅ Chrome scroll handler - DÉSACTIVÉ sur pages légales
-  useEffect(() => {
+  useEffect((): (() => void) | void => {
     if (!isChrome || isLegalPage) return;
 
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       if (globalScrollDisabled || isTransitioningRef.current) return;
 
       const scrollTop = window.scrollY;
@@ -224,7 +227,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
         clearTimeout(scrollTimeoutRef.current);
       }
 
-      scrollTimeoutRef.current = setTimeout(() => {
+      scrollTimeoutRef.current = setTimeout((): void => {
         setIsScrollingState(false);
         snapToNearestModule();
       }, 150);
@@ -232,7 +235,7 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    return () => {
+    return (): void => {
       window.removeEventListener('scroll', handleScroll);
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
@@ -241,10 +244,10 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
   }, [currentModule, totalModules, globalScrollDisabled, snapToNearestModule, isLegalPage]);
 
   // ✅ Firefox scroll handler - DÉSACTIVÉ sur pages légales
-  useEffect(() => {
+  useEffect((): (() => void) | void => {
     if (isChrome || isLegalPage) return;
 
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       if (globalScrollDisabled) return;
 
       const scrollTop = window.scrollY;
@@ -262,13 +265,13 @@ function Scroller({ children, onModuleChange }: ScrollerProps): JSX.Element {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    return () => {
+    return (): void => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [currentModule, totalModules, globalScrollDisabled, onModuleChange, isLegalPage]);
 
   // Reset on route change
-  useEffect(() => {
+  useEffect((): void => {
     setCurrentModule(0);
     setGlobalScrollDisabled(false);
     isTransitioningRef.current = false;

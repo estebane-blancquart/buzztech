@@ -7,13 +7,22 @@ interface WhatProps {
   subtitle: string;
 }
 
+interface ScrollerControl {
+  disableGlobalScroll: () => void;
+  enableGlobalScroll: () => void;
+}
+
+interface WindowWithScroller extends Window {
+  scrollerControl?: ScrollerControl;
+}
+
 const What = ({ badge, title, subtitle }: WhatProps): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasUserInteractedRef = useRef<boolean>(false);
 
   const handleScrollClick = (): void => {
     // Désactiver le scroller global temporairement
-    const scrollerControl = (window as any).scrollerControl;
+    const scrollerControl = (window as WindowWithScroller).scrollerControl;
 
     if (scrollerControl) {
       scrollerControl.disableGlobalScroll();
