@@ -92,6 +92,13 @@ export function initMonitoring(): void {
       replaysSessionSampleRate: config.replaysSessionSampleRate,
       replaysOnErrorSampleRate: config.replaysOnErrorSampleRate,
 
+      // ✅ DÉSACTIVER LOCKDOWN - Évite les erreurs dans la console
+      autoSessionTracking: true,
+      sendDefaultPii: false,
+      
+      // Ne pas installer les handlers globaux qui causent les erreurs lockdown
+      defaultIntegrations: false,
+
       // Filtrer les erreurs non pertinentes
       beforeSend(event, hint) {
         // Ignorer les erreurs de extensions navigateur
@@ -131,6 +138,10 @@ export function initMonitoring(): void {
         // Annulations utilisateur
         'cancelled',
         'AbortError',
+        
+        // Erreurs Sentry lockdown
+        'Removing unpermitted intrinsics',
+        'lockdown',
       ],
 
       // Ne pas tracker certaines URLs
