@@ -57,6 +57,22 @@ const loadGTM = (): void => {
 
   if (window.dataLayer) return;
 
+  // ✅ Filtrer les erreurs console des scripts tiers AVANT de charger GTM
+  const originalError = console.error;
+  console.error = (...args: unknown[]) => {
+    const errorMsg = String(args[0]);
+    // Filtrer les erreurs lockdown et CSP non-critiques
+    if (errorMsg.includes('lockdown') || 
+        errorMsg.includes('Removing unpermitted') ||
+        errorMsg.includes('Removing intrinsics') ||
+        errorMsg.includes('%MapPrototype%') ||
+        errorMsg.includes('%WeakMapPrototype%') ||
+        errorMsg.includes('toTemporalInstant')) {
+      return; // Ne pas afficher dans la console
+    }
+    originalError.apply(console, args);
+  };
+
   // ✅ Fix: Utilise ?? au lieu de ||
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -64,6 +80,13 @@ const loadGTM = (): void => {
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+  
+  // ✅ Ajouter un gestionnaire d'erreur pour les scripts
+  script.onerror = () => {
+    // Ignorer silencieusement les erreurs de chargement
+    return;
+  };
+  
   document.head.appendChild(script);
 
   const noscript = document.createElement('noscript');
