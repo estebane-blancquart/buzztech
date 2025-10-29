@@ -22,8 +22,9 @@ interface MonitoringConfig {
  * Configure Sentry selon l'environnement
  */
 function getMonitoringConfig(): MonitoringConfig {
-  // Activer uniquement en production ET si DSN configuré
-  const enabled = env.isProduction && !!env.sentryDsn;
+  // ✅ DÉSACTIVER SENTRY EN PRODUCTION pour éviter les erreurs lockdown
+  // Activer uniquement en développement ET si DSN configuré
+  const enabled = env.isDevelopment && !!env.sentryDsn;
 
   return {
     enabled,
