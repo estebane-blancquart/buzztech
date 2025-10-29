@@ -7,19 +7,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="referrer" content="origin-when-cross-origin" />
     
+    <!-- Content Security Policy - Autorise GTM et Sentry -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https:;
+      connect-src 'self' https://www.google-analytics.com https://o4508367282135040.ingest.de.sentry.io;
+      frame-src 'self' https://www.google.com;
+    " />
+    
     <!-- SEO Fallback (overridé par useSEO.ts) -->
     <meta name="description" content="BuzzTech propose des services informatiques professionnels à Saint-Étienne : dépannage rapide (distance, atelier, domicile), configuration PC sur mesure (gaming, bureautique, pro), création de sites web modernes et optimisés. Devis gratuit." />
     <meta name="keywords" content="informatique Saint-Étienne, dépannage ordinateur, réparation PC, configuration PC gaming, création site web, BuzzTech, Loire 42, services informatiques" />
-    
     <meta name="theme-color" content="#a367ff" />
     
     <!-- ✅ OPTIMISATION FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Preload des fonts critiques -->
+    <!-- Preload des fonts critiques pour améliorer FCP -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Ubuntu+Sans+Mono:wght@400;700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Ubuntu+Sans+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Ubuntu+Sans+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Ubuntu+Sans+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    </noscript>
     
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     
